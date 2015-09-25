@@ -1,7 +1,7 @@
 #!/usr/bin/python
 print "Content-Type: text/html"     # HTML is following
 print                               # blank line, end of headers
-print "<title>hello world</title>"
+print "<title>(Priyank) RNA Browser</title>"
 
 import os
 import cgi
@@ -13,12 +13,20 @@ import json
 import gd
 import pysam
 
-geneid = "At1g11190"
-print "Looking up %s" %geneid
+geneid = "At2g24650"
+
+print "Looking up %s." %geneid
+
 j = json.loads(urllib2.urlopen("http://bar.utoronto.ca/webservices/araport/gff/get_tair10_gff.php?locus=" + geneid).read())
+
+
 start = j[u'result'][0][u'start'] if j[u'result'][0][u'strand'] == u'+' else j[u'result'][0][u'end']
+
 end = j[u'result'][0][u'end'] if j[u'result'][0][u'strand'] == u'+' else j[u'result'][0][u'start']
+
 chromosome = int(j[u'result'][0][u'chromosome'])
+
+
 for region in j[u'result']:
 	if region[u'strand'] == u'+':
 		if region[u'start'] < start:
@@ -31,6 +39,7 @@ for region in j[u'result']:
 		if region[u'end'] > end:
 			end = region[u'end']
 
+
 def generate_exon_graph():
 	exongraph = gd.image((200, 100))
 	white = exongraph.colorAllocate((255,255,255))
@@ -42,7 +51,9 @@ def generate_exon_graph():
 			print (float(region[u'start'] - start) /(end-start), float(region[u'end'] - start)/(end-start))
 			exongraph.filledRectangle((int(float(region[u'start'] - start) /(end-start) * 200), 65), (int(float(region[u'end'] - start)/(end-start) * 200), 35), red)        
 
-	print f
+	f = open("test.png", "w")
+	exongraph.writePng(f)
+	f.close()
 
 def generate_rnaseq_graph():
 	url = "http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/aerial/ERR274310/accepted_hits.bam"
@@ -96,6 +107,7 @@ print '			<th> eFP - RPKM </th>'
 print '			<th> SRA Record </th>'
 print '			<th> Details </th>'
 
+
 files = [ f for f in os.listdir("SVGs") if os.path.isfile(os.path.join("SVGs",f)) ]
 for item in files:
 	svg = open("SVGs/" + item, "r")
@@ -109,8 +121,10 @@ for item in files:
 	print '		</tr>'
 print '	</table>'
 
+
 print form.getvalue("name")
+
 generate_exon_graph()
 generate_rnaseq_graph()
 print "</body>"
-# print "</html>"
+print "</html>"
