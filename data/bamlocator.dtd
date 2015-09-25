@@ -1,0 +1,44 @@
+<!ELEMENT files (file)+>
+<!ELEMENT file  (groupwith)?>
+<!ATTLIST file  name CDATA #REQUIRED <!--URL to data file... iplant?-->
+                title CDATA #IMPLIED
+                description CDATA #IMPLIED <!-- annotation of keywords or something about the experimentsor the part of the plant-->
+                url CDATA #IMPLIED <!--URL to the repository SRA  trace.ncbi.nlm.gov/Traces/sra/?run=?????-->
+                foreground CDATA #IMPLIED <!--colour of the graph-->
+                
+                experimentno CDATA #REQUIRED <!--ERR/SRR name(code)-->
+                publicationid CDATA #IMPLIED <!--URL to the publication paper!-->
+                numberofreads CDATA #IMPLIED <!-- from SRR.mapped.condition-->
+                subunitname CDATA #IMPLIED <!--inspect vaishali's code to determine what the internal identifier for ggEFP-->
+                control CDATA #IMPLIED>
+<!ELEMENT groupwith (experiment)*>
+<!ELEMENT experiment (#PCDATA)> <!--the duplicated experiments it should be grouped with-->
+
+
+
+<!--
+first parse SRR.mapped.condition
+cut out the experimentno from the first column
+cut out the numberofreads after the : sign
+regex the first column onto the iplant path file and try to find (if can't find then print out the offending ID
+publicationid data?
+control data?
+groupwith data? does this have to be manual?
+
+-->
+
+<!--
+SRA identifier as a project = a view in ggEFP
+SRR is PER OBSERVATION
+there may be multiple SRR for the same datapoint (replication of experiments)
+
+
+we can parse the groupwith information as follows:
+ - go into the SRA trace... find the project number (SRP)
+ - click on Runs
+ - C1, C2 C3 would be control, while BA (or other thing) would be treatment
+ 
+ 
+check out the SDK for ncbi
+-->
+                        
