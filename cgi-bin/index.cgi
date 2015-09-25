@@ -13,7 +13,7 @@ import json
 import gd
 import pysam
 
-geneid = "At2g24650"
+geneid = "At3g24650"
 
 print "Looking up %s." %geneid
 
@@ -59,7 +59,7 @@ def generate_rnaseq_graph():
 	url = "http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/aerial/ERR274310/accepted_hits.bam"
 	xvalues = []
 	values = []
-	print "Chr%s:%s-%s" %(chromosome, start, end)
+	print "Chr%s :: %s-%s" %(chromosome, start, end)
 	for read in pysam.mpileup(url, "-r", "Chr%s:%s-%s" %(chromosome, start, end)): 
 		xvalues.append(float(read.split('\t')[1]))
 		values.append(float(int(read.split('\t')[3]) - read.split('\t')[4].count('<') - read.split('\t')[4].count('>')))
