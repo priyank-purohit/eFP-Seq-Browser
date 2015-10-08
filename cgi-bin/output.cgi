@@ -12,6 +12,7 @@ import urllib2
 import json
 import gd
 import pysam
+from random import randint
 
 # ----- CONSTANTS -----
 EXON_IMG_WIDTH = 200
@@ -21,14 +22,34 @@ RNA_IMG_WIDTH = 200
 RNA_IMG_HEIGHT = 200
 
 
+# ----- CLEAR OLD FILES -----
+img_files = []
+img_files.append("rnaseqgraph0.png")
+img_files.append("rnaseqgraph1.png")
+img_files.append("rnaseqgraph2.png")
+img_files.append("rnaseqgraph3.png")
+img_files.append("rnaseqgraph4.png")
+img_files.append("rnaseqgraph5.png")
+
+for img_file in img_files:
+    f = open(img_file, "w+")
+    red_sqr = gd.image((RNA_IMG_WIDTH, RNA_IMG_HEIGHT))
+    red_clr = red_sqr.colorAllocate((255,0,0))
+    red_sqr.rectangle((0,0), (RNA_IMG_WIDTH, RNA_IMG_HEIGHT), red_clr)
+    red_sqr.writePng(f)
+    f.close()
+
 # ----- LOCUS TAGS OF INTEREST -----
 ABI3 = "AT3G24650"
 TMKL1 = "AT3G24660"
 
 
 # ----- LOCUS TAG TO DISPLAY -----
-geneid = "AT1G01010"
-geneid = "AT4G25960"
+geneidx = "AT1G01010"
+geneidx = "AT5G66460"
+geneidx = TMKL1
+geneid = cgi.FieldStorage().getvalue('locus')
+
 
 print '<style>'
 print 'td {text-align:center;}'
@@ -36,10 +57,23 @@ print '</style>'
 
 
 # ----- BAM FILE LINK -----
-url = "http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/aerial/ERR274310/accepted_hits.bam"
+url0 = "http://vision.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/aerial/ERR274310/accepted_hits.bam"
+url1 = "http://vision.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/aerial/SRR547531/accepted_hits.bam"
+url2 = "http://vision.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/aerial/SRR548277/accepted_hits.bam"
+url3 = "http://vision.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/aerial/SRR847503/accepted_hits.bam"
+url4 = "http://vision.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/aerial/SRR847505/accepted_hits.bam"
+url5 = "http://vision.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/aerial/SRR847506/accepted_hits.bam"
 
 
-# ----- GETS MAPPING INFO FOR THE GENEID -----
+url_arr = []
+url_arr.append(url1)
+url_arr.append(url2)
+url_arr.append(url3)
+url_arr.append(url4)
+url_arr.append(url5)
+
+
+# ----- GETS MAPPING INFO FOR THE GENE ID -----
 map_info = json.loads(urllib2.urlopen("http://bar.utoronto.ca/webservices/araport/gff/get_tair10_gff.php?locus=" + geneid).read())
 
 start = map_info[u'result'][0][u'start'] if map_info[u'result'][0][u'strand'] == u'+' else map_info[u'result'][0][u'end']
@@ -82,11 +116,12 @@ def generate_exon_graph():
 	exongraph.writePng(f)
 	f.close()
 
-def generate_rnaseq_graph():
+def generate_rnaseq_graph(urlx, filename):
 	xvalues = []
 	values = []
 	#print "Chr%s :: %s-%s" %(chromosome, start, end)
-	for read in pysam.mpileup(url, "-r", "Chr%s:%s-%s" %(chromosome, start, end)): 
+    
+	for read in pysam.mpileup(urlx, "-r", "Chr%s:%s-%s" %(chromosome, start, end)):
 		#print("<br/>{0}".format(float(read.split('\t')[1])))
 		xvalues.append(float(read.split('\t')[1]))
 		values.append(float(int(read.split('\t')[3]) - read.split('\t')[4].count('<') - read.split('\t')[4].count('>')))
@@ -95,8 +130,8 @@ def generate_rnaseq_graph():
 	white = rnaseqgraph.colorAllocate((255,255,255))
 	green = rnaseqgraph.colorAllocate((0,255,0))
 	for i in range(len(xvalues)):
-		rnaseqgraph.rectangle((int(float(xvalues[i] - start) /(end-start) * RNA_IMG_WIDTH), RNA_IMG_WIDTH), (int(float(xvalues[i] - start)/(end-start) * RNA_IMG_HEIGHT), RNA_IMG_HEIGHT - values[i]), green)        
-	f = open("rnaseqgraph.png", "w")
+		rnaseqgraph.rectangle((int(float(xvalues[i] - start) /(end-start) * RNA_IMG_WIDTH), RNA_IMG_WIDTH), (int(float(xvalues[i] - start)/(end-start) * RNA_IMG_HEIGHT), RNA_IMG_HEIGHT - values[i]), green)
+	f = open(filename, "w+")
 	rnaseqgraph.writePng(f)
 	f.close()
 
@@ -106,16 +141,48 @@ def generate_rnaseq_graph():
 print "<body>"
 
 
-print "<p>Looking up {0}.</p>".format(geneid)
+print "<p>Locus = {0}, Chromosome = {3}, Start = {1}; End = {2}.</p>".format(geneid, start, end, chromosome)
 #print map_info
-print "<br/><br/><p>Chromosome = {2}, Start = {0}; End = {1}.</p><br/><br/>".format(start, end, chromosome)
 
-print '<img src="rnaseqgraph.png">'
+print '<img src="rnaseqgraph0.png">'
+print '<br/>'
+print '<img src="exongraph.png">'
+
+print '<br/>'
+print '<img src="rnaseqgraph1.png">'
+print '<br/>'
+print '<img src="exongraph.png">'
+
+print '<br/>'
+print '<img src="rnaseqgraph2.png">'
+print '<br/>'
+print '<img src="exongraph.png">'
+
+print '<br/>'
+print '<img src="rnaseqgraph3.png">'
+print '<br/>'
+print '<img src="exongraph.png">'
+
+print '<br/>'
+print '<img src="rnaseqgraph4.png">'
 print '<br/>'
 print '<img src="exongraph.png">'
 
 generate_exon_graph()
-generate_rnaseq_graph()
+
+'''rand_ints = []
+
+for i in range(1, 50):
+    rand_ints.append(randint(0,9999))
+    
+print (rand_ints)'''
+
+generate_rnaseq_graph(url0, "rnaseqgraph0.png")
+generate_rnaseq_graph(url1, "rnaseqgraph1.png")
+generate_rnaseq_graph(url2, "rnaseqgraph2.png")
+generate_rnaseq_graph(url3, "rnaseqgraph3.png")
+#generate_rnaseq_graph(url4, "rnaseqgraph4.png")
+generate_rnaseq_graph(url5, "rnaseqgraph5.png")
 
 
 print "</body>"
