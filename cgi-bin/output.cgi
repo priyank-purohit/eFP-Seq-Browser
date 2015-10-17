@@ -1,7 +1,7 @@
 #!/usr/bin/python
 print "Content-Type: text/html"     # HTML is following
 print                               # blank line, end of headers
-print "<title>RNA Browser (Priyank)</title>"
+print "<title>RNA Browser (PKP)</title>"
 
 import os
 import tempfile
@@ -18,7 +18,7 @@ cgitb.enable()
 
 # ----- CONSTANTS -----
 EXON_IMG_WIDTH = 200
-EXON_IMG_HEIGHT = 15
+EXON_IMG_HEIGHT = 7
 
 RNA_IMG_WIDTH = 200
 RNA_IMG_HEIGHT = 200
@@ -39,7 +39,7 @@ img_files.append("rnaseqgraph5.png")
 for img_file in img_files:
     f = open(img_file, "w+")
     red_sqr = gd.image((RNA_IMG_WIDTH, RNA_IMG_HEIGHT))
-    red_clr = red_sqr.colorAllocate((255,0,0))
+    red_clr = red_sqr.colorAllocate((255,255,255))
     red_sqr.rectangle((0,0), (RNA_IMG_WIDTH, RNA_IMG_HEIGHT), red_clr)
     red_sqr.writePng(f)
     f.close()
@@ -65,7 +65,8 @@ print '</style>'
 # ----- BAM FILE LINK -----
 url0 = "http://vision.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/aerial/ERR274310/accepted_hits.bam"
 url1 = "http://vision.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/aerial/SRR547531/accepted_hits.bam"
-url1_l = "http://bar.utoronto.ca/~ppurohit/RNA-Browser/cgi-bin/data/iplant/home/araport/rnaseq_bam/aerial/SRR547531/accepted_hits.bam"
+url11 = "http://bar.utoronto.ca/~ppurohit/RNA-Browser/cgi-bin/data/iplant/home/araport/rnaseq_bam/aerial/SRR547531/accepted_hits.bam"
+url11 = "data/iplant/home/araport/rnaseq_bam/aerial/SRR547531/accepted_hits.bam"
 url2 = "http://vision.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/aerial/SRR548277/accepted_hits.bam"
 url3 = "http://vision.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/aerial/SRR847503/accepted_hits.bam"
 url4 = "http://vision.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/aerial/SRR847504/accepted_hits.bam"
@@ -129,8 +130,8 @@ def generate_exon_graph():
 def generate_rnaseq_graph(urlx, filename):
 	xvalues = []
 	values = []
-	print "<br/>GENERATING RNA SEQ GRAPH!"
-	print "Chr%s :: %s-%s url = %s" %(chromosome, start, end, urlx)
+	#print "<br/>GENERATING RNA SEQ GRAPH!"
+	#print "Chr%s :: %s-%s url = %s" %(chromosome, start, end, urlx)
 	match = re.search(REGEX, urlx)
 	if match:
 		filename2 = match.group(2) + "_" + geneid
@@ -161,7 +162,7 @@ print "<p>Locus = {0}, Chromosome = {3}, Start = {1}; End = {2}.</p>".format(gen
 print '<img src="rnaseqgraph0.png">'
 print '<br/>'
 print '<img src="exongraph.png">'
-
+"""
 print '<br/>'
 print '<img src="rnaseqgraph1.png">'
 print '<br/>'
@@ -177,7 +178,6 @@ print '<img src="rnaseqgraph3.png">'
 print '<br/>'
 print '<img src="exongraph.png">'
 
-
 print '<br/>'
 print '<img src="rnaseqgraph4.png">'
 print '<br/>'
@@ -187,11 +187,12 @@ print '<br/>'
 print '<img src="rnaseqgraph5.png">'
 print '<br/>'
 print '<img src="exongraph.png">'
+"""
 
 generate_exon_graph()
 
-#generate_rnaseq_graph(url0, "rnaseqgraph0.png")
-generate_rnaseq_graph(url1, "rnaseqgraph1.png")
+generate_rnaseq_graph(url11, "rnaseqgraph0.png")
+#generate_rnaseq_graph(url1, "rnaseqgraph1.png")
 #generate_rnaseq_graph(url2, "rnaseqgraph2.png")
 #generate_rnaseq_graph(url3, "rnaseqgraph3.png")
 #generate_rnaseq_graph(url4, "rnaseqgraph4.png")
