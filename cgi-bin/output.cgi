@@ -4,15 +4,17 @@ print                               # blank line, end of headers
 print "<title>RNA Browser (Priyank)</title>"
 
 import os
+import tempfile
+import base64
 import cgi
 import cgitb
 import re
-cgitb.enable()
 import urllib2
 import json
 import gd
 import pysam
 from random import randint
+cgitb.enable()
 
 # ----- CONSTANTS -----
 EXON_IMG_WIDTH = 200
@@ -20,6 +22,8 @@ EXON_IMG_HEIGHT = 15
 
 RNA_IMG_WIDTH = 200
 RNA_IMG_HEIGHT = 200
+
+REGEX = '(/iplant/home/araport/rnaseq_bam/[a-zA-Z]*/([A-Z0-9a-z]*)/accepted_hits\.bam)'
 
 
 # ----- CLEAR OLD FILES -----
@@ -30,6 +34,7 @@ img_files.append("rnaseqgraph2.png")
 img_files.append("rnaseqgraph3.png")
 img_files.append("rnaseqgraph4.png")
 img_files.append("rnaseqgraph5.png")
+
 
 for img_file in img_files:
     f = open(img_file, "w+")
@@ -42,6 +47,7 @@ for img_file in img_files:
 # ----- LOCUS TAGS OF INTEREST -----
 ABI3 = "AT3G24650"
 TMKL1 = "AT3G24660"
+GAPDH = "AT2G24270"
 
 
 # ----- LOCUS TAG TO DISPLAY -----
@@ -58,14 +64,18 @@ print '</style>'
 
 # ----- BAM FILE LINK -----
 url0 = "http://vision.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/aerial/ERR274310/accepted_hits.bam"
-url1 = "http://vision.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/aerial/SRR547531/accepted_hits.bam"
+#url1 = "http://vision.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/aerial/SRR547531/accepted_hits.bam"
+# Make the same sub dir structure as the iplant site...
+url1 = "http://bar.utoronto.ca/~ppurohit/RNA-Browser/cgi-bin/data/accepted_hits.bam"
 url2 = "http://vision.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/aerial/SRR548277/accepted_hits.bam"
 url3 = "http://vision.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/aerial/SRR847503/accepted_hits.bam"
-url4 = "http://vision.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/aerial/SRR847505/accepted_hits.bam"
-url5 = "http://vision.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/aerial/SRR847506/accepted_hits.bam"
+url4 = "http://vision.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/aerial/SRR847504/accepted_hits.bam"
+url5 = "http://vision.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/aerial/SRR847505/accepted_hits.bam"
 
 
+# Not being used right now but can use it...
 url_arr = []
+url_arr.append(url0)
 url_arr.append(url1)
 url_arr.append(url2)
 url_arr.append(url3)
@@ -99,6 +109,7 @@ for region in map_info[u'result']:
 
 
 
+
 '''
 Generates exon-intron image based on the information in map_info.
 '''
@@ -119,24 +130,28 @@ def generate_exon_graph():
 def generate_rnaseq_graph(urlx, filename):
 	xvalues = []
 	values = []
-	#print "Chr%s :: %s-%s" %(chromosome, start, end)
-    
-	for read in pysam.mpileup(urlx, "-r", "Chr%s:%s-%s" %(chromosome, start, end)):
-		#print("<br/>{0}".format(float(read.split('\t')[1])))
-		xvalues.append(float(read.split('\t')[1]))
-		values.append(float(int(read.split('\t')[3]) - read.split('\t')[4].count('<') - read.split('\t')[4].count('>')))
-	values = [int(x / max(values) * RNA_IMG_HEIGHT) for x in values]
-	rnaseqgraph = gd.image((RNA_IMG_WIDTH, RNA_IMG_HEIGHT))
-	white = rnaseqgraph.colorAllocate((255,255,255))
-	green = rnaseqgraph.colorAllocate((0,255,0))
-	for i in range(len(xvalues)):
-		rnaseqgraph.rectangle((int(float(xvalues[i] - start) /(end-start) * RNA_IMG_WIDTH), RNA_IMG_WIDTH), (int(float(xvalues[i] - start)/(end-start) * RNA_IMG_HEIGHT), RNA_IMG_HEIGHT - values[i]), green)
-	f = open(filename, "w+")
-	rnaseqgraph.writePng(f)
-	f.close()
-
-
-
+	print "<br/>GENERATING RNA SEQ GRAPH!"
+	print "Chr%s :: %s-%s url = %s" %(chromosome, start, end, urlx)
+	match = re.search(REGEX, urlx)
+	if match:
+		filename2 = match.group(2) + "_" + geneid
+	try:
+		pileup = pysam.mpileup(urlx, "-r", "Chr%s:%s-%s" %(chromosome, start, end))
+		for read in pileup:
+			#print("<br/>{0}".format(float(read.split('\t')[1])))
+			xvalues.append(float(read.split('\t')[1]))
+			values.append(float(int(read.split('\t')[3]) - read.split('\t')[4].count('<') - read.split('\t')[4].count('>')))
+		values = [int(x / max(values) * RNA_IMG_HEIGHT) for x in values]
+		rnaseqgraph = gd.image((RNA_IMG_WIDTH, RNA_IMG_HEIGHT))
+		white = rnaseqgraph.colorAllocate((255,255,255))
+		green = rnaseqgraph.colorAllocate((0,255,0))
+		for i in range(len(xvalues)):
+			rnaseqgraph.rectangle((int(float(xvalues[i] - start) /(end-start) * RNA_IMG_WIDTH), RNA_IMG_WIDTH), (int(float(xvalues[i] - start)/(end-start) * RNA_IMG_HEIGHT), RNA_IMG_HEIGHT - values[i]), green)
+		f = open(filename, "w+")
+		rnaseqgraph.writePng(f)
+		f.close()
+	except pysam.SamtoolsError as msg:
+		print "<br/><br/>pysam.SamtoolsError was raised for locus = " + geneid + " in experiment = " + match.group(2) + " BAM file. ERR MSG >>>" + str(msg) + "<br/>"
 
 print "<body>"
 
@@ -163,27 +178,25 @@ print '<img src="rnaseqgraph3.png">'
 print '<br/>'
 print '<img src="exongraph.png">'
 
+
 print '<br/>'
 print '<img src="rnaseqgraph4.png">'
 print '<br/>'
 print '<img src="exongraph.png">'
 
+print '<br/>'
+print '<img src="rnaseqgraph5.png">'
+print '<br/>'
+print '<img src="exongraph.png">'
+
 generate_exon_graph()
-
-'''rand_ints = []
-
-for i in range(1, 50):
-    rand_ints.append(randint(0,9999))
-    
-print (rand_ints)'''
 
 generate_rnaseq_graph(url0, "rnaseqgraph0.png")
 generate_rnaseq_graph(url1, "rnaseqgraph1.png")
 generate_rnaseq_graph(url2, "rnaseqgraph2.png")
 generate_rnaseq_graph(url3, "rnaseqgraph3.png")
-#generate_rnaseq_graph(url4, "rnaseqgraph4.png")
+generate_rnaseq_graph(url4, "rnaseqgraph4.png")
 generate_rnaseq_graph(url5, "rnaseqgraph5.png")
-
 
 print "</body>"
 print "</html>"
