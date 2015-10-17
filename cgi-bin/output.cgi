@@ -64,9 +64,8 @@ print '</style>'
 
 # ----- BAM FILE LINK -----
 url0 = "http://vision.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/aerial/ERR274310/accepted_hits.bam"
-#url1 = "http://vision.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/aerial/SRR547531/accepted_hits.bam"
-# Make the same sub dir structure as the iplant site...
-url1 = "http://bar.utoronto.ca/~ppurohit/RNA-Browser/cgi-bin/data/accepted_hits.bam"
+url1 = "http://vision.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/aerial/SRR547531/accepted_hits.bam"
+url1_l = "http://bar.utoronto.ca/~ppurohit/RNA-Browser/cgi-bin/data/iplant/home/araport/rnaseq_bam/aerial/SRR547531/accepted_hits.bam"
 url2 = "http://vision.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/aerial/SRR548277/accepted_hits.bam"
 url3 = "http://vision.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/aerial/SRR847503/accepted_hits.bam"
 url4 = "http://vision.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/aerial/SRR847504/accepted_hits.bam"
@@ -191,12 +190,12 @@ print '<img src="exongraph.png">'
 
 generate_exon_graph()
 
-generate_rnaseq_graph(url0, "rnaseqgraph0.png")
+#generate_rnaseq_graph(url0, "rnaseqgraph0.png")
 generate_rnaseq_graph(url1, "rnaseqgraph1.png")
-generate_rnaseq_graph(url2, "rnaseqgraph2.png")
-generate_rnaseq_graph(url3, "rnaseqgraph3.png")
-generate_rnaseq_graph(url4, "rnaseqgraph4.png")
-generate_rnaseq_graph(url5, "rnaseqgraph5.png")
+#generate_rnaseq_graph(url2, "rnaseqgraph2.png")
+#generate_rnaseq_graph(url3, "rnaseqgraph3.png")
+#generate_rnaseq_graph(url4, "rnaseqgraph4.png")
+#generate_rnaseq_graph(url5, "rnaseqgraph5.png")
 
 print "</body>"
 print "</html>"
