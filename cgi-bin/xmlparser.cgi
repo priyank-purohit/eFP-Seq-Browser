@@ -12,8 +12,8 @@ import cgi
 import cgitb
 cgitb.enable()
 
-e = xml.etree.ElementTree.parse('data/bamlocator.xml')
-original = xml.etree.ElementTree.parse('data/bamlocator.xml').getroot()
+e = xml.etree.ElementTree.parse('data/bamdata_rsong_vision_links.xml')
+original = xml.etree.ElementTree.parse('data/bamdata_rsong_vision_links.xml').getroot()
 #new = xml.etree.ElementTree.parse('data/iplant_path_to_rnaseq_bam_files.xml').getroot()
 REGEX = '(http://newland\.iplantcollaborative\.org/iplant/home/araport/rnaseq_bam/[a-zA-Z]*/([A-Z0-9a-z]*)/accepted_hits\.bam)'
 REGEX_new = '(/iplant/home/araport/rnaseq_bam/[a-zA-Z]*/([A-Z0-9a-z]*)/accepted_hits\.bam[^.bai])'
@@ -106,7 +106,7 @@ for child in e.getroot():
 				if (key == "name"):
 					match = re.search(REGEX, cases[key])
 					if match:
-						print ("<a href='" + get_new_link(str(match.group(2))) + "'>NEW BAM</a> <br />")
+						print (get_new_link(str(match.group(2)))+"<br />")
 				else:
 					print cases[key]
 			else:

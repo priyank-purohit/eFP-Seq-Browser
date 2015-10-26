@@ -9,7 +9,7 @@ import cgitb
 cgitb.enable()
 import xml.etree.ElementTree
 
-e = xml.etree.ElementTree.parse('data/bam_locations_priyank.xml')
+e = xml.etree.ElementTree.parse('data/bamdata_rsong_vision_links.xml')
 # note that even though there are some experiments that should be grouped together, they aren't in the xml file, and so the grey white colouring is not useful
 print """
 <style>
