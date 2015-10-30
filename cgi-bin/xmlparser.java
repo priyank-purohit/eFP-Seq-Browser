@@ -1,3 +1,8 @@
+/*
+This program accepts an XML file, makes changes to it an doutputs a new edited XML file.
+
+PArticularly, this changes all the newland links to the new vision links if a list of new vision links is given.
+*/
 import java.io.*;
 import java.io.File;
 import java.io.IOException;

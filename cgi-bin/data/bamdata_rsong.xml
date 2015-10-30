@@ -1,5 +1,5 @@
 <files>
-    <file description="E-MTAB-1668:24hCS-RNA" experimentno="ERR274310" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/aerial/ERR274310/accepted_hits.bam" numberofreads="29098868" publicationid="http://www.ebi.ac.uk/arrayexpress/control/E-MTAB-1668/" svgname="ath-rosettePlusRoot.svg" subunitname="shoot" title="Aerial part of long-day-grown 4-leaf-stage seedling with mock (NaCl) treatment" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=ERR274310">
+    <file description="E-MTAB-1668:24hCS-RNA" experimentno="ERR274310" foreground="0x64cc65" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/aerial/ERR274310/accepted_hits.bam" numberofreads="29098868" publicationid="http://www.ebi.ac.uk/arrayexpress/control/E-MTAB-1668/" svgname="ath-rosettePlusRoot.svg" subunitname="shoot" title="Aerial part of long-day-grown 4-leaf-stage seedling with mock (NaCl) treatment" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=ERR274310">
         <control>
             <experiment>ERR274310</experiment>
         </control>
@@ -10,7 +10,7 @@
             <experiment>ERR274311</experiment>
         </groupwith>
     </file>
-    <file description="GSM798296: mRNASeq_WT_rep2" experimentno="SRR547531" foreground="0xFF0000" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR547531/accepted_hits.bam" numberofreads="13627154" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/23349984" svgname="ath-rosettePlusRoot.svg" subunitname="shoot" title="Transcription profiling of Arabidopsis plants overexpressing SlHsfA3 (thale cress)" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR547531">
+    <file description="GSM798296: mRNASeq_WT_rep2" experimentno="SRR547531" foreground="0x64cc65" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR547531/accepted_hits.bam" numberofreads="13627154" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/23349984" svgname="ath-rosettePlusRoot.svg" subunitname="shoot" title="Transcription profiling of Arabidopsis plants overexpressing SlHsfA3 (thale cress)" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR547531">
         <control>
             <experiment>SRR547531</experiment>
         </control>
@@ -20,7 +20,7 @@
             <experiment>SRR547533</experiment>
         </groupwith>
     </file>
-    <file description="GSM994838; SRA: SRS360059" experimentno="SRR548277" foreground="0xFF0000" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR548277/accepted_hits.bam" numberofreads="10647001" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/23755095" svgname="ath-rosettePlusRoot.svg" subunitname="shoot" title="Aerial part of 4-week-old plant" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR548277">
+    <file description="GSM994838; SRA: SRS360059" experimentno="SRR548277" foreground="0x64cc65" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR548277/accepted_hits.bam" numberofreads="10647001" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/23755095" svgname="ath-rosettePlusRoot.svg" subunitname="shoot" title="Aerial part of 4-week-old plant" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR548277">
         <control>
             <experiment>SRR548277</experiment>
         </control>
@@ -29,7 +29,7 @@
             <experiment>SRR548278</experiment>
         </groupwith>
     </file>
-    <file description="Seedling1,SRA: SRS419144" experimentno="SRR847503" foreground="0xFF0000" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR847503/accepted_hits.bam" numberofreads="19012222" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/24792048" svgname="ath-rosettePlusRoot.svg" subunitname="shoot" title="Aerial part of 3-week-old soil-grown plant" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR847503">
+    <file description="Seedling1,SRA: SRS419144" experimentno="SRR847503" foreground="0x64cc65" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR847503/accepted_hits.bam" numberofreads="19012222" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/24792048" svgname="ath-rosettePlusRoot.svg" subunitname="shoot" title="Aerial part of 3-week-old soil-grown plant" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR847503">
         <control>
             <experiment>SRR847501</experiment>
             <experiment>SRR847502</experiment>
@@ -43,7 +43,7 @@
             <experiment>SRR847506</experiment>
         </groupwith>
     </file>
-    <file description="Seedling1,SRA: SRS419144" experimentno="SRR847504" foreground="0xFF0000" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR847504/accepted_hits.bam" numberofreads="17652623" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/24792048" svgname="ath-rosettePlusRoot.svg" subunitname="shoot" title="Aerial part of 3-week-old soil-grown plant" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR847504">
+    <file description="Seedling1,SRA: SRS419144" experimentno="SRR847504" foreground="0x64cc65" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR847504/accepted_hits.bam" numberofreads="17652623" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/24792048" svgname="ath-rosettePlusRoot.svg" subunitname="shoot" title="Aerial part of 3-week-old soil-grown plant" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR847504">
         <control>
             <experiment>SRR847501</experiment>
             <experiment>SRR847502</experiment>
@@ -57,7 +57,7 @@
             <experiment>SRR847506</experiment>
         </groupwith>
     </file>
-    <file description="Seedling2, SRA: SRS419145" experimentno="SRR847505" foreground="0xFF0000" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR847505/accepted_hits.bam" numberofreads="14547829" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/24792048" svgname="ath-rosettePlusRoot.svg" subunitname="shoot" title="Aerial part of 3-week-old soil-grown plant" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR847505">
+    <file description="Seedling2, SRA: SRS419145" experimentno="SRR847505" foreground="0x64cc65" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR847505/accepted_hits.bam" numberofreads="14547829" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/24792048" svgname="ath-rosettePlusRoot.svg" subunitname="shoot" title="Aerial part of 3-week-old soil-grown plant" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR847505">
         <control>
             <experiment>SRR847501</experiment>
             <experiment>SRR847502</experiment>
@@ -71,7 +71,7 @@
             <experiment>SRR847506</experiment>
         </groupwith>
     </file>
-    <file description="Seedling2, SRA: SRS419145" experimentno="SRR847506" foreground="0xFF0000" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR847506/accepted_hits.bam" numberofreads="14547829" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/24792048" svgname="ath-rosettePlusRoot.svg" subunitname="shoot" title="Aerial part of 3-week-old soil-grown plant" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR847506">
+    <file description="Seedling2, SRA: SRS419145" experimentno="SRR847506" foreground="0x64cc65" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR847506/accepted_hits.bam" numberofreads="14547829" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/24792048" svgname="ath-rosettePlusRoot.svg" subunitname="shoot" title="Aerial part of 3-week-old soil-grown plant" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR847506">
         <control>
             <experiment>SRR847501</experiment>
             <experiment>SRR847502</experiment>
@@ -85,7 +85,7 @@
             <experiment>SRR847506</experiment>
         </groupwith>
     </file>
-    <file description="carpel, GSM1359146, SRA: SRS583574" experimentno="SRR1207194" foreground="0xFF0000" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/carpel/SRR1207194/accepted_hits.bam" numberofreads="41295666" publicationid="" svgname="ath-FlowerParts.svg" subunitname="carpels" title="Carpels collected manually from stage 8-13 flowers" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR1207194">
+    <file description="carpel, GSM1359146, SRA: SRS583574" experimentno="SRR1207194" foreground="0xFFFF00" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/carpel/SRR1207194/accepted_hits.bam" numberofreads="41295666" publicationid="" svgname="ath-FlowerParts.svg" subunitname="carpels" title="Carpels collected manually from stage 8-13 flowers" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR1207194">
         <control>
             <experiment>SRR1207194</experiment>
             <experiment>SRR1207195</experiment>
@@ -101,7 +101,7 @@
             <experiment>SRR1207201</experiment>
         </groupwith>
     </file>
-    <file description="carpel, GSM1359146, SRA: SRS583574" experimentno="SRR1207195" foreground="0xFF0000" name="http://newland.iplantcollaborative.org//iplant/home/araport/rnaseq_bam/carpel/SRR1207195/accepted_hits.bam" numberofreads="39074103" publicationid="" svgname="ath-FlowerParts.svg" subunitname="carpels" title="Carpels collected manually from stage 8-13 flowers" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR1207195">
+    <file description="carpel, GSM1359146, SRA: SRS583574" experimentno="SRR1207195" foreground="0xFFFF00" name="http://newland.iplantcollaborative.org//iplant/home/araport/rnaseq_bam/carpel/SRR1207195/accepted_hits.bam" numberofreads="39074103" publicationid="" svgname="ath-FlowerParts.svg" subunitname="carpels" title="Carpels collected manually from stage 8-13 flowers" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR1207195">
         <control>
             <experiment>SRR1207194</experiment>
             <experiment>SRR1207195</experiment>
@@ -117,7 +117,7 @@
             <experiment>SRR1207201</experiment>
         </groupwith>
     </file>
-    <file description="Etiolated wild type (Col-0) seedlings, GSM1252262, SRA: SRS494530" experimentno="SRR1019436" foreground="0xFF0000" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/dark/SRR1019436/accepted_hits.bam" numberofreads="22144930" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/24867218" svgname="ath-etiolatedSeedling.svg" subunitname="etiolatedSeedling" title="5do etiolated seedling" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR1019436">
+    <file description="Etiolated wild type (Col-0) seedlings, GSM1252262, SRA: SRS494530" experimentno="SRR1019436" foreground="0xCCCC97" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/dark/SRR1019436/accepted_hits.bam" numberofreads="22144930" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/24867218" svgname="ath-etiolatedSeedling.svg" subunitname="etiolatedSeedling" title="5do etiolated seedling" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR1019436">
         <control>
             <experiment>SRR1019436</experiment>
             <experiment>SRR1019437</experiment>
@@ -135,7 +135,7 @@
             <experiment>SRR1019443</experiment>
         </groupwith>
     </file>
-    <file description="Etiolated wild type (Col-0) seedlings, GSM1252262, SRA: SRS494530" experimentno="SRR1019437" foreground="0xFF0000" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/dark/SRR1019437/accepted_hits.bam" numberofreads="24158853" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/24867218" svgname="ath-etiolatedSeedling.svg" subunitname="etiolatedSeedling" title="5do etiolated seedling" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR1019437">
+    <file description="Etiolated wild type (Col-0) seedlings, GSM1252262, SRA: SRS494530" experimentno="SRR1019437" foreground="0xCCCC97" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/dark/SRR1019437/accepted_hits.bam" numberofreads="24158853" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/24867218" svgname="ath-etiolatedSeedling.svg" subunitname="etiolatedSeedling" title="5do etiolated seedling" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR1019437">
         <control>
             <experiment>SRR1019436</experiment>
             <experiment>SRR1019437</experiment>
@@ -153,7 +153,7 @@
             <experiment>SRR1019443</experiment>
         </groupwith>
     </file>
-    <file description="7d Seedling, GSM1289365, SRA: SRS515184" experimentno="SRR1049784" foreground="0xFF0000" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/dark/SRR1049784/accepted_hits.bam" numberofreads="51665293" publicationid="" svgname="ath-10dayOldSeedling.svg" subunitname="shoot" title="7do dark-grown seedling" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR1049784">
+    <file description="7d Seedling, GSM1289365, SRA: SRS515184" experimentno="SRR1049784" foreground="0x989800" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/dark/SRR1049784/accepted_hits.bam" numberofreads="51665293" publicationid="" svgname="ath-10dayOldSeedling.svg" subunitname="shoot" title="7do dark-grown seedling" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR1049784">
         <control>
             <experiment>SRR1049777</experiment>
             <experiment>SRR1049778</experiment>
@@ -184,7 +184,7 @@
             <experiment>SRR1049788</experiment>
         </groupwith>
     </file>
-    <file description="Col-0 RNA-Seq, GSM912634, SRA: SRS308731" experimentno="SRR477075" foreground="0xFF0000" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/dark/SRR477075/accepted_hits.bam" numberofreads="33569708" publicationid="" svgname="ath-etiolatedSeedling.svg" subunitname="etiolatedSeedling" title="5do dark-grown seedling" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR477075">
+    <file description="Col-0 RNA-Seq, GSM912634, SRA: SRS308731" experimentno="SRR477075" foreground="0xCCCC97" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/dark/SRR477075/accepted_hits.bam" numberofreads="33569708" publicationid="" svgname="ath-etiolatedSeedling.svg" subunitname="etiolatedSeedling" title="5do dark-grown seedling" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR477075">
         <control>
             <experiment>SRR477075</experiment>
             <experiment>SRR477076</experiment>
@@ -200,7 +200,7 @@
             <experiment>SRR477082</experiment>
         </groupwith>
     </file>
-    <file description="Col-0 RNA-Seq, GSM912635, SRA: SRS308732" experimentno="SRR477076" foreground="0xFF0000" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/dark/SRR477076/accepted_hits.bam" numberofreads="20201654" publicationid="" svgname="ath-etiolatedSeedling.svg" subunitname="etiolatedSeedling" title="5do dark-grown seedling" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR477076">
+    <file description="Col-0 RNA-Seq, GSM912635, SRA: SRS308732" experimentno="SRR477076" foreground="0xCCCC97" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/dark/SRR477076/accepted_hits.bam" numberofreads="20201654" publicationid="" svgname="ath-etiolatedSeedling.svg" subunitname="etiolatedSeedling" title="5do dark-grown seedling" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR477076">
         <control>
             <experiment>SRR477075</experiment>
             <experiment>SRR477076</experiment>
@@ -216,7 +216,7 @@
             <experiment>SRR477082</experiment>
         </groupwith>
     </file>
-    <file description="Col-0 air 3-day, SRA: SRS311825" experimentno="SRR493237" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/dark/SRR493237/accepted_hits.bam" numberofreads="27039911" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/22936567" svgname="ath-etiolatedSeedling.svg" subunitname="etiolatedSeedling" title="3do etiolated seedling" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR493237">
+    <file description="Col-0 air 3-day, SRA: SRS311825" experimentno="SRR493237" foreground="0xCCCC97" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/dark/SRR493237/accepted_hits.bam" numberofreads="27039911" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/22936567" svgname="ath-etiolatedSeedling.svg" subunitname="etiolatedSeedling" title="3do etiolated seedling" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR493237">
         <control>
             <experiment>SRR493237</experiment>
             <experiment>SRR493238</experiment>
@@ -234,7 +234,7 @@
             <experiment>SRR493290</experiment>
         </groupwith>
     </file>
-    <file description="Col-0 air 3-day, SRA: SRS311825" experimentno="SRR493238" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/dark/SRR493238/accepted_hits.bam" numberofreads="25704434" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/22936567" svgname="ath-etiolatedSeedling.svg" subunitname="etiolatedSeedling" title="3do etiolated seedling" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR493238">
+    <file description="Col-0 air 3-day, SRA: SRS311825" experimentno="SRR493238" foreground="0xCCCC97" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/dark/SRR493238/accepted_hits.bam" numberofreads="25704434" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/22936567" svgname="ath-etiolatedSeedling.svg" subunitname="etiolatedSeedling" title="3do etiolated seedling" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR493238">
         <control>
             <experiment>SRR493237</experiment>
             <experiment>SRR493238</experiment>
@@ -252,7 +252,7 @@
             <experiment>SRR493290</experiment>
         </groupwith>
     </file>
-    <file description="stage 12 floral bud, Col-0, GSM764079, SRA: SRS228279" experimentno="SRR314815" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/flower/SRR314815/accepted_hits.bam" numberofreads="25509908" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/21874022" svgname="ath-Stage12Bud.svg" subunitname="stage12Bud" title="stage-12 floral buds from long-day grown plant" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR314815">
+    <file description="stage 12 floral bud, Col-0, GSM764079, SRA: SRS228279" experimentno="SRR314815" foreground="0xFFFF65" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/flower/SRR314815/accepted_hits.bam" numberofreads="25509908" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/21874022" svgname="ath-Stage12Bud.svg" subunitname="stage12Bud" title="stage-12 floral buds from long-day grown plant" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR314815">
         <control>
             <experiment>MEDIAN</experiment>
         </control>
@@ -265,7 +265,7 @@
             <experiment>SRR314818</experiment>
         </groupwith>
     </file>
-    <file description="flowers, GSM1111913, SRA: SRS405938" experimentno="SRR800753" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/flower/SRR800753/accepted_hits.bam" numberofreads="7506384" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/23749190" svgname="ath-Stage12Bud.svg" subunitname="stage12Bud" title="stage-12 floral bud" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR800753">
+    <file description="flowers, GSM1111913, SRA: SRS405938" experimentno="SRR800753" foreground="0xFFFF65" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/flower/SRR800753/accepted_hits.bam" numberofreads="7506384" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/23749190" svgname="ath-Stage12Bud.svg" subunitname="stage12Bud" title="stage-12 floral bud" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR800753">
         <control>
             <experiment>SRR800753</experiment>
             <experiment>SRR800754</experiment>
@@ -275,7 +275,7 @@
             <experiment>SRR800754</experiment>
         </groupwith>
     </file>
-    <file description="flowers, GSM1111914, SRA: SRS405939" experimentno="SRR800754" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/flower/SRR800754/accepted_hits.bam" numberofreads="7063908" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/23749190" svgname="ath-Stage12Bud.svg" subunitname="stage12Bud" title="stage-12 floral bud" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR800754">
+    <file description="flowers, GSM1111914, SRA: SRS405939" experimentno="SRR800754" foreground="0xFFFF65" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/flower/SRR800754/accepted_hits.bam" numberofreads="7063908" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/23749190" svgname="ath-Stage12Bud.svg" subunitname="stage12Bud" title="stage-12 floral bud" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR800754">
         <control>
             <experiment>SRR800753</experiment>
             <experiment>SRR800754</experiment>
@@ -285,7 +285,7 @@
             <experiment>SRR800754</experiment>
         </groupwith>
     </file>
-    <file description="wildtype rep2 Columbia 0, SRA: SRS528136" experimentno="SRR1105822" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/leaf/SRR1105822/accepted_hits.bam" numberofreads="38483470" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/24670657" svgname="ath-leaf.svg" subunitname="leaf" title="Leaf of 3-week-old long-day-grown plant" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR1105822">
+    <file description="wildtype rep2 Columbia 0, SRA: SRS528136" experimentno="SRR1105822" foreground="0x64CC65" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/leaf/SRR1105822/accepted_hits.bam" numberofreads="38483470" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/24670657" svgname="ath-leaf.svg" subunitname="leaf" title="Leaf of 3-week-old long-day-grown plant" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR1105822">
         <control>
             <experiment>SRR1105822</experiment>
             <experiment>SRR1105823</experiment>
@@ -306,7 +306,7 @@
             <experiment>SRR1106559</experiment>
         </groupwith>
     </file>
-    <file description="wildtype rep3 Columbia 0,SRA: SRS552303" experimentno="SRR1105823" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/leaf/SRR1105823/accepted_hits.bam" numberofreads="30583559" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/24670657" svgname="ath-leaf.svg" subunitname="leaf" title="Leaf of 3-week-old long-day-grwon plant" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR1105823">
+    <file description="wildtype rep3 Columbia 0,SRA: SRS552303" experimentno="SRR1105823" foreground="0x64CC65" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/leaf/SRR1105823/accepted_hits.bam" numberofreads="30583559" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/24670657" svgname="ath-leaf.svg" subunitname="leaf" title="Leaf of 3-week-old long-day-grwon plant" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR1105823">
         <control>
             <experiment>SRR1105822</experiment>
             <experiment>SRR1105823</experiment>
@@ -327,7 +327,7 @@
             <experiment>SRR1106559</experiment>
         </groupwith>
     </file>
-    <file description="adult leaf tissue, GSM1321694, SRA: SRS552303" experimentno="SRR1159821" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/leaf/SRR1159821/accepted_hits.bam" numberofreads="19343538" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/24799676" svgname="ath-leaf.svg" subunitname="leaf" title="Leaf of 20-day-old plant" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR1159821">
+    <file description="adult leaf tissue, GSM1321694, SRA: SRS552303" experimentno="SRR1159821" foreground="0x64CC65" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/leaf/SRR1159821/accepted_hits.bam" numberofreads="19343538" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/24799676" svgname="ath-leaf.svg" subunitname="leaf" title="Leaf of 20-day-old plant" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR1159821">
         <control>
             <experiment>SRR1159821</experiment>
             <experiment>SRR1159827</experiment>
@@ -362,7 +362,7 @@
             <experiment>SRR1264996</experiment>
         </groupwith>
     </file>
-    <file description="adult leaf tissue, GSM1321700, SRA: SRS552309" experimentno="SRR1159827" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/leaf/SRR1159827/accepted_hits.bam" numberofreads="9138919" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/24799676" svgname="ath-leaf.svg" subunitname="leaf" title="Leaf of 20-day-old plant" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR1159827">
+    <file description="adult leaf tissue, GSM1321700, SRA: SRS552309" experimentno="SRR1159827" foreground="0x64CC65" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/leaf/SRR1159827/accepted_hits.bam" numberofreads="9138919" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/24799676" svgname="ath-leaf.svg" subunitname="leaf" title="Leaf of 20-day-old plant" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR1159827">
         <control>
             <experiment>SRR1159821</experiment>
             <experiment>SRR1159827</experiment>
@@ -397,7 +397,7 @@
             <experiment>SRR1264996</experiment>
         </groupwith>
     </file>
-    <file description="adult leaf tissue,  GSM1321710, SRA: SRS552319" experimentno="SRR1159837" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/leaf/SRR1159837/accepted_hits.bam" numberofreads="5659168" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/24799676" svgname="ath-leaf.svg" subunitname="leaf" title="Leaf of 20-day-old plant" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR1159837">
+    <file description="adult leaf tissue,  GSM1321710, SRA: SRS552319" experimentno="SRR1159837" foreground="0x64CC65" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/leaf/SRR1159837/accepted_hits.bam" numberofreads="5659168" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/24799676" svgname="ath-leaf.svg" subunitname="leaf" title="Leaf of 20-day-old plant" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR1159837">
         <control>
             <experiment>SRR1159821</experiment>
             <experiment>SRR1159827</experiment>
@@ -432,7 +432,7 @@
             <experiment>SRR1264996</experiment>
         </groupwith>
     </file>
-    <file description="11-day-old seedling, Col-0, GSM764077, SRA: SRS228277" experimentno="SRR314813" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/leaf/SRR314813/accepted_hits.bam" numberofreads="26044624" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/21874022" svgname="ath-leaf.svg" subunitname="leaf" title="Leaf of 11-day-old plant" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR314813">
+    <file description="11-day-old seedling, Col-0, GSM764077, SRA: SRS228277" experimentno="SRR314813" foreground="0x64CC65" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/leaf/SRR314813/accepted_hits.bam" numberofreads="26044624" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/21874022" svgname="ath-leaf.svg" subunitname="leaf" title="Leaf of 11-day-old plant" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR314813">
         <control>
             <experiment>MEDIAN</experiment>
         </control>
@@ -445,7 +445,7 @@
             <experiment>SRR314818</experiment>
         </groupwith>
     </file>
-    <file description="Leaves of six week-old Arabidopsis Columbia (Col-0) wild type, SRA: SRS292180" experimentno="SRR446027" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/leaf/SRR446027/accepted_hits.bam" numberofreads="31481295" publicationid="" svgname="ath-leaf.svg" subunitname="leaf" title="Leaf of 6-week-old short-day-grown plant infiltrated with mock (virulent bacterium) and harvested 1h post-infiltration" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR446027">
+    <file description="Leaves of six week-old Arabidopsis Columbia (Col-0) wild type, SRA: SRS292180" experimentno="SRR446027" foreground="0x64CC65" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/leaf/SRR446027/accepted_hits.bam" numberofreads="31481295" publicationid="" svgname="ath-leaf.svg" subunitname="leaf" title="Leaf of 6-week-old short-day-grown plant infiltrated with mock (virulent bacterium) and harvested 1h post-infiltration" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR446027">
         <control>
             <experiment>SRR446027</experiment>
             <experiment>SRR446028</experiment>
@@ -475,7 +475,7 @@
             <experiment>SRR446044</experiment>
         </groupwith>
     </file>
-    <file description="Leaves of six week-old Arabidopsis Columbia (Col-0) wild type, SRA: SRS292181" experimentno="SRR446028" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/leaf/SRR446028/accepted_hits.bam" numberofreads="42228711" publicationid="" svgname="ath-leaf.svg" subunitname="leaf" title="Leaf of 6-week-old short-day-grown plant infiltrated with mock (virulent bacterium) and harvested 1h post-infiltration" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR446028">
+    <file description="Leaves of six week-old Arabidopsis Columbia (Col-0) wild type, SRA: SRS292181" experimentno="SRR446028" foreground="0x64CC65" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/leaf/SRR446028/accepted_hits.bam" numberofreads="42228711" publicationid="" svgname="ath-leaf.svg" subunitname="leaf" title="Leaf of 6-week-old short-day-grown plant infiltrated with mock (virulent bacterium) and harvested 1h post-infiltration" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR446028">
         <control>
             <experiment>SRR446027</experiment>
             <experiment>SRR446028</experiment>
@@ -505,7 +505,7 @@
             <experiment>SRR446044</experiment>
         </groupwith>
     </file>
-    <file description="Leaves of six week-old Arabidopsis Columbia (Col-0) wild type, SRA: SRS293915" experimentno="SRR446033" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/leaf/SRR446033/accepted_hits.bam" numberofreads="61481964" publicationid="" svgname="ath-leaf.svg" subunitname="leaf" title="Leaf of 6-week-old short-day-grown plant infiltrated with mock (virulent bacterium) and harvested 6h post-infiltration" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR446033">
+    <file description="Leaves of six week-old Arabidopsis Columbia (Col-0) wild type, SRA: SRS293915" experimentno="SRR446033" foreground="0x64CC65" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/leaf/SRR446033/accepted_hits.bam" numberofreads="61481964" publicationid="" svgname="ath-leaf.svg" subunitname="leaf" title="Leaf of 6-week-old short-day-grown plant infiltrated with mock (virulent bacterium) and harvested 6h post-infiltration" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR446033">
         <control>
             <experiment>SRR446027</experiment>
             <experiment>SRR446028</experiment>
@@ -535,7 +535,7 @@
             <experiment>SRR446044</experiment>
         </groupwith>
     </file>
-    <file description="Leaves of six week-old Arabidopsis Columbia (Col-0) wild type, SRA: SRS293916" experimentno="SRR446034" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/leaf/SRR446034/accepted_hits.bam" numberofreads="63386459" publicationid="" svgname="ath-leaf.svg" subunitname="leaf" title="Leaf of 6-week-old short-day-grown plant infiltrated with mock (virulent bacterium) and harvested 6h post-infiltration" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR446034">
+    <file description="Leaves of six week-old Arabidopsis Columbia (Col-0) wild type, SRA: SRS293916" experimentno="SRR446034" foreground="0x64CC65" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/leaf/SRR446034/accepted_hits.bam" numberofreads="63386459" publicationid="" svgname="ath-leaf.svg" subunitname="leaf" title="Leaf of 6-week-old short-day-grown plant infiltrated with mock (virulent bacterium) and harvested 6h post-infiltration" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR446034">
         <control>
             <experiment>SRR446027</experiment>
             <experiment>SRR446028</experiment>
@@ -565,7 +565,7 @@
             <experiment>SRR446044</experiment>
         </groupwith>
     </file>
-    <file description="Leaves of six week-old Arabidopsis Columbia (Col-0) wild type, SRA: SRS293921" experimentno="SRR446039" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/leaf/SRR446039/accepted_hits.bam" numberofreads="60325368" publicationid="http://www.ncbi.nlm.nih.gov/bioproject/PRJNA173828" svgname="ath-leaf.svg" subunitname="leaf" title="Leaf of 6-week-old short-day-grown plant infiltrated with mock (virulent bacterium) and harvested 12h post-infiltration" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR446039">
+    <file description="Leaves of six week-old Arabidopsis Columbia (Col-0) wild type, SRA: SRS293921" experimentno="SRR446039" foreground="0x64CC65" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/leaf/SRR446039/accepted_hits.bam" numberofreads="60325368" publicationid="http://www.ncbi.nlm.nih.gov/bioproject/PRJNA173828" svgname="ath-leaf.svg" subunitname="leaf" title="Leaf of 6-week-old short-day-grown plant infiltrated with mock (virulent bacterium) and harvested 12h post-infiltration" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR446039">
         <control>
             <experiment>SRR446027</experiment>
             <experiment>SRR446028</experiment>
@@ -595,7 +595,7 @@
             <experiment>SRR446044</experiment>
         </groupwith>
     </file>
-    <file description="Leaves of six week-old Arabidopsis Columbia (Col-0) wild type, SRA: SSRS293922" experimentno="SRR446040" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/leaf/SRR446040/accepted_hits.bam" numberofreads="74683660" publicationid="http://www.ncbi.nlm.nih.gov/bioproject/PRJNA173828" svgname="ath-leaf.svg" subunitname="leaf" title="Leaf of 6-week-old short-day-grown plant infiltrated with mock (virulent bacterium) and harvested 12h post-infiltration" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR446040">
+    <file description="Leaves of six week-old Arabidopsis Columbia (Col-0) wild type, SRA: SSRS293922" experimentno="SRR446040" foreground="0x64CC65" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/leaf/SRR446040/accepted_hits.bam" numberofreads="74683660" publicationid="http://www.ncbi.nlm.nih.gov/bioproject/PRJNA173828" svgname="ath-leaf.svg" subunitname="leaf" title="Leaf of 6-week-old short-day-grown plant infiltrated with mock (virulent bacterium) and harvested 12h post-infiltration" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR446040">
         <control>
             <experiment>SRR446027</experiment>
             <experiment>SRR446028</experiment>
@@ -625,7 +625,7 @@
             <experiment>SRR446044</experiment>
         </groupwith>
     </file>
-    <file description="Oldest 4 to 6 leaves, GSM897684;, SRA: SRS301779" experimentno="SRR446484" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/leaf/SRR446484/accepted_hits.bam" numberofreads="30583559" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/22570629" svgname="ath-leaf.svg" subunitname="leaf" title="Non-dividing tissues (oldest 4-6 leaves) of 4-week-old short-day-grown plant" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR446484">
+    <file description="Oldest 4 to 6 leaves, GSM897684;, SRA: SRS301779" experimentno="SRR446484" foreground="0x64CC65" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/leaf/SRR446484/accepted_hits.bam" numberofreads="30583559" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/22570629" svgname="ath-leaf.svg" subunitname="leaf" title="Non-dividing tissues (oldest 4-6 leaves) of 4-week-old short-day-grown plant" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR446484">
         <control>
             <experiment>SRR446484</experiment>
             <experiment>SRR446486</experiment>
@@ -637,7 +637,7 @@
             <experiment>SRR446487</experiment>
         </groupwith>
     </file>
-    <file description="Meristem and younger leaves, GSM897685;, SRA: SRS301780" experimentno="SRR446485" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/leaf/SRR446485/accepted_hits.bam" numberofreads="35231736" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/22570629" svgname="ath-ShootApexInflorescense.svg" subunitname="shootApexInFlorescence" title="Dividing tissues (meristem and younger leaves) of 4-week-old short-day-grown plant" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR446485">
+    <file description="Meristem and younger leaves, GSM897685;, SRA: SRS301780" experimentno="SRR446485" foreground="0x999999" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/leaf/SRR446485/accepted_hits.bam" numberofreads="35231736" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/22570629" svgname="ath-ShootApexInflorescense.svg" subunitname="shootApexInFlorescence" title="Dividing tissues (meristem and younger leaves) of 4-week-old short-day-grown plant" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR446485">
         <control>
             <experiment>SRR446484</experiment>
             <experiment>SRR446486</experiment>
@@ -649,7 +649,7 @@
             <experiment>SRR446487</experiment>
         </groupwith>
     </file>
-    <file description="Oldest 4 to 6 leaves, GSM897686, SRA: SRS301781" experimentno="SRR446486" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/leaf/SRR446486/accepted_hits.bam" numberofreads="31078655" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/22570629" svgname="ath-leaf.svg" subunitname="leaf" title="Non-dividing tissues (oldest 4-6 leaves) of 4-week-old short-day-grown plant" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR446486">
+    <file description="Oldest 4 to 6 leaves, GSM897686, SRA: SRS301781" experimentno="SRR446486" foreground="0x64CC65" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/leaf/SRR446486/accepted_hits.bam" numberofreads="31078655" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/22570629" svgname="ath-leaf.svg" subunitname="leaf" title="Non-dividing tissues (oldest 4-6 leaves) of 4-week-old short-day-grown plant" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR446486">
         <control>
             <experiment>SRR446484</experiment>
             <experiment>SRR446486</experiment>
@@ -661,7 +661,7 @@
             <experiment>SRR446487</experiment>
         </groupwith>
     </file>
-    <file description="Meristem and younger leaves, GSM897687, SRA: SRS301782" experimentno="SRR446487" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/leaf/SRR446487/accepted_hits.bam" numberofreads="34996434" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/22570629" svgname="ath-ShootApexInflorescense.svg" subunitname="shootApexInFlorescence" title="Dividing tissues (meristem and younger leaves) of 4-week-old short-day-grown plant" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR446487">
+    <file description="Meristem and younger leaves, GSM897687, SRA: SRS301782" experimentno="SRR446487" foreground="0x999999" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/leaf/SRR446487/accepted_hits.bam" numberofreads="34996434" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/22570629" svgname="ath-ShootApexInflorescense.svg" subunitname="shootApexInFlorescence" title="Dividing tissues (meristem and younger leaves) of 4-week-old short-day-grown plant" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR446487">
         <control>
             <experiment>SRR446484</experiment>
             <experiment>SRR446486</experiment>
@@ -673,7 +673,7 @@
             <experiment>SRR446487</experiment>
         </groupwith>
     </file>
-    <file description="leaf tissue, wild type, mRNA,  GSM925644, SRA: SRS311724" experimentno="SRR493036" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/leaf/SRR493036/accepted_hits.bam" numberofreads="21043986" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/22555433" svgname="ath-leaf.svg" subunitname="leaf" title="Leaf of 2-week-old plant" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR493036">
+    <file description="leaf tissue, wild type, mRNA,  GSM925644, SRA: SRS311724" experimentno="SRR493036" foreground="0x64CC65" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/leaf/SRR493036/accepted_hits.bam" numberofreads="21043986" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/22555433" svgname="ath-leaf.svg" subunitname="leaf" title="Leaf of 2-week-old plant" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR493036">
         <control>
             <experiment>SRR493033</experiment>
             <experiment>SRR493036</experiment>
@@ -710,7 +710,7 @@
             <experiment>SRR681004</experiment>
         </groupwith>
     </file>
-    <file description="Col-0 Untreated Adult Plants, SRA: SRS311683" experimentno="SRR493097" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/leaf/SRR493097/accepted_hits.bam" numberofreads="31976667" publicationid="" svgname="ath-leaf.svg" title="Leaf of 5-week-old short-day-grown plant" subunitname="leaf" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR493097">
+    <file description="Col-0 Untreated Adult Plants, SRA: SRS311683" experimentno="SRR493097" foreground="0x64CC65" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/leaf/SRR493097/accepted_hits.bam" numberofreads="31976667" publicationid="" svgname="ath-leaf.svg" title="Leaf of 5-week-old short-day-grown plant" subunitname="leaf" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR493097">
         <control>
             <experiment>SRR492930</experiment>
             <experiment>SRR492931</experiment>
@@ -779,7 +779,7 @@
             <experiment>SRR513743</experiment>
         </groupwith>
     </file>
-    <file description="Col-0 Untreated Adult Plants, SRA: SRS311683" experimentno="SRR493098" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/leaf/SRR493098/accepted_hits.bam" numberofreads="13408363" publicationid="" svgname="ath-leaf.svg" subunitname="leaf" title="Leaf of 5-week-old short-day-grown plant" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR493098">
+    <file description="Col-0 Untreated Adult Plants, SRA: SRS311683" experimentno="SRR493098" foreground="0x64CC65" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/leaf/SRR493098/accepted_hits.bam" numberofreads="13408363" publicationid="" svgname="ath-leaf.svg" subunitname="leaf" title="Leaf of 5-week-old short-day-grown plant" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR493098">
         <control>
             <experiment>SRR492930</experiment>
             <experiment>SRR492931</experiment>
@@ -848,7 +848,7 @@
             <experiment>SRR513743</experiment>
         </groupwith>
     </file>
-    <file description="Col-0 Untreated Adult Plants, SRA: SRS311683" experimentno="SRR493101" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/leaf/SRR493101/accepted_hits.bam" numberofreads="7679343" publicationid="" svgname="ath-leaf.svg" subunitname="leaf" title="Leaf of 5-week-old short-day-grown plant" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR493101">
+    <file description="Col-0 Untreated Adult Plants, SRA: SRS311683" experimentno="SRR493101" foreground="0x64CC65" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/leaf/SRR493101/accepted_hits.bam" numberofreads="7679343" publicationid="" svgname="ath-leaf.svg" subunitname="leaf" title="Leaf of 5-week-old short-day-grown plant" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR493101">
         <control>
             <experiment>SRR492930</experiment>
             <experiment>SRR492931</experiment>
@@ -916,7 +916,7 @@
             <experiment>SRR513743</experiment>
         </groupwith>
     </file>
-    <file description="WT 4wks leaves RNA-seq, GSM1088166, SRA: SRS398009" experimentno="SRR764885" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/leaf/SRR764885/accepted_hits.bam" numberofreads="50380962" publicationid="" svgname="ath-leaf.svg" subunitname="leaf" title="Leaf of 4-week-old long-day-grwon plant" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR764885">
+    <file description="WT 4wks leaves RNA-seq, GSM1088166, SRA: SRS398009" experimentno="SRR764885" foreground="0x64CC65" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/leaf/SRR764885/accepted_hits.bam" numberofreads="50380962" publicationid="" svgname="ath-leaf.svg" subunitname="leaf" title="Leaf of 4-week-old long-day-grwon plant" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR764885">
         <control>
             <experiment>SRR764885</experiment>
         </control>
@@ -926,7 +926,7 @@
             <experiment>SRR764887</experiment>
         </groupwith>
     </file>
-    <file description=" Col-0 WT1, SRA: SRS454429" experimentno="SRR924656" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/leaf/SRR924656/accepted_hits.bam" numberofreads="39590367" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/24657166" svgname="ath-leaf.svg" subunitname="leaf" title="Leaf of 3-week-old plant" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR924656">
+    <file description=" Col-0 WT1, SRA: SRS454429" experimentno="SRR924656" foreground="0x64CC65" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/leaf/SRR924656/accepted_hits.bam" numberofreads="39590367" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/24657166" svgname="ath-leaf.svg" subunitname="leaf" title="Leaf of 3-week-old plant" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR924656">
         <control>
             <experiment>SRR924656</experiment>
             <experiment>SRR925853</experiment>
@@ -950,7 +950,7 @@
             <experiment>SRR925864</experiment>
         </groupwith>
     </file>
-    <file description="leaves of wild type Arabidopsis, GSM1185649, SRA: SRS457504" experimentno="SRR934391" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/leaf/SRR934391/accepted_hits.bam" numberofreads="36196662" publicationid="" svgname="ath-leaf.svg" subunitname="leaf" title="Leaf of 2-week-old long-day-grwon plant" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR934391">
+    <file description="leaves of wild type Arabidopsis, GSM1185649, SRA: SRS457504" experimentno="SRR934391" foreground="0x64CC65" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/leaf/SRR934391/accepted_hits.bam" numberofreads="36196662" publicationid="" svgname="ath-leaf.svg" subunitname="leaf" title="Leaf of 2-week-old long-day-grwon plant" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR934391">
         <control>
             <experiment>SRR934391</experiment>
         </control>
@@ -959,7 +959,7 @@
             <experiment>SRR934392</experiment>
         </groupwith>
     </file>
-    <file description="3 week leaf tissue, GSM1193626, SRA: SRS463362" experimentno="SRR942022" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/leaf/SRR942022/accepted_hits.bam" numberofreads="17975524" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/24244201" svgname="ath-leaf.svg" subunitname="leaf" title="Leaf of 3-week-old long-day-grwon plant" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR942022">
+    <file description="3 week leaf tissue, GSM1193626, SRA: SRS463362" experimentno="SRR942022" foreground="0x64CC65" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/leaf/SRR942022/accepted_hits.bam" numberofreads="17975524" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/24244201" svgname="ath-leaf.svg" subunitname="leaf" title="Leaf of 3-week-old long-day-grwon plant" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR942022">
         <control>
             <experiment>SRR941999</experiment>
             <experiment>SRR942000</experiment>
@@ -1013,7 +1013,7 @@
             <experiment>SRR942037</experiment>
         </groupwith>
     </file>
-    <file description="whole seedling, WT, GSM613465, SRA: SRS118358" experimentno="SRR070570" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR070570/accepted_hits.bam" numberofreads="8793425" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/21265889" svgname="ath-etiolatedSeedling.svg" subunitname="etiolatedSeedling" title="4-day-old 24h-light-grown seedling" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR070570">
+    <file description="whole seedling, WT, GSM613465, SRA: SRS118358" experimentno="SRR070570" foreground="0xCCCC97" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR070570/accepted_hits.bam" numberofreads="8793425" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/21265889" svgname="ath-etiolatedSeedling.svg" subunitname="etiolatedSeedling" title="4-day-old 24h-light-grown seedling" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR070570">
         <control>
             <experiment>SRR070570</experiment>
             <experiment>SRR070571</experiment>
@@ -1025,7 +1025,7 @@
             <experiment>SRR070573</experiment>
         </groupwith>
     </file>
-    <file description="whole seedling, WT, GSM613465, SRA: SRS118358" experimentno="SRR070571" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR070571/accepted_hits.bam" numberofreads="8590680" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/21265889" svgname="ath-etiolatedSeedling.svg" subunitname="etiolatedSeedling" title="4-day-old 24h-light-grown seedling" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR070571">
+    <file description="whole seedling, WT, GSM613465, SRA: SRS118358" experimentno="SRR070571" foreground="0xCCCC97" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR070571/accepted_hits.bam" numberofreads="8590680" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/21265889" svgname="ath-etiolatedSeedling.svg" subunitname="etiolatedSeedling" title="4-day-old 24h-light-grown seedling" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR070571">
         <control>
             <experiment>SRR070570</experiment>
             <experiment>SRR070571</experiment>
@@ -1037,7 +1037,7 @@
             <experiment>SRR070573</experiment>
         </groupwith>
     </file>
-    <file description="10d-old seedling, GSM1239087, SRA: SRS487056" experimentno="SRR1001909" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR1001909/accepted_hits.bam" numberofreads="8168891" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/24505057" svgname="ath-10dayOldSeedling.svg" subunitname="all" title="10-day-old long-day plate-grown seedling" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR1001909">
+    <file description="10d-old seedling, GSM1239087, SRA: SRS487056" experimentno="SRR1001909" foreground="0x98FF00" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR1001909/accepted_hits.bam" numberofreads="8168891" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/24505057" svgname="ath-10dayOldSeedling.svg" subunitname="all" title="10-day-old long-day plate-grown seedling" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR1001909">
         <control>
             <experiment>SRR1001909</experiment>
             <experiment>SRR1001910</experiment>
@@ -1055,7 +1055,7 @@
             <experiment>SRR1001910</experiment>
         </groupwith>
     </file>
-    <file description="10d-old seedling, GSM1239088, SRA: SRS487057" experimentno="SRR1001910" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR1001910/accepted_hits.bam" numberofreads="8168891" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/24505057" svgname="ath-10dayOldSeedling.svg" subunitname="all" title="10-day-old long-day plate-grown seedling" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR1001910">
+    <file description="10d-old seedling, GSM1239088, SRA: SRS487057" experimentno="SRR1001910" foreground="0x98FF00" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR1001910/accepted_hits.bam" numberofreads="8168891" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/24505057" svgname="ath-10dayOldSeedling.svg" subunitname="all" title="10-day-old long-day plate-grown seedling" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR1001910">
         <control>
             <experiment>SRR1001909</experiment>
             <experiment>SRR1001910</experiment>
@@ -1073,7 +1073,7 @@
             <experiment>SRR1001910</experiment>
         </groupwith>
     </file>
-    <file description="14-d-old entire seedlings, GSM1252086, SRA: SRS494447" experimentno="SRR1019221" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR1019221/accepted_hits.bam" numberofreads="49462416" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/24248388" svgname="ath-15dayOldSeedling.svg" subunitname="all" title="15-d-old long-day plate-grown" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR1019221">
+    <file description="14-d-old entire seedlings, GSM1252086, SRA: SRS494447" experimentno="SRR1019221" foreground="0x98FF00" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR1019221/accepted_hits.bam" numberofreads="49462416" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/24248388" svgname="ath-15dayOldSeedling.svg" subunitname="all" title="15-d-old long-day plate-grown" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR1019221">
         <control>
             <experiment>SRR1019221</experiment>
         </control>
@@ -1082,7 +1082,7 @@
             <experiment>SRR1019222</experiment>
         </groupwith>
     </file>
-    <file description="Seedling, GSM798295, SRA: SRS261467" experimentno="SRR345561" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR345561/accepted_hits.bam" numberofreads="17838931" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/22942380" svgname="ath-10dayOldSeedling.svg" subunitname="all" title="7-day-old plate-grown long-day seedlings" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR345561">
+    <file description="Seedling, GSM798295, SRA: SRS261467" experimentno="SRR345561" foreground="0x98FF00" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR345561/accepted_hits.bam" numberofreads="17838931" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/22942380" svgname="ath-10dayOldSeedling.svg" subunitname="all" title="7-day-old plate-grown long-day seedlings" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR345561">
         <control>
             <experiment>SRR345561</experiment>
             <experiment>SRR345562</experiment>
@@ -1094,7 +1094,7 @@
             <experiment>SRR345564</experiment>
         </groupwith>
     </file>
-    <file description="Seedling, GSM798296, SRA: SRS261468" experimentno="SRR345562" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR345562/accepted_hits.bam" numberofreads="13627154" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/22942380" svgname="ath-10dayOldSeedling.svg" subunitname="all" title="7-day-old plate-grown long-day seedlings" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR345562">
+    <file description="Seedling, GSM798296, SRA: SRS261468" experimentno="SRR345562" foreground="0x98FF00" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR345562/accepted_hits.bam" numberofreads="13627154" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/22942380" svgname="ath-10dayOldSeedling.svg" subunitname="all" title="7-day-old plate-grown long-day seedlings" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR345562">
         <control>
             <experiment>SRR345561</experiment>
             <experiment>SRR345562</experiment>
@@ -1106,7 +1106,7 @@
             <experiment>SRR345564</experiment>
         </groupwith>
     </file>
-    <file description="two week old seedling, GSM800621, SRA: SRS265285" experimentno="SRR346552" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR346552/accepted_hits.bam" numberofreads="19200418" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/22293517" svgname="ath-10dayOldSeedling.svg" subunitname="all" title="7-day-old plate-grown long-day seedlings" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR346552">
+    <file description="two week old seedling, GSM800621, SRA: SRS265285" experimentno="SRR346552" foreground="0x98FF00" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR346552/accepted_hits.bam" numberofreads="19200418" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/22293517" svgname="ath-10dayOldSeedling.svg" subunitname="all" title="7-day-old plate-grown long-day seedlings" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR346552">
         <control>
             <experiment>SRR346552</experiment>
             <experiment>SRR346553</experiment>
@@ -1116,7 +1116,7 @@
             <experiment>SRR346553</experiment>
         </groupwith>
     </file>
-    <file description="two week old seedling, GSM800622, SRA: SRS265286" experimentno="SRR346553" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR346553/accepted_hits.bam" numberofreads="23724986" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/22293517" svgname="ath-10dayOldSeedling.svg" subunitname="all" title="7-day-old plate-grown long-day seedlings" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR346553">
+    <file description="two week old seedling, GSM800622, SRA: SRS265286" experimentno="SRR346553" foreground="0x98FF00" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR346553/accepted_hits.bam" numberofreads="23724986" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/22293517" svgname="ath-10dayOldSeedling.svg" subunitname="all" title="7-day-old plate-grown long-day seedlings" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR346553">
         <control>
             <experiment>SRR346552</experiment>
             <experiment>SRR346553</experiment>
@@ -1126,7 +1126,7 @@
             <experiment>SRR346553</experiment>
         </groupwith>
     </file>
-    <file description="10 day seedlings, GSM856058, SRA: SRS284668" experimentno="SRR394082" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR394082/accepted_hits.bam" numberofreads="46284902" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/22431625" svgname="ath-10dayOldSeedling.svg" subunitname="all" title="10-day-old long-day plate-grown seedling" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR394082">
+    <file description="10 day seedlings, GSM856058, SRA: SRS284668" experimentno="SRR394082" foreground="0x98FF00" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR394082/accepted_hits.bam" numberofreads="46284902" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/22431625" svgname="ath-10dayOldSeedling.svg" subunitname="all" title="10-day-old long-day plate-grown seedling" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR394082">
         <control>
             <experiment>SRR394082</experiment>
         </control>
@@ -1138,7 +1138,7 @@
             <experiment>SRR394082</experiment>
         </groupwith>
     </file>
-    <file description="2-3 week seedlings, GSM941528, SRA: SRS344127" experimentno="SRR504179" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR504179/accepted_hits.bam" numberofreads="25512109" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/23246435" svgname="ath-15dayOldSeedling.svg" subunitname="all" title="2-week-old long-day seedling" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR504179">
+    <file description="2-3 week seedlings, GSM941528, SRA: SRS344127" experimentno="SRR504179" foreground="0x98FF00" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR504179/accepted_hits.bam" numberofreads="25512109" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/23246435" svgname="ath-15dayOldSeedling.svg" subunitname="all" title="2-week-old long-day seedling" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR504179">
         <control>
             <experiment>SRR504179</experiment>
             <experiment>SRR504180</experiment>
@@ -1159,7 +1159,7 @@
             <experiment>SRR576329</experiment>
         </groupwith>
     </file>
-    <file description="2-3 week seedlings, GSM941529, SRA: SRS344128" experimentno="SRR504180" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR504180/accepted_hits.bam" numberofreads="21115421" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/23246435" svgname="ath-15dayOldSeedling.svg" subunitname="all" title="2-week-old long-day seedling" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR504180">
+    <file description="2-3 week seedlings, GSM941529, SRA: SRS344128" experimentno="SRR504180" foreground="0x98FF00" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR504180/accepted_hits.bam" numberofreads="21115421" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/23246435" svgname="ath-15dayOldSeedling.svg" subunitname="all" title="2-week-old long-day seedling" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR504180">
         <control>
             <experiment>SRR504179</experiment>
             <experiment>SRR504180</experiment>
@@ -1180,7 +1180,7 @@
             <experiment>SRR576329</experiment>
         </groupwith>
     </file>
-    <file description="2-3 week seedlings, GSM941530, SRA: SRS344129" experimentno="SRR504181" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR504181/accepted_hits.bam" numberofreads="37241776" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/23246435" svgname="ath-15dayOldSeedling.svg" subunitname="all" title="2-week-old long-day seedling" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR504181">
+    <file description="2-3 week seedlings, GSM941530, SRA: SRS344129" experimentno="SRR504181" foreground="0x98FF00" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR504181/accepted_hits.bam" numberofreads="37241776" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/23246435" svgname="ath-15dayOldSeedling.svg" subunitname="all" title="2-week-old long-day seedling" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR504181">
         <control>
             <experiment>SRR504179</experiment>
             <experiment>SRR504180</experiment>
@@ -1201,7 +1201,7 @@
             <experiment>SRR576329</experiment>
         </groupwith>
     </file>
-    <file description="Arabidopsis thaliana seedlings, SRA: SRS346091" experimentno="SRR515073" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR515073/accepted_hits.bam" numberofreads="5196385" publicationid="" svgname="ath-10dayOldSeedling.svg" subunitname="all" title="7-day-old plate-grown, long-day-grown seedling" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR515073">
+    <file description="Arabidopsis thaliana seedlings, SRA: SRS346091" experimentno="SRR515073" foreground="0x98FF00" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR515073/accepted_hits.bam" numberofreads="5196385" publicationid="" svgname="ath-10dayOldSeedling.svg" subunitname="all" title="7-day-old plate-grown, long-day-grown seedling" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR515073">
         <control>
             <experiment>SRR515071</experiment>
             <experiment>SRR515072</experiment>
@@ -1214,7 +1214,7 @@
             <experiment>SRR515074</experiment>
         </groupwith>
     </file>
-    <file description="Arabidopsis thaliana seedlings, SRA: SRS346091" experimentno="SRR515074" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR515074/accepted_hits.bam" numberofreads="4527721" publicationid="" svgname="ath-10dayOldSeedling.svg" subunitname="all" title="7-day-old plate-grown, long-day-grown seedling" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR515074">
+    <file description="Arabidopsis thaliana seedlings, SRA: SRS346091" experimentno="SRR515074" foreground="0x98FF00" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR515074/accepted_hits.bam" numberofreads="4527721" publicationid="" svgname="ath-10dayOldSeedling.svg" subunitname="all" title="7-day-old plate-grown, long-day-grown seedling" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR515074">
         <control>
             <experiment>SRR515071</experiment>
             <experiment>SRR515072</experiment>
@@ -1227,7 +1227,7 @@
             <experiment>SRR515074</experiment>
         </groupwith>
     </file>
-    <file description="Col-0 repl1, SRA: SRS351292" experimentno="SRR527164" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR527164/accepted_hits.bam" numberofreads="19992786" publicationid="" svgname="ath-10dayOldSeedling.svg" subunitname="all" title="7-day-old, plate-grown, long-day-grown seedling" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR527164">
+    <file description="Col-0 repl1, SRA: SRS351292" experimentno="SRR527164" foreground="0x98FF00" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR527164/accepted_hits.bam" numberofreads="19992786" publicationid="" svgname="ath-10dayOldSeedling.svg" subunitname="all" title="7-day-old, plate-grown, long-day-grown seedling" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR527164">
         <control>
             <experiment>SRR527164</experiment>
             <experiment>SRR527165</experiment>
@@ -1242,7 +1242,7 @@
             <experiment>SRR527175</experiment>
         </groupwith>
     </file>
-    <file description=" Col-0 repl2, SRA: SRS351293" experimentno="SRR527165" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR527165/accepted_hits.bam" numberofreads="19917758" publicationid="" svgname="ath-10dayOldSeedling.svg" subunitname="all" title="7-day-old, plate-grown, long-day-grown seedling" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR527165">
+    <file description=" Col-0 repl2, SRA: SRS351293" experimentno="SRR527165" foreground="0x98FF00" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR527165/accepted_hits.bam" numberofreads="19917758" publicationid="" svgname="ath-10dayOldSeedling.svg" subunitname="all" title="7-day-old, plate-grown, long-day-grown seedling" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR527165">
         <control>
             <experiment>SRR527164</experiment>
             <experiment>SRR527165</experiment>
@@ -1257,7 +1257,7 @@
             <experiment>SRR527175</experiment>
         </groupwith>
     </file>
-    <file description="seedling, GSM1017156, SRA: SRS367537" experimentno="SRR584115" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR584115/accepted_hits.bam" numberofreads="25097748" publicationid="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3877825" svgname="ath-10dayOldSeedling.svg" subunitname="all" title="11-day-old light-grown plate-grown seedling" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR584115">
+    <file description="seedling, GSM1017156, SRA: SRS367537" experimentno="SRR584115" foreground="0x98FF00" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR584115/accepted_hits.bam" numberofreads="25097748" publicationid="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3877825" svgname="ath-10dayOldSeedling.svg" subunitname="all" title="11-day-old light-grown plate-grown seedling" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR584115">
         <control>
             <experiment>SRR584115</experiment>
             <experiment>SRR584119</experiment>
@@ -1281,7 +1281,7 @@
             <experiment>SRR584126</experiment>
         </groupwith>
     </file>
-    <file description="seedling, GSM1017162, SRA: SRS367543" experimentno="SRR584121" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR584121/accepted_hits.bam" numberofreads="39243947" publicationid="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3877825" svgname="ath-10dayOldSeedling.svg" subunitname="all" title="11-day-old light-grown plate-grown seedling" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR584121">
+    <file description="seedling, GSM1017162, SRA: SRS367543" experimentno="SRR584121" foreground="0x98FF00" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR584121/accepted_hits.bam" numberofreads="39243947" publicationid="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3877825" svgname="ath-10dayOldSeedling.svg" subunitname="all" title="11-day-old light-grown plate-grown seedling" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR584121">
         <control>
             <experiment>SRR584115</experiment>
             <experiment>SRR584119</experiment>
@@ -1305,7 +1305,7 @@
             <experiment>SRR584126</experiment>
         </groupwith>
     </file>
-    <file description="seedlings, GSM1017170, SRA: SRS367551" experimentno="SRR584129" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR584129/accepted_hits.bam" numberofreads="41360269" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/23192226" svgname="ath-10dayOldSeedling.svg" subunitname="all" title="11-day-old light-grown plate-grown seedling" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR584129">
+    <file description="seedlings, GSM1017170, SRA: SRS367551" experimentno="SRR584129" foreground="0x98FF00" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR584129/accepted_hits.bam" numberofreads="41360269" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/23192226" svgname="ath-10dayOldSeedling.svg" subunitname="all" title="11-day-old light-grown plate-grown seedling" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR584129">
         <control>
             <experiment>SRR584129</experiment>
             <experiment>SRR584134</experiment>
@@ -1324,7 +1324,7 @@
             <experiment>SRR584137</experiment>
         </groupwith>
     </file>
-    <file description="seedlings, GSM1017175, SRA: SRS367556" experimentno="SRR584134" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR584134/accepted_hits.bam" numberofreads="40452559" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/23192226" svgname="ath-10dayOldSeedling.svg" subunitname="all" title="11-day-old light-grown plate-grown seedling" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR584134">
+    <file description="seedlings, GSM1017175, SRA: SRS367556" experimentno="SRR584134" foreground="0x98FF00" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR584134/accepted_hits.bam" numberofreads="40452559" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/23192226" svgname="ath-10dayOldSeedling.svg" subunitname="all" title="11-day-old light-grown plate-grown seedling" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR584134">
         <control>
             <experiment>SRR584129</experiment>
             <experiment>SRR584134</experiment>
@@ -1343,7 +1343,7 @@
             <experiment>SRR584137</experiment>
         </groupwith>
     </file>
-    <file description="LL, WT rep 1, GSM1072464, SRA: SRS388017" experimentno="SRR653555" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR653555/accepted_hits.bam" numberofreads="13572463" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/23818596" svgname="ath-10dayOldSeedling.svg" subunitname="all" title="9 day-old 24h-light-grown seedling" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR653555">
+    <file description="LL, WT rep 1, GSM1072464, SRA: SRS388017" experimentno="SRR653555" foreground="0x98FF00" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR653555/accepted_hits.bam" numberofreads="13572463" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/23818596" svgname="ath-10dayOldSeedling.svg" subunitname="all" title="9 day-old 24h-light-grown seedling" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR653555">
         <control>
             <experiment>SRR653555</experiment>
             <experiment>SRR653556</experiment>
@@ -1412,7 +1412,7 @@
             <experiment>SRR653596</experiment>
         </groupwith>
     </file>
-    <file description="LL, WT rep 2, GSM1072465, SRA: SRS388018" experimentno="SRR653556" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR653556/accepted_hits.bam" numberofreads="16154755" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/23818596" svgname="ath-10dayOldSeedling.svg" subunitname="all" title="9 day-old 24h-light-grown seedling" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR653556">
+    <file description="LL, WT rep 2, GSM1072465, SRA: SRS388018" experimentno="SRR653556" foreground="0x98FF00" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR653556/accepted_hits.bam" numberofreads="16154755" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/23818596" svgname="ath-10dayOldSeedling.svg" subunitname="all" title="9 day-old 24h-light-grown seedling" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR653556">
         <control>
             <experiment>SRR653555</experiment>
             <experiment>SRR653556</experiment>
@@ -1481,7 +1481,7 @@
             <experiment>SRR653596</experiment>
         </groupwith>
     </file>
-    <file description="LL, WT rep 3, GSM1072466, SRA: SRS388019" experimentno="SRR653557" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR653557/accepted_hits.bam" numberofreads="13556594" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/23818596" svgname="ath-10dayOldSeedling.svg" subunitname="all" title="9 day-old 24h-light-grown seedling" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR653557">
+    <file description="LL, WT rep 3, GSM1072466, SRA: SRS388019" experimentno="SRR653557" foreground="0x98FF00" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR653557/accepted_hits.bam" numberofreads="13556594" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/23818596" svgname="ath-10dayOldSeedling.svg" subunitname="all" title="9 day-old 24h-light-grown seedling" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR653557">
         <control>
             <experiment>SRR653555</experiment>
             <experiment>SRR653556</experiment>
@@ -1550,7 +1550,7 @@
             <experiment>SRR653596</experiment>
         </groupwith>
     </file>
-    <file description="Long days WT, ZT2, rep 1, GSM1072470, SRA: SRS388023" experimentno="SRR653561" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR653561/accepted_hits.bam" numberofreads="10241986" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/23818596" svgname="ath-10dayOldSeedling.svg" subunitname="all" title="9 day-old long-day-grown seedling harvested 2h after light on on the 9th day" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR653561">
+    <file description="Long days WT, ZT2, rep 1, GSM1072470, SRA: SRS388023" experimentno="SRR653561" foreground="0x98FF00" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR653561/accepted_hits.bam" numberofreads="10241986" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/23818596" svgname="ath-10dayOldSeedling.svg" subunitname="all" title="9 day-old long-day-grown seedling harvested 2h after light on on the 9th day" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR653561">
         <control>
             <experiment>SRR653555</experiment>
             <experiment>SRR653556</experiment>
@@ -1619,7 +1619,7 @@
             <experiment>SRR653596</experiment>
         </groupwith>
     </file>
-    <file description="Long days WT, ZT2, rep 2, GSM1072471, SRA: SRS388024" experimentno="SRR653562" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR653562/accepted_hits.bam" numberofreads="15917411" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/23818596" svgname="ath-10dayOldSeedling.svg" subunitname="all" title="9 day-old long-day-grown seedling harvested 2h after light on on the 9th day" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR653562">
+    <file description="Long days WT, ZT2, rep 2, GSM1072471, SRA: SRS388024" experimentno="SRR653562" foreground="0x98FF00" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR653562/accepted_hits.bam" numberofreads="15917411" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/23818596" svgname="ath-10dayOldSeedling.svg" subunitname="all" title="9 day-old long-day-grown seedling harvested 2h after light on on the 9th day" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR653562">
         <control>
             <experiment>SRR653555</experiment>
             <experiment>SRR653556</experiment>
@@ -1688,7 +1688,7 @@
             <experiment>SRR653596</experiment>
         </groupwith>
     </file>
-    <file description="Long days WT, ZT2, rep 3, GSM1072472, SRA: SRS388025" experimentno="SRR653563" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR653563/accepted_hits.bam" numberofreads="8824547" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/23818596" svgname="ath-10dayOldSeedling.svg" subunitname="all" title="9 day-old long-day-grown seedling harvested 2h after light on on the 9th day" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR653563">
+    <file description="Long days WT, ZT2, rep 3, GSM1072472, SRA: SRS388025" experimentno="SRR653563" foreground="0x98FF00" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR653563/accepted_hits.bam" numberofreads="8824547" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/23818596" svgname="ath-10dayOldSeedling.svg" subunitname="all" title="9 day-old long-day-grown seedling harvested 2h after light on on the 9th day" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR653563">
         <control>
             <experiment>SRR653555</experiment>
             <experiment>SRR653556</experiment>
@@ -1757,7 +1757,7 @@
             <experiment>SRR653596</experiment>
         </groupwith>
     </file>
-    <file description="Long days WT, ZT6, rep 1, GSM1072473, SRA: SRS388026" experimentno="SRR653564" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR653564/accepted_hits.bam" numberofreads="11800058" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/23818596" svgname="ath-10dayOldSeedling.svg" subunitname="all" title="9 day-old long-day-grown seedling harvested 2h after light on on the 9th day" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR653564">
+    <file description="Long days WT, ZT6, rep 1, GSM1072473, SRA: SRS388026" experimentno="SRR653564" foreground="0x98FF00" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR653564/accepted_hits.bam" numberofreads="11800058" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/23818596" svgname="ath-10dayOldSeedling.svg" subunitname="all" title="9 day-old long-day-grown seedling harvested 2h after light on on the 9th day" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR653564">
         <control>
             <experiment>SRR653555</experiment>
             <experiment>SRR653556</experiment>
@@ -1826,7 +1826,7 @@
             <experiment>SRR653596</experiment>
         </groupwith>
     </file>
-    <file description="Long days WT, ZT6, rep 2, GSM1072474, SRA: SRS388027" experimentno="SRR653565" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR653565/accepted_hits.bam" numberofreads="11623867" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/23818596" svgname="ath-10dayOldSeedling.svg" subunitname="all" title="9 day-old long-day-grown seedling harvested 2h after light on on the 9th day" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR653565">
+    <file description="Long days WT, ZT6, rep 2, GSM1072474, SRA: SRS388027" experimentno="SRR653565" foreground="0x98FF00" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR653565/accepted_hits.bam" numberofreads="11623867" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/23818596" svgname="ath-10dayOldSeedling.svg" subunitname="all" title="9 day-old long-day-grown seedling harvested 2h after light on on the 9th day" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR653565">
         <control>
             <experiment>SRR653555</experiment>
             <experiment>SRR653556</experiment>
@@ -1895,7 +1895,7 @@
             <experiment>SRR653596</experiment>
         </groupwith>
     </file>
-    <file description="Long days WT, ZT6, rep 3, GSM1072475, SRA: SRS388028" experimentno="SRR653566" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR653566/accepted_hits.bam" numberofreads="10246632" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/23818596" svgname="ath-10dayOldSeedling.svg" subunitname="all" title="9 day-old long-day-grown seedling harvested 2h after light on on the 9th day" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR653566">
+    <file description="Long days WT, ZT6, rep 3, GSM1072475, SRA: SRS388028" experimentno="SRR653566" foreground="0x98FF00" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR653566/accepted_hits.bam" numberofreads="10246632" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/23818596" svgname="ath-10dayOldSeedling.svg" subunitname="all" title="9 day-old long-day-grown seedling harvested 2h after light on on the 9th day" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR653566">
         <control>
             <experiment>SRR653555</experiment>
             <experiment>SRR653556</experiment>
@@ -1964,7 +1964,7 @@
             <experiment>SRR653596</experiment>
         </groupwith>
     </file>
-    <file description="Long days WT, ZT10, rep 1, GSM1072476, SRA: SRS388029" experimentno="SRR653567" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR653567/accepted_hits.bam" numberofreads="10750893" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/23818596" svgname="ath-10dayOldSeedling.svg" subunitname="all" title="9 day-old long-day-grown seedling harvested 10h after light on on the 9th day" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR653567">
+    <file description="Long days WT, ZT10, rep 1, GSM1072476, SRA: SRS388029" experimentno="SRR653567" foreground="0x98FF00" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR653567/accepted_hits.bam" numberofreads="10750893" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/23818596" svgname="ath-10dayOldSeedling.svg" subunitname="all" title="9 day-old long-day-grown seedling harvested 10h after light on on the 9th day" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR653567">
         <control>
             <experiment>SRR653555</experiment>
             <experiment>SRR653556</experiment>
@@ -2033,7 +2033,7 @@
             <experiment>SRR653596</experiment>
         </groupwith>
     </file>
-    <file description="Long days WT, ZT10, rep 2, GSM1072477, SRA: SRS388030" experimentno="SRR653568" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR653568/accepted_hits.bam" numberofreads="9057212" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/23818596" svgname="ath-10dayOldSeedling.svg" subunitname="all" title="9 day-old long-day-grown seedling harvested 10h after light on on the 9th day" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR653568">
+    <file description="Long days WT, ZT10, rep 2, GSM1072477, SRA: SRS388030" experimentno="SRR653568" foreground="0x98FF00" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR653568/accepted_hits.bam" numberofreads="9057212" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/23818596" svgname="ath-10dayOldSeedling.svg" subunitname="all" title="9 day-old long-day-grown seedling harvested 10h after light on on the 9th day" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR653568">
         <control>
             <experiment>SRR653555</experiment>
             <experiment>SRR653556</experiment>
@@ -2102,7 +2102,7 @@
             <experiment>SRR653596</experiment>
         </groupwith>
     </file>
-    <file description="Long days WT, ZT10, rep 3, GSM1072478, SRA: SRS388031" experimentno="SRR653569" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR653569/accepted_hits.bam" numberofreads="14316928" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/23818596" svgname="ath-10dayOldSeedling.svg" subunitname="all" title="9 day-old long-day-grown seedling harvested 10h after light on on the 9th day" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR653569">
+    <file description="Long days WT, ZT10, rep 3, GSM1072478, SRA: SRS388031" experimentno="SRR653569" foreground="0x98FF00" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR653569/accepted_hits.bam" numberofreads="14316928" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/23818596" svgname="ath-10dayOldSeedling.svg" subunitname="all" title="9 day-old long-day-grown seedling harvested 10h after light on on the 9th day" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR653569">
         <control>
             <experiment>SRR653555</experiment>
             <experiment>SRR653556</experiment>
@@ -2171,7 +2171,7 @@
             <experiment>SRR653596</experiment>
         </groupwith>
     </file>
-    <file description="Long days WT, ZT14, rep 1, GSM1072479, SRA: SRS388032" experimentno="SRR653570" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR653570/accepted_hits.bam" numberofreads="9656892" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/23818596" svgname="ath-10dayOldSeedling.svg" subunitname="all" title="9 day-old long-day-grown seedling harvested 10h after light on on the 9th day" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR653570">
+    <file description="Long days WT, ZT14, rep 1, GSM1072479, SRA: SRS388032" experimentno="SRR653570" foreground="0x98FF00" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR653570/accepted_hits.bam" numberofreads="9656892" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/23818596" svgname="ath-10dayOldSeedling.svg" subunitname="all" title="9 day-old long-day-grown seedling harvested 10h after light on on the 9th day" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR653570">
         <control>
             <experiment>SRR653555</experiment>
             <experiment>SRR653556</experiment>
@@ -2240,7 +2240,7 @@
             <experiment>SRR653596</experiment>
         </groupwith>
     </file>
-    <file description="Long days WT, ZT14, rep 2, GSM1072480, SRA: SRS388033" experimentno="SRR653571" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR653571/accepted_hits.bam" numberofreads="10805755" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/23818596" svgname="ath-10dayOldSeedling.svg" subunitname="all" title="9 day-old long-day-grown seedling harvested 10h after light on on the 9th day" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR653571">
+    <file description="Long days WT, ZT14, rep 2, GSM1072480, SRA: SRS388033" experimentno="SRR653571" foreground="0x98FF00" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR653571/accepted_hits.bam" numberofreads="10805755" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/23818596" svgname="ath-10dayOldSeedling.svg" subunitname="all" title="9 day-old long-day-grown seedling harvested 10h after light on on the 9th day" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR653571">
         <control>
             <experiment>SRR653555</experiment>
             <experiment>SRR653556</experiment>
@@ -2309,7 +2309,7 @@
             <experiment>SRR653596</experiment>
         </groupwith>
     </file>
-    <file description="Long days WT, ZT14, rep 3,  GSM1072481, SRA: SRS388034" experimentno="SRR653572" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR653572/accepted_hits.bam" numberofreads="8849410" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/23818596" svgname="ath-10dayOldSeedling.svg" subunitname="all" title="9 day-old long-day-grown seedling harvested 10h after light on on the 9th day" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR653572">
+    <file description="Long days WT, ZT14, rep 3,  GSM1072481, SRA: SRS388034" experimentno="SRR653572" foreground="0x98FF00" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR653572/accepted_hits.bam" numberofreads="8849410" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/23818596" svgname="ath-10dayOldSeedling.svg" subunitname="all" title="9 day-old long-day-grown seedling harvested 10h after light on on the 9th day" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR653572">
         <control>
             <experiment>SRR653555</experiment>
             <experiment>SRR653556</experiment>
@@ -2378,7 +2378,7 @@
             <experiment>SRR653596</experiment>
         </groupwith>
     </file>
-    <file description="Long days WT, ZT18, rep 1, GSM1072482, SRA: SRS388035" experimentno="SRR653573" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR653573/accepted_hits.bam" numberofreads="10559600" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/23818596" svgname="ath-10dayOldSeedling.svg" subunitname="all" title="9 day-old long-day-grown seedling harvested 10h after light on on the 9th day" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR653573">
+    <file description="Long days WT, ZT18, rep 1, GSM1072482, SRA: SRS388035" experimentno="SRR653573" foreground="0x98FF00" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR653573/accepted_hits.bam" numberofreads="10559600" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/23818596" svgname="ath-10dayOldSeedling.svg" subunitname="all" title="9 day-old long-day-grown seedling harvested 10h after light on on the 9th day" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR653573">
         <control>
             <experiment>SRR653555</experiment>
             <experiment>SRR653556</experiment>
@@ -2447,7 +2447,7 @@
             <experiment>SRR653596</experiment>
         </groupwith>
     </file>
-    <file description="Long days WT, ZT18, rep 2, GSM1072483, SRA: SRS388036" experimentno="SRR653574" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR653574/accepted_hits.bam" numberofreads="11134265" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/23818596" svgname="ath-10dayOldSeedling.svg" subunitname="all" title="9 day-old long-day-grown seedling harvested 10h after light on on the 9th day" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR653574">
+    <file description="Long days WT, ZT18, rep 2, GSM1072483, SRA: SRS388036" experimentno="SRR653574" foreground="0x98FF00" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR653574/accepted_hits.bam" numberofreads="11134265" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/23818596" svgname="ath-10dayOldSeedling.svg" subunitname="all" title="9 day-old long-day-grown seedling harvested 10h after light on on the 9th day" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR653574">
         <control>
             <experiment>SRR653555</experiment>
             <experiment>SRR653556</experiment>
@@ -2516,7 +2516,7 @@
             <experiment>SRR653596</experiment>
         </groupwith>
     </file>
-    <file description="Long days WT, ZT18, rep 3, GSM1072484, SRA: SRR653575" experimentno="SRR653575" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR653575/accepted_hits.bam" numberofreads="10916285" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/23818596" svgname="ath-10dayOldSeedling.svg" subunitname="all" title="9 day-old long-day-grown seedling harvested 10h after light on on the 9th day" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRP018266">
+    <file description="Long days WT, ZT18, rep 3, GSM1072484, SRA: SRR653575" experimentno="SRR653575" foreground="0x98FF00" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR653575/accepted_hits.bam" numberofreads="10916285" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/23818596" svgname="ath-10dayOldSeedling.svg" subunitname="all" title="9 day-old long-day-grown seedling harvested 10h after light on on the 9th day" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRP018266">
         <control>
             <experiment>SRR653555</experiment>
             <experiment>SRR653556</experiment>
@@ -2585,7 +2585,7 @@
             <experiment>SRR653596</experiment>
         </groupwith>
     </file>
-    <file description="Long days WT, ZT22, rep 1, GSM1072485, SRA: SRS388038" experimentno="SRR653576" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR653576/accepted_hits.bam" numberofreads="12643682" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/23818596" svgname="ath-10dayOldSeedling.svg" subunitname="all" title="9 day-old long-day-grown seedling harvested 10h after light on on the 9th day" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR653576">
+    <file description="Long days WT, ZT22, rep 1, GSM1072485, SRA: SRS388038" experimentno="SRR653576" foreground="0x98FF00" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR653576/accepted_hits.bam" numberofreads="12643682" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/23818596" svgname="ath-10dayOldSeedling.svg" subunitname="all" title="9 day-old long-day-grown seedling harvested 10h after light on on the 9th day" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR653576">
         <control>
             <experiment>SRR653555</experiment>
             <experiment>SRR653556</experiment>
@@ -2654,7 +2654,7 @@
             <experiment>SRR653596</experiment>
         </groupwith>
     </file>
-    <file description="Long days WT, ZT22, rep 2, GSM1072486, SRA: SRS388039" experimentno="SRR653577" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR653577/accepted_hits.bam" numberofreads="9781713" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/23818596" svgname="ath-10dayOldSeedling.svg" subunitname="all" title="9 day-old long-day-grown seedling harvested 10h after light on on the 9th day" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR653577">
+    <file description="Long days WT, ZT22, rep 2, GSM1072486, SRA: SRS388039" experimentno="SRR653577" foreground="0x98FF00" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR653577/accepted_hits.bam" numberofreads="9781713" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/23818596" svgname="ath-10dayOldSeedling.svg" subunitname="all" title="9 day-old long-day-grown seedling harvested 10h after light on on the 9th day" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR653577">
         <control>
             <experiment>SRR653555</experiment>
             <experiment>SRR653556</experiment>
@@ -2723,7 +2723,7 @@
             <experiment>SRR653596</experiment>
         </groupwith>
     </file>
-    <file description="Long days WT, ZT22, rep 3,  GSM1072487, SRA: SRS388040" experimentno="SRR653578" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR653578/accepted_hits.bam" numberofreads="12201145" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/23818596" svgname="ath-10dayOldSeedling.svg" subunitname="all" title="9 day-old long-day-grown seedling harvested 10h after light on on the 9th day" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR653578">
+    <file description="Long days WT, ZT22, rep 3,  GSM1072487, SRA: SRS388040" experimentno="SRR653578" foreground="0x98FF00" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR653578/accepted_hits.bam" numberofreads="12201145" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/23818596" svgname="ath-10dayOldSeedling.svg" subunitname="all" title="9 day-old long-day-grown seedling harvested 10h after light on on the 9th day" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR653578">
         <control>
             <experiment>SRR653555</experiment>
             <experiment>SRR653556</experiment>
@@ -2792,7 +2792,7 @@
             <experiment>SRR653596</experiment>
         </groupwith>
     </file>
-    <file description="10 day old seedings treated with DMSO for 120 minutes, SRA: SRS404292" experimentno="SRR797194" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR797194/accepted_hits.bam" numberofreads="54048815" publicationid="" svgname="ath-10dayOldSeedling.svg" subunitname="all" title="10-day-old plate-grown 24-light-grown seedling with mock (cytokinin) treatment" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR797194">
+    <file description="10 day old seedings treated with DMSO for 120 minutes, SRA: SRS404292" experimentno="SRR797194" foreground="0x98FF00" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR797194/accepted_hits.bam" numberofreads="54048815" publicationid="" svgname="ath-10dayOldSeedling.svg" subunitname="all" title="10-day-old plate-grown 24-light-grown seedling with mock (cytokinin) treatment" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR797194">
         <control>
             <experiment>SRR797194</experiment>
             <experiment>SRR797230</experiment>
@@ -2807,7 +2807,7 @@
             <experiment>SRR833246</experiment>
         </groupwith>
     </file>
-    <file description="10 day old seedings treated with DMSO for 120 minutes, SRA: SRS404291" experimentno="SRR797230" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR797230/accepted_hits.bam" numberofreads="51421658" publicationid="" svgname="ath-10dayOldSeedling.svg" subunitname="all" title="10-day-old plate-grown 24-light-grown seedling with mock (cytokinin) treatment" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR797230">
+    <file description="10 day old seedings treated with DMSO for 120 minutes, SRA: SRS404291" experimentno="SRR797230" foreground="0x98FF00" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR797230/accepted_hits.bam" numberofreads="51421658" publicationid="" svgname="ath-10dayOldSeedling.svg" subunitname="all" title="10-day-old plate-grown 24-light-grown seedling with mock (cytokinin) treatment" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR797230">
         <control>
             <experiment>SRR797194</experiment>
             <experiment>SRR797230</experiment>
@@ -2822,7 +2822,7 @@
             <experiment>SRR833246</experiment>
         </groupwith>
     </file>
-    <file description="10 day old seedings treated with DMSO for 120 minutes, SRA: SRS404294" experimentno="SRR833246" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR833246/accepted_hits.bam" numberofreads="57084121" publicationid="" svgname="ath-10dayOldSeedling.svg" subunitname="all" title="10-day-olde plate-grown 24-light-grown seedling with mock (cytokinin) treatment" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR833246">
+    <file description="10 day old seedings treated with DMSO for 120 minutes, SRA: SRS404294" experimentno="SRR833246" foreground="0x98FF00" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/light/SRR833246/accepted_hits.bam" numberofreads="57084121" publicationid="" svgname="ath-10dayOldSeedling.svg" subunitname="all" title="10-day-olde plate-grown 24-light-grown seedling with mock (cytokinin) treatment" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR833246">
         <control>
             <experiment>SRR797194</experiment>
             <experiment>SRR797230</experiment>
@@ -2837,7 +2837,7 @@
             <experiment>SRR833246</experiment>
         </groupwith>
     </file>
-    <file description="Pollen, SRA: SRS419143" experimentno="SRR847501" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/pollen/SRR847501/accepted_hits.bam" numberofreads="57084121" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/24792048" svgname="ath-Pollen.svg" subunitname="all" title="Mature pollen" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR847501">
+    <file description="Pollen, SRA: SRS419143" experimentno="SRR847501" foreground="0xFF0000" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/pollen/SRR847501/accepted_hits.bam" numberofreads="57084121" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/24792048" svgname="ath-Pollen.svg" subunitname="all" title="Mature pollen" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR847501">
         <control>
             <experiment>SRR847503</experiment>
             <experiment>SRR847504</experiment>
@@ -2853,7 +2853,7 @@
             <experiment>SRR847506</experiment>
         </groupwith>
     </file>
-    <file description="Pollen, SRA: SRS419143" experimentno="SRR847502" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/pollen/SRR847502/accepted_hits.bam" numberofreads="20633235" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/24792048" svgname="ath-Pollen.svg" subunitname="all" title="Mature pollen" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR847502">
+    <file description="Pollen, SRA: SRS419143" experimentno="SRR847502" foreground="0xFF0000" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/pollen/SRR847502/accepted_hits.bam" numberofreads="20633235" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/24792048" svgname="ath-Pollen.svg" subunitname="all" title="Mature pollen" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR847502">
         <control>
             <experiment>SRR847503</experiment>
             <experiment>SRR847504</experiment>
@@ -2869,7 +2869,7 @@
             <experiment>SRR847506</experiment>
         </groupwith>
     </file>
-    <file description="3 day old root, SRA: SRS597085" experimentno="SRR1260032" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/RAM/SRR1260032/accepted_hits.bam" numberofreads="41362473" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/24868033" svgname="ath-RootTip.svg" subunitname="all" title="Root tip from 3-day-old seedling" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR1260032">
+    <file description="3 day old root, SRA: SRS597085" experimentno="SRR1260032" foreground="0xBD7740" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/RAM/SRR1260032/accepted_hits.bam" numberofreads="41362473" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/24868033" svgname="ath-RootTip.svg" subunitname="all" title="Root tip from 3-day-old seedling" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR1260032">
         <control>
             <experiment>SRR1260032</experiment>
             <experiment>SRR1260033</experiment>
@@ -2887,7 +2887,7 @@
             <experiment>SRR1286088</experiment>
         </groupwith>
     </file>
-    <file description="3 day old root, SRA: SRS597086" experimentno="SRR1260033" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/RAM/SRR1260033/accepted_hits.bam" numberofreads="38879470" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/24868033" svgname="ath-RootTip.svg" subunitname="all" title="Root tip from 3-day-old seedling" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR1260033">
+    <file description="3 day old root, SRA: SRS597086" experimentno="SRR1260033" foreground="0xBD7740" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/RAM/SRR1260033/accepted_hits.bam" numberofreads="38879470" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/24868033" svgname="ath-RootTip.svg" subunitname="all" title="Root tip from 3-day-old seedling" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR1260033">
         <control>
             <experiment>SRR1260032</experiment>
             <experiment>SRR1260033</experiment>
@@ -2905,7 +2905,7 @@
             <experiment>SRR1286088</experiment>
         </groupwith>
     </file>
-    <file description="primary root tip, SRA: SRS597256" experimentno="SRR1261509" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/RAM/SRR1261509/accepted_hits.bam" numberofreads="46745857" publicationid="" svgname="ath-RootTip.svg" subunitname="all" title="Root tip (about 4 mm) from 4-day-old seedling" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR1261509">
+    <file description="primary root tip, SRA: SRS597256" experimentno="SRR1261509" foreground="0xBD7740" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/RAM/SRR1261509/accepted_hits.bam" numberofreads="46745857" publicationid="" svgname="ath-RootTip.svg" subunitname="all" title="Root tip (about 4 mm) from 4-day-old seedling" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR1261509">
         <control>
             <experiment>SRR1261509</experiment>
         </control>
@@ -2914,7 +2914,7 @@
             <experiment>SRR1261509</experiment>
         </groupwith>
     </file>
-    <file description="Stage 15 flower receptacles Col-0 WT, GSM865212, SRA: SRS290073" experimentno="SRR401413" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/receptacle/SRR401413/accepted_hits.bam" numberofreads="13365743" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/23327667" svgname="ath-Flower.svg" subunitname="receptacle" title="Receptacle from base of stage 15 flower of long-day-grown plant" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR401413">
+    <file description="Stage 15 flower receptacles Col-0 WT, GSM865212, SRA: SRS290073" experimentno="SRR401413" foreground="0xCCFF00" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/receptacle/SRR401413/accepted_hits.bam" numberofreads="13365743" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/23327667" svgname="ath-Flower.svg" subunitname="receptacle" title="Receptacle from base of stage 15 flower of long-day-grown plant" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR401413">
         <control>
             <experiment>SRR401413</experiment>
             <experiment>SRR401414</experiment>
@@ -2947,7 +2947,7 @@
             <experiment>SRR401430</experiment>
         </groupwith>
     </file>
-    <file description="Stage 15 flower receptacles Col-0 WT, GSM865212, SRA: SRS290073" experimentno="SRR401414" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/receptacle/SRR401414/accepted_hits.bam" numberofreads="9535671" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/23327667" svgname="ath-Flower.svg" subunitname="receptacle" title="Receptacle from base of stage 15 flower of long-day-grown plant" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR401414">
+    <file description="Stage 15 flower receptacles Col-0 WT, GSM865212, SRA: SRS290073" experimentno="SRR401414" foreground="0xCCFF00" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/receptacle/SRR401414/accepted_hits.bam" numberofreads="9535671" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/23327667" svgname="ath-Flower.svg" subunitname="receptacle" title="Receptacle from base of stage 15 flower of long-day-grown plant" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR401414">
         <control>
             <experiment>SRR401413</experiment>
             <experiment>SRR401414</experiment>
@@ -2980,7 +2980,7 @@
             <experiment>SRR401430</experiment>
         </groupwith>
     </file>
-    <file description="Stage 15 flower receptacles Col-0 WT, GSM865212, SRA: SRS290073" experimentno="SRR401415" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/receptacle/SRR401415/accepted_hits.bam" numberofreads="15780686" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/23327667" svgname="ath-Flower.svg" subunitname="receptacle" title="Receptacle from base of stage 15 flower of long-day-grown plant" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR401415">
+    <file description="Stage 15 flower receptacles Col-0 WT, GSM865212, SRA: SRS290073" experimentno="SRR401415" foreground="0xCCFF00" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/receptacle/SRR401415/accepted_hits.bam" numberofreads="15780686" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/23327667" svgname="ath-Flower.svg" subunitname="receptacle" title="Receptacle from base of stage 15 flower of long-day-grown plant" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR401415">
         <control>
             <experiment>SRR401413</experiment>
             <experiment>SRR401414</experiment>
@@ -3013,7 +3013,7 @@
             <experiment>SRR401430</experiment>
         </groupwith>
     </file>
-    <file description="Stage 15 flower receptacles Col-0 WT, GSM865213, SRA: SRS290074" experimentno="SRR401416" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/receptacle/SRR401416/accepted_hits.bam" numberofreads="16555068" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/23327667" svgname="ath-Flower.svg" subunitname="receptacle" title="Receptacle from base of stage 15 flower of long-day-grown plant" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR401416">
+    <file description="Stage 15 flower receptacles Col-0 WT, GSM865213, SRA: SRS290074" experimentno="SRR401416" foreground="0xCCFF00" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/receptacle/SRR401416/accepted_hits.bam" numberofreads="16555068" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/23327667" svgname="ath-Flower.svg" subunitname="receptacle" title="Receptacle from base of stage 15 flower of long-day-grown plant" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR401416">
         <control>
             <experiment>SRR401413</experiment>
             <experiment>SRR401414</experiment>
@@ -3046,7 +3046,7 @@
             <experiment>SRR401430</experiment>
         </groupwith>
     </file>
-    <file description="Stage 15 flower receptacles Col-0 WT, GSM865213, SRA: SRS290074" experimentno="SRR401417" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/receptacle/SRR401417/accepted_hits.bam" numberofreads="11954841" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/23327667" svgname="ath-Flower.svg" subunitname="receptacle" title="Receptacle from base of stage 15 flower of long-day-grown plant" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR401417">
+    <file description="Stage 15 flower receptacles Col-0 WT, GSM865213, SRA: SRS290074" experimentno="SRR401417" foreground="0xCCFF00" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/receptacle/SRR401417/accepted_hits.bam" numberofreads="11954841" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/23327667" svgname="ath-Flower.svg" subunitname="receptacle" title="Receptacle from base of stage 15 flower of long-day-grown plant" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR401417">
         <control>
             <experiment>SRR401413</experiment>
             <experiment>SRR401414</experiment>
@@ -3079,7 +3079,7 @@
             <experiment>SRR401430</experiment>
         </groupwith>
     </file>
-    <file description="Stage 15 flower receptacles Col-0 WT, GSM865213, SRA: SRS290074" experimentno="SRR401418" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/receptacle/SRR401418/accepted_hits.bam" numberofreads="19982775" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/23327667" svgname="ath-Flower.svg" subunitname="receptacle" title="Receptacle from base of stage 15 flower of long-day-grown plant" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR401418">
+    <file description="Stage 15 flower receptacles Col-0 WT, GSM865213, SRA: SRS290074" experimentno="SRR401418" foreground="0xCCFF00" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/receptacle/SRR401418/accepted_hits.bam" numberofreads="19982775" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/23327667" svgname="ath-Flower.svg" subunitname="receptacle" title="Receptacle from base of stage 15 flower of long-day-grown plant" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR401418">
         <control>
             <experiment>SRR401413</experiment>
             <experiment>SRR401414</experiment>
@@ -3112,7 +3112,7 @@
             <experiment>SRR401430</experiment>
         </groupwith>
     </file>
-    <file description="Stage 15 flower receptacles Col-0 WT, GSM865214;, SRA: SRS290075" experimentno="SRR401419" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/receptacle/SRR401419/accepted_hits.bam" numberofreads="13267215" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/23327667" svgname="ath-Flower.svg" subunitname="receptacle" title="Receptacle from base of stage 15 flower of long-day-grown plant" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR401419">
+    <file description="Stage 15 flower receptacles Col-0 WT, GSM865214;, SRA: SRS290075" experimentno="SRR401419" foreground="0xCCFF00" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/receptacle/SRR401419/accepted_hits.bam" numberofreads="13267215" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/23327667" svgname="ath-Flower.svg" subunitname="receptacle" title="Receptacle from base of stage 15 flower of long-day-grown plant" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR401419">
         <control>
             <experiment>SRR401413</experiment>
             <experiment>SRR401414</experiment>
@@ -3145,7 +3145,7 @@
             <experiment>SRR401430</experiment>
         </groupwith>
     </file>
-    <file description="Stage 15 flower receptacles Col-0 WT, GSM865214, SRA: SRS290075" experimentno="SRR401420" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/receptacle/SRR401420/accepted_hits.bam" numberofreads="9409649" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/23327667" svgname="ath-Flower.svg" subunitname="receptacle" title="Receptacle from base of stage 15 flower of long-day-grown plant" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR401420">
+    <file description="Stage 15 flower receptacles Col-0 WT, GSM865214, SRA: SRS290075" experimentno="SRR401420" foreground="0xCCFF00" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/receptacle/SRR401420/accepted_hits.bam" numberofreads="9409649" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/23327667" svgname="ath-Flower.svg" subunitname="receptacle" title="Receptacle from base of stage 15 flower of long-day-grown plant" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR401420">
         <control>
             <experiment>SRR401413</experiment>
             <experiment>SRR401414</experiment>
@@ -3178,7 +3178,7 @@
             <experiment>SRR401430</experiment>
         </groupwith>
     </file>
-    <file description="Stage 15 flower receptacles Col-0 WT, GSM865214, SRA: SRS290075" experimentno="SRR401421" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/receptacle/SRR401421/accepted_hits.bam" numberofreads="15714100" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/23327667" svgname="ath-Flower.svg" subunitname="receptacle" title="Receptacle from base of stage 15 flower of long-day-grown plant" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR401421">
+    <file description="Stage 15 flower receptacles Col-0 WT, GSM865214, SRA: SRS290075" experimentno="SRR401421" foreground="0xCCFF00" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/receptacle/SRR401421/accepted_hits.bam" numberofreads="15714100" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/23327667" svgname="ath-Flower.svg" subunitname="receptacle" title="Receptacle from base of stage 15 flower of long-day-grown plant" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR401421">
         <control>
             <experiment>SRR401413</experiment>
             <experiment>SRR401414</experiment>
@@ -3211,7 +3211,7 @@
             <experiment>SRR401430</experiment>
         </groupwith>
     </file>
-    <file description="root, SRA: ERS244693ERS244693" experimentno="ERR274309" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/root/ERR274309/accepted_hits.bam" numberofreads="29192485" publicationid="http://www.ebi.ac.uk/arrayexpress/control/E-MTAB-1668/" svgname="ath-10dayOldSeedling.svg" subunitname="root" title="Root from 4-leaf-stage seedling with mock (NaCl) treatment" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=ERR274309">
+    <file description="root, SRA: ERS244693ERS244693" experimentno="ERR274309" foreground="0xCCCC97" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/root/ERR274309/accepted_hits.bam" numberofreads="29192485" publicationid="http://www.ebi.ac.uk/arrayexpress/control/E-MTAB-1668/" svgname="ath-10dayOldSeedling.svg" subunitname="root" title="Root from 4-leaf-stage seedling with mock (NaCl) treatment" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=ERR274309">
         <control>
             <experiment>ERR274310</experiment>
         </control>
@@ -3222,7 +3222,7 @@
             <experiment>ERR274311</experiment>
         </groupwith>
     </file>
-    <file description="10 day old root, Col-0, GSM1287167, SRA: SRS513532" experimentno="SRR1046909" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/root/SRR1046909/accepted_hits.bam" numberofreads="5254981" publicationid="" svgname="ath-10dayOldSeedling.svg" subunitname="root" title="Root from 10-day-old seedling" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR1046909">
+    <file description="10 day old root, Col-0, GSM1287167, SRA: SRS513532" experimentno="SRR1046909" foreground="0xCCCC97" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/root/SRR1046909/accepted_hits.bam" numberofreads="5254981" publicationid="" svgname="ath-10dayOldSeedling.svg" subunitname="root" title="Root from 10-day-old seedling" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR1046909">
         <control>
             <experiment>SRR1046909</experiment>
             <experiment>SRR1046910</experiment>
@@ -3268,7 +3268,7 @@
             <experiment>SRR1046942</experiment>
         </groupwith>
     </file>
-    <file description="10 day old root, Col-0, GSM1287168, SRA: SRS513533" experimentno="SRR1046910" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/root/SRR1046910/accepted_hits.bam" numberofreads="5367327" publicationid="" svgname="ath-10dayOldSeedling.svg" subunitname="root" title="Root from 10-day-old seedling" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR1046910">
+    <file description="10 day old root, Col-0, GSM1287168, SRA: SRS513533" experimentno="SRR1046910" foreground="0xCCCC97" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/root/SRR1046910/accepted_hits.bam" numberofreads="5367327" publicationid="" svgname="ath-10dayOldSeedling.svg" subunitname="root" title="Root from 10-day-old seedling" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR1046910">
         <control>
             <experiment>SRR1046909</experiment>
             <experiment>SRR1046910</experiment>
@@ -3314,7 +3314,7 @@
             <experiment>SRR1046942</experiment>
         </groupwith>
     </file>
-    <file description="root, SRA: SRS673307" experimentno="SRR1524935" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/root/SRR1524935/accepted_hits.bam" numberofreads="21855410" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/23735510" svgname="ath-10dayOldSeedling.svg" subunitname="root" title="Root from 10-day-old plate-grown 24h-light-grown seedling transferred to iron sufficient agar plant for 3 days" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR1524935">
+    <file description="root, SRA: SRS673307" experimentno="SRR1524935" foreground="0xCCCC97" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/root/SRR1524935/accepted_hits.bam" numberofreads="21855410" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/23735510" svgname="ath-10dayOldSeedling.svg" subunitname="root" title="Root from 10-day-old plate-grown 24h-light-grown seedling transferred to iron sufficient agar plant for 3 days" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR1524935">
         <control>
             <experiment>SRR1524941</experiment>
             <experiment>SRR1524945</experiment>
@@ -3329,7 +3329,7 @@
             <experiment>SRR1524946</experiment>
         </groupwith>
     </file>
-    <file description="root, SRA: SRS673308" experimentno="SRR1524938" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/root/SRR1524938/accepted_hits.bam" numberofreads="16760164" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/23735510" svgname="ath-10dayOldSeedling.svg" subunitname="root" title="Root from 10-day-old plate-grown 24h-light-grown seedling transferred to iron sufficient agar plant for 3 days" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR1524938">
+    <file description="root, SRA: SRS673308" experimentno="SRR1524938" foreground="0xCCCC97" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/root/SRR1524938/accepted_hits.bam" numberofreads="16760164" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/23735510" svgname="ath-10dayOldSeedling.svg" subunitname="root" title="Root from 10-day-old plate-grown 24h-light-grown seedling transferred to iron sufficient agar plant for 3 days" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR1524938">
         <control>
             <experiment>SRR1524941</experiment>
             <experiment>SRR1524945</experiment>
@@ -3344,7 +3344,7 @@
             <experiment>SRR1524946</experiment>
         </groupwith>
     </file>
-    <file description="root, SRA: SRS673309" experimentno="SRR1524940" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/root/SRR1524940/accepted_hits.bam" numberofreads="14685479" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/23735510" svgname="ath-10dayOldSeedling.svg" subunitname="root" title="Root from 10-day-old plate-grown 24h-light-grown seedling transferred to iron sufficient agar plant for 3 days" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR1524940">
+    <file description="root, SRA: SRS673309" experimentno="SRR1524940" foreground="0xCCCC97" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/root/SRR1524940/accepted_hits.bam" numberofreads="14685479" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/23735510" svgname="ath-10dayOldSeedling.svg" subunitname="root" title="Root from 10-day-old plate-grown 24h-light-grown seedling transferred to iron sufficient agar plant for 3 days" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR1524940">
         <control>
             <experiment>SRR1524941</experiment>
             <experiment>SRR1524945</experiment>
@@ -3359,7 +3359,7 @@
             <experiment>SRR1524946</experiment>
         </groupwith>
     </file>
-    <file description="10 day old root, Col-0, GSM764078, SRA: SRS228278" experimentno="SRR314814" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/root/SRR314814/accepted_hits.bam" numberofreads="23367623" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/21874022" svgname="ath-10dayOldSeedling.svg" subunitname="root" title="Root from 11-day-old seedling" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR314814">
+    <file description="10 day old root, Col-0, GSM764078, SRA: SRS228278" experimentno="SRR314814" foreground="0xCCCC97" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/root/SRR314814/accepted_hits.bam" numberofreads="23367623" publicationid="http://www.ncbi.nlm.nih.gov/pubmed/21874022" svgname="ath-10dayOldSeedling.svg" subunitname="root" title="Root from 11-day-old seedling" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR314814">
         <control>
             <experiment>MEDIAN</experiment>
         </control>
@@ -3372,7 +3372,7 @@
             <experiment>SRR314818</experiment>
         </groupwith>
     </file>
-    <file description="Col sun 1, SRA: SRS468598" experimentno="SRR949956" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/SAM/SRR949956/accepted_hits.bam" numberofreads="4537769" publicationid="" svgname="ath-ShootApexInflorescense.svg" subunitname="all" title="Shoot apical meristem/young leaf from 14-day-old plant grown in simulated sun condition" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR949956">
+    <file description="Col sun 1, SRA: SRS468598" experimentno="SRR949956" foreground="0x999999" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/SAM/SRR949956/accepted_hits.bam" numberofreads="4537769" publicationid="" svgname="ath-ShootApexInflorescense.svg" subunitname="all" title="Shoot apical meristem/young leaf from 14-day-old plant grown in simulated sun condition" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR949956">
         <control>
             <experiment>SRR949956</experiment>
             <experiment>SRR949965</experiment>
@@ -3390,7 +3390,7 @@
             <experiment>SRR949993</experiment>
         </groupwith>
     </file>
-    <file description="Col sun 1, GSM764079, SRA: SRS468598" experimentno="SRR949965" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/SAM/SRR949965/accepted_hits.bam" numberofreads="3984129" publicationid="" svgname="ath-ShootApexInflorescense.svg" subunitname="all" title="Shoot apical meristem/young leaf from 14-day-old plant grown in simulated sun condition" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR949965">
+    <file description="Col sun 1, GSM764079, SRA: SRS468598" experimentno="SRR949965" foreground="0x999999" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/SAM/SRR949965/accepted_hits.bam" numberofreads="3984129" publicationid="" svgname="ath-ShootApexInflorescense.svg" subunitname="all" title="Shoot apical meristem/young leaf from 14-day-old plant grown in simulated sun condition" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR949965">
         <control>
             <experiment>SRR949956</experiment>
             <experiment>SRR949965</experiment>
@@ -3408,7 +3408,7 @@
             <experiment>SRR949993</experiment>
         </groupwith>
     </file>
-    <file description="Col sun 4, SRA: SRS468626" experimentno="SRR949988" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/SAM/SRR949988/accepted_hits.bam" numberofreads="4955792" publicationid="" svgname="ath-ShootApexInflorescense.svg" subunitname="all" title="Shoot apical meristem/young leaf from 14-day-old plant grown in simulated sun condition" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR949988">
+    <file description="Col sun 4, SRA: SRS468626" experimentno="SRR949988" foreground="0x999999" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/SAM/SRR949988/accepted_hits.bam" numberofreads="4955792" publicationid="" svgname="ath-ShootApexInflorescense.svg" subunitname="all" title="Shoot apical meristem/young leaf from 14-day-old plant grown in simulated sun condition" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR949988">
         <control>
             <experiment>SRR949956</experiment>
             <experiment>SRR949965</experiment>
@@ -3426,7 +3426,7 @@
             <experiment>SRR949993</experiment>
         </groupwith>
     </file>
-    <file description="Col_sun_4, SRA: SRS468626" experimentno="SRR949989" foreground="0x0000FF" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/SAM/SRR949989/accepted_hits.bam" numberofreads="4717225" publicationid="" svgname="ath-ShootApexInflorescense.svg" subunitname="all" title="Shoot apical meristem/young leaf from 14-day-old plant grown in simulated sun condition" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR949989">
+    <file description="Col_sun_4, SRA: SRS468626" experimentno="SRR949989" foreground="0x999999" name="http://newland.iplantcollaborative.org/iplant/home/araport/rnaseq_bam/SAM/SRR949989/accepted_hits.bam" numberofreads="4717225" publicationid="" svgname="ath-ShootApexInflorescense.svg" subunitname="all" title="Shoot apical meristem/young leaf from 14-day-old plant grown in simulated sun condition" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR949989">
         <control>
             <experiment>SRR949956</experiment>
             <experiment>SRR949965</experiment>
