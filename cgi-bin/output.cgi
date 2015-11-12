@@ -17,11 +17,11 @@ from random import randint
 cgitb.enable()
 
 # ----- CONSTANTS -----
-EXON_IMG_WIDTH = 200
+EXON_IMG_WIDTH = 450
 EXON_IMG_HEIGHT = 7
 
-RNA_IMG_WIDTH = 200
-RNA_IMG_HEIGHT = 200
+RNA_IMG_WIDTH = 450
+RNA_IMG_HEIGHT = 50
 
 REGEX = '(/iplant/home/araport/rnaseq_bam/[a-zA-Z]*/([A-Z0-9a-z]*)/accepted_hits\.bam)'
 
@@ -34,8 +34,6 @@ img_files.append("rnaseqgraph2.png")
 img_files.append("rnaseqgraph3.png")
 img_files.append("rnaseqgraph4.png")
 img_files.append("rnaseqgraph5.png")
-
-
 for img_file in img_files:
     f = open(img_file, "w+")
     red_sqr = gd.image((RNA_IMG_WIDTH, RNA_IMG_HEIGHT))
@@ -123,9 +121,13 @@ def generate_exon_graph():
 		if region[u'type'] == u'exon':
 			#print (float(region[u'start'] - start) /(end-start), float(region[u'end'] - start)/(end-start))
 			exongraph.filledRectangle((int(float(region[u'start'] - start) /(end-start) * EXON_IMG_WIDTH), EXON_IMG_HEIGHT), (int(float(region[u'end'] - start)/(end-start) * EXON_IMG_WIDTH), 0), blue)
+	
+	exongraph.filledRectangle((0, 3), (EXON_IMG_WIDTH, 3), blue)
 	f = open("exongraph.png", "w")
 	exongraph.writePng(f)
 	f.close()
+
+
 
 def generate_rnaseq_graph(urlx, filename):
 	xvalues = []
@@ -139,6 +141,7 @@ def generate_rnaseq_graph(urlx, filename):
 		pileup = pysam.mpileup(urlx, "-r", "Chr%s:%s-%s" %(chromosome, start, end))
 		for read in pileup:
 			#print("<br/>{0}".format(float(read.split('\t')[1])))
+			#print("x = {0}, y = {1}<br/>".format(float(read.split('\t')[1]), float(int(read.split('\t')[3]) - read.split('\t')[4].count('<') - read.split('\t')[4].count('>'))))
 			xvalues.append(float(read.split('\t')[1]))
 			values.append(float(int(read.split('\t')[3]) - read.split('\t')[4].count('<') - read.split('\t')[4].count('>')))
 		values = [int(x / max(values) * RNA_IMG_HEIGHT) for x in values]
@@ -146,7 +149,8 @@ def generate_rnaseq_graph(urlx, filename):
 		white = rnaseqgraph.colorAllocate((255,255,255))
 		green = rnaseqgraph.colorAllocate((0,255,0))
 		for i in range(len(xvalues)):
-			rnaseqgraph.rectangle((int(float(xvalues[i] - start) /(end-start) * RNA_IMG_WIDTH), RNA_IMG_WIDTH), (int(float(xvalues[i] - start)/(end-start) * RNA_IMG_HEIGHT), RNA_IMG_HEIGHT - values[i]), green)
+			#print("x = {0} ---> reactangle({1}, {2}, {3}, {4})<br/>".format(xvalues[i], int(float(xvalues[i] - start) /(end-start) * RNA_IMG_WIDTH), RNA_IMG_HEIGHT, int(float(xvalues[i] - start)/(end-start) * RNA_IMG_WIDTH), RNA_IMG_HEIGHT - values[i]))
+			rnaseqgraph.rectangle((int(float(xvalues[i] - start) /(end-start) * RNA_IMG_WIDTH), RNA_IMG_HEIGHT), (int(float(xvalues[i] - start)/(end-start) * RNA_IMG_WIDTH), RNA_IMG_HEIGHT - values[i]), green)
 		f = open(filename, "w+")
 		rnaseqgraph.writePng(f)
 		f.close()
@@ -156,7 +160,7 @@ def generate_rnaseq_graph(urlx, filename):
 print "<body>"
 
 
-print "<p>Locus = {0}, Chromosome = {3}, Start = {1}; End = {2}.</p>".format(geneid, start, end, chromosome)
+print "<p>Locus == {0}, Chromosome = {3}, Start = {1}; End = {2}.</p>".format(geneid, start, end, chromosome)
 #print map_info
 
 print '<img src="rnaseqgraph0.png">'

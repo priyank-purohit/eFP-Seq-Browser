@@ -1,9 +1,5 @@
 #!/usr/bin/python
-'''
-This script SHOWS the new vision BAM file links instead of the original newland BAM file links for iPlant.
-
-It does not edit the XML file itself, only finds the correct new link to display in browser...
-'''
+# Just displays the new links w/o editing the XML file
 print "Content-Type: text/html"     # HTML is following
 print                               # blank line, end of headers
 print                               # blank line, end of headers
