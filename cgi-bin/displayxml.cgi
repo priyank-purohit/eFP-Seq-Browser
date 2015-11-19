@@ -22,7 +22,7 @@ import cgitb
 import xml.etree.ElementTree
 cgitb.enable()
 
-e = xml.etree.ElementTree.parse('data/bamdata_rsong_amazon_links.xml')
+e = xml.etree.ElementTree.parse('data/bamdata_amazon_links.xml')
 
 print """
 <body>

@@ -2,7 +2,7 @@
 # Displays the XML file in a browser
 print "Content-Type: text/html"     # HTML is following
 print                               # blank line, end of headers
-print "<title>bamlocatorxml</title>"
+print "<title>MULTI TRACK RNA-seq Browser</title>"
 
 import os
 import cgi
@@ -128,7 +128,7 @@ def generate_rnaseq_graph(urlx, filename, out_clr):
 
 generate_exon_graph()
 
-e = xml.etree.ElementTree.parse('data/bamdata_rsong_amazon_links.xml')
+e = xml.etree.ElementTree.parse('data/bamdata_amazon_links.xml')
 # note that even though there are some experiments that should be grouped together, they aren't in the xml file, and so the grey white colouring is not useful
 print """
 <style>

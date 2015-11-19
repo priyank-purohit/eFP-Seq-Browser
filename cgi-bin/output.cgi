@@ -13,6 +13,7 @@ import urllib2
 import json
 import gd
 import pysam
+import base64
 from random import randint
 cgitb.enable()
 
@@ -126,6 +127,9 @@ def generate_exon_graph():
 	f = open("exongraph.png", "w")
 	exongraph.writePng(f)
 	f.close()
+	with open("exongraph.png", "rb") as fl:
+		print "base64 = {0}.".format(fl.read().encode("base64"))
+	fl.close()
 
 
 
