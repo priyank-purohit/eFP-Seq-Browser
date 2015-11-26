@@ -28,11 +28,11 @@
         <div class="col-xs-12 table-responsive">
             <table id="thetable" class="table">
                 <tr>
-                    <td style="width: 150px;">Title</td>
-                    <td style="width: 460px;">RNA-Seq Coverage</td>
-                    <td style="width: 150px;">eFP - RPKM</td>
-                    <td style="width: 150px;">Exp. No.</td>
-                    <td style="width: 200px;">Details</td>
+                    <th style="width: 150px;">Title</th>
+                    <th style="width: 460px;">RNA-Seq Coverage</th>
+                    <th style="width: 150px;">eFP - RPKM</th>
+                    <th style="width: 150px;">Exp. No.</th>
+                    <th style="width: 200px;">Details</th>
                 </tr>
             </table>
         </div>
@@ -50,7 +50,7 @@
             success: function(response) {
                 console.log("Got base64 image back for exon; repopulating the table.");
                 $("#thetable").empty();
-                $("#thetable").append('<tr> < td style = "width: 150px;" > Title < /td> < td style = "width: 460px;" > RNA - Seq Coverage < /td> < td style = "width: 150px;" > eFP - RPKM < /td> < td style = "width: 150px;" > Exp.No. < /td> < td style = "width: 200px;" > Details < /td> < /tr>');
+                $("#thetable").append('<tr><th style="width: 150px;">Title</th><th style="width: 460px;">RNA-Seq Coverage</th><th style="width: 150px;">eFP - RPKM</th><th style="width: 150px;">Exp. No.</th><th style="width: 200px;">Details</th></tr>');
                 $.ajax({
                     url: 'data/bamdata_amazon_links.xml',
                     dataType: 'xml',
@@ -59,6 +59,8 @@
                             $title = $xml.find("file");
 
                         $title.each(function() {
+                            console.log("img/" + $(this).attr('name').substring(66).replace(/\//g, "_").replace(/.bam/g, ".png"));
+                            var img = "img/" + $(this).attr('name').substring(66).replace(/\//g, "_").replace(/.bam/g, ".png");
                             var title = $(this).attr('title');
                             var description = $(this).attr('description');
                             var svg = $(this).attr('svgname');
@@ -68,7 +70,7 @@
                             $("#thetable").append(
                                 '<tr>' +
                                 '<td style="width: 150px;">' + title + '</td>\n' +
-                                '<td style="width: 460px;">' + '<img src="data:image/png;base64,' + response + '" />' + '</td>\n' +
+                                '<td style="width: 460px;">' + '<img src="' + img + '" /><br/>' + '<img src="data:image/png;base64,' + response + '" />' + '</td>\n' +
                                 '<td style="width: 150px;">' + '<img style="height:50px; width:auto;" src="SVGs/' + svg.substring(4) + '" />' + '</td>\n' +
                                 '<td style="width: 150px;">' + experimentno + '</td>\n' +
                                 '<td style="width: 200px;">' + url + '</td>\n' +

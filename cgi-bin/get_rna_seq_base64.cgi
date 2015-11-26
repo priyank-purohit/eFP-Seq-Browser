@@ -2,14 +2,11 @@
 # Displays the XML file in a browser
 print "Content-Type: text/html"     # HTML is following
 print                               # blank line, end of headers
-print "<title>MULTI TRACK RNA-seq Browser</title>"
-
 import os
 import cgi
 import cgitb
 cgitb.enable()
 import xml.etree.ElementTree
-
 import tempfile
 import base64
 import re
@@ -22,8 +19,6 @@ cgitb.enable()
 
 
 # ----- CONSTANTS -----
-EXON_IMG_WIDTH = 450
-EXON_IMG_HEIGHT = 7
 
 RNA_IMG_WIDTH = 450
 RNA_IMG_HEIGHT = 50
@@ -77,23 +72,6 @@ def hex_to_rgb(value):
     lv = len(value)
     return tuple(int(value[i:i + lv // 3], 16) for i in range(0, lv, lv // 3))
 
-'''
-Generates exon-intron image based on the information in map_info.
-'''
-def generate_exon_graph():
-	exongraph = gd.image((EXON_IMG_WIDTH, EXON_IMG_HEIGHT))
-	white = exongraph.colorAllocate((255,255,255))
-	black = exongraph.colorAllocate((0,0,0))
-	blue = exongraph.colorAllocate((0,0,255))
-	exongraph.lines(((0, EXON_IMG_HEIGHT), (EXON_IMG_WIDTH, EXON_IMG_HEIGHT)), black)
-	for region in map_info[u'result']:
-		if region[u'type'] == u'exon':
-			#print (float(region[u'start'] - start) /(end-start), float(region[u'end'] - start)/(end-start))
-			exongraph.filledRectangle((int(float(region[u'start'] - start) /(end-start) * EXON_IMG_WIDTH), EXON_IMG_HEIGHT), (int(float(region[u'end'] - start)/(end-start) * EXON_IMG_WIDTH), 0), blue)
-	f = open("exongraph.png", "w")
-	exongraph.writePng(f)
-	f.close()
-
 def generate_rnaseq_graph(urlx, filename, out_clr):
 	xvalues = []
 	values = []
@@ -126,10 +104,9 @@ def generate_rnaseq_graph(urlx, filename, out_clr):
 
 
 
-generate_exon_graph()
-
 e = xml.etree.ElementTree.parse('data/bamdata_amazon_links.xml')
-# note that even though there are some experiments that should be grouped together, they aren't in the xml file, and so the grey white colouring is not useful
+
+
 print """
 <style>
 td {padding:0px}
