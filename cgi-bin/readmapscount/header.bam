@@ -1,9 +1,0 @@
-@HD	VN:1.0	SO:coordinate
-@SQ	SN:Chr1	LN:30427671
-@SQ	SN:Chr2	LN:19698289
-@SQ	SN:Chr3	LN:23459830
-@SQ	SN:Chr4	LN:18585056
-@SQ	SN:Chr5	LN:26975502
-@SQ	SN:ChrC	LN:154478
-@SQ	SN:ChrM	LN:366924
-@PG	ID:TopHat	VN:2.0.12	CL:/usr/local/bin/tophat -o ./SRR547531_TopHat.run/ -I 2000 -i 50 -g 1 --max-segment-intron 2000 --max-coverage-intron 2000 /usr/local/projects/AIP/DataProviders/TAIR/custom_data/ftp.arabidopsis.org/Sequences/whole_chromosomes//TAIR10_Chr.all.fasta.fa /usr/local/pipeline/RNA-Seq/fastq//SRP015130/SRR547531_1.frags.fastq
