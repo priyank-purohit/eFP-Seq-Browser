@@ -1,3 +1,4 @@
 # Ignore all bam files
 *.bam
 *.bai
+*.png
