@@ -2,11 +2,11 @@
 # Priyank Purohit, November 19, 2015
 
 # Produce 5 bed files to use later...
-echo -e "Chr1\t3631\t5899\titv1" > mybed1.bed
-echo -e "Chr2\t10327050\t10329941\titv2" > mybed2.bed
-echo -e "Chr3\t8997370\t9001063\titv3" > mybed3.bed
-echo -e "Chr3\t9003576\t9005943\titv4" > mybed4.bed
-echo -e "Chr5\t26538395\t26541036\titv5" > mybed5.bed
+echo -e "Chr1\t3631\t5899\titv1" > mpileups/bed_files/mybed1.bed
+echo -e "Chr2\t10327050\t10329941\titv2" > mpileups/bed_files/mybed2.bed
+echo -e "Chr3\t8997370\t9001063\titv3" > mpileups/bed_files/mybed3.bed
+echo -e "Chr3\t9003576\t9005943\titv4" > mpileups/bed_files/mybed4.bed
+echo -e "Chr5\t26538395\t26541036\titv5" > mpileups/bed_files/mybed5.bed
 
 
 # This regex matches to the link paths in the txt file.
@@ -49,31 +49,31 @@ for i in $(cat data/iplant_path_to_rnaseq_bam_files.txt); do # Iterate over the 
 		# Count the mapped reads by word count method
 		samtools view mpileups/temp/$FILE_NAME Chr1:3631-5899 | wc -l >> mpileups/AT1G01010/read_counts_bam_wc_bedtools.txt
 		# Use the bed file to get mapped reads using bedtools
-		./bedtools multicov -bams mpileups/temp/$FILE_NAME -bed mybed1.bed >> mpileups/AT1G01010/read_counts_bam_wc_bedtools.txt
+		./bedtools multicov -bams mpileups/temp/$FILE_NAME -bed mpileups/bed_files/mybed1.bed >> mpileups/AT1G01010/read_counts_bam_wc_bedtools.txt
 		
 		# AT2G24270
 		samtools mpileup mpileups/temp/$FILE_NAME -d 8000 -r Chr2:10327050-10329941 > mpileups/AT2G24270/$out_file_name
 		echo $out_file_name >> mpileups/AT2G24270/read_counts_bam_wc_bedtools.txt
 		samtools view mpileups/temp/$FILE_NAME Chr2:10327050-10329941 | wc -l >> mpileups/AT2G24270/read_counts_bam_wc_bedtools.txt
-		./bedtools multicov -bams mpileups/temp/$FILE_NAME -bed mybed2.bed >> mpileups/AT2G24270/read_counts_bam_wc_bedtools.txt
+		./bedtools multicov -bams mpileups/temp/$FILE_NAME -bed mpileups/bed_files/mybed2.bed >> mpileups/AT2G24270/read_counts_bam_wc_bedtools.txt
 		
 		# AT3G24650
 		samtools mpileup mpileups/temp/$FILE_NAME -d 8000 -r Chr3:8997370-9001063 > mpileups/AT3G24650/$out_file_name
 		echo $out_file_name >> mpileups/AT3G24650/read_counts_bam_wc_bedtools.txt
 		samtools view mpileups/temp/$FILE_NAME Chr3:8997370-9001063 | wc -l >> mpileups/AT3G24650/read_counts_bam_wc_bedtools.txt
-		./bedtools multicov -bams mpileups/temp/$FILE_NAME -bed mybed3.bed >> mpileups/AT3G24650/read_counts_bam_wc_bedtools.txt
+		./bedtools multicov -bams mpileups/temp/$FILE_NAME -bed mpileups/bed_files/mybed3.bed >> mpileups/AT3G24650/read_counts_bam_wc_bedtools.txt
 	
 		# AT3G24660
 		samtools mpileup mpileups/temp/$FILE_NAME -d 8000 -r Chr3:9003576-9005943 > mpileups/AT3G24660/$out_file_name
 		echo $out_file_name >> mpileups/AT3G24660/read_counts_bam_wc_bedtools.txt
 		samtools view mpileups/temp/$FILE_NAME Chr3:9003576-9005943 | wc -l >> mpileups/AT3G24660/read_counts_bam_wc_bedtools.txt
-		./bedtools multicov -bams mpileups/temp/$FILE_NAME -bed mybed4.bed >> mpileups/AT3G24660/read_counts_bam_wc_bedtools.txt
+		./bedtools multicov -bams mpileups/temp/$FILE_NAME -bed mpileups/bed_files/mybed4.bed >> mpileups/AT3G24660/read_counts_bam_wc_bedtools.txt
 			
 		# AT5G66460
 		samtools mpileup mpileups/temp/$FILE_NAME -d 8000 -r Chr5:26538395-26541036 > mpileups/AT5G66460/$out_file_name
 		echo $out_file_name >> mpileups/AT5G66460/read_counts_bam_wc_bedtools.txt
 		samtools view mpileups/temp/$FILE_NAME Chr5:26538395-26541036 | wc -l >> mpileups/AT5G66460/read_counts_bam_wc_bedtools.txt
-		./bedtools multicov -bams mpileups/temp/$FILE_NAME -bed mybed5.bed >> mpileups/AT5G66460/read_counts_bam_wc_bedtools.txt
+		./bedtools multicov -bams mpileups/temp/$FILE_NAME -bed mpileups/bed_files/mybed5.bed >> mpileups/AT5G66460/read_counts_bam_wc_bedtools.txt
 		
 
 		# Delete the downloaded BAM and BAI files
