@@ -29,12 +29,12 @@ REGEX = '(/iplant/home/araport/rnaseq_bam/[a-zA-Z]*/([A-Z0-9a-z]*)/accepted_hits
 
 # ----- CLEAR OLD FILES -----
 img_files = []
-img_files.append("rnaseqgraph0.png")
-img_files.append("rnaseqgraph1.png")
-img_files.append("rnaseqgraph2.png")
-img_files.append("rnaseqgraph3.png")
-img_files.append("rnaseqgraph4.png")
-img_files.append("rnaseqgraph5.png")
+img_files.append("output_rnaseqgraph.png")
+#img_files.append("rnaseqgraph1.png")
+#img_files.append("rnaseqgraph2.png")
+#img_files.append("rnaseqgraph3.png")
+#img_files.append("rnaseqgraph4.png")
+#img_files.append("rnaseqgraph5.png")
 for img_file in img_files:
     f = open(img_file, "w+")
     red_sqr = gd.image((RNA_IMG_WIDTH, RNA_IMG_HEIGHT))
@@ -124,11 +124,11 @@ def generate_exon_graph():
 			exongraph.filledRectangle((int(float(region[u'start'] - start) /(end-start) * EXON_IMG_WIDTH), EXON_IMG_HEIGHT), (int(float(region[u'end'] - start)/(end-start) * EXON_IMG_WIDTH), 0), blue)
 	
 	exongraph.filledRectangle((0, 3), (EXON_IMG_WIDTH, 3), blue)
-	f = open("exongraph.png", "w")
+	f = open("output_exongraph.png", "w")
 	exongraph.writePng(f)
 	f.close()
-	with open("exongraph.png", "rb") as fl:
-		print "base64 = {0}.".format(fl.read().encode("base64"))
+	with open("output_exongraph.png", "rb") as fl:
+		print "<br/><br/>base64={0}".format(fl.read().encode("base64"))
 	fl.close()
 
 
@@ -167,39 +167,39 @@ print "<body>"
 print "<p>Locus == {0}, Chromosome = {3}, Start = {1}; End = {2}.</p>".format(geneid, start, end, chromosome)
 #print map_info
 
-print '<img src="rnaseqgraph0.png">'
+print '<img src="output_rnaseqgraph.png">'
 print '<br/>'
-print '<img src="exongraph.png">'
+print '<img src="output_exongraph.png">'
 """
 print '<br/>'
 print '<img src="rnaseqgraph1.png">'
 print '<br/>'
-print '<img src="exongraph.png">'
+print '<img src="output_exongraph.png">'
 
 print '<br/>'
 print '<img src="rnaseqgraph2.png">'
 print '<br/>'
-print '<img src="exongraph.png">'
+print '<img src="output_exongraph.png">'
 
 print '<br/>'
 print '<img src="rnaseqgraph3.png">'
 print '<br/>'
-print '<img src="exongraph.png">'
+print '<img src="output_exongraph.png">'
 
 print '<br/>'
 print '<img src="rnaseqgraph4.png">'
 print '<br/>'
-print '<img src="exongraph.png">'
+print '<img src="output_exongraph.png">'
 
 print '<br/>'
 print '<img src="rnaseqgraph5.png">'
 print '<br/>'
-print '<img src="exongraph.png">'
+print '<img src="output_exongraph.png">'
 """
 
 generate_exon_graph()
 
-generate_rnaseq_graph(url11, "rnaseqgraph0.png")
+generate_rnaseq_graph(url11, "output_rnaseqgraph.png")
 #generate_rnaseq_graph(url1, "rnaseqgraph1.png")
 #generate_rnaseq_graph(url2, "rnaseqgraph2.png")
 #generate_rnaseq_graph(url3, "rnaseqgraph3.png")
