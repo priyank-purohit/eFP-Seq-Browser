@@ -61,10 +61,10 @@ def generate_exon_graph():
 			exongraph.filledRectangle((int(float(region[u'start'] - start) /(end-start) * EXON_IMG_WIDTH), EXON_IMG_HEIGHT), (int(float(region[u'end'] - start)/(end-start) * EXON_IMG_WIDTH), 0), blue)
 	
 	exongraph.filledRectangle((0, 3), (EXON_IMG_WIDTH, 3), blue)
-	f = open("exongraph.png", "w")
+	f = open("get_exon_base64_exongraph.png", "w")
 	exongraph.writePng(f)
 	f.close()
-	with open("exongraph.png", "rb") as fl:
+	with open("get_exon_base64_exongraph.png", "rb") as fl:
 		print fl.read().encode("base64") ################################ PRINT OUT
 	fl.close()
 

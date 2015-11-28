@@ -51,6 +51,7 @@
             dataType: 'text',
             success: function(response) {
                 console.log("Got base64 image back for exon; repopulating the table.");
+                console.log(response);
                 $("#thetable").empty();
                 $("#thetable").append('<tr><th style="width: 150px;">Title</th><th style="width: 460px;">RNA-Seq Coverage</th><th style="width: 150px;">eFP - RPKM</th><th style="width: 150px;">Exp. No.</th><th style="width: 200px;">Details</th></tr>');
                 $.ajax({
@@ -61,7 +62,7 @@
                             $title = $xml.find("file");
 
                         $title.each(function() {
-                            console.log("img/" + $(this).attr('name').substring(66).replace(/\//g, "_").replace(/.bam/g, ".png"));
+                            //console.log("img/" + $(this).attr('name').substring(66).replace(/\//g, "_").replace(/.bam/g, ".png"));
                             var img = "img/" + $(this).attr('name').substring(66).replace(/\//g, "_").replace(/.bam/g, ".png");
                             var title = $(this).attr('title');
                             var description = $(this).attr('description');
