@@ -4,6 +4,8 @@
     float: none;
 }
 
+thead,
+tbody,
 td,
 th {
     border: 1px solid #D3D3D3;
