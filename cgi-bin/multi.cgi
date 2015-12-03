@@ -28,6 +28,8 @@ EXON_IMG_HEIGHT = 7
 RNA_IMG_WIDTH = 450
 RNA_IMG_HEIGHT = 50
 
+Y_AXIS_CEILING = 1000
+
 REGEX = '(/iplant/home/araport/rnaseq_bam/[a-zA-Z]*/([A-Z0-9a-z]*)/accepted_hits\.bam)'
 
 # ----- CLEAR OLD FILES -----
@@ -106,7 +108,7 @@ def generate_rnaseq_graph(urlx, filename, out_clr):
 			#print("x = {0}, y = {1}<br/>".format(float(read.split('\t')[1]), float(int(read.split('\t')[3]) - read.split('\t')[4].count('<') - read.split('\t')[4].count('>'))))
 			xvalues.append(float(read.split('\t')[1]))
 			values.append(float(int(read.split('\t')[3]) - read.split('\t')[4].count('<') - read.split('\t')[4].count('>')))
-		values = [int(x / max(values) * RNA_IMG_HEIGHT) for x in values]
+		values = [int(x / Y_AXIS_CEILING * RNA_IMG_HEIGHT) for x in values] # Scale all values
 		rnaseqgraph = gd.image((RNA_IMG_WIDTH, RNA_IMG_HEIGHT))
 		white = rnaseqgraph.colorAllocate((255,255,255))
 		green = rnaseqgraph.colorAllocate(hex_to_rgb(out_clr))

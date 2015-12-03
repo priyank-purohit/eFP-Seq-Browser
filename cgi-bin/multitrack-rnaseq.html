@@ -20,10 +20,11 @@
                 <h2 id="title">Multi-track RNA-Seq Browser</h2>
             </div>
             <div class="col-xs-12 col-sm-3 text-center">
-                <input id="locus_input" type="text" class="form-control" placeholder="Locus" value="AT1G01010" style="width: 250px;" />
+                <input id="locus_input" type="text" class="form-control" placeholder="Locus" value="AT1G01010 || AT2G24270 || AT3G24650 || AT3G24660 || AT5G66460" style="width: 250px;" />
             </div>
             <div class="col-xs-12 col-sm-2 text-center">
                 <input type="button" class="btn btn-success" onclick="update()" value="Update" />
+                <input type="button" class="btn btn-success" onclick="cgi_call()" value="CGI CALL" />
             </div>
         </div>
         <hr style="border: 1px solid black;" />
@@ -41,6 +42,18 @@
     </div>
     <script type="text/javascript">
     var locus = $('#locus_input').val();
+
+    function cgi_call() {
+        locus = $('#locus_input').val();
+        var get_url = "multi.cgi?locus=" + locus;
+        $.ajax({
+            type: 'GET',
+            url: get_url,
+            success: function(data) {
+                window.location.href = "http://bar.utoronto.ca/~ppurohit/RNA-Browser/cgi-bin/multitrack-rnaseq.html?locus=" + locus;
+            }
+        });
+    }
 
     function update() {
         locus = $('#locus_input').val();
