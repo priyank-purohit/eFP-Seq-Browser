@@ -30,13 +30,17 @@
         <hr style="border: 1px solid black;" />
         <div class="col-xs-12 table-responsive">
             <table id="thetable" class="table">
-                <tr>
-                    <th style="width: 150px;">Title</th>
-                    <th style="width: 460px;">RNA-Seq Coverage</th>
-                    <th style="width: 150px;">eFP - RPKM</th>
-                    <th style="width: 150px;">Exp. No.</th>
-                    <th style="width: 200px;">Details</th>
-                </tr>
+                <thead>
+                    <tr>
+                        <th style="width: 150px;">Title</th>
+                        <th style="width: 460px;">RNA-Seq Coverage</th>
+                        <th style="width: 150px;">eFP - RPKM</th>
+                        <th style="width: 150px;">Exp. No.</th>
+                        <th style="width: 200px;">Details</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                </tfoot>
             </table>
         </div>
     </div>
@@ -66,7 +70,7 @@
                 console.log("Got base64 image back for exon; repopulating the table.");
                 console.log(response);
                 $("#thetable").empty();
-                $("#thetable").append('<tr><th style="width: 150px;">Title</th><th style="width: 460px;">RNA-Seq Coverage</th><th style="width: 150px;">eFP - RPKM</th><th style="width: 150px;">Exp. No.</th><th style="width: 200px;">Details</th></tr>');
+                $("#thetable").append('<thead><tr><th style="width: 150px;">Title</th><th style="width: 460px;">RNA-Seq Coverage</th><th style="width: 150px;">eFP - RPKM</th><th style="width: 150px;">Exp. No.</th><th style="width: 200px;">Details</th></tr></thead><tbody></tbody>');
                 $.ajax({
                     url: 'data/bamdata_amazon_links.xml',
                     dataType: 'xml',
