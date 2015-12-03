@@ -75,7 +75,7 @@
                             $title = $xml.find("file");
 
                         $title.each(function() {
-                            //console.log("img/" + $(this).attr('name').substring(66).replace(/\//g, "_").replace(/.bam/g, ".png"));
+                            console.log($(this).attr('name'));
                             var img = "img/" + $(this).attr('name').substring(66).replace(/\//g, "_").replace(/.bam/g, ".png");
                             var title = $(this).attr('title');
                             var description = $(this).attr('description');

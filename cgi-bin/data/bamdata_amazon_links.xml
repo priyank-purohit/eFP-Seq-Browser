@@ -102,7 +102,7 @@
                 <experiment>SRR1207201</experiment>
             </groupwith>
         </file>
-        <file description="carpel, GSM1359146, SRA: SRS583574" experimentno="SRR1207195" foreground="0xFFFF00" name="X" numberofreads="39074103" publicationid="" subunitname="carpels" svgname="ath-FlowerParts.svg" title="Carpels collected manually from stage 8-13 flowers" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR1207195">
+        <file description="carpel, GSM1359146, SRA: SRS583574" experimentno="SRR1207195" foreground="0xFFFF00" name="http://s3.amazonaws.com/iplant-cdn/iplant/home/araport/rnaseq_bam/carpel/SRR1207195/accepted_hits.bam" numberofreads="39074103" publicationid="" subunitname="carpels" svgname="ath-FlowerParts.svg" title="Carpels collected manually from stage 8-13 flowers" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR1207195">
             <control>
                 <experiment>SRR1207194</experiment>
                 <experiment>SRR1207195</experiment>
