@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="core/tablesorter.js"></script>
     <title>Multi-track RNA-Seq Browser</title>
     <meta name="author" content="Priyank Purohit">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -39,8 +40,6 @@
                         <th style="width: 200px;">Details</th>
                     </tr>
                 </thead>
-                <tfoot>
-                </tfoot>
             </table>
         </div>
     </div>
@@ -79,8 +78,8 @@
                             $title = $xml.find("file");
 
                         $title.each(function() {
-                            console.log($(this).attr('name'));
                             var img = "img/" + $(this).attr('name').substring(66).replace(/\//g, "_").replace(/.bam/g, ".png");
+                            //console.log(img);
                             var title = $(this).attr('title');
                             var description = $(this).attr('description');
                             var svg = $(this).attr('svgname');
@@ -96,6 +95,8 @@
                                 '<td style="width: 200px;">' + url + '</td>\n' +
                                 '</tr>'
                             );
+
+                            $('#thetable').tablesorter();
                         });
                     }
                 });
