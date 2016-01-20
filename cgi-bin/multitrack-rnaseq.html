@@ -38,10 +38,10 @@
             <table id="thetable" class="table">
                 <thead>
                     <tr>
-                        <th style="width: 150px;">Title</th>
+                        <th style="width: 250px;">Title</th>
                         <th style="width: 460px;">RNA-Seq Coverage</th>
                         <th style="width: 150px;">eFP - RPKM</th>
-                        <th style="width: 150px;">Exp. No.</th>
+                        <th style="width: 150px;">SortingDemo</th>
                         <th style="width: 200px;">Details</th>
                     </tr>
                 </thead>
@@ -74,7 +74,7 @@
                 console.log("Got base64 image back for exon; repopulating the table.");
                 console.log(response);
                 $("#thetable").empty();
-                $("#thetable").append('<thead><tr><th style="width: 150px;">Title</th><th style="width: 460px;">RNA-Seq Coverage</th><th style="width: 150px;">eFP - RPKM</th><th style="width: 150px;">Exp. No.</th><th style="width: 200px;">Details</th></tr></thead><tbody></tbody>');
+                $("#thetable").append('<thead><tr><th style="width: 250px;">Title</th><th style="width: 460px;">RNA-Seq Coverage</th><th style="width: 150px;">eFP - RPKM</th><th style="width: 150px;">SortingDemo</th><th style="width: 200px;">Details</th></tr></thead><tbody></tbody>');
                 $.ajax({
                     url: 'data/bamdata_amazon_links.xml',
                     dataType: 'xml',
@@ -90,14 +90,16 @@
                             var svg = $(this).attr('svgname');
                             var experimentno = $(this).attr('experimentno'); //SVGs/" + child.attrib.get(key)[4:]
                             var url = $(this).attr('url'); //SVGs/" + child.attrib.get(key)[4:]
+                            var publicationid = $(this).attr('publicationid');
+                            var numberofreads = $(this).attr('numberofreads');
 
                             $("#thetable").append(
                                 '<tr>' +
-                                '<td style="width: 150px;">' + title + '</td>\n' +
+                                '<td style="width: 250px;">' + title + '</td>\n' +
                                 '<td style="width: 460px;">' + '<img src="' + img + '" /><br/>' + '<img src="data:image/png;base64,' + response + '" />' + '</td>\n' +
                                 '<td style="width: 150px;">' + '<img style="height:50px; width:auto;" src="SVGs/' + svg.substring(4) + '" />' + '</td>\n' +
-                                '<td style="width: 150px;">' + experimentno + '</td>\n' +
-                                '<td style="width: 200px;">' + url + '</td>\n' +
+                                '<td style="width: 150px;">' + '<span style="display: none;">' + numberofreads + '</span>' + '<img style="height:50px; width:auto;" src="SVGs/' + svg.substring(4) + '" />' + '</td>\n' +
+                                '<td style="width: 200px;">' + '<a href="' + url + '" target="blank">' + experimentno + '</a>; ' + '<a href="' + publicationid + '" target="blank">PubLink</a>; Total reads = ' + numberofreads + '.</td>\n' +
                                 '</tr>'
                             );
 
