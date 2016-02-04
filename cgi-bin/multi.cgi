@@ -4,6 +4,13 @@ print "Content-Type: text/html"     # HTML is following
 print                               # blank line, end of headers
 print "<title>MULTI TRACK RNA-seq Browser</title>"
 
+'''
+**********************************************************************************
+Currently used by multitrack-rnaseq.html to update the images in the /img/ folder for a given locus.
+-- PRYNK Feb 4, 2016
+**********************************************************************************
+'''
+
 import os
 import cgi
 import cgitb

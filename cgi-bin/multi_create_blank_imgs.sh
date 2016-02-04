@@ -1,3 +1,7 @@
+# This file creates blank images in the /img folder for the multi.cgi script to write to.
+# This script also sets the correct write permission
+# Priyank February 4, 2016
+
 # This regex matches to the link paths in the txt file.
 match_regex='/iplant/home/araport/rnaseq_bam/[a-zA-Z]*/([A-Z0-9a-z]*)/accepted_hits.bam'
 # Iterate over the paths in the txt file

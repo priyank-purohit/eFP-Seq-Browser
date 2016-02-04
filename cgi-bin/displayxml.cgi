@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Displays the XML file in a browser, THE BEST WAY FOR JUST VIEWING THE XML INFO. -- Feb 4,2016 Priyank --
+
 print "Content-Type: text/html"     # HTML is following
 print                               # blank line, end of headers
 print "<!DOCTYPE html>"
@@ -15,6 +15,9 @@ print """
 	</style>
 </head>
 """
+# **********************************************************************************
+# Displays the XML file in a browser, THE BEST WAY FOR JUST VIEWING THE XML INFO. -- Feb 4,2016 Priyank --
+# **********************************************************************************
 
 import os
 import cgi

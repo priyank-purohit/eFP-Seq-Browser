@@ -15,6 +15,12 @@ import base64
 from random import randint
 cgitb.enable()
 
+'''
+**********************************************************************************
+Currently used by multitrack-rnaseq.html to get the gene structure. -- PRYNK Feb 4, 2016
+**********************************************************************************
+'''
+
 # ----- CONSTANTS -----
 EXON_IMG_WIDTH = 450
 EXON_IMG_HEIGHT = 7
