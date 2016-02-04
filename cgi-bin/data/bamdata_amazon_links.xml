@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
     <files>
-        <file description="E-MTAB-1668:24hCS-RNA" experimentno="ERR274310" foreground="0x64cc65" name="http://s3.amazonaws.com/iplant-cdn/iplant/home/araport/rnaseq_bam/aerial/ERR274310/accepted_hits.bam" numberofreads="29098868" publicationid="http://www.ebi.ac.uk/arrayexpress/control/E-MTAB-1668/" subunitname="shoot" svgname="ath-rosettePlusRoot.svg" title="Aerial part of long-day-grown 4-leaf-stage seedling with mock (NaCl) treatment" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=ERR274310">
+        <file description="E-MTAB-1668:24hCS-RNA" experimentno="ERR274310" foreground="0x64cc65" name="http://s3.amazonaws.com/iplant-cdn/iplant/home/araport/rnaseq_bam/aerial/ERR274310/accepted_hits.bam" numberofreads="29098868" publicationid="http://www.ebi.ac.uk/arrayexpress/experiments/E-MTAB-1668/" subunitname="shoot" svgname="ath-rosettePlusRoot.svg" title="Aerial part of long-day-grown 4-leaf-stage seedling with mock (NaCl) treatment" url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=ERR274310">
             <control>
                 <experiment>ERR274310</experiment>
             </control>

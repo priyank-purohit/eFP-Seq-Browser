@@ -42,7 +42,7 @@
                         <th style="width: 460px;">RNA-Seq Coverage</th>
                         <th style="width: 150px;">eFP - RPKM</th>
                         <th style="width: 150px;">SortingDemo</th>
-                        <th style="width: 200px;">Details</th>
+                        <th style="width: 275px;">Description and Details</th>
                     </tr>
                 </thead>
             </table>
@@ -74,7 +74,7 @@
                 console.log("Got base64 image back for exon; repopulating the table.");
                 console.log(response);
                 $("#thetable").empty();
-                $("#thetable").append('<thead><tr><th style="width: 250px;">Title</th><th style="width: 460px;">RNA-Seq Coverage</th><th style="width: 150px;">eFP - RPKM</th><th style="width: 150px;">SortingDemo</th><th style="width: 200px;">Details</th></tr></thead><tbody></tbody>');
+                $("#thetable").append('<thead><tr><th style="width: 250px;">Title</th><th style="width: 460px;">RNA-Seq Coverage</th><th style="width: 150px;">eFP - RPKM</th><th style="width: 150px;">SortingDemo</th><th style="width: 275px;">Description and Details</th></tr></thead><tbody></tbody>');
                 $.ajax({
                     url: 'data/bamdata_amazon_links.xml',
                     dataType: 'xml',
@@ -92,6 +92,16 @@
                             var url = $(this).attr('url'); //SVGs/" + child.attrib.get(key)[4:]
                             var publicationid = $(this).attr('publicationid');
                             var numberofreads = $(this).attr('numberofreads');
+                            var control = $(this).find("control")[0].innerHTML.replace(/<experiment>/g, "").replace(/<\/experiment>/g, ",").replace(/\n/g, " ").replace(/ /g, "");
+                            var controls = control.split(",");
+                            var links = "";
+                            for (var i = controls.length; i--;) {
+                                if (controls[i] != "MEDIAN") {
+                                    links += '<a href="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=' + controls[i] + '" target="blank">' + controls[i] + '</a> ';
+                                } else {
+                                    links += controls[i];
+                                }
+                            }
 
                             $("#thetable").append(
                                 '<tr>' +
@@ -99,7 +109,7 @@
                                 '<td style="width: 460px;">' + '<img src="' + img + '" /><br/>' + '<img src="data:image/png;base64,' + response + '" />' + '</td>\n' +
                                 '<td style="width: 150px;">' + '<img style="height:50px; width:auto;" src="SVGs/' + svg.substring(4) + '" />' + '</td>\n' +
                                 '<td style="width: 150px;">' + '<span style="display: none;">' + numberofreads + '</span>' + '<img style="height:50px; width:auto;" src="SVGs/' + svg.substring(4) + '" />' + '</td>\n' +
-                                '<td style="width: 200px;">' + '<a href="' + url + '" target="blank">' + experimentno + '</a>; ' + '<a href="' + publicationid + '" target="blank">PubLink</a>; Total reads = ' + numberofreads + '.</td>\n' +
+                                '<td style="width: 200px;">' + description + '<br/>' + '<a href="' + url + '" target="blank">' + 'NCBI SRA' + '</a>; <a href="' + publicationid + '" target="blank">PubLink</a>' + '<br/><a href="javascript:(function(){$(\'#' + url.substring(44) + '\').toggle();})()">More Details</a><div id="' + url.substring(44) + '" style="display:none">Total reads = ' + numberofreads + '.<br/>Controls: ' + links + '</div></td>\n' +
                                 '</tr>'
                             );
 
