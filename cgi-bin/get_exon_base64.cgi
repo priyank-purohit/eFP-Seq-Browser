@@ -17,7 +17,7 @@ cgitb.enable()
 
 '''
 **********************************************************************************
-Currently used by multitrack-rnaseq.html to get the gene structure. -- PRYNK Feb 28, 2016
+Currently used by multitrack-rnaseq.html to get the gene structure. -- PRYNK Feb 4, 2016
 **********************************************************************************
 '''
 
@@ -28,78 +28,52 @@ EXON_IMG_HEIGHT = 7
 # ----- VARIABLES -----
 exon = {"start":[],"end":[]}
 mRNA = {"start":[],"end":[]}
-
 expression_score = []
 
-variants = []
 
-# ----- GET THE LOCUS OF INTEREST -----
+# ----- LOCUS TAG OF INTEREST -----
 geneid = cgi.FieldStorage().getvalue('locus')
 
 
 # ----- GETS MAPPING INFO FOR THE GENE ID -----
-map_info_old = json.loads(urllib2.urlopen("http://bar.utoronto.ca/webservices/araport/gff/get_tair10_gff.php?locus=" + geneid).read())
-map_info = json.loads(urllib2.urlopen("http://bar.utoronto.ca/webservices/araport/api/bar_araport11_gene_structure_by_locus.php?locus=" + geneid).read())
+map_info = json.loads(urllib2.urlopen("http://bar.utoronto.ca/webservices/araport/gff/get_tair10_gff.php?locus=" + geneid).read())
+
+start = map_info[u'result'][0][u'start'] if map_info[u'result'][0][u'strand'] == u'+' else map_info[u'result'][0][u'end']
+end = map_info[u'result'][0][u'end'] if map_info[u'result'][0][u'strand'] == u'+' else map_info[u'result'][0][u'start']
+chromosome = int(map_info[u'result'][0][u'chromosome'])
 
 
-
-
-
-print "{"
-print "\"variants\" : [" 
-i = 0
-for subfeature in map_info[u'features'][0][u'subfeatures']:
-	if i == 0:
-		print "{" 
+'''
+Figures out true starts and ends of the CDS based on the information retrieved into map_info.
+'''
+for region in map_info[u'result']:
+	if region[u'strand'] == u'+':
+		if region[u'start'] < start:
+			start = region[u'start']
+			mRNA["start"].append(int(region['start']))
+		if region[u'end'] > end:
+			end = region[u'end']
+			mRNA["end"].append(int(region['end']))
 	else:
-		print ", {"
-
-	variants.append(subfeature[u'subfeatures'])
-
-	start = variants[i][0][u'start'] if variants[i][0][u'strand'] == u'+' else variants[i][0][u'end']
-	end = variants[i][0][u'end'] if variants[i][0][u'strand'] == u'+' else variants[i][0][u'start']
-	
-	'''
-	Figure out true starts and ends of the CDS based on the information retrieved into map_info.
-	'''
-	for region in variants[i]:
-		if region[u'strand'] == u'+':
-			if region[u'start'] < start:
-				start = region[u'start']
-				mRNA["start"].append(int(region['start']))
-			if region[u'end'] > end:
-				end = region[u'end']
-				mRNA["end"].append(int(region['end']))
-		else:
-			if region[u'start'] < start:
-				start = region[u'start']
-				mRNA["start"].append(int(region['start']))
-			if region[u'end'] > end:
-				end = region[u'end']
-				mRNA["end"].append(int(region['end']))
-
-	print "\"start\" : " + str(start) + ", " + "\"end\" : " + str(end) + ", " + "\"genestructure\" : " 
+		if region[u'start'] < start:
+			start = region[u'start']
+			mRNA["start"].append(int(region['start']))
+		if region[u'end'] > end:
+			end = region[u'end']
+			mRNA["end"].append(int(region['end']))
 
 
 
-
-
-
-
-
-
-
-
-	'''
-	Generates exon-intron image based on the information in map_info.
-	'''
-	#def generate_exon_graph(variants[i]):
+'''
+Generates exon-intron image based on the information in map_info.
+'''
+def generate_exon_graph():
 	exongraph = gd.image((EXON_IMG_WIDTH, EXON_IMG_HEIGHT))
 	white = exongraph.colorAllocate((255,255,255))
 	black = exongraph.colorAllocate((0,0,0))
 	blue = exongraph.colorAllocate((0,0,255))
 	exongraph.lines(((0, EXON_IMG_HEIGHT), (EXON_IMG_WIDTH, EXON_IMG_HEIGHT)), black)
-	for region in variants[i]:
+	for region in map_info[u'result']:
 		if region[u'type'] == u'exon':
 			exon["start"].append(int(region [u'start']))
 			exon["end"].append(int(region [u'end']))
@@ -109,31 +83,8 @@ for subfeature in map_info[u'features'][0][u'subfeatures']:
 	f = open("get_exon_base64_exongraph.png", "w")
 	exongraph.writePng(f)
 	f.close()
-	print "\""
-	
 	with open("get_exon_base64_exongraph.png", "rb") as fl:
 		print fl.read().encode("base64") ################################ PRINT OUT
-	print "\""
 	fl.close()
 
-
-
-
-
-
-
-
-
-
-
-
-	#print "\""
-	#generate_exon_graph(variants[i])
-	#print "\""
-
-	#print ", \"BAMdata\" : \"" + str(subfeature[u'subfeatures']) + "\""
-
-	i = i + 1;
-	print "}"
-
-print "]}"
+generate_exon_graph()
