@@ -1,6 +1,5 @@
 #!/usr/bin/python
-print "Content-Type: text/html"     # HTML is following
-print                               # blank line, end of headers
+print 'Content-Type: application/json\n'     # HTML is following
 import os
 import tempfile
 import base64
@@ -13,7 +12,6 @@ import gd
 import pysam
 import base64
 from random import randint
-cgitb.enable()
 
 '''
 **********************************************************************************
@@ -30,8 +28,8 @@ exon = {"start":[],"end":[]}
 mRNA = {"start":[],"end":[]}
 
 expression_score = []
-
 variants = []
+variant_count = 0
 
 # ----- GET THE LOCUS OF INTEREST -----
 geneid = cgi.FieldStorage().getvalue('locus')
@@ -41,18 +39,19 @@ geneid = cgi.FieldStorage().getvalue('locus')
 map_info_old = json.loads(urllib2.urlopen("http://bar.utoronto.ca/webservices/araport/gff/get_tair10_gff.php?locus=" + geneid).read())
 map_info = json.loads(urllib2.urlopen("http://bar.utoronto.ca/webservices/araport/api/bar_araport11_gene_structure_by_locus.php?locus=" + geneid).read())
 
+printout = ""
 
-
-
-print "{"
-print "\"variants\" : [" 
+printout = printout + "{"
+printout = printout + "\"locus\" : \"" + geneid + "\", " 
+printout = printout + "\"splice_variants\" : [" 
 i = 0
 for subfeature in map_info[u'features'][0][u'subfeatures']:
 	if i == 0:
-		print "{" 
+		printout = printout + "{" 
 	else:
-		print ", {"
+		printout = printout + ", {"
 
+	variant_count = variant_count + 1
 	variants.append(subfeature[u'subfeatures'])
 
 	start = variants[i][0][u'start'] if variants[i][0][u'strand'] == u'+' else variants[i][0][u'end']
@@ -78,7 +77,7 @@ for subfeature in map_info[u'features'][0][u'subfeatures']:
 				mRNA["end"].append(int(region['end']))
 
 
-	print "\"exon_coordinates\" : [" 
+	printout = printout + "\"exon_coordinates\" : [" 
 
 	'''
 	Generates exon-intron image based on the information in map_info.
@@ -95,9 +94,9 @@ for subfeature in map_info[u'features'][0][u'subfeatures']:
 			exon["start"].append(int(region [u'start']))
 			exon["end"].append(int(region [u'end']))
 			if (count == 0):
-				print "{" + "\"exon_start\" : " + str(int(region [u'start'])) + ", \"exon_end\" : " + str(int(region [u'end'])) + "}"
+				printout = printout + "{" + "\"exon_start\" : " + str(int(region [u'start'])) + ", \"exon_end\" : " + str(int(region [u'end'])) + "}"
 			else:
-				print ", {" + "\"exon_start\" : " + str(int(region [u'start'])) + ", \"exon_end\" : " + str(int(region [u'end'])) + "}"
+				printout = printout + ", {" + "\"exon_start\" : " + str(int(region [u'start'])) + ", \"exon_end\" : " + str(int(region [u'end'])) + "}"
 			count = count + 1
 			exongraph.filledRectangle((int(float(region[u'start'] - start) /(end-start) * EXON_IMG_WIDTH), EXON_IMG_HEIGHT), (int(float(region[u'end'] - start)/(end-start) * EXON_IMG_WIDTH), 0), blue)
 	
@@ -106,17 +105,20 @@ for subfeature in map_info[u'features'][0][u'subfeatures']:
 	exongraph.writePng(f)
 	f.close()
 
-	print "], " + "\"start\" : " + str(start) + ", " + "\"end\" : " + str(end) + ", " + "\"gene_structure\" : " 
-	print "\""	
+	printout = printout + "], " + "\"start\" : " + str(start) + ", " + "\"end\" : " + str(end) + ", " + "\"gene_structure\" : " 
+	printout = printout + "\""	
 	with open("get_exon_base64_exongraph.png", "rb") as fl:
-		print fl.read().encode("base64") ################################ PRINT OUT
-	print "\""
+		printout = printout + fl.read().encode("base64") ################################ printout = printout + OUT
+	printout = printout + "\""
 	fl.close()
 
 
-	#print ", \"BAMdata\" : \"" + str(subfeature[u'subfeatures']) + "\""
+	#printout = printout + ", \"BAMdata\" : \"" + str(subfeature[u'subfeatures']) + "\""
 
 	i = i + 1
-	print "}"
+	printout = printout + "}"
 
-print "]}"
+
+printout = printout + "]" + ", \"variant_count\" : \"" + str(variant_count) + "\"" + "}"
+
+print printout.replace('\n', ' ')

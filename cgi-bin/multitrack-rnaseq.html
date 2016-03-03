@@ -68,8 +68,8 @@
         console.log("Locus = " + locus);
 
         $.ajax({
-            url: 'get_exon_base64.cgi?locus=' + locus,
-            dataType: 'text',
+            url: 'get_gene_structures.cgi?locus=' + locus,
+            dataType: 'json',
             success: function(response) {
                 console.log("Got base64 image back for exon; repopulating the table.");
                 console.log(response);
@@ -106,7 +106,7 @@
                             $("#thetable").append(
                                 '<tr>' +
                                 '<td style="width: 250px;">' + title + '</td>\n' +
-                                '<td style="width: 460px;">' + '<img src="' + img + '" /><br/>' + '<img src="data:image/png;base64,' + response + '" />' + '</td>\n' +
+                                '<td style="width: 460px;">' + '<img src="' + img + '" /><br/>' + '<img src="data:image/png;base64,' + response["splice_variants"][0]["gene_structure"] + '" />' + '</td>\n' +
                                 '<td style="width: 150px;">' + '<img style="height:50px; width:auto;" src="SVGs/' + svg.substring(4) + '" />' + '</td>\n' +
                                 '<td style="width: 150px;">' + '<span style="display: none;">' + numberofreads + '</span>' + '<img style="height:50px; width:auto;" src="SVGs/' + svg.substring(4) + '" />' + '</td>\n' +
                                 '<td style="width: 200px;">' + description + '<br/>' + '<a href="' + url + '" target="blank">' + 'NCBI SRA' + '</a>; <a href="' + publicationid + '" target="blank">PubLink</a>' + '<br/><a href="javascript:(function(){$(\'#' + url.substring(44) + '\').toggle();})()">More Details</a><div id="' + url.substring(44) + '" style="display:none">Total reads = ' + numberofreads + '.<br/>Controls: ' + links + '</div></td>\n' +
