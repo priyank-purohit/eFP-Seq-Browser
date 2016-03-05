@@ -39,7 +39,7 @@ geneid = cgi.FieldStorage().getvalue('locus')
 map_info_old = json.loads(urllib2.urlopen("http://bar.utoronto.ca/webservices/araport/gff/get_tair10_gff.php?locus=" + geneid).read())
 map_info = json.loads(urllib2.urlopen("http://bar.utoronto.ca/webservices/araport/api/bar_araport11_gene_structure_by_locus.php?locus=" + geneid).read())
 
-printout = ""
+printout = "" + map_info
 
 printout = printout + "{"
 printout = printout + "\"locus\" : \"" + geneid + "\", " 
