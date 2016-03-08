@@ -30,7 +30,7 @@
                 </select>
             </div>
             <div class="col-xs-12 col-sm-2 col-md-1 text-center" style="line-height: 60px;">
-                <input type="button" class="btn btn-success" onclick="colour_svgs_now()" value="Update" />
+                <input type="button" class="btn btn-success" onclick="colour_svgs_now('relative')" value="Update" />
             </div>
         </div>
         <hr style="border: 1px solid black;" />
@@ -101,7 +101,7 @@
 
 
 
-    function colour_part_by_id(id, part, fpkm) {
+    function colour_part_by_id(id, part, fpkm, mode) {
         if (document != null) {
             var element = document.getElementById(id);
             if (element != null) {
@@ -111,25 +111,34 @@
                     if (part != null) {
                         var paths = part.getElementsByTagName("path");
                         if (paths != null) {
-                            /*// For absolute FPKM colouring
-                            var r = 0, g = 0, b = 0;
-                            r = 255;
-                            g = parseInt(fpkm / 1000 * 255);
-                            b = 0;
-                            console.log('fpkm = ' + fpkm + ' -> rgb(' + r + ', ' + g + ', ' + b + ')');
-                            paths[i].style.fill = 'rgb(' + r + ', ' + g + ', ' + b + ')';
-                            */ // For relative FPKM colouring
-                            var hex = "";
-                            if (fpkm > 0) {
-                                hex = generate_colour("FF0000", "FFFF00", Math.abs(fpkm/max_log_fpkm));
-                            } else if (fpkm == 0) {
-                                hex = "FFFF00";
-                            } else if (fpkm < 0) {
-                                hex = generate_colour("FFFF00", "0000FF", Math.abs(fpkm/max_log_fpkm));
-                            }
-                            console.log('fpkm = ' + fpkm + ' -> hex = ' + hex);
-                            for (i = 0; i < paths.length; i++) {
-                                paths[i].style.fill = hex;
+                            if (mode == "absolute") {
+
+                                // For absolute FPKM colouring
+                                var r = 0,
+                                    g = 0,
+                                    b = 0;
+                                r = 255;
+                                g = parseInt(fpkm / 1000 * 255);
+                                b = 0;
+                                console.log('fpkm = ' + fpkm + ' -> rgb(' + r + ', ' + g + ', ' + b + ')');
+                                for (i = 0; i < paths.length; i++) {
+                                    paths[i].style.fill = 'rgb(' + r + ', ' + g + ', ' + b + ')';
+                                }
+                            } else if (mode == "relative") {
+
+                                // For relative FPKM colouring
+                                var hex = "";
+                                if (fpkm > 0) {
+                                    hex = generate_colour("FF0000", "FFFF00", Math.abs(fpkm / max_log_fpkm));
+                                } else if (fpkm == 0) {
+                                    hex = "FFFF00";
+                                } else if (fpkm < 0) {
+                                    hex = generate_colour("FFFF00", "0000FF", Math.abs(fpkm / max_log_fpkm));
+                                }
+                                console.log('fpkm = ' + fpkm + ' -> hex = ' + hex);
+                                for (i = 0; i < paths.length; i++) {
+                                    paths[i].style.fill = hex;
+                                }
                             }
                         } else {
                             console.log("Paths is null");
@@ -148,7 +157,7 @@
         }
     }
 
-    function colour_svgs_now() {
+    function colour_svgs_now(mode) {
         for (var i = 0; i < 113; i++) {
             var fpkm_sum = 0;
             var fpkm_count = 0;
@@ -173,7 +182,7 @@
                 max_log_fpkm = Math.abs(colours[i][5]);
 
             //console.log(colours[i]);
-            colour_part_by_id(colours[i][0], colours[i][1], colours[i][5]);
+            colour_part_by_id(colours[i][0], colours[i][1], colours[i][5], mode);
         }
         console.log('Max ABS FPKM = ' + max_absolute_fpkm);
         console.log('Max Log FPKM = ' + max_log_fpkm);
@@ -193,68 +202,75 @@
 
         // Get data from BAM data XML file and populate the table
         $.ajax({
-            url: 'data/bamdata_amazon_links.xml',
-            dataType: 'xml',
-            success: function(xmlDoc) { // When the file is retrieved:
-                var $xml = $(xmlDoc);
-                var $title = $xml.find("file");
+            url: 'http://bar.utoronto.ca/~ppurohit/RNA-Browser/cgi-bin/get_gene_structures.cgi?locus='+locus,
+            dataType: 'json',
+            success: function(response_gene_structure) { // When the file is retrieved:
+                // Get data from BAM data XML file and populate the table
+                $.ajax({
+                    url: 'data/bamdata_amazon_links.xml',
+                    dataType: 'xml',
+                    success: function(xmlDoc) { // When the file is retrieved:
+                        var $xml = $(xmlDoc);
+                        var $title = $xml.find("file");
 
-                // For each subtag inside the <file> tag:
-                $title.each(function() {
-                    var title = $(this).attr('title');
-                    var description = $(this).attr('description');
-                    var svg = $(this).attr('svgname');
-                    var experimentno = $(this).attr('experimentno');
-                    var url = $(this).attr('url');
-                    var publicationid = $(this).attr('publicationid');
-                    var numberofreads = $(this).attr('numberofreads');
-                    var control = $(this).find("control")[0].innerHTML.replace(/<experiment>/g, "").replace(/<\/experiment>/g, ",").replace(/\n/g, " ").replace(/ /g, "");
-                    var controls = control.split(",");
-                    var links = "";
-                    for (var i = controls.length; i--;) {
-                        if (controls[i] != "MEDIAN") {
-                            links += '<a href="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=' + controls[i] + '" target="blank">' + controls[i] + '</a> ';
-                        } else {
-                            links += controls[i];
-                        }
+                        // For each subtag inside the <file> tag:
+                        $title.each(function() {
+                            var title = $(this).attr('title');
+                            var description = $(this).attr('description');
+                            var svg = $(this).attr('svgname');
+                            var experimentno = $(this).attr('experimentno');
+                            var url = $(this).attr('url');
+                            var publicationid = $(this).attr('publicationid');
+                            var numberofreads = $(this).attr('numberofreads');
+                            var control = $(this).find("control")[0].innerHTML.replace(/<experiment>/g, "").replace(/<\/experiment>/g, ",").replace(/\n/g, " ").replace(/ /g, "");
+                            var controls = control.split(",");
+                            var links = "";
+                            for (var i = controls.length; i--;) {
+                                if (controls[i] != "MEDIAN") {
+                                    links += '<a href="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=' + controls[i] + '" target="blank">' + controls[i] + '</a> ';
+                                } else {
+                                    links += controls[i];
+                                }
+                            }
+                            var name = $(this).attr('name').split("/");
+                            var tissue = $(this).attr('name').split("/")[8];
+                            var subunitname = $(this).attr('subunitname'); // supposed to be the one that gets coloured
+
+                            //var img = "img/" + $(this).attr('name').substring(66).replace(/\//g, "_").replace(/.bam/g, ".png");
+                            //console.log(img);
+
+                            // GET RNA-Seq data for this row
+                            $.ajax({
+                                url: 'http://ec2-52-70-232-122.compute-1.amazonaws.com/~ppurohit/RNA-Browser/cgi-bin/webservice.cgi?tissue=' + tissue + '&record=' + experimentno + '&locus=' + locus + '&variant=1',
+                                dataType: 'json',
+                                success: function(response_rnaseq) {
+                                    var locus_reads = parseInt(response_rnaseq['reads_mapped_to_locus']) * 1; //TODO: remove the 10x ....
+                                    var gene_length = parseInt(response_rnaseq['end']) - parseInt(response_rnaseq['start']);
+                                    var absolute_fpkm = locus_reads / (gene_length / 1000) / (numberofreads / 1000000);
+
+                                    //console.log(locus_reads + '/(' + gene_length + '/1000)/(' + numberofreads + '/1000000) = ' + absolute_fpkm);
+
+                                    // Construct a new row to insert into the table...
+                                    var append_str = '<tr>';
+                                    // Append title
+                                    append_str += '<td style="width: 250px;">' + title + '</td>\n';
+                                    // Append RNA-Seq and Gene Structure images (2 imgs)
+                                    append_str += '<td style="width: 460px;">' + '<img id="' + experimentno + '_rnaseq_img" src="data:image/png;base64,' + response_rnaseq['rnaseqbase64'] + '" /><br/>' + '<img id="' + experimentno + '_gene_structure_img" src="data:image/png;base64,' + response_gene_structure['splice_variants'][0]['gene_structure'] + '" />' + '</td>\n';
+                                    // Append the approparite SVG with correct sorting number in front of it (number stays hidden)
+                                    append_str += '<td style="width:  75px;">' + '<span style="display: none;">' + numberofreads + '</span>' + '<object id="' + experimentno + '_svg' + '" data="SVGs/' + svg.substring(4) + '" width="75" height="75" type="image/svg+xml"></object>' + '</td>\n';
+                                    // Append the details  
+                                    append_str += '<td style="width: 200px;">' + description + '<br/>' + '<a href="' + url + '" target="blank">' + 'NCBI SRA' + '</a>; <a href="' + publicationid + '" target="blank">PubLink</a>' + '<br/><a href="javascript:(function(){$(\'#' + url.substring(44) + '\').toggle();})()">More Details</a><div id="' + url.substring(44) + '" style="display:none">Total reads = ' + numberofreads + '.<br/>Controls: ' + links + '</div></td>\n';
+                                    append_str += '</tr>';
+
+                                    // Append the row to the table
+                                    $("#thetable").append(append_str);
+
+                                    // Make a list of SVGs to colour
+                                    colours.push([experimentno + '_svg', 'Shapes', absolute_fpkm, controls]);
+                                }
+                            });
+                        });
                     }
-                    var name = $(this).attr('name').split("/");
-                    var tissue = $(this).attr('name').split("/")[8];
-                    var subunitname = $(this).attr('subunitname'); // supposed to be the one that gets coloured
-
-                    //var img = "img/" + $(this).attr('name').substring(66).replace(/\//g, "_").replace(/.bam/g, ".png");
-                    //console.log(img);
-
-                    // GET RNA-Seq data for this row
-                    $.ajax({
-                        url: 'http://ec2-52-70-232-122.compute-1.amazonaws.com/~ppurohit/RNA-Browser/cgi-bin/webservice.cgi?tissue=' + tissue + '&record=' + experimentno + '&locus=' + locus + '&variant=1',
-                        dataType: 'json',
-                        success: function(response_rnaseq) {
-                            var locus_reads = parseInt(response_rnaseq['reads_mapped_to_locus']) * 1; //TODO: remove the 10x ....
-                            var gene_length = parseInt(response_rnaseq['end']) - parseInt(response_rnaseq['start']);
-                            var absolute_fpkm = locus_reads / (gene_length / 1000) / (numberofreads / 1000000);
-
-                            //console.log(locus_reads + '/(' + gene_length + '/1000)/(' + numberofreads + '/1000000) = ' + absolute_fpkm);
-
-                            // Construct a new row to insert into the table...
-                            var append_str = '<tr>';
-                            // Append title
-                            append_str += '<td style="width: 250px;">' + title + '</td>\n';
-                            // Append RNA-Seq and Gene Structure images (2 imgs)
-                            append_str += '<td style="width: 460px;">' + '<img id="' + experimentno + '_rnaseq_img" src="data:image/png;base64,' + response_rnaseq['rnaseqbase64'] + '" /><br/>' + '<img id="' + experimentno + '_gene_structure_img" src="data:image/png;base64,' + 'response' + '" />' + '</td>\n';
-                            // Append the approparite SVG with correct sorting number in front of it (number stays hidden)
-                            append_str += '<td style="width:  75px;">' + '<span style="display: none;">' + numberofreads + '</span>' + '<object id="' + experimentno + '_svg' + '" data="SVGs/' + svg.substring(4) + '" width="75" height="75" type="image/svg+xml"></object>' + '</td>\n';
-                            // Append the details  
-                            append_str += '<td style="width: 200px;">' + description + '<br/>' + '<a href="' + url + '" target="blank">' + 'NCBI SRA' + '</a>; <a href="' + publicationid + '" target="blank">PubLink</a>' + '<br/><a href="javascript:(function(){$(\'#' + url.substring(44) + '\').toggle();})()">More Details</a><div id="' + url.substring(44) + '" style="display:none">Total reads = ' + numberofreads + '.<br/>Controls: ' + links + '</div></td>\n';
-                            append_str += '</tr>';
-
-                            // Append the row to the table
-                            $("#thetable").append(append_str);
-
-                            // Make a list of SVGs to colour
-                            colours.push([experimentno + '_svg', 'Shapes', absolute_fpkm, controls]);
-                        }
-                    });
                 });
             }
         });
