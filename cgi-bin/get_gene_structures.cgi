@@ -69,25 +69,6 @@ for subfeature in map_info[u'features'][0][u'subfeatures']:
 	start = subfeature['start']
 	end = subfeature['end']
 
-	# Compute own start end based on the subfeatures.
-	start_computed = variants[i][0][u'start'] if variants[i][0][u'strand'] == u'+' else variants[i][0][u'end']
-	end_computed = variants[i][0][u'end'] if variants[i][0][u'strand'] == u'+' else variants[i][0][u'start']
-	for region in variants[i]:
-		if region[u'strand'] == u'+':
-			if region[u'start'] < start_computed:
-				start_computed = region[u'start']
-				mRNA["start"].append(int(region['start']))
-			if region[u'end'] > end_computed:
-				end_computed = region[u'end']
-				mRNA["end"].append(int(region['end']))
-		else:
-			if region[u'start'] < start_computed:
-				start_computed = region[u'start']
-				mRNA["start"].append(int(region['start']))
-			if region[u'end'] > end_computed:
-				end_computed = region[u'end']
-				mRNA["end"].append(int(region['end']))
-
 	# Return all exons' coordinates
 	printout = printout + "\"exon_coordinates\" : [" 
 
@@ -96,6 +77,7 @@ for subfeature in map_info[u'features'][0][u'subfeatures']:
 	'''
 	# Create an image for gene structure
 	exongraph = gd.image((EXON_IMG_WIDTH, EXON_IMG_HEIGHT))
+
 	# Define the colours
 	white = exongraph.colorAllocate((255,255,255))
 	black = exongraph.colorAllocate((0,0,0))
@@ -103,7 +85,7 @@ for subfeature in map_info[u'features'][0][u'subfeatures']:
 	orange = exongraph.colorAllocate((255,150,0))
 	green = exongraph.colorAllocate((0,255,0))
 	blue = exongraph.colorAllocate((0,0,255))
-	#exongraph.lines(((0, EXON_IMG_HEIGHT), (EXON_IMG_WIDTH, EXON_IMG_HEIGHT)), black)
+
 	count = 0 # Need a comma if the it is not the first element...
 	for region in variants[i]:
 		if region[u'type'] == u'exon' or region[u'type'] == u'CDS' or region[u'type'] == u'three_prime_UTR' or region[u'type'] == u'five_prime_UTR':
@@ -114,21 +96,22 @@ for subfeature in map_info[u'features'][0][u'subfeatures']:
 			else:
 				printout = printout + ", {" + "\"exon_start\" : " + str(int(region [u'start'])) + ", \"exon_end\" : " + str(int(region [u'end'])) + "}"
 			count = count + 1
+			# TODO: Blue @ top; green, orange, and pink @ bottom...
 			if region[u'type'] == u'CDS':
-				exongraph.filledRectangle((int(float(region[u'start'] - start) /(end-start) * EXON_IMG_WIDTH), EXON_IMG_HEIGHT), (int(float(region[u'end'] - start)/(end-start) * EXON_IMG_WIDTH), 0), green)
+				exongraph.filledRectangle((int(float(region[u'start'] - start) /(end-start) * EXON_IMG_WIDTH), EXON_IMG_HEIGHT), (int(float(region[u'end'] - start)/(end-start) * EXON_IMG_WIDTH), 3), green)
 			elif region[u'type'] == u'exon':
 				exongraph.filledRectangle((int(float(region[u'start'] - start) /(end-start) * EXON_IMG_WIDTH), EXON_IMG_HEIGHT), (int(float(region[u'end'] - start)/(end-start) * EXON_IMG_WIDTH), 0), blue)
 			elif region[u'type'] == u'three_prime_UTR':
-				exongraph.filledRectangle((int(float(region[u'start'] - start) /(end-start) * EXON_IMG_WIDTH), EXON_IMG_HEIGHT), (int(float(region[u'end'] - start)/(end-start) * EXON_IMG_WIDTH), 0), pink)
+				exongraph.filledRectangle((int(float(region[u'start'] - start) /(end-start) * EXON_IMG_WIDTH), EXON_IMG_HEIGHT), (int(float(region[u'end'] - start)/(end-start) * EXON_IMG_WIDTH), 3), pink)
 			elif region[u'type'] == u'five_prime_UTR':
-				exongraph.filledRectangle((int(float(region[u'start'] - start) /(end-start) * EXON_IMG_WIDTH), EXON_IMG_HEIGHT), (int(float(region[u'end'] - start)/(end-start) * EXON_IMG_WIDTH), 0), orange)
+				exongraph.filledRectangle((int(float(region[u'start'] - start) /(end-start) * EXON_IMG_WIDTH), EXON_IMG_HEIGHT), (int(float(region[u'end'] - start)/(end-start) * EXON_IMG_WIDTH), 3), orange)
 	
-	exongraph.filledRectangle((0, 3), (EXON_IMG_WIDTH, 3), blue)
+	exongraph.filledRectangle((0, 3), (EXON_IMG_WIDTH, 3), black)
 	f = open("get_exon_base64_exongraph.png", "w")
 	exongraph.writePng(f)
 	f.close()
 
-	printout = printout + "], " + "\"start_computed\" : " + str(start_computed) + ", " + "\"end_computed\" : " + str(end_computed) + ", " + "\"start\" : " + str(start) + ", " + "\"end\" : " + str(end) + ", " + "\"gene_structure\" : " 
+	printout = printout + "], " + "\"start\" : " + str(start) + ", " + "\"end\" : " + str(end) + ", " + "\"gene_structure\" : " 
 	printout = printout + "\""	
 	with open("get_exon_base64_exongraph.png", "rb") as fl:
 		printout = printout + fl.read().encode("base64") ################################ printout = printout + OUT
