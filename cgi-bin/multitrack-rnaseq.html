@@ -199,7 +199,7 @@
         $("#thetable").empty();
 
         // Insert table headers
-        $("#thetable").append('<thead><tr>' + '<th style="width: 250px;">Title</th>' + '<th style="width: 460px;">RNA-Seq Coverage</th>' + '<th style="width:  75px;">eFP - RPKM</th>' + '<th style="width: 275px;">Description and Details</th>' + '</tr></thead>' + '<tbody></tbody>');
+        $("#thetable").append('<thead><tr>' + '<th style="width: 250px;">Title</th>' + '<th style="width: 460px;">RNA-Seq Coverage<br/>(blue=exon, green=CDS, pink=5\'UTR, orange=3\'UTR)</th>' + '<th style="width:  75px;">eFP - RPKM</th>' + '<th style="width: 275px;">Description and Details</th>' + '</tr></thead>' + '<tbody></tbody>');
 
         // Get data from BAM data XML file and populate the table
         $.ajax({

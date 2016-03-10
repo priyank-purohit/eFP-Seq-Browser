@@ -22,7 +22,7 @@ Currently used by multitrack-rnaseq.html to get the gene structure. -- PRYNK Feb
 
 # ----- CONSTANTS -----
 EXON_IMG_WIDTH = 450
-EXON_IMG_HEIGHT = 7
+EXON_IMG_HEIGHT = 8
 
 # ----- VARIABLES -----
 exon = {"start":[],"end":[]}
@@ -81,32 +81,34 @@ for subfeature in map_info[u'features'][0][u'subfeatures']:
 	# Define the colours
 	white = exongraph.colorAllocate((255,255,255))
 	black = exongraph.colorAllocate((0,0,0))
-	pink = exongraph.colorAllocate((255,155,155))
-	orange = exongraph.colorAllocate((255,150,0))
+
+	red = exongraph.colorAllocate((220,20,60))
+	orange = exongraph.colorAllocate((255,140,0))
 	green = exongraph.colorAllocate((0,255,0))
 	blue = exongraph.colorAllocate((0,0,255))
 
 	count = 0 # Need a comma if the it is not the first element...
 	for region in variants[i]:
-		if region[u'type'] == u'exon' or region[u'type'] == u'CDS' or region[u'type'] == u'three_prime_UTR' or region[u'type'] == u'five_prime_UTR':
+		# We want to return regions marked as type = exons and type = CDS
+		if region[u'type'] == u'exon' or region[u'type'] == u'CDS':
 			exon["start"].append(int(region [u'start']))
 			exon["end"].append(int(region [u'end']))
 			if (count == 0):
 				printout = printout + "{" + "\"exon_start\" : " + str(int(region [u'start'])) + ", \"exon_end\" : " + str(int(region [u'end'])) + "}"
 			else:
 				printout = printout + ", {" + "\"exon_start\" : " + str(int(region [u'start'])) + ", \"exon_end\" : " + str(int(region [u'end'])) + "}"
-			count = count + 1
-			# TODO: Blue @ top; green, orange, and pink @ bottom...
-			if region[u'type'] == u'CDS':
-				exongraph.filledRectangle((int(float(region[u'start'] - start) /(end-start) * EXON_IMG_WIDTH), EXON_IMG_HEIGHT), (int(float(region[u'end'] - start)/(end-start) * EXON_IMG_WIDTH), 3), green)
-			elif region[u'type'] == u'exon':
-				exongraph.filledRectangle((int(float(region[u'start'] - start) /(end-start) * EXON_IMG_WIDTH), EXON_IMG_HEIGHT), (int(float(region[u'end'] - start)/(end-start) * EXON_IMG_WIDTH), 0), blue)
-			elif region[u'type'] == u'three_prime_UTR':
-				exongraph.filledRectangle((int(float(region[u'start'] - start) /(end-start) * EXON_IMG_WIDTH), EXON_IMG_HEIGHT), (int(float(region[u'end'] - start)/(end-start) * EXON_IMG_WIDTH), 3), pink)
-			elif region[u'type'] == u'five_prime_UTR':
-				exongraph.filledRectangle((int(float(region[u'start'] - start) /(end-start) * EXON_IMG_WIDTH), EXON_IMG_HEIGHT), (int(float(region[u'end'] - start)/(end-start) * EXON_IMG_WIDTH), 3), orange)
-	
-	exongraph.filledRectangle((0, 3), (EXON_IMG_WIDTH, 3), black)
+			count = count + 1 # To add a comma only...
+		# We want to graph all types of features in the gene structure image
+		if region[u'type'] == u'exon':
+			exongraph.filledRectangle((int(float(region[u'start'] - start) /(end-start) * EXON_IMG_WIDTH), EXON_IMG_HEIGHT/2), (int(float(region[u'end'] - start)/(end-start) * EXON_IMG_WIDTH), 0), blue)
+		elif region[u'type'] == u'CDS':
+			exongraph.filledRectangle((int(float(region[u'start'] - start) /(end-start) * EXON_IMG_WIDTH), EXON_IMG_HEIGHT/2), (int(float(region[u'end'] - start)/(end-start) * EXON_IMG_WIDTH), EXON_IMG_HEIGHT), green)
+		elif region[u'type'] == u'five_prime_UTR':
+			exongraph.filledRectangle((int(float(region[u'start'] - start) /(end-start) * EXON_IMG_WIDTH), EXON_IMG_HEIGHT/2), (int(float(region[u'end'] - start)/(end-start) * EXON_IMG_WIDTH), EXON_IMG_HEIGHT), orange)
+		elif region[u'type'] == u'three_prime_UTR':
+			exongraph.filledRectangle((int(float(region[u'start'] - start) /(end-start) * EXON_IMG_WIDTH), EXON_IMG_HEIGHT/2), (int(float(region[u'end'] - start)/(end-start) * EXON_IMG_WIDTH), EXON_IMG_HEIGHT), red)
+		
+	exongraph.filledRectangle((0, EXON_IMG_HEIGHT/2), (EXON_IMG_WIDTH, EXON_IMG_HEIGHT/2), black)
 	f = open("get_exon_base64_exongraph.png", "w")
 	exongraph.writePng(f)
 	f.close()
@@ -114,16 +116,14 @@ for subfeature in map_info[u'features'][0][u'subfeatures']:
 	printout = printout + "], " + "\"start\" : " + str(start) + ", " + "\"end\" : " + str(end) + ", " + "\"gene_structure\" : " 
 	printout = printout + "\""	
 	with open("get_exon_base64_exongraph.png", "rb") as fl:
-		printout = printout + fl.read().encode("base64") ################################ printout = printout + OUT
+		printout = printout + fl.read().encode("base64")
 	printout = printout + "\""
 	fl.close()
-
 
 	#printout = printout + ", \"BAMdata\" : \"" + str(subfeature[u'subfeatures']) + "\""
 
 	i = i + 1
 	printout = printout + "}"
-
 
 printout = printout + "]" + ", \"variant_count\" : \"" + str(variant_count) + "\"" + "}"
 
