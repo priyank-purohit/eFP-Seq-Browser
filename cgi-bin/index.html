@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+    <title>Multi-track RNA-Seq Browser</title>
+    <meta name="author" content="Priyank Purohit">
+    <link href='http://fonts.googleapis.com/css?family=PT+Sans' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="core/tablesorter.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="core/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Title and input options. -->
+        <div class="row" style="line-height: 40px; height: 50px;">
+            <div class="col-xs-6 col-sm-7 col-md-8 text-center" style="height: 50px;">
+                <p style="font-size: 25px; height: 40px; margin-top: 5px; margin-bottom: 5px;"><i>A. thaliana</i> Multi-track RNA-Seq Browser</p>
+            </div>
+            <div class="col-xs-6 col-sm-5 col-md-4" style="height: 50px;">
+                <div class="col-xs-9" style="align: right; height: 50px;">
+                    <input type="text" class="form-control" name="Locus" id="locus" value="AT2G24270" style="width: 200px; height: 35px; margin-top: 7.5px;" />
+                </div>
+                <div class="col-xs-3" style="align: left; height: 50px; ">
+                    <input type="button" class="btn btn-success" onclick="" value="GO" style="height: 35px; margin-top: 7.5px;" />
+                </div>
+            </div>
+        </div>
+        <hr style="border: 1px solid black; margin: 5px; " />
+        <!-- Variants selection. -->
+        <div class="col-xs-12 text-center table-responsive" id="variants_div">
+            <div class="radio">
+                <label>
+                    <input type="radio" name="optradio"><img id="variant_0" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAcIAAAAIBAMAAACYMuIQAAAAElBMVEX///8AAADcFDz/jAAA/wAA AP/7d9nXAAAAWElEQVQ4jWMIJRowgAFRSgMgalkJyGMqwiKKLsBACLCiKRz14agPB78PBYc7YFAi GkBChCilChC1TFglVVxcHJCCnMUFCWARRRcgGIfMxhAA44/6cMj7EACTSRD7FKSIWQAAAABJRU5E rkJggg==" class="">
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="optradio"><img id="variant_1" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAcIAAAAIBAMAAACYMuIQAAAAElBMVEX///8AAADcFDz/jAAA/wAA AP/7d9nXAAAAPUlEQVQ4jWNgGAWjYBQMOBAc7oCBSQknUHFBAZAQcSEGOEDUsiDpwwlYMO1AEUUX IBhnMJVQR4z6cOj7EADjiWTMrVS/MgAAAABJRU5ErkJggg==" class="">
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="optradio"><img id="variant_2" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAcIAAAAIBAMAAACYMuIQAAAAElBMVEX///8AAADcFDz/jAAA/wAA AP/7d9nXAAAAQElEQVQ4jWNgoCFgDSUV0NI1tACjPhz1IXWA4HAHtAg0OGBSQgMqLgQAXCsLuhAL hhJcAKbSgTaeQgGjPqSLDwEaOIRwAzFnKgAAAABJRU5ErkJggg==" class="">
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="optradio"><img id="variant_3" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAcIAAAAIBAMAAACYMuIQAAAAElBMVEX///8AAADcFDz/jAAA/wAA AP/7d9nXAAAAPklEQVQ4jWNgDSUWMAwRgOYjdP6oD4cAGHk+FBzugIFJiVhArTBmcXFxQOUiABZR dAFizAcDYwgY9eHQ9yEAe++L9aH6UeQAAAAASUVORK5CYII=" class="">
+                </label>
+            </div>
+        </div>
+        <hr style="border: 1px solid black; margin: 5px; " />
+        <!-- RNA-Seq table. -->
+        <div class="col-xs-12 table-responsive">
+            <table id="thetable" class="table">
+                <thead>
+                    <tr>
+                        <th style="width: 250px;">Title</th>
+                        <th style="width: 460px;">RNA-Seq Coverage</th>
+                        <th style="width: 150px;">eFP - RPKM</th>
+                        <th style="width: 275px;">Description and Details</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+    <script type="text/javascript">
+    </script>
+</body>
+
+</html>
