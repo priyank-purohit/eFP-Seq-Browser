@@ -357,12 +357,25 @@
         console.log('Max ABS FPKM = ' + max_absolute_fpkm);
         console.log('Max Log FPKM = ' + max_log_fpkm);
         console.log("Colouring function finished. Errors should be above this log entry.");
+    	$('#thetable').tablesorter();
+    	console.log('Table sorting enabled.');
+    }
+
+    // http://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
+    function getParameterByName(name, url) {
+        if (!url) url = window.location.href;
+        name = name.replace(/[\[\]]/g, "\\$&");
+        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+            results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, " "));
     }
 
     function populate_table_with_xml_data() {
         // Get the locus requested from the URL variables
         //locus = $('#locus_input').val();
-        locus = "AT2G24270";
+        locus = getParameterByName('locus');
         console.log("Locus requested: " + locus);
 
         // Clear up the table
@@ -412,7 +425,7 @@
 
                             // GET RNA-Seq data for this row
                             $.ajax({
-                                url: 'http://ec2-52-70-232-122.compute-1.amazonaws.com/~ppurohit/RNA-Browser/cgi-bin/webservice.cgi?tissue=' + tissue + '&record=' + experimentno + '&locus=' + locus + '&variant=1',
+                                url: 'http://ec2-52-70-232-122.compute-1.amazonaws.com/~ppurohit/RNA-Browser/cgi-bin/webservice.cgi?tissue=' + tissue + '&record=' + experimentno + '&locus=' + locus + '&variant=1&start=' + response_gene_structure['locus_start']+'&end='+response_gene_structure['locus_end'],
                                 dataType: 'json',
                                 success: function(response_rnaseq) {
                                     var locus_reads = parseInt(response_rnaseq['reads_mapped_to_locus']) * 1; //TODO: remove the 10x ....
@@ -486,7 +499,6 @@
     }
 
     populate_table_with_xml_data();
-    $('#thetable').tablesorter();
     </script>
 </body>
 

@@ -10,7 +10,10 @@
 </head>
 
 <body>
-    <div class="container" id="imagesDiv">
+    <div class="container" id="rna_seq_images">
+        <!-- Images are inserted here using jQuery. -->
+    </div>
+    <div class="container" id="gene_structure_images">
         <!-- Images are inserted here using jQuery. -->
     </div>
     <script type="text/javascript">
@@ -31,13 +34,22 @@
         console.log("Locus requested: " + locus);
 
         $.ajax({
+            url: 'http://ec2-52-70-232-122.compute-1.amazonaws.com/~ppurohit/RNA-Browser/cgi-bin/webservice.cgi?tissue=pollen&record=SRS419143&locus='+locus+'&variant=1',
+            dataType: 'json',
+            success: function(res) { // When the file is retrieved:
+            	console.log("RNA-Seq request successful for locus = " + locus);
+                $('#rna_seq_images').append('<img id="rna-seq-img" src="data:image/png;base64,' + res['rnaseqbase64'] + '" /> <br/>');
+            }
+        });
+
+        $.ajax({
             url: 'http://bar.utoronto.ca/~ppurohit/RNA-Browser/cgi-bin/get_gene_structures.cgi?locus=' + locus,
             dataType: 'json',
             success: function(response) { // When the file is retrieved:
                 console.log("BAR's web service (which calls Araport service) returned a total of " + response['variant_count'] + " splice variants for locus = " + locus);
                 // Iterate through all variants and insert their images in the DOM
                 for (var i = 0; i < parseInt(response['variant_count']); i++) {
-                    $('#imagesDiv').append('<img id="variant_index_' + i + '" src="data:image/png;base64,' + response['splice_variants'][i]['gene_structure'] + '" /> <br/>');
+                    $('#gene_structure_images').append('<img id="variant_index_' + i + '" src="data:image/png;base64,' + response['splice_variants'][i]['gene_structure'] + '" /> <br/>');
                     console.log("DOM updated with splice variant index = " + i + "'s gene structure.");
                 }
             }
