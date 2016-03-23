@@ -175,9 +175,6 @@ def makeImage(filename, chromosome, start, end, record):
 		rnaseqgraph.rectangle((int(float(xvalues[i] - start)/(end-start) * RNA_IMG_WIDTH), RNA_IMG_HEIGHT), (int(float(xvalues[i] - start)/(end-start) * RNA_IMG_WIDTH), RNA_IMG_HEIGHT - values[i]), colour)
 	rnaseqgraph.string(0, (420, 5), str(int(highest_mapped_reads_count/1.1)), black) # y axis scale label
 
-	for ncltd in (10327035, 10327108, 10327324, 10327438, (10327438+10327519)/2, 10327519, 10327635):
-		rnaseqgraph.rectangle((int(float(ncltd - 10326918)/(10330048-10326918) * 450), 50), (int(float(ncltd - 10326918)/(10330048-10326918) * 450), 0), red)
-	
 	# Output the GD image to temp PNG file
 	f = open(tempfile, "w+")
 	rnaseqgraph.writePng(f)
