@@ -105,8 +105,16 @@ def getCoordinatesAndValidateVariants(locus, q_variant):
 
 	return chromosome, start, end
 
+# For converting from HEX to RGB values
+# http://stackoverflow.com/questions/214359/converting-hex-color-to-rgb-and-vice-versa
+def hex_to_rgb(val):
+    val = val.lstrip('0x')
+    length = len(val)
+    return tuple(int(val[i:i + length // 3], 16) for i in range(0, length, length // 3))
+
+
 # Make Image
-def makeImage(filename, chromosome, start, end):
+def makeImage(filename, chromosome, start, end, record):
 	''' Once we have chromosome, start, end and filename, we can make the image.'''
 
 	EXON_IMG_WIDTH = 450
@@ -149,15 +157,22 @@ def makeImage(filename, chromosome, start, end):
 
 	# Create an image
 	rnaseqgraph = gd.image((RNA_IMG_WIDTH, RNA_IMG_HEIGHT))
+
 	white = rnaseqgraph.colorAllocate((255,255,255))
-	green = rnaseqgraph.colorAllocate((0,255,0))
+	red = rnaseqgraph.colorAllocate((255,0,0))
+	green = rnaseqgraph.colorAllocate((100,204,101))
+	yellow = rnaseqgraph.colorAllocate((255,255,0))
 	black = rnaseqgraph.colorAllocate((0,0,0))
 	gray = rnaseqgraph.colorAllocate((192,192,192))
 	rnaseqgraph.filledRectangle((0, 5), (RNA_IMG_WIDTH, 5), gray) # max line at top
 
+	colours_dict = {'ERR274310' : '0x64cc65', 'SRR547531' : '0x64cc65', 'SRR548277' : '0x64cc65', 'SRR847503' : '0x64cc65', 'SRR847504' : '0x64cc65', 'SRR847505' : '0x64cc65', 'SRR847506' : '0x64cc65', 'SRR1207194' : '0xFFFF00', 'SRR1207195' : '0xFFFF00', 'SRR1019436' : '0xCCCC97', 'SRR1019437' : '0xCCCC97', 'SRR1049784' : '0x989800', 'SRR477075' : '0xCCCC97', 'SRR477076' : '0xCCCC97', 'SRR493237' : '0xCCCC97', 'SRR493238' : '0xCCCC97', 'SRR314815' : '0xFFFF65', 'SRR800753' : '0xFFFF65', 'SRR800754' : '0xFFFF65', 'SRR1105822' : '0x64CC65', 'SRR1105823' : '0x64CC65', 'SRR1159821' : '0x64CC65', 'SRR1159827' : '0x64CC65', 'SRR1159837' : '0x64CC65', 'SRR314813' : '0x64CC65', 'SRR446027' : '0x64CC65', 'SRR446028' : '0x64CC65', 'SRR446033' : '0x64CC65', 'SRR446034' : '0x64CC65', 'SRR446039' : '0x64CC65', 'SRR446040' : '0x64CC65', 'SRR446484' : '0x64CC65', 'SRR446485' : '0x999999', 'SRR446486' : '0x64CC65', 'SRR446487' : '0x999999', 'SRR493036' : '0x64CC65', 'SRR493097' : '0x64CC65', 'SRR493098' : '0x64CC65', 'SRR493101' : '0x64CC65', 'SRR764885' : '0x64CC65', 'SRR924656' : '0x64CC65', 'SRR934391' : '0x64CC65', 'SRR942022' : '0x64CC65', 'SRR070570' : '0xCCCC97', 'SRR070571' : '0xCCCC97', 'SRR1001909' : '0x98FF00', 'SRR1001910' : '0x98FF00', 'SRR1019221' : '0x98FF00', 'SRR345561' : '0x98FF00', 'SRR345562' : '0x98FF00', 'SRR346552' : '0x98FF00', 'SRR346553' : '0x98FF00', 'SRR394082' : '0x98FF00', 'SRR504179' : '0x98FF00', 'SRR504180' : '0x98FF00', 'SRR504181' : '0x98FF00', 'SRR515073' : '0x98FF00', 'SRR515074' : '0x98FF00', 'SRR527164' : '0x98FF00', 'SRR527165' : '0x98FF00', 'SRR584115' : '0x98FF00', 'SRR584121' : '0x98FF00', 'SRR584129' : '0x98FF00', 'SRR584134' : '0x98FF00', 'SRR653555' : '0x98FF00', 'SRR653556' : '0x98FF00', 'SRR653557' : '0x98FF00', 'SRR653561' : '0x98FF00', 'SRR653562' : '0x98FF00', 'SRR653563' : '0x98FF00', 'SRR653564' : '0x98FF00', 'SRR653565' : '0x98FF00', 'SRR653566' : '0x98FF00', 'SRR653567' : '0x98FF00', 'SRR653568' : '0x98FF00', 'SRR653569' : '0x98FF00', 'SRR653570' : '0x98FF00', 'SRR653571' : '0x98FF00', 'SRR653572' : '0x98FF00', 'SRR653573' : '0x98FF00', 'SRR653574' : '0x98FF00', 'SRP018266' : '0x98FF00', 'SRR653576' : '0x98FF00', 'SRR653577' : '0x98FF00', 'SRR653578' : '0x98FF00', 'SRR797194' : '0x98FF00', 'SRR797230' : '0x98FF00', 'SRR833246' : '0x98FF00', 'SRR847501' : '0xFF0000', 'SRR847502' : '0xFF0000', 'SRR1260032' : '0xBD7740', 'SRR1260033' : '0xBD7740', 'SRR1261509' : '0xBD7740', 'SRR401413' : '0xCCFF00', 'SRR401414' : '0xCCFF00', 'SRR401415' : '0xCCFF00', 'SRR401416' : '0xCCFF00', 'SRR401417' : '0xCCFF00', 'SRR401418' : '0xCCFF00', 'SRR401419' : '0xCCFF00', 'SRR401420' : '0xCCFF00', 'SRR401421' : '0xCCFF00', 'ERR274309' : '0xCCCC97', 'SRR1046909' : '0xCCCC97', 'SRR1046910' : '0xCCCC97', 'SRR1524935' : '0xCCCC97', 'SRR1524938' : '0xCCCC97', 'SRR1524940' : '0xCCCC97', 'SRR314814' : '0xCCCC97', 'SRR949956' : '0x999999', 'SRR949965' : '0x999999', 'SRR949988' : '0x999999', 'SRR949989' : '0x999999'}; 
+
+	colour = rnaseqgraph.colorAllocate(hex_to_rgb(colours_dict[record]))
+
 	# Actual RNA-Seq image
 	for i in range(len(xvalues)):
-		rnaseqgraph.rectangle((int(float(xvalues[i] - start)/(end-start) * RNA_IMG_WIDTH), RNA_IMG_HEIGHT), (int(float(xvalues[i] - start)/(end-start) * RNA_IMG_WIDTH), RNA_IMG_HEIGHT - values[i]), green)
+		rnaseqgraph.rectangle((int(float(xvalues[i] - start)/(end-start) * RNA_IMG_WIDTH), RNA_IMG_HEIGHT), (int(float(xvalues[i] - start)/(end-start) * RNA_IMG_WIDTH), RNA_IMG_HEIGHT - values[i]), colour)
 	rnaseqgraph.string(0, (420, 5), str(int(highest_mapped_reads_count/1.1)), black) # y axis scale label
 
 	# Output the GD image to temp PNG file
@@ -183,7 +198,7 @@ def error(string):
 # Final output, if everything at this point succeded
 def dumpJSON(status, locus, variant, chromosome, start, end, record, tissue, base64img, reads_mapped_to_locus, pcc): # and svg_info that will be implemented later on
 	print "Content-type: application/json\n"
-	print json.dumps({"status": status, "locus": locus, "variant": variant, "chromosome": chromosome, "start": start, "end": end, "record": record, "tissue": tissue, "rnaseqbase64": base64img, "reads_mapped_to_locus": reads_mapped_to_locus, "pcc": pcc}) # and svg stuff
+	print json.dumps({"status": 200, "locus": locus, "variant": variant, "chromosome": chromosome, "start": start, "end": end, "record": record, "tissue": tissue, "rnaseqbase64": base64img, "reads_mapped_to_locus": reads_mapped_to_locus, "pcc": pcc}) # and svg stuff
 	sys.exit(0)
 
 ################################################################################
@@ -218,7 +233,7 @@ def main():
 	bam_file = "/mnt/RNASeqData/" + tissue + "/" + record + "/accepted_hits.bam"
 
 	# Now make a image using samtools
-	base64img = makeImage(bam_file, chromosome, start, end)
+	base64img = makeImage(bam_file, chromosome, start, end, record)
 
 	# Count the number of mapped reads to the locus
 	lines = subprocess.check_output(['samtools', 'view', bam_file, region])

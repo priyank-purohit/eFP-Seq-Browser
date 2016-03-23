@@ -12,6 +12,25 @@
     <script src="core/tablesorter.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="core/style.css">
+    <!--http://stackoverflow.com/questions/1802936/stop-all-active-ajax-requests-in-jquery-->
+    <script type="text/javascript">
+    $(function() {
+        $.xhrPool = [];
+        $.xhrPool.abortAll = function() {
+            $(this).each(function(i, jqXHR) {   //  cycle through list of recorded connection
+                jqXHR.abort();  //  aborts connection
+                $.xhrPool.splice(i, 1); //  removes from list by index
+            });
+        }
+        $.ajaxSetup({
+            beforeSend: function(jqXHR) { $.xhrPool.push(jqXHR); }, //  annd connection to list
+            complete: function(jqXHR) {
+                var i = $.xhrPool.indexOf(jqXHR);   //  get index for current connection completed
+                if (i > -1) $.xhrPool.splice(i, 1); //  removes from list by index
+            }
+        });
+    })
+</script>
 </head>
 
 <body>
@@ -26,7 +45,7 @@
                     <input type="text" class="form-control" name="Locus" id="locus" value="AT2G24270" style="width: 200px; height: 35px; margin-top: 7.5px;" />
                 </div>
                 <div class="col-xs-3" style="align: left; height: 50px; ">
-                    <input type="button" class="btn btn-success" onclick="variants_radio_options()" value="GO" style="height: 35px; margin-top: 7.5px;" />
+                    <input type="button" class="btn btn-success" onclick="update_gene_structure_and_rna_seq_images()" value="GO" style="height: 35px; margin-top: 7.5px;" />
                 </div>
             </div>
         </div>
@@ -78,10 +97,20 @@
     var locus_end = 10330048;
     var rnaseq_calls = [];
 
+    /* Re-read the value from the input box*/
     function update_locus() {
         locus = document.getElementById("locus").value;
     }
 
+    /* When user clicks GO button, this function is called to updated gene structure AND RNA-Seq images*/
+    function update_gene_structure_and_rna_seq_images() {
+        $.xhrPool.abortAll();
+        variants_radio_options();
+        //moved the populate_table() call inside the variants_radio_options()'s success: fun {} call.... TO DO: figure out a better way to do all this
+            // This was done to make sure that the new locus' start and end were determined before making the new AJAX requests.
+    }
+
+    /* Updates the radio button <DIV> with new variants*/
     function variants_radio_options() {
         update_locus();
         $.ajax({
@@ -91,6 +120,7 @@
                 // Update locus_start and locus_end
                 locus_start = gene_res['locus_start'];
                 locus_end = gene_res['locus_end'];
+                populate_table();
 
                 // Remove existing variant images.
                 var variants_div = document.getElementById("variants_div");
@@ -118,6 +148,7 @@
         });
     }
 
+    /* When radio button changes, update the gene structure throughout the document */
     function gene_structure_radio_on_change() {
         // Find out which variant is currently selected
         var variant_selected = $('input[type="radio"][name="radio_group"]:checked').val();
@@ -132,6 +163,7 @@
         }
     }
 
+    /* Makes AJAX request for each RNA-Seq image based on the rnaseq_calls array that was produced by the populate_table() function */
     function rnaseq_images() {
         update_locus();
         // GET RNA-Seq data for this row
@@ -150,9 +182,11 @@
         }
     }
 
+    /* On page load, gets the BAM locator XML file to create and populate the table. Also keeps track of all RNA-Seq calls it will have to make. */
     function populate_table() {
-        // Clear up the table
+        // Clear up the table + RNA-Seq Calls
         $("#thetable").empty();
+        rnaseq_calls = [];
 
         // Insert table headers
         $("#thetable").append('<thead><tr>' + '<th style="width: 250px;">Title</th>' + '<th style="width: 460px;">RNA-Seq Coverage<br/>(blue=exon, green=CDS, pink=5\'UTR, orange=3\'UTR)</th>' + '<th style="width:  75px;">eFP - RPKM</th>' + '<th style="width: 275px;">Description and Details</th>' + '</tr></thead>' + '<tbody></tbody>');
@@ -215,6 +249,7 @@
     // Leave this document ready here, even if there is nothing in it... just leave it pls.
     // A $( document ).ready() block.
     $(document).ready(function() {
+        // For the first time
         $('input[type=radio][name=radio_group]').change(function() {
             gene_structure_radio_on_change();
         });
