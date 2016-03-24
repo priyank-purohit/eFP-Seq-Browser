@@ -114,7 +114,7 @@ def hex_to_rgb(val):
 
 
 # Make Image
-def makeImage(filename, chromosome, start, end, record):
+def makeImage(filename, chromosome, start, end, record, yscale):
 	''' Once we have chromosome, start, end and filename, we can make the image.'''
 
 	EXON_IMG_WIDTH = 450
@@ -148,7 +148,12 @@ def makeImage(filename, chromosome, start, end, record):
 		if (mapped_reads_count > highest_mapped_reads_count):
 			highest_mapped_reads_count = mapped_reads_count
 
-	highest_mapped_reads_count = highest_mapped_reads_count * 1.1 # To leave a little room at top of graph for Y-axis scale label...
+	# IF the user specified a custom y-scale, use that
+	if (yscale == -1): # If the user did not specify a yscale, use the highest mapped read count
+		yscale = highest_mapped_reads_count
+		highest_mapped_reads_count = highest_mapped_reads_count * 1.1 # To leave a little room at top of graph for Y-axis scale label...
+	else:
+		highest_mapped_reads_count = yscale * 1.1
 
 	# Scale all y-axis values
 	for i in range(len(values)):
@@ -173,13 +178,12 @@ def makeImage(filename, chromosome, start, end, record):
 	# Actual RNA-Seq image
 	for i in range(len(xvalues)):
 		rnaseqgraph.rectangle((int(float(xvalues[i] - start)/(end-start) * RNA_IMG_WIDTH), RNA_IMG_HEIGHT), (int(float(xvalues[i] - start)/(end-start) * RNA_IMG_WIDTH), RNA_IMG_HEIGHT - values[i]), colour)
-	rnaseqgraph.string(0, (420, 5), str(int(highest_mapped_reads_count/1.1)), black) # y axis scale label
+	rnaseqgraph.string(0, (420, 5), str(int(yscale)), black) # y axis scale label
 
 	# Output the GD image to temp PNG file
 	f = open(tempfile, "w+")
 	rnaseqgraph.writePng(f)
 	f.close()
-
 
 	# Convert the PNG to base64
 	with open(tempfile, "rb") as fl:
@@ -214,6 +218,11 @@ def main():
 	record = form.getvalue('record')
 	variant = form.getvalue('variant')
 
+	if (form.getvalue('yscale')):
+		yscale = int(form.getvalue('yscale'))
+	else:
+		yscale = -1
+
 	chromosome = int(locus[2])
 	start = int(form.getvalue('start'))
 	end = int(form.getvalue('end'))
@@ -233,7 +242,7 @@ def main():
 	bam_file = "/mnt/RNASeqData/" + tissue + "/" + record + "/accepted_hits.bam"
 
 	# Now make a image using samtools
-	base64img = makeImage(bam_file, chromosome, start, end, record)
+	base64img = makeImage(bam_file, chromosome, start, end, record, yscale)
 
 	# Count the number of mapped reads to the locus
 	lines = subprocess.check_output(['samtools', 'view', bam_file, region])

@@ -34,7 +34,7 @@
         console.log("Locus requested: " + locus);
 
         $.ajax({
-            url: 'http://ec2-52-70-232-122.compute-1.amazonaws.com/~ppurohit/RNA-Browser/cgi-bin/webservice.cgi?tissue=pollen&record=SRS419143&locus='+locus+'&variant=1',
+            url: 'http://ec2-52-70-232-122.compute-1.amazonaws.com/~ppurohit/RNA-Browser/cgi-bin/webservice.cgi?tissue=aerial&record=ERR274310&locus=AT2G24270&variant=1&start=10326918&end=10330048',
             dataType: 'json',
             success: function(res) { // When the file is retrieved:
             	console.log("RNA-Seq request successful for locus = " + locus);

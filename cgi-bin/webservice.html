@@ -36,13 +36,20 @@
         locus = getParameterByName('locus');
         locus_start = getParameterByName('locus_start');
         locus_end = getParameterByName('locus_end');
+        yscale = getParameterByName('yscale');
+
+        if (yscale == "" || yscale == null)
+        {
+            yscale = -1;
+        }
         
         console.log("Locus requested: " + locus + " @ " + locus_start + ":" + locus_end);
         console.log("Tissue requested: " + tissue);
         console.log("Record requested: " + record);
+        console.log("Y-scale requested: " + yscale);
 
         $.ajax({
-            url: 'http://ec2-52-70-232-122.compute-1.amazonaws.com/~ppurohit/RNA-Browser/cgi-bin/webservice.cgi?tissue=' + tissue + '&record=' + record + '&locus=' + locus + '&variant=1&start=' + locus_start + '&end=' + locus_end,
+            url: 'http://ec2-52-70-232-122.compute-1.amazonaws.com/~ppurohit/RNA-Browser/cgi-bin/webservice.cgi?tissue=' + tissue + '&record=' + record + '&locus=' + locus + '&variant=1&start=' + locus_start + '&end=' + locus_end + '&yscale=' + yscale,
             dataType: 'json',
             success: function(response_rnaseq) {
                 // find the element and update picture
