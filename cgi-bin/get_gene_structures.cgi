@@ -81,8 +81,10 @@ for subfeature in map_info[u'features'][0][u'subfeatures']:
 
 	red = exongraph.colorAllocate((220,20,60))
 	orange = exongraph.colorAllocate((255,140,0))
-	green = exongraph.colorAllocate((0,255,0))
 	blue = exongraph.colorAllocate((0,0,255))
+	# TO DO: Fix the green and dark green shades...
+	green = exongraph.colorAllocate((166,220,166))
+	darkgreen = exongraph.colorAllocate((0,125,0))
 
 	count = 0 # Need a comma if the it is not the first element...
 	for region in variants[i]:
@@ -97,13 +99,13 @@ for subfeature in map_info[u'features'][0][u'subfeatures']:
 			count = count + 1 # To add a comma only...
 		# We want to graph all types of features in the gene structure image
 		if region[u'type'] == u'exon':
-			exongraph.filledRectangle((int(float(region[u'start'] - start) /(end-start) * EXON_IMG_WIDTH), EXON_IMG_HEIGHT/2), (int(float(region[u'end'] - start)/(end-start) * EXON_IMG_WIDTH), 0), blue)
+			exongraph.filledRectangle((int(float(region[u'start'] - start) /(end-start) * EXON_IMG_WIDTH), EXON_IMG_HEIGHT/2), (int(float(region[u'end'] - start)/(end-start) * EXON_IMG_WIDTH), 0), darkgreen)
 		elif region[u'type'] == u'CDS':
-			exongraph.filledRectangle((int(float(region[u'start'] - start) /(end-start) * EXON_IMG_WIDTH), EXON_IMG_HEIGHT/2), (int(float(region[u'end'] - start)/(end-start) * EXON_IMG_WIDTH), EXON_IMG_HEIGHT), green)
+			exongraph.filledRectangle((int(float(region[u'start'] - start) /(end-start) * EXON_IMG_WIDTH), EXON_IMG_HEIGHT/2), (int(float(region[u'end'] - start)/(end-start) * EXON_IMG_WIDTH), EXON_IMG_HEIGHT), darkgreen)
 		elif region[u'type'] == u'five_prime_UTR':
-			exongraph.filledRectangle((int(float(region[u'start'] - start) /(end-start) * EXON_IMG_WIDTH), EXON_IMG_HEIGHT/2), (int(float(region[u'end'] - start)/(end-start) * EXON_IMG_WIDTH), EXON_IMG_HEIGHT), orange)
+			exongraph.filledRectangle((int(float(region[u'start'] - start) /(end-start) * EXON_IMG_WIDTH), EXON_IMG_HEIGHT/2), (int(float(region[u'end'] - start)/(end-start) * EXON_IMG_WIDTH), EXON_IMG_HEIGHT), green)
 		elif region[u'type'] == u'three_prime_UTR':
-			exongraph.filledRectangle((int(float(region[u'start'] - start) /(end-start) * EXON_IMG_WIDTH), EXON_IMG_HEIGHT/2), (int(float(region[u'end'] - start)/(end-start) * EXON_IMG_WIDTH), EXON_IMG_HEIGHT), red)
+			exongraph.filledRectangle((int(float(region[u'start'] - start) /(end-start) * EXON_IMG_WIDTH), EXON_IMG_HEIGHT/2), (int(float(region[u'end'] - start)/(end-start) * EXON_IMG_WIDTH), EXON_IMG_HEIGHT), green)
 		
 	exongraph.filledRectangle((0, EXON_IMG_HEIGHT/2), (EXON_IMG_WIDTH, EXON_IMG_HEIGHT/2), black)
 	f = open("get_exon_base64_exongraph.png", "w")

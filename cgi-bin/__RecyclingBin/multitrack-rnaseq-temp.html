@@ -111,35 +111,34 @@
                     if (part != null) {
                         var paths = part.getElementsByTagName("path");
                         if (paths != null) {
-                            if (mode == "absolute")
-                            {
+                            if (mode == "absolute") {
 
-                            // For absolute FPKM colouring
-                            var r = 0, g = 0, b = 0;
-                            r = 255;
-                            g = parseInt(fpkm / 1000 * 255);
-                            b = 0;
-                            console.log('abs fpkm = ' + fpkm + ' -> rgb(' + r + ', ' + g + ', ' + b + ')');
-	                         for (i = 0; i < paths.length; i++) {
-	                             paths[i].style.fill = 'rgb(' + r + ', ' + g + ', ' + b + ')';
-	                         }
-                            }
-                            else if (mode == "relative")
-                            {
+                                // For absolute FPKM colouring
+                                var r = 0,
+                                    g = 0,
+                                    b = 0;
+                                r = 255;
+                                g = parseInt(fpkm / 1000 * 255);
+                                b = 0;
+                                console.log('abs fpkm = ' + fpkm + ' -> rgb(' + r + ', ' + g + ', ' + b + ')');
+                                for (i = 0; i < paths.length; i++) {
+                                    paths[i].style.fill = 'rgb(' + r + ', ' + g + ', ' + b + ')';
+                                }
+                            } else if (mode == "relative") {
 
-                            // For relative FPKM colouring
-                            var hex = "";
-                            if (fpkm > 0) {
-                                hex = generate_colour("FF0000", "FFFF00", Math.abs(fpkm/max_log_fpkm));
-                            } else if (fpkm == 0) {
-                                hex = "FFFF00";
-                            } else if (fpkm < 0) {
-                                hex = generate_colour("FFFF00", "0000FF", Math.abs(fpkm/max_log_fpkm));
-                            }
-                            console.log('fpkm = ' + fpkm + ' -> hex = ' + hex);
-                            for (i = 0; i < paths.length; i++) {
-                                paths[i].style.fill = hex;
-                            }
+                                // For relative FPKM colouring
+                                var hex = "";
+                                if (fpkm > 0) {
+                                    hex = generate_colour("FF0000", "FFFF00", Math.abs(fpkm / max_log_fpkm));
+                                } else if (fpkm == 0) {
+                                    hex = "FFFF00";
+                                } else if (fpkm < 0) {
+                                    hex = generate_colour("FFFF00", "0000FF", Math.abs(fpkm / max_log_fpkm));
+                                }
+                                console.log('fpkm = ' + fpkm + ' -> hex = ' + hex);
+                                for (i = 0; i < paths.length; i++) {
+                                    paths[i].style.fill = hex;
+                                }
                             }
                         } else {
                             console.log("Paths is null");
