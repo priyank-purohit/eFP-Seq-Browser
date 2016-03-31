@@ -16,7 +16,7 @@ from random import randint
 
 '''
 **********************************************************************************
-Currently used by multitrack-rnaseq.html to get the gene structure. -- PRYNK Feb 28, 2016
+Currently used by index.html to get the gene structure. -- PRYNK Feb 28, 2016
 **********************************************************************************
 '''
 
