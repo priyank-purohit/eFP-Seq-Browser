@@ -235,7 +235,7 @@
                                 g = 255 - parseInt(fpkm / max_abs_scale * 255);
                                 b = 0;
                                 console.log('abs fpkm = ' + fpkm + ' -> rgb(' + r + ', ' + g + ', ' + b + ')');
-                                document.getElementById(id.replace('_svg', '_rpkm')).innerHTML = fpkm;
+                                document.getElementById(id.replace('_svg', '_rpkm')).innerHTML = "";
                                 for (i = 0; i < paths.length; i++) {
                                     paths[i].style.fill = 'rgb(' + r + ', ' + g + ', ' + b + ')';
                                 }
@@ -251,7 +251,7 @@
                                     hex = generate_colour("FFFF00", "0000FF", Math.abs(fpkm / max_log_fpkm));
                                 }
                                 console.log('fpkm = ' + fpkm + ' -> hex = ' + hex);
-                                document.getElementById(id.replace('_svg', '_rpkm')).innerHTML = Math.abs(fpkm / max_log_fpkm);
+                                document.getElementById(id.replace('_svg', '_rpkm')).innerHTML = "";
                                 for (i = 0; i < paths.length; i++) {
                                     paths[i].style.fill = hex;
                                 }
