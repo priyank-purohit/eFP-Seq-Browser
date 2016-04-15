@@ -31,7 +31,7 @@ print """
 <body>
 	<table style=\"border: 1px solid grey;\">
 """
-experiments_arr = [exp.text for exp in e.getroot()[0].find("groupwith").findall("experiment")]
+experiments_arr = [exp.text for exp in e.getroot()[0].find("groupwith").findall("bam_exp")]
 file_attr_keys = e.getroot()[0].attrib.keys()
 file_attr_keys.sort()
 
@@ -41,10 +41,10 @@ for key in file_attr_keys:
 	print "<th style=\"border: 1px solid grey; font-size: 14pt;\">" + key + "</th>"
 
 for child in e.getroot():
-	if experiments_arr != [exp.text for exp in child.find("groupwith").findall("experiment")]:
+	if experiments_arr != [exp.text for exp in child.find("groupwith").findall("bam_exp")]:
 		colour = not colour
-		experiments_arr = [exp.text for exp in child.find("groupwith").findall("experiment")]
-	if child.attrib.get('experimentno') in [exp.text for exp in child.find("control").findall("experiment")]:
+		experiments_arr = [exp.text for exp in child.find("groupwith").findall("bam_exp")]
+	if child.attrib.get('record_number') in [exp.text for exp in child.find("controls").findall("bam_exp")]:
 		#bold this line
 		bold = True
 	else:
@@ -59,7 +59,7 @@ for child in e.getroot():
 		print "<tr style=\"background-color: #FFFFFF; border: 1px solid grey;\">"
 
 	for key in file_attr_keys:
-		if key == "foreground":
+		if key == "hex_colour":
 			try:
 				print "<td style=\"background-color:#" + child.attrib.get(key)[2:] + "; border: 1px solid grey;\">"
 			except:
@@ -71,9 +71,9 @@ for child in e.getroot():
 			if bold:
 				print "<b>"
 			cases = {
-				"url": "<a href='" + child.attrib.get(key) + "'>URL Link</a><br />",
-				"publicationid": "<a href='" + child.attrib.get(key) + "'> Publication Link</a><br />",
-				"name": "<a href='" + child.attrib.get(key) + "'>BAM File Link</a><br />", 
+				"publication_url": "<a href='" + child.attrib.get(key) + "'>URL Link</a><br />",
+				"publication_link": "<a href='" + child.attrib.get(key) + "'> Publication Link</a><br />",
+				"bam_link": "<a href='" + child.attrib.get(key) + "'>BAM File Link</a><br />", 
 			}
 			if key == "svgname":
 				print open("SVGs/" + child.attrib.get(key)[4:], "r").read()

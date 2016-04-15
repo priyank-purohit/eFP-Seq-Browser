@@ -455,17 +455,17 @@
             url: 'data/bamdata_amazon_links.xml',
             dataType: 'xml',
             success: function(xml_res) {
-                var $title = $(xml_res).find("file");
+                var $title = $(xml_res).find("bam_file");
                 $title.each(function() { // Iterate over each subtag inside the <file> tag.
                     // Extract information
                     var title = $(this).attr('title');
-                    var description = $(this).attr('description');
+                    var description = $(this).attr('desc');
                     var svg = $(this).attr('svgname');
-                    var experimentno = $(this).attr('experimentno');
-                    var url = $(this).attr('url');
-                    var publicationid = $(this).attr('publicationid');
-                    var numberofreads = $(this).attr('numberofreads');
-                    var controls = $(this).find("control")[0].innerHTML.replace(/<experiment>/g, "").replace(/<\/experiment>/g, ",").replace(/\n/g, " ").replace(/ /g, "").split(",");
+                    var experimentno = $(this).attr('record_number');
+                    var url = $(this).attr('publication_url');
+                    var publicationid = $(this).attr('publication_link');
+                    var numberofreads = $(this).attr('total_reads_mapped');
+                    var controls = $(this).find("controls")[0].innerHTML.replace(/<bam_exp>/g, "").replace(/<\/bam_exp>/g, ",").replace(/\n/g, " ").replace(/ /g, "").split(",");
                     var links = "";
                     for (var i = controls.length; i--;) {
                         if (controls[i] != "MEDIAN") {
@@ -474,9 +474,9 @@
                             links += controls[i];
                         }
                     }
-                    var name = $(this).attr('name').split("/");
-                    var tissue = $(this).attr('name').split("/")[8];
-                    var subunitname = $(this).attr('subunitname'); // supposed to be the one that gets coloured
+                    var name = $(this).attr('bam_link').split("/");
+                    var tissue = $(this).attr('bam_link').split("/")[8];
+                    var subunitname = $(this).attr('svg_subunit'); // supposed to be the one that gets coloured
 
                     // Keep track of what experiments we want to query:
                     // Need: tissue, experimentno in rnaseq_calls ... (also need start, end, and locus)
