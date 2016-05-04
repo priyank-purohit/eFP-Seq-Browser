@@ -14,6 +14,8 @@ import pysam
 import base64
 from random import randint
 
+cgitb.enable()
+
 '''
 **********************************************************************************
 Currently used by index.html to get the gene structure. -- PRYNK Feb 28, 2016
@@ -51,6 +53,7 @@ printout = printout + "\"splice_variants\" : ["
 # Get start/end of the LOCUS
 start = int(map_info[u'features'][0][u'start'])
 end = int(map_info[u'features'][0][u'end'])
+strand = int(map_info[u'features'][0][u'strand'])
 
 i = 0
 for subfeature in map_info[u'features'][0][u'subfeatures']:
@@ -106,8 +109,16 @@ for subfeature in map_info[u'features'][0][u'subfeatures']:
 			exongraph.filledRectangle((int(float(region[u'start'] - start) /(end-start) * EXON_IMG_WIDTH), EXON_IMG_HEIGHT), (int(float(region[u'end'] - start)/(end-start) * EXON_IMG_WIDTH), 0), green)
 		elif region[u'type'] == u'three_prime_UTR':
 			exongraph.filledRectangle((int(float(region[u'start'] - start) /(end-start) * EXON_IMG_WIDTH), EXON_IMG_HEIGHT), (int(float(region[u'end'] - start)/(end-start) * EXON_IMG_WIDTH), 0), green)
-		
+
+	# Line in the middle
 	exongraph.filledRectangle((0, EXON_IMG_HEIGHT/2), (EXON_IMG_WIDTH, EXON_IMG_HEIGHT/2), black)
+
+	# Insert appropriate arrows to indicate direction of the gene
+	if (strand == -1):
+		exongraph.filledPolygon(((0, EXON_IMG_HEIGHT/2), (3, (EXON_IMG_HEIGHT)-(EXON_IMG_HEIGHT-1)), (3, EXON_IMG_HEIGHT-1)), black)
+	elif (strand == +1):
+		exongraph.filledPolygon(((EXON_IMG_WIDTH, EXON_IMG_HEIGHT/2), (EXON_IMG_WIDTH-3, (EXON_IMG_HEIGHT)-(EXON_IMG_HEIGHT-1)), (EXON_IMG_WIDTH-3, EXON_IMG_HEIGHT-1)), black)
+
 	f = open("get_exon_base64_exongraph.png", "w")
 	exongraph.writePng(f)
 	f.close()
@@ -119,6 +130,7 @@ for subfeature in map_info[u'features'][0][u'subfeatures']:
 	printout = printout + "\""
 	fl.close()
 
+	#For returning the gene structure data...
 	#printout = printout + ", \"BAMdata\" : \"" + str(subfeature[u'subfeatures']) + "\""
 
 	i = i + 1

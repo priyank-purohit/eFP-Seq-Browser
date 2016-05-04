@@ -11,4 +11,7 @@ tbody,
 td,
 th {
     border: 1px solid #D3D3D3;
+},
+.sortable:hover {
+    cursor: hand;
 }
