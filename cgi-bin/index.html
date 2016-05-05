@@ -43,7 +43,7 @@
         <!-- Title + Help + Cite -->
         <div class="row">
             <div class="col-xs-10 col-sm-10 col-md-10">
-                <p style="font-size: 25px; margin: 5px; text-align: center;"><i>A. thaliana</i> Multi-track RNA-Seq Browser</p>
+                <p style="font-size: 25px; margin: 5px; text-align: center;"><i>A. Thaliana</i> Multi-track RNA-Seq Browser</p>
                 <p style="font-size: 15px; margin: 5px; text-align: center;">Priyank Purohit, Dr. Nicholas Provart. University of Toronto.</p>
             </div>
             <div class="col-xs-2 col-sm-2 col-md-2" style="padding: 15px;">
@@ -152,19 +152,22 @@
     var locus = document.getElementById("locus").value; // Which locus does the user want?
     var yscale_input = document.getElementById("yscale_input").value; // What Y-Scale does the user want?
     var max_abs_scale = document.getElementById("rpkm_scale_input").value; // What is the max value for the svg colouring in absolute mode?
+
     // Locus information
     var locus_start = 10326918; // Gets updated when user changes gene
     var locus_end = 10330048; // Gets updated when user changes gene
+    var splice_variants = '';
+
     // Locus-RNASeq specific information
     var rnaseq_calls = []; // Make a list of records and tissues we need to query....
-    var colours = []; // Keep track of the FPKM related information // TODO : rename all colours to fpkm_info
+    var exp_info = []; // Keep track of the FPKM related information // TODO : rename all exp_info to fpkm_info
     var rnaseq_success = 0; // Make a list of records and tissues we need to query....
     var max_absolute_fpkm = -1;
     var max_log_fpkm = -1;
 
     // Base 64 images
     var img_loading_base64 = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAcIAAAAyCAYAAADP/dvoAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAOwgAADsIBFShKgAAAABh0RVh0U29mdHdhcmUAcGFpbnQubmV0IDQuMC45bDN+TgAAA7NJREFUeF7t26FTFk8cB2ADgT+AQDAYCQQDgWAgGAwEI4FgIBIMBoMzBAKBQCQYCASDgUAgEAhEAoFAIBgMBIPBYCDcj8/+3sV3Xk/kdTTAPs/Md969vb27dPOZ3dv3UQcADROEADRNEALQtJ+D8NF1l1JKKfVQa0RPz8gFSiml1EOqET09/QMB4F4ThAA0TRAC0DRBCEDTBCEATROEADRNEALQNEEIQNMEIQBNE4QANE0QAtA0QQhA0wQhAE0ThAA0TRDC+La3t7vLy8vB0d81OTk5aHXd69ev/9lzgAFBCON78uRJd3R0NDj6ux4N3rOrq6vu1atX3efPn8sx8I8IQhjfr4Iw4XV6etodHx93X79+HfT+78uXL+Was7OzQc8P5+fn3cnJSbm+BmHUvsiYuLi4KM8YlfO5fyrXAXckCGF8fUGY4Hv27Fn39OnT7uXLl93U1NTNmN3d3dKfGd7s7Gz5rdbW1rrHjx93z58/LzUchGl/+vSptPPMN2/edAsLC6U9fI+lpaXuxYsX5fqJiYlueXl5cAb4rV/kW09P/0BoUV8Qrq+vlwCs8h1xfn6+tL99+3Yzs0tg1rBLyOWbYF3+/Pjx4825GA3Czc3N0s74nMv3w1RCt94/Qbu/v1/awB3knRt676qenv6B0KK+IEwIZuZXJcCGQ+3w8LDM/lZWVm76c4/ca9htQVjbUc9lyTVhmqXR79+/dzMzM5ZGYRx554beu6qnp38gtKgvCBcXF7v3798Pjn7M9mJjY6MsmyYMhwPybwRhZpgJv7m5uTIbzMwUGEPeuaH3rurp6R8ILeoLwgRQwq4uUWYZsy6V5jdhGJm51bDLsma+6dUNNFtbWzfn4i5BmI05CcCDg4PSHv67Rd2EE5ktfvjwobQjoWxHKlzLOzf03lU9Pf0DoUWZgSWIaiX0MjPLhpVsfMn5bI6pwbW3t1e+42WjS8akXSX8pqeny4xudXW1XF/dFoQJ0BznubkmG2SyaSbtt2/fljHZXJPnRQIx98tSaiQ86zdHaNr1e1FqhCCEP5SNMQmnUQmgGkKjMlvLdX8iM80EaJXAG11uBW4hCOF+yxJtZpiZ/WUzTmaW7969G5wFfksQwv2XP9nv7OyUqn+8B+5IEALQNEEIQNMEIQBNE4QANE0QAtA0QQhA0wQhAE0ThAA0TRAC0DRBCEDTBCEATROEADRNEALQNEEIQNMEIQBNGzsIlVJKqYdYI3p6Ri5QSimlHlKN+LkHABoiCAFoWNf9Bx2Q2ZDpi98WAAAAAElFTkSuQmCC";
-    var img_gene_struct_1 = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAcIAAAAIBAMAAACYMuIQAAAAFVBMVEX///8AAADcFDz/jACm3KYA fQAAAP/fZdUQAAAASklEQVQ4jWMIJQYEMIAAnIvKwwLAClhxCwSgcAOwyaJoh5kAB2iSeN1ClKpR H2KYOupDevpQcLgDBhd8YAjEYQheDwDBqA+Hvg8BrN6QjkBnEfYAAAAASUVORK5CYII=";
+    var img_gene_struct_1 = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAcIAAAAIBAMAAACYMuIQAAAAFVBMVEX///8AAADcFDz/jAAAAP+m 3KYAfQDytQt7AAAAS0lEQVQ4jWMIxQfSoCCBAQRgvDRUHhYAVsCGWyABhZuATRZFO8wEOEBIpuL1 ABAwhAYOex8KDncfBg57HwoOdzAC4nD458NhX5YCAOtozsHok4ONAAAAAElFTkSuQmCC ";
 
     /* Produces an intermediate HEX colour. */
     function generate_colour(start_color, end_color, percent) {
@@ -205,6 +208,7 @@
 
     /* Find and colour SVG in the DOM. */
     function colour_part_by_id(id, part, fpkm, mode) {
+        // Get the user set RPKM scale
         max_abs_scale = document.getElementById("rpkm_scale_input").value;
         if ((!max_abs_scale) || max_abs_scale <= 0)
             max_abs_scale = 1000;
@@ -222,7 +226,7 @@
                                 var r = 255;
                                 var g = 255 - parseInt(fpkm / max_abs_scale * 255);
                                 var b = 0;
-                                console.log('abs fpkm = ' + fpkm + ' -> rgb(' + r + ', ' + g + ', ' + b + ')');
+                                //console.log('abs fpkm = ' + fpkm + ' -> rgb(' + r + ', ' + g + ', ' + b + ')');
                                 for (i = 0; i < paths.length; i++) {
                                     paths[i].style.fill = 'rgb(' + r + ', ' + g + ', ' + b + ')';
                                 }
@@ -243,7 +247,7 @@
                                 } else if (fpkm < 0) { // yellow-blue
                                     hex = generate_colour("FFFF00", "0000FF", log_scaling);
                                 }
-                                console.log('fpkm = ' + fpkm + ' -> hex = ' + hex);
+                                //console.log('fpkm = ' + fpkm + ' -> hex = ' + hex);
                                 for (i = 0; i < paths.length; i++) {
                                     paths[i].style.fill = hex;
                                 }
@@ -268,46 +272,45 @@
 
     /* Finds and updates each SVG in the DOM. */
     function colour_svgs_now(mode = $('input[type="radio"][name="svg_colour_radio_group"]:checked').val()) {
-        console.log("colour_svgs_now function is called with mode = " + mode);
+        //console.log("colour_svgs_now function is called with mode = " + mode);
         for (var i = 0; i < 113; i++) {
             // For every exp, figure out the fpkm average of the controls
             var ctrl_fpkm_sum = 0;
             var ctrl_count = 0;
-            var ctrl_avg_fpkm = -1;
+            var ctrl_avg_fpkm = 0;
             for (var ii = 0; ii < 113; ii++) {
-                if (colours[i][2].indexOf(colours[ii][0].slice(0, -4)) != -1) {
+                if (exp_info[i][2].indexOf(exp_info[ii][0].slice(0, -4)) != -1) {
                     // experiment ii is a control for experiment i, save FPKM of exp ii
                     ctrl_count++;
-                    ctrl_fpkm_sum += colours[ii][3];
+                    ctrl_fpkm_sum += exp_info[ii][3];
                 }
             }
             if (ctrl_count > 0)
                 ctrl_avg_fpkm = ctrl_fpkm_sum / ctrl_count;
 
             // Save the average fpkm of controls and the log fpkm...
-            colours[i].splice(4, 0, ctrl_avg_fpkm);
-            colours[i].splice(5, 0, Math.log2(colours[i][3] / ctrl_avg_fpkm));
+            exp_info[i].splice(4, 1, Math.log2(exp_info[i][3] / ctrl_avg_fpkm));
+            exp_info[i].splice(6, 1, ctrl_avg_fpkm);
 
             // See if the absolute or the relative FPKM is max
-            if (colours[i][3] >= max_absolute_fpkm)
-                max_absolute_fpkm = colours[i][3];
-            if (Math.abs(colours[i][5]) >= max_log_fpkm && Math.abs(colours[i][5]) < 1000)
-                max_log_fpkm = Math.abs(colours[i][5]);
+            if (exp_info[i][3] >= max_absolute_fpkm)
+                max_absolute_fpkm = exp_info[i][3];
+            if (Math.abs(exp_info[i][4]) >= max_log_fpkm && Math.abs(exp_info[i][4]) < 1000)
+                max_log_fpkm = Math.abs(exp_info[i][4]);
 
             // Colour SVGs based on the mode requested. Pass in the correct FPKM value...
             if (mode == "rel") {
-                if (!colours[i][5])
-                    colours[i][5] = -1;
-                colour_part_by_id(colours[i][0], colours[i][1], colours[i][5], mode); // index 5 = relative fpkm
+                if (!exp_info[i][4])
+                    exp_info[i][4] = -1;
+                colour_part_by_id(exp_info[i][0], exp_info[i][1], exp_info[i][4], mode); // index 5 = relative fpkm
             } else {
-                colour_part_by_id(colours[i][0], colours[i][1], colours[i][3], mode); // index 3 = absolute fpkm
+                colour_part_by_id(exp_info[i][0], exp_info[i][1], exp_info[i][3], mode); // index 3 = absolute fpkm
             }
         }
-        console.log('Max ABS FPKM = ' + max_absolute_fpkm);
-        console.log('Max Log FPKM = ' + max_log_fpkm);
-        console.log("Colouring function finished. Errors should be above this log entry.");
+        //console.log('Max ABS FPKM = ' + max_absolute_fpkm);
+        //console.log('Max Log FPKM = ' + max_log_fpkm);
+        //console.log("Colouring function finished. Errors should be above this log entry.");
 
-        //$("#thetable").trigger("appendCache");
         $('#thetable').tablesorter();
         $("#thetable").trigger("update");
     }
@@ -336,6 +339,7 @@
                 // Update locus_start and locus_end
                 locus_start = gene_res['locus_start'];
                 locus_end = gene_res['locus_end'];
+                splice_variants = JSON.stringify(gene_res['splice_variants']);
                 populate_table(status);
 
                 // Remove existing variant images.
@@ -353,6 +357,7 @@
                     // Append the element to the div
                     $("#variants_div").append(append_str);
                 }
+                img_gene_struct_1 = "data:image/png;base64," + gene_res['splice_variants'][0]['gene_structure'];
                 var all_gene_structure_imgs = document.getElementsByClassName('gene_structure_img');
                 for (var i = 0; i < all_gene_structure_imgs.length; i++) {
                     all_gene_structure_imgs[i].src = "data:image/png;base64," + gene_res['splice_variants'][0]['gene_structure'];
@@ -364,7 +369,7 @@
         });
     }
 
-    /* When radio button changes, update the gene structure throughout the document */
+    /* When radio button changes, update the gene structure throughout the document and update the PCC values */
     function gene_structure_radio_on_change() {
         // Find out which variant is currently selected
         var variant_selected = $('input[type="radio"][name="radio_group"]:checked').val();
@@ -376,6 +381,19 @@
         for (var i = 0; i < all_gene_structure_imgs.length; i++) {
             all_gene_structure_imgs[i].src = base64;
         }
+        // update all pcc pcc_value
+        // Go through the exp_info array and make changes
+        for (var i = 0; i < exp_info.length; i++) {
+            //console.log("exp_info[i] = " + exp_info[i]);
+            document.getElementById(rnaseq_calls[i][1] + '_pcc').innerHTML = exp_info[i][5][variant_selected];
+        }
+    }
+
+    function parseIntArray(arr) {
+        for (var i = 0, len = arr.length; i < len; i++) {
+            arr[i] = parseInt(arr[i], 10);
+        }
+        return arr;
     }
 
     /* Makes AJAX request for each RNA-Seq image based on the rnaseq_calls array that was produced by the populate_table() function */
@@ -385,24 +403,61 @@
         if (rnaseq_calls.length == 113) {
             for (var i = 0; i < 113; i++) {
                 $.ajax({
-                    url: 'http://ec2-52-70-232-122.compute-1.amazonaws.com/~ppurohit/RNA-Browser/cgi-bin/webservice.cgi?tissue=' + rnaseq_calls[i][0] + '&record=' + rnaseq_calls[i][1] + '&locus=' + locus + '&variant=1&start=' + locus_start + '&end=' + locus_end + '&status=' + status,
+                    url: 'http://ec2-52-70-232-122.compute-1.amazonaws.com/~ppurohit/RNA-Browser/cgi-bin/webservice.cgi?tissue=' + rnaseq_calls[i][0] + '&record=' + rnaseq_calls[i][1] + '&locus=' + locus + '&variant=1&start=' + locus_start + '&end=' + locus_end + '&status=' + status + '&struct=' + splice_variants,
                     dataType: 'json',
                     success: function(response_rnaseq) {
+                        if (locus != response_rnaseq['locus']) {
+                            console.log("ERROR: " + locus + "'s RNA-Seq API request returned with data for some other locus.");
+                        }
                         // Update the progress bar
-                        rnaseq_success++;
-                        var percent = rnaseq_success / 113 * 100;
-                        $('div#progress').width(percent + '%');
+                        if (response_rnaseq['status'] == 200) {
+                            rnaseq_success++;
+                            $('div#progress').width(rnaseq_success / 113 * 100 + '%');
+                        } else {
+                            console.log("ERROR CODE = " + response_rnaseq['status'] + " returned for " + locus + " RNA-Seq data.");
+                        }
+                        var r = [];
+                        if (status == 1) {
+                            // Finalize statistical calculations
+                            var ss_y = parseInt(response_rnaseq['ss_y']);
+                            var sum_y = parseInt(response_rnaseq['sum_y']);
+                            var ssy = parseInt(response_rnaseq['ss_y']);
+                            var sum_xy = parseIntArray(response_rnaseq['sum_xy'].replace(/\[/g, "").replace(/\]/g, "").replace(/"/g, "").split(','));
+                            var sum_x = parseIntArray(response_rnaseq['sum_x'].replace(/\[/g, "").replace(/\]/g, "").replace(/"/g, "").split(','));
+                            var sum_xx = parseIntArray(response_rnaseq['sum_xx'].replace(/\[/g, "").replace(/\]/g, "").replace(/"/g, "").split(','));
+                            var ss_x = parseIntArray(response_rnaseq['ss_x'].replace(/\[/g, "").replace(/\]/g, "").replace(/"/g, "").split(','));
+                            var ssx = parseIntArray(response_rnaseq['ss_x'].replace(/\[/g, "").replace(/\]/g, "").replace(/"/g, "").split(','));
+                            var n = parseInt(response_rnaseq['end']) - parseInt(response_rnaseq['start']);
+                            var sp = [];
+                            // Compute the r values for each variant
+                            for (var i = 0; i < sum_xy.length; i++) {
+                                sp.splice(i, 0, sum_xy[i] - ((sum_x[i] * sum_y) / n));
+                                r.splice(i, 0, sp[i] / (Math.sqrt(ssx[i] * ssy)));
+                            }
+                        } else {
+                            //r.push(parseIntArray(String(response_rnaseq['r']).replace(/\[/g, "").replace(/\]/g, "").replace(/"/g, "").split(',')));
+                            r = response_rnaseq['r'];
+                            console.log(r);
+                        }
+                        //console.log("ss_y = ", ss_y, ", sum_y = ", sum_y, ", sum_xy = ", sum_xy, ", sum_x = ", sum_x, ", sum_xx = ", sum_xx, ", ss_x = ", ss_x, ", ssx = ", ssx, ", ssy = ", ssy, ", n = ", n, ", sp = ", sp, ", ssx = ", ssx, ", ssy = ", ssy, ", r = ", r);
 
-                        // find the element and update picture
+                        // For cache purposes
+                        //console.log("if (record == \"" + response_rnaseq['record'] + "\"):");
+                        //console.log("\tdumpJSON(" + response_rnaseq['status'] + ", \"" + response_rnaseq['locus'] + "\", " + response_rnaseq['variant'] + ", " + response_rnaseq['chromosome'] + ", " + response_rnaseq['start'] + ", " + response_rnaseq['end'] + ", \"" + response_rnaseq['record'] + "\", \"" + response_rnaseq['tissue'] + "\", \"" + response_rnaseq['rnaseqbase64'] + "\", " + response_rnaseq['reads_mapped_to_locus'] + ", " + response_rnaseq['absolute-fpkm'] + ", " + response_rnaseq['ss_y'] + ", " + response_rnaseq['sum_y'] + ", \"" + response_rnaseq['sum_xy'] + "\", \"" + response_rnaseq['sum_x'] + "\", \"" + response_rnaseq['sum_xx'] + "\", \"" + response_rnaseq['ss_x'] + "\")");
+
+                        //console.log("\tdumpJSON(" + response_rnaseq['status'] + ", \"" + response_rnaseq['locus'] + "\", " + response_rnaseq['variant'] + ", " + response_rnaseq['chromosome'] + ", " + response_rnaseq['start'] + ", " + response_rnaseq['end'] + ", \"" + response_rnaseq['record'] + "\", \"" + response_rnaseq['tissue'] + "\", \"" + response_rnaseq['rnaseqbase64'] + "\", " + response_rnaseq['reads_mapped_to_locus'] + ", " + response_rnaseq['absolute-fpkm'] + ", \"" + response_rnaseq['r'] + "\")");
+
+                        // find the correct row and update coverage image, and stats info
                         document.getElementById(response_rnaseq['record'] + '_rnaseq_img').src = 'data:image/png;base64,' + response_rnaseq['rnaseqbase64'];
-                        document.getElementById(response_rnaseq['record'] + '_pcc').innerHTML = response_rnaseq['reads_mapped_to_locus'];
+                        document.getElementById(response_rnaseq['record'] + '_pcc').innerHTML = r[0];
                         document.getElementById(response_rnaseq['record'] + '_rpkm').innerHTML = response_rnaseq['absolute-fpkm'];
 
-                        // find and push abs-fpkm...
+                        // Save the abs-fpkm, and the stats numbers
                         for (var ii = 0; ii < 113; ii++) {
-                            if (colours[ii][0] == response_rnaseq['record'] + '_svg') {
-                                colours[ii].splice(3, 0, response_rnaseq['absolute-fpkm']);
-                                console.log("Found record = " + response_rnaseq['record'] + " and pushed its abs RPKM value of " + response_rnaseq['absolute-fpkm']);
+                            if (exp_info[ii][0] == response_rnaseq['record'] + '_svg') { // Find the correct element
+                                exp_info[ii].splice(3, 1, response_rnaseq['absolute-fpkm']);
+                                exp_info[ii].splice(5, 1, r);
+                                //console.log("Found " + response_rnaseq['record'] + " == " + exp_info[ii][0] + ".");
                             }
                         }
 
@@ -419,21 +474,21 @@
         // Clear up the table + RNA-Seq Calls
         $("#thetable").empty();
         rnaseq_calls = [];
-        colours = [];
+        exp_info = [];
         rnaseq_success = 0;
         max_absolute_fpkm = -1;
         max_log_fpkm = -1;
 
 
         // Insert table headers
-        $("#thetable").append('<thead><tr>' + 
-            '<th class="sortable" style="width: 250px;">Title</th>' + 
-            '<th class="sortable" style="width: 460px;">RNA-Seq Coverage</th>' + 
-            '<th class="sortable" style="width: 50px;">PCC/Reads</th>' + 
+        $("#thetable").append('<thead><tr>' +
+            '<th class="sortable" style="width: 250px;">Title</th>' +
+            '<th class="sortable" style="width: 460px;">RNA-Seq Coverage</th>' +
+            '<th class="sortable" style="width: 50px;">PCC/Reads</th>' +
             '<th class="sortable" style="width: 100px;">eFP - RPKM</th>' +
-            '<th class="sortable" style="width: 50px;">RPKM</th>' + 
-            '<th class="sortable" style="width: 275px;">Details</th>' + 
-            '</tr></thead>' + 
+            '<th class="sortable" style="width: 50px;">RPKM</th>' +
+            '<th class="sortable" style="width: 275px;">Details</th>' +
+            '</tr></thead>' +
             '<tbody></tbody>');
 
         $.ajax({
@@ -474,7 +529,7 @@
                     // Append RNA-Seq and Gene Structure images (2 imgs) in one <td>
                     append_str += '<td style="width: 460px;">' + '<img id="' + experimentno + '_rnaseq_img" width="450px" height="50px" class="rnaseq_img" src="' + img_loading_base64 + '" /><br/>' + '<img id="' + experimentno + '_gene_structure_img" width="450px" height="8px" class="gene_structure_img" src="' + img_gene_struct_1 + '" />' + '</td>\n';
                     // Append the PCC <td>
-                    append_str += '<td id="' + experimentno + '_pcc' + '" style="font-size: 10px; width: 50px; ">' + numberofreads + '</td>';
+                    append_str += '<td id="' + experimentno + '_pcc' + '" class="pcc_value" style="font-size: 10px; width: 50px; ">' + numberofreads + '</td>';
                     // Append the approparite SVG with place holder sorting number in front of it .. all in one <td>
                     append_str += '<td style="width:  75px;">' + '<object id="' + experimentno + '_svg' + '" data="SVGs/' + svg.substring(4) + '" width="75" height="75" type="image/svg+xml"></object>' + '</td>\n';
                     // Append abs/rel RPKM
@@ -486,14 +541,12 @@
                     // Append the <tr> to the table
                     $("#thetable").append(append_str);
 
-                    colours.push([experimentno + '_svg', 'Shapes', controls]);
+                    exp_info.push([experimentno + '_svg', 'Shapes', controls, 0, 0, 0, 0]);
 
                     if (rnaseq_calls.length == 113) {
-                        gene_structure_radio_on_change();
                         rnaseq_images(status);
                     }
                 });
-                //$("#thetable").trigger("appendCache");
                 $('#thetable').tablesorter();
                 $("#thetable").trigger("update");
             }
@@ -559,8 +612,8 @@
         $('#rpkm_scale_input').keyup(function() {
             rpkm_validation();
         });
+        populate_table(1); // status 1 forces rna-seq api to return cached data for fast initial load
     });
-    populate_table(1); // status 1 forces the rna-seq api to return the cached images for fast initial load
     </script>
 </body>
 
