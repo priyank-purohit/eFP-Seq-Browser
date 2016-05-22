@@ -11,7 +11,7 @@ print "Content-Type: text/html\n\n"
 
 import base64
 import cgi
-import cgitb
+#import cgitb
 import re
 import json
 import sys
@@ -22,7 +22,7 @@ import urllib2
 import os
 import subprocess
 
-cgitb.enable()
+#cgitb.enable()
 
 exp_arr = []
 exp_arr0 = []
@@ -81,7 +81,7 @@ def validateStop(stop):
 ################################################################################
 # Data processing functions
 
-# Get cooridinates from BAR webservice
+# Get cooridinates from BAR webservice (not using right now)
 def getCoordinatesAndValidateVariants(locus, q_variant):
 	''' Get coordinates from webservice '''
 	data = json.loads(urllib2.urlopen("http://bar.utoronto.ca/~ppurohit/RNA-Browser/cgi-bin/get_gene_structures.cgi?locus=" + locus).read().replace('\n', ' '))
@@ -119,9 +119,8 @@ def hex_to_rgb(val):
 
 
 # Make Image
+''' Once we have chromosome, start, end and filename, we can make the image.'''
 def makeImage(filename, chromosome, start, end, record, yscale):
-	''' Once we have chromosome, start, end and filename, we can make the image.'''
-
 	EXON_IMG_WIDTH = 450
 	EXON_IMG_HEIGHT = 7
 
@@ -175,13 +174,14 @@ def makeImage(filename, chromosome, start, end, record, yscale):
 	gray = rnaseqgraph.colorAllocate((192,192,192))
 	rnaseqgraph.filledRectangle((0, 5), (RNA_IMG_WIDTH, 5), gray) # max line at top
 
+	# These are the colours each experiment's RNA-Seq image coverage should be in... taken from the BAM Locator XML file.
 	colours_dict = {'ERR274310' : '0x64cc65', 'SRR547531' : '0x64cc65', 'SRR548277' : '0x64cc65', 'SRR847503' : '0x64cc65', 'SRR847504' : '0x64cc65', 'SRR847505' : '0x64cc65', 'SRR847506' : '0x64cc65', 'SRR1207194' : '0xFFFF00', 'SRR1207195' : '0xFFFF00', 'SRR1019436' : '0xCCCC97', 'SRR1019437' : '0xCCCC97', 'SRR1049784' : '0x989800', 'SRR477075' : '0xCCCC97', 'SRR477076' : '0xCCCC97', 'SRR493237' : '0xCCCC97', 'SRR493238' : '0xCCCC97', 'SRR314815' : '0xFFFF65', 'SRR800753' : '0xFFFF65', 'SRR800754' : '0xFFFF65', 'SRR1105822' : '0x64CC65', 'SRR1105823' : '0x64CC65', 'SRR1159821' : '0x64CC65', 'SRR1159827' : '0x64CC65', 'SRR1159837' : '0x64CC65', 'SRR314813' : '0x64CC65', 'SRR446027' : '0x64CC65', 'SRR446028' : '0x64CC65', 'SRR446033' : '0x64CC65', 'SRR446034' : '0x64CC65', 'SRR446039' : '0x64CC65', 'SRR446040' : '0x64CC65', 'SRR446484' : '0x64CC65', 'SRR446485' : '0x999999', 'SRR446486' : '0x64CC65', 'SRR446487' : '0x999999', 'SRR493036' : '0x64CC65', 'SRR493097' : '0x64CC65', 'SRR493098' : '0x64CC65', 'SRR493101' : '0x64CC65', 'SRR764885' : '0x64CC65', 'SRR924656' : '0x64CC65', 'SRR934391' : '0x64CC65', 'SRR942022' : '0x64CC65', 'SRR070570' : '0xCCCC97', 'SRR070571' : '0xCCCC97', 'SRR1001909' : '0x98FF00', 'SRR1001910' : '0x98FF00', 'SRR1019221' : '0x98FF00', 'SRR345561' : '0x98FF00', 'SRR345562' : '0x98FF00', 'SRR346552' : '0x98FF00', 'SRR346553' : '0x98FF00', 'SRR394082' : '0x98FF00', 'SRR504179' : '0x98FF00', 'SRR504180' : '0x98FF00', 'SRR504181' : '0x98FF00', 'SRR515073' : '0x98FF00', 'SRR515074' : '0x98FF00', 'SRR527164' : '0x98FF00', 'SRR527165' : '0x98FF00', 'SRR584115' : '0x98FF00', 'SRR584121' : '0x98FF00', 'SRR584129' : '0x98FF00', 'SRR584134' : '0x98FF00', 'SRR653555' : '0x98FF00', 'SRR653556' : '0x98FF00', 'SRR653557' : '0x98FF00', 'SRR653561' : '0x98FF00', 'SRR653562' : '0x98FF00', 'SRR653563' : '0x98FF00', 'SRR653564' : '0x98FF00', 'SRR653565' : '0x98FF00', 'SRR653566' : '0x98FF00', 'SRR653567' : '0x98FF00', 'SRR653568' : '0x98FF00', 'SRR653569' : '0x98FF00', 'SRR653570' : '0x98FF00', 'SRR653571' : '0x98FF00', 'SRR653572' : '0x98FF00', 'SRR653573' : '0x98FF00', 'SRR653574' : '0x98FF00', 'SRP018266' : '0x98FF00', 'SRR653576' : '0x98FF00', 'SRR653577' : '0x98FF00', 'SRR653578' : '0x98FF00', 'SRR797194' : '0x98FF00', 'SRR797230' : '0x98FF00', 'SRR833246' : '0x98FF00', 'SRR847501' : '0xFF0000', 'SRR847502' : '0xFF0000', 'SRR1260032' : '0xBD7740', 'SRR1260033' : '0xBD7740', 'SRR1261509' : '0xBD7740', 'SRR401413' : '0xCCFF00', 'SRR401414' : '0xCCFF00', 'SRR401415' : '0xCCFF00', 'SRR401416' : '0xCCFF00', 'SRR401417' : '0xCCFF00', 'SRR401418' : '0xCCFF00', 'SRR401419' : '0xCCFF00', 'SRR401420' : '0xCCFF00', 'SRR401421' : '0xCCFF00', 'ERR274309' : '0xCCCC97', 'SRR1046909' : '0xCCCC97', 'SRR1046910' : '0xCCCC97', 'SRR1524935' : '0xCCCC97', 'SRR1524938' : '0xCCCC97', 'SRR1524940' : '0xCCCC97', 'SRR314814' : '0xCCCC97', 'SRR949956' : '0x999999', 'SRR949965' : '0x999999', 'SRR949988' : '0x999999', 'SRR949989' : '0x999999'}
 	
-	colour = rnaseqgraph.colorAllocate(hex_to_rgb(colours_dict[record]))
+	rna_seq_colour = rnaseqgraph.colorAllocate(hex_to_rgb(colours_dict[record]))
 
 	# Actual RNA-Seq image
 	for i in range(len(xvalues)):
-		rnaseqgraph.rectangle((int(float(xvalues[i] - start)/(end-start) * RNA_IMG_WIDTH), RNA_IMG_HEIGHT), (int(float(xvalues[i] - start)/(end-start) * RNA_IMG_WIDTH), RNA_IMG_HEIGHT - values[i]), colour)
+		rnaseqgraph.rectangle((int(float(xvalues[i] - start)/(end-start) * RNA_IMG_WIDTH), RNA_IMG_HEIGHT), (int(float(xvalues[i] - start)/(end-start) * RNA_IMG_WIDTH), RNA_IMG_HEIGHT - values[i]), rna_seq_colour)
 	rnaseqgraph.string(0, (420, 5), str(int(yscale)), black) # y axis scale label
 
 	# Output the GD image to temp PNG file
@@ -258,7 +258,7 @@ def main():
 						gene_arr[v_count].append(100)
 						break
 				if (i_in_exon == 0):
-					gene_arr[v_count].append(10)
+					gene_arr[v_count].append(1)
 		
 		# Now validate the data
 		tissue = validateTissue(tissue)
@@ -328,10 +328,10 @@ def main():
 
 		reads_in_exp_dict = {'ERR274310' : '29098868', 'SRR547531' : '13627154', 'SRR548277' : '10647001', 'SRR847503' : '19012222', 'SRR847504' : '17652623', 'SRR847505' : '14547829', 'SRR847506' : '14547829', 'SRR1207194' : '41295666', 'SRR1207195' : '39074103', 'SRR1019436' : '22144930', 'SRR1019437' : '24158853', 'SRR1049784' : '51665293', 'SRR477075' : '33569708', 'SRR477076' : '20201654', 'SRR493237' : '27039911', 'SRR493238' : '25704434', 'SRR314815' : '25509908', 'SRR800753' : '7506384', 'SRR800754' : '7063908', 'SRR1105822' : '38483470', 'SRR1105823' : '30583559', 'SRR1159821' : '19343538', 'SRR1159827' : '9138919', 'SRR1159837' : '5659168', 'SRR314813' : '26044624', 'SRR446027' : '31481295', 'SRR446028' : '42228711', 'SRR446033' : '61481964', 'SRR446034' : '63386459', 'SRR446039' : '60325368', 'SRR446040' : '74683660', 'SRR446484' : '30583559', 'SRR446485' : '35231736', 'SRR446486' : '31078655', 'SRR446487' : '34996434', 'SRR493036' : '21043986', 'SRR493097' : '31976667', 'SRR493098' : '13408363', 'SRR493101' : '7679343', 'SRR764885' : '50380962', 'SRR924656' : '39590367', 'SRR934391' : '36196662', 'SRR942022' : '17975524', 'SRR070570' : '8793425', 'SRR070571' : '8590680', 'SRR1001909' : '8168891', 'SRR1001910' : '8168891', 'SRR1019221' : '49462416', 'SRR345561' : '17838931', 'SRR345562' : '13627154', 'SRR346552' : '19200418', 'SRR346553' : '23724986', 'SRR394082' : '46284902', 'SRR504179' : '25512109', 'SRR504180' : '21115421', 'SRR504181' : '37241776', 'SRR515073' : '5196385', 'SRR515074' : '4527721', 'SRR527164' : '19992786', 'SRR527165' : '19917758', 'SRR584115' : '25097748', 'SRR584121' : '39243947', 'SRR584129' : '41360269', 'SRR584134' : '40452559', 'SRR653555' : '13572463', 'SRR653556' : '16154755', 'SRR653557' : '13556594', 'SRR653561' : '10241986', 'SRR653562' : '15917411', 'SRR653563' : '8824547', 'SRR653564' : '11800058', 'SRR653565' : '11623867', 'SRR653566' : '10246632', 'SRR653567' : '10750893', 'SRR653568' : '9057212', 'SRR653569' : '14316928', 'SRR653570' : '9656892', 'SRR653571' : '10805755', 'SRR653572' : '8849410', 'SRR653573' : '10559600', 'SRR653574' : '11134265', 'SRP018266' : '10916285', 'SRR653576' : '12643682', 'SRR653577' : '9781713', 'SRR653578' : '12201145', 'SRR797194' : '54048815', 'SRR797230' : '51421658', 'SRR833246' : '57084121', 'SRR847501' : '57084121', 'SRR847502' : '20633235', 'SRR1260032' : '41362473', 'SRR1260033' : '38879470', 'SRR1261509' : '46745857', 'SRR401413' : '13365743', 'SRR401414' : '9535671', 'SRR401415' : '15780686', 'SRR401416' : '16555068', 'SRR401417' : '11954841', 'SRR401418' : '19982775', 'SRR401419' : '13267215', 'SRR401420' : '9409649', 'SRR401421' : '15714100', 'ERR274309' : '29192485', 'SRR1046909' : '5254981', 'SRR1046910' : '5367327', 'SRR1524935' : '21855410', 'SRR1524938' : '16760164', 'SRR1524940' : '14685479', 'SRR314814' : '23367623', 'SRR949956' : '4537769', 'SRR949965' : '3984129', 'SRR949988' : '4955792', 'SRR949989' : '4717225'}
 		
-		# Asher: This is integer division. Correct formula follows.
-		#abs_fpkm = mapped_reads / ((end-start) / 1000) / (float(reads_in_exp_dict[record]) / 1000000)
+		# Calculate the FPKM
 		abs_fpkm = float(mapped_reads) / (float((end-start)) / 1000.0) / (float(reads_in_exp_dict[record]) / 1000000.0)
 
+		# Calculate the r values for each variant.
 		r = []
 		for i in range(len(sum_xy)):
 			sp = sum_xy[i] - ((sum_x[i] * sum_y) / float(end-start))

@@ -471,12 +471,12 @@
 
         // Insert table headers
         $("#thetable").append('<thead><tr>' +
-            '<th class="sortable" style="width: 250px;">Title</th>' +
-            '<th class="sortable" style="width: 460px;">RNA-Seq Coverage</th>' +
-            '<th class="sortable" style="width: 50px;">PCC/Reads</th>' +
-            '<th class="sortable" style="width: 100px;">eFP - RPKM</th>' +
-            '<th class="sortable" style="width: 50px;">RPKM</th>' +
-            '<th class="sortable" style="width: 275px;">Details</th>' +
+            '<th class="sortable" style="background-color: #F0F0F0; width: 250px;">Title</th>' +
+            '<th class="sortable" style="background-color: #F0F0F0; width: 460px;">RNA-Seq Coverage</th>' +
+            '<th class="sortable" style="background-color: #F0F0F0; width: 75px;">PCC Value</th>' +
+            '<th class="sortable" style="background-color: #F0F0F0; width: 100px;">eFP (RPKM)</th>' +
+            '<th class="sortable" style="background-color: #F0F0F0; width: 75px;">RPKM</th>' +
+            '<th class="sortable" style="background-color: #F0F0F0; width: 275px;">Details</th>' +
             '</tr></thead>' +
             '<tbody></tbody>');
 
@@ -547,19 +547,19 @@
                     format: function(s) {
                         // format your data for normalization
                         if (s == NaN) {
-                            console.log('s == NaN');
+                            //console.log('s == NaN');
                             return 0;
                         } else if (s == undefined) {
-                            console.log('s == undefined');
+                            //console.log('s == undefined');
                             return -999999;
                         } else if (s == Infinity) {
-                            console.log('s == Infinity');
+                            //console.log('s == Infinity');
                             return 999999;
                         } else if (s == -Infinity) {
-                            console.log('s == -Infinity');
+                            //console.log('s == -Infinity');
                             return -999999;
                         } else {
-                            console.log('Returning s = ' + parseFloat(s));
+                            //console.log('Returning s = ' + parseFloat(s));
                             return parseFloat(s);
                         }
                     },
@@ -576,19 +576,19 @@
                     format: function(s) {
                         // format your data for normalization 
                         if (s == NaN) {
-                            console.log('s == NaN');
+                            //console.log('s == NaN');
                             return -999999;
                         } else if (s == undefined) {
-                            console.log('s == undefined');
+                            //console.log('s == undefined');
                             return -999999;
                         } else if (s == Infinity) {
-                            console.log('s == Infinity');
+                            //console.log('s == Infinity');
                             return 999999;
                         } else if (s == -Infinity) {
-                            console.log('s == -Infinity');
+                            //console.log('s == -Infinity');
                             return -999999;
                         } else {
-                            console.log('Returning s = ' + parseFloat(s));
+                            //console.log('Returning s = ' + parseFloat(s));
                             return parseFloat(s);
                         }
                     },
