@@ -213,60 +213,41 @@
         if ((!max_abs_scale) || max_abs_scale <= 0)
             max_abs_scale = 1000;
 
-        if (document != null) {
-            var element = document.getElementById(id);
-            if (element != null) {
-                var SVG = element.getSVGDocument();
-                if (SVG != null) {
-                    var part = SVG.getElementById("Shapes");
-                    if (part != null) {
-                        var paths = part.getElementsByTagName("path");
-                        if (paths != null) {
-                            if (mode == "abs") { // For absolute FPKM colouring
-                                var r = 255;
-                                var g = 255 - parseInt(fpkm / max_abs_scale * 255);
-                                var b = 0;
-                                //console.log('abs fpkm = ' + fpkm + ' -> rgb(' + r + ', ' + g + ', ' + b + ')');
-                                for (i = 0; i < paths.length; i++) {
-                                    paths[i].style.fill = 'rgb(' + r + ', ' + g + ', ' + b + ')';
-                                }
-                            } else if (mode == "rel") { // For relative FPKM colouring
-                                var hex = "";
-                                // Make the log FPKM a number between 0 and 1 to denote the 0 to +-5 scale.
-                                var log_scaling = 0;
-                                if (Math.abs(fpkm) > 5)
-                                    log_scaling = 5;
-                                else
-                                    log_scaling = Math.abs(fpkm);
-                                log_scaling /= 5;
-
-                                if (fpkm > 0) { // yellow-red
-                                    hex = generate_colour("FFFF00", "FF0000", log_scaling);
-                                } else if (fpkm == 0) { // yellow
-                                    hex = "FFFF00";
-                                } else if (fpkm < 0) { // yellow-blue
-                                    hex = generate_colour("FFFF00", "0000FF", log_scaling);
-                                }
-                                //console.log('fpkm = ' + fpkm + ' -> hex = ' + hex);
-                                for (i = 0; i < paths.length; i++) {
-                                    paths[i].style.fill = hex;
-                                }
-                            }
-                            document.getElementById(id.replace('_svg', '_rpkm')).innerHTML = fpkm;
-                        } else {
-                            console.log("Paths is null");
-                        }
-                    } else {
-                        console.log("Part is null");
-                    }
-                } else {
-                    console.log("SVG is null");
+        var paths = document.getElementById(id).getElementsByTagName("path");
+        if (paths != null) {
+            if (mode == "abs") { // For absolute FPKM colouring
+                var r = 255;
+                var g = 255 - parseInt(fpkm / max_abs_scale * 255);
+                var b = 0;
+                //console.log('abs fpkm = ' + fpkm + ' -> rgb(' + r + ', ' + g + ', ' + b + ')');
+                for (i = 0; i < paths.length; i++) {
+                    paths[i].style.fill = 'rgb(' + r + ', ' + g + ', ' + b + ')';
                 }
-            } else {
-                console.log("Element is null");
+            } else if (mode == "rel") { // For relative FPKM colouring
+                var hex = "";
+                // Make the log FPKM a number between 0 and 1 to denote the 0 to +-5 scale.
+                var log_scaling = 0;
+                if (Math.abs(fpkm) > 5)
+                    log_scaling = 5;
+                else
+                    log_scaling = Math.abs(fpkm);
+                log_scaling /= 5;
+
+                if (fpkm > 0) { // yellow-red
+                    hex = generate_colour("FFFF00", "FF0000", log_scaling);
+                } else if (fpkm == 0) { // yellow
+                    hex = "FFFF00";
+                } else if (fpkm < 0) { // yellow-blue
+                    hex = generate_colour("FFFF00", "0000FF", log_scaling);
+                }
+                //console.log('fpkm = ' + fpkm + ' -> hex = ' + hex);
+                for (i = 0; i < paths.length; i++) {
+                    paths[i].style.fill = hex;
+                }
             }
+            document.getElementById(id.replace('_svg', '_rpkm')).innerHTML = fpkm;
         } else {
-            console.log("Document is null");
+            console.log("Paths is null for id = " + id);
         }
     }
 
@@ -300,10 +281,12 @@
 
             // Colour SVGs based on the mode requested. Pass in the correct FPKM value...
             if (mode == "rel") {
-                if (!exp_info[i][4])
-                    exp_info[i][4] = -1;
+                if (!exp_info[i][4] && exp_info[i][4] != 0)
+                    exp_info[i][4] = -999999;
                 colour_part_by_id(exp_info[i][0], exp_info[i][1], exp_info[i][4], mode); // index 5 = relative fpkm
             } else {
+                if (!exp_info[i][3] && exp_info[i][3] != 0)
+                    exp_info[i][3] = -999999;
                 colour_part_by_id(exp_info[i][0], exp_info[i][1], exp_info[i][3], mode); // index 3 = absolute fpkm
             }
         }
@@ -311,7 +294,6 @@
         //console.log('Max Log FPKM = ' + max_log_fpkm);
         //console.log("Colouring function finished. Errors should be above this log entry.");
 
-        $('#thetable').tablesorter();
         $("#thetable").trigger("update");
     }
 
@@ -365,6 +347,8 @@
                 $('input[type=radio][name=radio_group]').change(function() { // Bind an event listener..
                     gene_structure_radio_on_change();
                 });
+
+                $("#thetable").trigger("update");
             }
         });
     }
@@ -387,6 +371,8 @@
             //console.log("exp_info[i] = " + exp_info[i]);
             document.getElementById(rnaseq_calls[i][1] + '_pcc').innerHTML = exp_info[i][5][variant_selected];
         }
+
+        $("#thetable").trigger("update");
     }
 
     function parseIntArray(arr) {
@@ -437,7 +423,7 @@
                         } else {
                             //r.push(parseIntArray(String(response_rnaseq['r']).replace(/\[/g, "").replace(/\]/g, "").replace(/"/g, "").split(',')));
                             r = response_rnaseq['r'];
-                            console.log(r);
+                            //console.log(r);
                         }
                         //console.log("ss_y = ", ss_y, ", sum_y = ", sum_y, ", sum_xy = ", sum_xy, ", sum_x = ", sum_x, ", sum_xx = ", sum_xx, ", ss_x = ", ss_x, ", ssx = ", ssx, ", ssy = ", ssy, ", n = ", n, ", sp = ", sp, ", ssx = ", ssx, ", ssy = ", ssy, ", r = ", r);
 
@@ -462,7 +448,10 @@
                         }
 
                         // Colour SVG by Absolute RPKM
-                        //colour_part_by_id(response_rnaseq['record'] + '_svg', 'Shapes', response_rnaseq['absolute-fpkm'], 'abs');
+                        colour_part_by_id(response_rnaseq['record'] + '_svg', 'Shapes', response_rnaseq['absolute-fpkm'], 'abs');
+
+                        
+                        $("#thetable").trigger("update");
                     }
                 });
             }
@@ -529,11 +518,11 @@
                     // Append RNA-Seq and Gene Structure images (2 imgs) in one <td>
                     append_str += '<td style="width: 460px;">' + '<img id="' + experimentno + '_rnaseq_img" width="450px" height="50px" class="rnaseq_img" src="' + img_loading_base64 + '" /><br/>' + '<img id="' + experimentno + '_gene_structure_img" width="450px" height="8px" class="gene_structure_img" src="' + img_gene_struct_1 + '" />' + '</td>\n';
                     // Append the PCC <td>
-                    append_str += '<td id="' + experimentno + '_pcc' + '" class="pcc_value" style="font-size: 10px; width: 50px; ">' + numberofreads + '</td>';
+                    append_str += '<td id="' + experimentno + '_pcc' + '" class="pcc_value" style="font-size: 10px; width: 50px; ">' + -999999 + '</td>';
                     // Append the approparite SVG with place holder sorting number in front of it .. all in one <td>
                     append_str += '<td style="width:  75px;">' + '<div id="' + experimentno + '_svg' + '" width="75" height="75" style="width: 75px; height: 75px; max-width: 75px; max-height: 75px;">' + document.getElementById(svg.substring(4).replace(".svg", "")).innerHTML + '</div>' + '</td>\n';
                     // Append abs/rel RPKM
-                    append_str += '<td id="' + experimentno + '_rpkm' + '" style="font-size: 10px; width: 50px; ">1000000</td>';
+                    append_str += '<td id="' + experimentno + '_rpkm' + '" style="font-size: 10px; width: 50px; ">-999999</td>';
                     // Append the details <td>  
                     append_str += '<td style="width: 200px; font-size: 12px;">' + description + '<br/>' + '<a href="' + url + '" target="blank">' + 'NCBI SRA' + '</a>; <a href="' + publicationid + '" target="blank">PubLink</a>' + '<br/><a href="javascript:(function(){$(\'#' + url.substring(44) + '\').toggle();})()">More Details</a><div id="' + url.substring(44) + '" style="display:none">Total reads = ' + numberofreads + '.<br/>Controls: ' + links + '</div></td>\n';
                     append_str += '</tr>';
@@ -547,7 +536,75 @@
                         rnaseq_images(status);
                     }
                 });
-                $('#thetable').tablesorter();
+                // add parser through the tablesorter addParser method 
+                $.tablesorter.addParser({
+                    // set a unique id 
+                    id: 'pcc_sorter',
+                    is: function(s) {
+                        // return false so this parser is not auto detected 
+                        return false;
+                    },
+                    format: function(s) {
+                        // format your data for normalization
+                        if (s == NaN) {
+                            console.log('s == NaN');
+                            return 0;
+                        } else if (s == undefined) {
+                            console.log('s == undefined');
+                            return -999999;
+                        } else if (s == Infinity) {
+                            console.log('s == Infinity');
+                            return 999999;
+                        } else if (s == -Infinity) {
+                            console.log('s == -Infinity');
+                            return -999999;
+                        } else {
+                            console.log('Returning s = ' + parseFloat(s));
+                            return parseFloat(s);
+                        }
+                    },
+                    // set type, either numeric or text 
+                    type: 'numeric'
+                });
+                $.tablesorter.addParser({
+                    // set a unique id 
+                    id: 'rpkm_sorter',
+                    is: function(s) {
+                        // return false so this parser is not auto detected 
+                        return false;
+                    },
+                    format: function(s) {
+                        // format your data for normalization 
+                        if (s == NaN) {
+                            console.log('s == NaN');
+                            return -999999;
+                        } else if (s == undefined) {
+                            console.log('s == undefined');
+                            return -999999;
+                        } else if (s == Infinity) {
+                            console.log('s == Infinity');
+                            return 999999;
+                        } else if (s == -Infinity) {
+                            console.log('s == -Infinity');
+                            return -999999;
+                        } else {
+                            console.log('Returning s = ' + parseFloat(s));
+                            return parseFloat(s);
+                        }
+                    },
+                    // set type, either numeric or text 
+                    type: 'numeric'
+                });
+                $('#thetable').tablesorter({
+                    headers: {
+                        2: {
+                            sorter: 'pcc_sorter'
+                        },
+                        4: {
+                            sorter: 'rpkm_sorter'
+                        },
+                    }
+                });
                 $("#thetable").trigger("update");
             }
         });
