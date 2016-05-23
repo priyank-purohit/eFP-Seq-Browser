@@ -25,6 +25,8 @@ import subprocess
 
 #cgitb.enable()
 
+# Precision for the PCC and RPKM values that are returned
+PRECISION = 5
 exp_arr = []
 exp_arr0 = []
 
@@ -200,12 +202,12 @@ def error(string):
 # Currently used to return the cached data.
 # TODO: Get rid of this entirely by updating the lines 341-566
 def dumpJSON(status, locus, variant, chromosome, start, end, record, tissue, base64img, reads_mapped_to_locus, abs_fpkm, ss_y, sum_y, sum_xy, sum_x, sum_xx, ss_x):
-	print json.dumps({"status": status, "locus": locus, "variant": variant, "chromosome": chromosome, "start": start, "end": end, "record": record, "tissue": tissue, "rnaseqbase64": base64img, "reads_mapped_to_locus": reads_mapped_to_locus, "absolute-fpkm": abs_fpkm, "ss_y" : ss_y, "sum_y" : sum_y, "sum_xy" : sum_xy, "sum_x" : sum_x, "sum_xx" : sum_xx, "ss_x" : ss_x}) # and svg stuff
+	print json.dumps({"status": status, "locus": locus, "variant": variant, "chromosome": chromosome, "start": start, "end": end, "record": record, "tissue": tissue, "rnaseqbase64": base64img, "reads_mapped_to_locus": reads_mapped_to_locus, "absolute-fpkm": round(abs_fpkm, PRECISION), "ss_y" : ss_y, "sum_y" : sum_y, "sum_xy" : sum_xy, "sum_x" : sum_x, "sum_xx" : sum_xx, "ss_x" : ss_x}) # and svg stuff
 	sys.exit(0)
 
 # Final output, if everything at this point succeded
 def idumpJSON(status, locus, variant, chromosome, start, end, record, tissue, base64img, reads_mapped_to_locus, abs_fpkm, r):
-	print json.dumps({"status": status, "locus": locus, "variant": variant, "chromosome": chromosome, "start": start, "end": end, "record": record, "tissue": tissue, "rnaseqbase64": base64img, "reads_mapped_to_locus": reads_mapped_to_locus, "absolute-fpkm": abs_fpkm, "r" : r}) # and svg stuff
+	print json.dumps({"status": status, "locus": locus, "variant": variant, "chromosome": chromosome, "start": start, "end": end, "record": record, "tissue": tissue, "rnaseqbase64": base64img, "reads_mapped_to_locus": reads_mapped_to_locus, "absolute-fpkm": round(abs_fpkm, PRECISION), "r" : r}) # and svg stuff
 	sys.exit(0)
 
 ################################################################################
@@ -338,9 +340,10 @@ def main():
 		for i in range(len(sum_xy)):
 			sp = sum_xy[i] - ((sum_x[i] * sum_y) / float(end-start))
 			if (math.sqrt(ss_x[i] * ss_y) == 0):
-				r.append(0)
+				r.append(0.00000)
 			else:
-				r.append(sp / (math.sqrt(ss_x[i] * ss_y)))
+				r_val = float(sp / (math.sqrt(ss_x[i] * ss_y)))
+				r.append(round(r_val, PRECISION))
 
 		# Output the newly generated data
 		idumpJSON(200, locus, int(variant), chromosome, start, end, record, tissue, base64img.replace('\n',''), mapped_reads, abs_fpkm, r)
