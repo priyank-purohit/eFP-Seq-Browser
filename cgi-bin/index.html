@@ -87,7 +87,28 @@
                 </div>
             </div>
             <!-- Options -->
-            <div class="col-xs-12 col-sm-12 col-md-6">
+            <div class="col-xs-12 col-sm-12 col-md-6"">
+                <div class="row">
+                    <!-- Y axis scaling -->
+                    <div class="col-xs-4">
+                        <p>
+                            <input type="text" class="form-control" name="yscale_inp" id="yscale_input" value="Auto" style="width: 175px; height: 35px;" /><i>RNA-Seq Y-axis Scale</i>
+                        </p>
+                    </div>
+                    <div class="col-xs-1 hidden">
+                        <input id="yscale_button" type="button" class="btn" onclick="" value="Go" style="height: 35px;" />
+                    </div>
+                    <div class="col-xs-1"><!-- For correct spacing. --></div>
+                    <!-- Locus input -->
+                    <div class="col-xs-4">
+                        <p>
+                            <input type="text" class="form-control" name="Locus" id="locus" value="AT2G24270" style="width: 175px; height: 35px;" /><i>Locus</i>
+                        </p>
+                    </div>
+                    <div class="col-xs-1">
+                        <input id="locus_button" type="button" class="btn btn-success" onclick="update_all_images(0)" value="Go" style="height: 35px;" />
+                    </div>
+                </div>
                 <div class="row">
                     <!-- SVG colouring mode: abs or rel -->
                     <div class="col-xs-4">
@@ -103,31 +124,10 @@
                             <i>SVG Colouring Mode</i>
                         </p>
                     </div>
-                    <div class="col-xs-1">
+                    <div class="col-xs-1 hidden">
                         <input id="svg_colour_button" type="button" class="btn" onclick="colour_svgs_now()" value="Go" style="height: 35px;" />
                     </div>
-                    <div class="col-xs-1"></div>
-                    <!-- Locus input -->
-                    <div class="col-xs-4">
-                        <p>
-                            <input type="text" class="form-control" name="Locus" id="locus" value="AT2G24270" style="width: 175px; height: 35px;" /><i>Locus</i>
-                        </p>
-                    </div>
-                    <div class="col-xs-1">
-                        <input id="locus_button" type="button" class="btn btn-success" onclick="update_all_images(0)" value="Go" style="height: 35px;" />
-                    </div>
-                </div>
-                <div class="row">
-                    <!-- Y axis scaling -->
-                    <div class="col-xs-4">
-                        <p>
-                            <input type="text" class="form-control" name="yscale_inp" id="yscale_input" value="Auto" style="width: 175px; height: 35px;" /><i>RNA-Seq Y-axis Scale</i>
-                        </p>
-                    </div>
-                    <div class="col-xs-1">
-                        <input id="yscale_button" type="button" class="btn" onclick="" value="Go" style="height: 35px;" />
-                    </div>
-                    <div class="col-xs-1"></div>
+                    <div class="col-xs-1"><!-- For correct spacing. --></div>
                     <!-- Absolute SVG scaling -->
                     <div class="col-xs-4">
                         <p>
@@ -135,7 +135,7 @@
                         </p>
                     </div>
                     <div class="col-xs-1">
-                        <input id="abs_scale_button" type="button" class="btn" onclick="colour_svgs_now('abs')" value="Go" style="height: 35px;" />
+                        <input id="abs_scale_button" type="button" class="btn" onclick="colour_svgs_now()" value="Go" style="height: 35px;" />
                     </div>
                 </div>
             </div>
@@ -302,6 +302,15 @@
         colouring_mode = $('input[type="radio"][name="svg_colour_radio_group"]:checked').val();
         locus = document.getElementById("locus").value;
         yscale_input = document.getElementById("yscale_input").value;
+        if (yscale_input == "Auto" || parseInt(yscale_input) < 1)
+        {
+        	yscale_input = parseInt(-1);
+        	console.log("yscale_input value set to -1.");
+        }
+        else
+        {
+        	console.log("yscale_input value set to " + yscale_input + ".");
+        }
         max_abs_scale = document.getElementById("rpkm_scale_input").value;
     }
 
@@ -389,7 +398,7 @@
         if (rnaseq_calls.length == 113) {
             for (var i = 0; i < 113; i++) {
                 $.ajax({
-                    url: 'http://ec2-52-70-232-122.compute-1.amazonaws.com/~ppurohit/RNA-Browser/cgi-bin/webservice.cgi?tissue=' + rnaseq_calls[i][0] + '&record=' + rnaseq_calls[i][1] + '&locus=' + locus + '&variant=1&start=' + locus_start + '&end=' + locus_end + '&status=' + status + '&struct=' + splice_variants,
+                    url: 'http://ec2-52-70-232-122.compute-1.amazonaws.com/~ppurohit/RNA-Browser/cgi-bin/webservice.cgi?tissue=' + rnaseq_calls[i][0] + '&record=' + rnaseq_calls[i][1] + '&locus=' + locus + '&variant=1&start=' + locus_start + '&end=' + locus_end + '&yscale=' + yscale_input + '&status=' + status + '&struct=' + splice_variants,
                     dataType: 'json',
                     success: function(response_rnaseq) {
                         if (locus != response_rnaseq['locus']) {
@@ -450,7 +459,7 @@
                         // Colour SVG by Absolute RPKM
                         colour_part_by_id(response_rnaseq['record'] + '_svg', 'Shapes', response_rnaseq['absolute-fpkm'], 'abs');
 
-                        
+
                         $("#thetable").trigger("update");
                     }
                 });
@@ -471,12 +480,12 @@
 
         // Insert table headers
         $("#thetable").append('<thead><tr>' +
-            '<th class="sortable" style="background-color: #F0F0F0; width: 250px;">Title</th>' +
-            '<th class="sortable" style="background-color: #F0F0F0; width: 460px;">RNA-Seq Coverage</th>' +
-            '<th class="sortable" style="background-color: #F0F0F0; width: 75px;">PCC Value</th>' +
-            '<th class="sortable" style="background-color: #F0F0F0; width: 100px;">eFP (RPKM)</th>' +
-            '<th class="sortable" style="background-color: #F0F0F0; width: 75px;">RPKM</th>' +
-            '<th class="sortable" style="background-color: #F0F0F0; width: 275px;">Details</th>' +
+            '<th class="sortable arrows" style="background-color: #F0F0F0; width: 250px;">Title<div class="arrowdown arrowup"></div></th>' +
+            '<th class="" style="background-color: #F0F0F0; width: 460px;">RNA-Seq Coverage</th>' +
+            '<th class="sortable arrows" style="background-color: #F0F0F0; width: 75px;">PCC</th>' +
+            '<th class="" style="background-color: #F0F0F0; width: 100px;">eFP (RPKM)</th>' +
+            '<th class="sortable arrows" style="background-color: #F0F0F0; width: 75px;">RPKM</th>' +
+            '<th class="" style="background-color: #F0F0F0; width: 275px;">Details</th>' +
             '</tr></thead>' +
             '<tbody></tbody>');
 
@@ -518,11 +527,11 @@
                     // Append RNA-Seq and Gene Structure images (2 imgs) in one <td>
                     append_str += '<td style="width: 460px;">' + '<img id="' + experimentno + '_rnaseq_img" width="450px" height="50px" class="rnaseq_img" src="' + img_loading_base64 + '" /><br/>' + '<img id="' + experimentno + '_gene_structure_img" width="450px" height="8px" class="gene_structure_img" src="' + img_gene_struct_1 + '" />' + '</td>\n';
                     // Append the PCC <td>
-                    append_str += '<td id="' + experimentno + '_pcc' + '" class="pcc_value" style="font-size: 10px; width: 50px; ">' + -999999 + '</td>';
+                    append_str += '<td id="' + experimentno + '_pcc' + '" class="pcc_value" style="font-size: 10px; width: 50px; ">' + -9999 + '</td>';
                     // Append the approparite SVG with place holder sorting number in front of it .. all in one <td>
                     append_str += '<td style="width:  75px;">' + '<div id="' + experimentno + '_svg' + '" width="75" height="75" style="width: 75px; height: 75px; max-width: 75px; max-height: 75px;">' + document.getElementById(svg.substring(4).replace(".svg", "")).innerHTML + '</div>' + '</td>\n';
                     // Append abs/rel RPKM
-                    append_str += '<td id="' + experimentno + '_rpkm' + '" style="font-size: 10px; width: 50px; ">-999999</td>';
+                    append_str += '<td id="' + experimentno + '_rpkm' + '" style="font-size: 10px; width: 50px; ">-9999</td>';
                     // Append the details <td>  
                     append_str += '<td style="width: 200px; font-size: 12px;">' + description + '<br/>' + '<a href="' + url + '" target="blank">' + 'NCBI SRA' + '</a>; <a href="' + publicationid + '" target="blank">PubLink</a>' + '<br/><a href="javascript:(function(){$(\'#' + url.substring(44) + '\').toggle();})()">More Details</a><div id="' + url.substring(44) + '" style="display:none">Total reads = ' + numberofreads + '.<br/>Controls: ' + links + '</div></td>\n';
                     append_str += '</tr>';
@@ -547,19 +556,14 @@
                     format: function(s) {
                         // format your data for normalization
                         if (s == NaN) {
-                            //console.log('s == NaN');
                             return 0;
                         } else if (s == undefined) {
-                            //console.log('s == undefined');
-                            return -999999;
+                            return -9999999;
                         } else if (s == Infinity) {
-                            //console.log('s == Infinity');
                             return 999999;
                         } else if (s == -Infinity) {
-                            //console.log('s == -Infinity');
                             return -999999;
                         } else {
-                            //console.log('Returning s = ' + parseFloat(s));
                             return parseFloat(s);
                         }
                     },
@@ -576,19 +580,14 @@
                     format: function(s) {
                         // format your data for normalization 
                         if (s == NaN) {
-                            //console.log('s == NaN');
                             return -999999;
                         } else if (s == undefined) {
-                            //console.log('s == undefined');
-                            return -999999;
+                            return -9999999;
                         } else if (s == Infinity) {
-                            //console.log('s == Infinity');
                             return 999999;
                         } else if (s == -Infinity) {
-                            //console.log('s == -Infinity');
                             return -999999;
                         } else {
-                            //console.log('Returning s = ' + parseFloat(s));
                             return parseFloat(s);
                         }
                     },
@@ -597,12 +596,23 @@
                 });
                 $('#thetable').tablesorter({
                     headers: {
+                        0: {
+                        },
+                        1: {
+                            sorter: false // disable sorting on this column
+                        },
                         2: {
                             sorter: 'pcc_sorter'
+                        },
+                        3: {
+                            sorter: false // disable sorting on this column
                         },
                         4: {
                             sorter: 'rpkm_sorter'
                         },
+                        5: {
+                            sorter: false // disable sorting on this column
+                        }
                     }
                 });
                 $("#thetable").trigger("update");

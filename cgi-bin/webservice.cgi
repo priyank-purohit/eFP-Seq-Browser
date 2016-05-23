@@ -2,16 +2,17 @@
 print "Access-Control-Allow-Origin: *"
 #print "Content-type: application/json\n"
 print "Content-Type: text/html\n\n"
+
 ################################################################################
-# This program return the base64 of the image given an AGI, record and tissue
+# This program return the base64 of the RNA-Seq mapping coverage image.
+#
 # Authors: Asher and Priyank
 # Date: January 2016
-# usage:
 ################################################################################
 
 import base64
 import cgi
-#import cgitb
+import cgitb
 import re
 import json
 import sys
@@ -30,10 +31,8 @@ exp_arr0 = []
 ################################################################################
 # Validate data
 
-# Validate Tissue format
+''' Check the format of tissue string and returns error if incorrect. '''
 def validateTissue(tissue):
-	''' Check the format of tissue string and returns error if incorrect. '''
-
 	if tissue == "":
 		error("No tissue specified.")
 	elif re.search(r'^[a-zA-Z]{1,15}$', tissue): # Can only have upto 15 alpha numeric charactors
@@ -41,10 +40,8 @@ def validateTissue(tissue):
 	else:
 		error("Tissue specifed is not in correct format.");
 
-# Validate locus format
+''' Check the format of locus. '''
 def validateLocus(locus):
-	''' Check the format of locus '''
-
 	if locus == "":
 		error("No locus specified.")
 	elif re.search(r'^at[12345cm]g\d+$', locus, re.I):
@@ -52,10 +49,8 @@ def validateLocus(locus):
 	else:
 		error("Locus format is not correct.")
 
-# Validate record
+''' Check for format of record. '''
 def validateRecord(record):
-	''' Check for format of record '''
-
 	if record == "":
 		error("No record specified.")
 	elif re.search(r'^\D{3}\d{1,10}$', record):
@@ -81,9 +76,8 @@ def validateStop(stop):
 ################################################################################
 # Data processing functions
 
-# Get cooridinates from BAR webservice (not using right now)
+''' Get cooridinates from BAR webservice (not using right now). '''
 def getCoordinatesAndValidateVariants(locus, q_variant):
-	''' Get coordinates from webservice '''
 	data = json.loads(urllib2.urlopen("http://bar.utoronto.ca/~ppurohit/RNA-Browser/cgi-bin/get_gene_structures.cgi?locus=" + locus).read().replace('\n', ' '))
 	#data = json.loads('{"locus" : "AT2G24270", "splice_variants" : [{"exon_coordinates" : [{"exon_start" : 10326918, "exon_end" : 10327438}, {"exon_start" : 10327519, "exon_end" : 10327635}, {"exon_start" : 10327716, "exon_end" : 10328094}, {"exon_start" : 10328181, "exon_end" : 10328336}, {"exon_start" : 10328414, "exon_end" : 10328550}, {"exon_start" : 10328624, "exon_end" : 10328743}, {"exon_start" : 10328836, "exon_end" : 10328964}, {"exon_start" : 10329058, "exon_end" : 10329251}, {"exon_start" : 10329457, "exon_end" : 10330048}], "start" : 10326918, "end" : 10330048, "gene_structure" : "iVBORw0KGgoAAAANSUhEUgAAAcIAAAAHAgMAAADmJKVlAAAACVBMVEX///8AAAAAAP9TU0bQAAAA OElEQVQokWNYhQFWMDBwgWgoBQcLGBi0VkEkmKDqtCAUjMsEVckAAVqYZoNMGZk20hYMDj8OOxsB 8HKcqJcHFfUAAAAASUVORK5CYII= "}, {"exon_coordinates" : [{"exon_start" : 10326925, "exon_end" : 10327438}, {"exon_start" : 10329457, "exon_end" : 10329618}, {"exon_start" : 10329722, "exon_end" : 10330008}], "start" : 10326925, "end" : 10330008, "gene_structure" : "iVBORw0KGgoAAAANSUhEUgAAAcIAAAAHAgMAAADmJKVlAAAACVBMVEX///8AAAAAAP9TU0bQAAAA JUlEQVQokWNYhQFWMFALaIHNWwBkIUxfwDAybaQtGBx+HHY2AgC1NNrpP7P0gwAAAABJRU5ErkJg gg== "}, {"exon_coordinates" : [{"exon_start" : 10327035, "exon_end" : 10327438}, {"exon_start" : 10329457, "exon_end" : 10329607}, {"exon_start" : 10329722, "exon_end" : 10329941}], "start" : 10327035, "end" : 10329941, "gene_structure" : "iVBORw0KGgoAAAANSUhEUgAAAcIAAAAHAgMAAADmJKVlAAAACVBMVEX///8AAAAAAP9TU0bQAAAA IklEQVQokWNYhQpWMFATMCHMhFmwgGEE2khzMAj8OBxtBAAddMY9TQm56QAAAABJRU5ErkJggg== "}, {"exon_coordinates" : [{"exon_start" : 10327035, "exon_end" : 10327134}, {"exon_start" : 10327330, "exon_end" : 10327438}], "start" : 10327035, "end" : 10329618, "gene_structure" : "iVBORw0KGgoAAAANSUhEUgAAAcIAAAAHAgMAAADmJKVlAAAACVBMVEX///8AAAAAAP9TU0bQAAAA IklEQVQokWNYBQQLGCCACcRZwUBjMFJspCdYMGJCla42AgAJ+HKdI6JOmQAAAABJRU5ErkJggg== "}], "variant_count" : "4"}')
 
@@ -110,15 +104,14 @@ def getCoordinatesAndValidateVariants(locus, q_variant):
 
 	return chromosome, start, end
 
-# For converting from HEX to RGB values
-# http://stackoverflow.com/questions/214359/converting-hex-color-to-rgb-and-vice-versa
+''' For converting from HEX to RGB values
+http://stackoverflow.com/questions/214359/converting-hex-color-to-rgb-and-vice-versa '''
 def hex_to_rgb(val):
     val = val.lstrip('0x')
     length = len(val)
     return tuple(int(val[i:i + length // 3], 16) for i in range(0, length, length // 3))
 
 
-# Make Image
 ''' Once we have chromosome, start, end and filename, we can make the image.'''
 def makeImage(filename, chromosome, start, end, record, yscale):
 	EXON_IMG_WIDTH = 450
@@ -204,6 +197,8 @@ def error(string):
 	sys.exit(0)
 
 # Final output, if everything at this point succeded
+# Currently used to return the cached data.
+# TODO: Get rid of this entirely by updating the lines 341-566
 def dumpJSON(status, locus, variant, chromosome, start, end, record, tissue, base64img, reads_mapped_to_locus, abs_fpkm, ss_y, sum_y, sum_xy, sum_x, sum_xx, ss_x):
 	print json.dumps({"status": status, "locus": locus, "variant": variant, "chromosome": chromosome, "start": start, "end": end, "record": record, "tissue": tissue, "rnaseqbase64": base64img, "reads_mapped_to_locus": reads_mapped_to_locus, "absolute-fpkm": abs_fpkm, "ss_y" : ss_y, "sum_y" : sum_y, "sum_xy" : sum_xy, "sum_x" : sum_x, "sum_xx" : sum_xx, "ss_x" : ss_x}) # and svg stuff
 	sys.exit(0)
@@ -214,9 +209,9 @@ def idumpJSON(status, locus, variant, chromosome, start, end, record, tissue, ba
 	sys.exit(0)
 
 ################################################################################
-# The main program
+
+''' The main program. '''
 def main():
-	''' This is the main function that gets called when the program start '''	
 	# Get query details
 	form = cgi.FieldStorage()
 	tissue = form.getvalue('tissue')
@@ -224,42 +219,21 @@ def main():
 	record = form.getvalue('record')
 	variant = form.getvalue('variant')
 	status = 1
-
 	if (form.getvalue('status') and int(form.getvalue('status')) >= 0):
-		status = int(form.getvalue('status')) # Value of 0 == brand new data, 1 == prepared data
+		status = int(form.getvalue('status'))
 
+	# Generate new data or return cached data for speedy first-load.
+	# (status == 0) => Return newly generated data
 	if (status == 0):
-		if (form.getvalue('yscale')):
-			yscale = int(form.getvalue('yscale'))
-		else:
-			yscale = -1
-
-		gene_struc = []
-		v_count = -1
-		gene_arr = []
-		struct = json.loads(form.getvalue('struct'))
-
+		# Get info required for generating new data
+		variant_structure = json.loads(form.getvalue('struct')) # Exon-Intron
 		chromosome = int(locus[2])
 		start = int(form.getvalue('start'))
 		end = int(form.getvalue('end'))
+		yscale = -1 # RNA-Seq Mapping Coverage image y-axis max value
+		if (form.getvalue('yscale')):
+			yscale = int(form.getvalue('yscale'))
 
-		#print struct
-		for variant0 in struct:
-			v_count += 1
-			gene_struc.append([])
-			gene_arr.append([])
-			for exon in variant0[u'exon_coordinates']:
-				gene_struc[v_count].append((exon[u'exon_start'], exon[u'exon_end']))
-			for i in range(start, end):
-				i_in_exon = 0
-				for exon in gene_struc[v_count]:
-					if (i >= exon[0] and i <= exon[1]):
-						i_in_exon = 1
-						gene_arr[v_count].append(100)
-						break
-				if (i_in_exon == 0):
-					gene_arr[v_count].append(1)
-		
 		# Now validate the data
 		tissue = validateTissue(tissue)
 		locus = validateLocus(locus)
@@ -267,16 +241,39 @@ def main():
 
 		# Now Get the chromosome, start and end from BAR webservice
 		#chromosome, start, end = getCoordinatesAndValidateVariants(locus, variant)
-		
 		region = "Chr" + str(chromosome) + ":" + str(start) + "-" + str(end)
 
-		#'''
+		exons_in_variant = []
+		variants_count = -1
+		expected_expr_in_variant = []
+
+		for vrnt in variant_structure:
+			variants_count += 1
+			exons_in_variant.append([])
+			expected_expr_in_variant.append([])
+			# Keep track of exons' start and end positions
+			for exon in vrnt[u'exon_coordinates']:
+				exons_in_variant[variants_count].append((exon[u'exon_start'], exon[u'exon_end']))
+			# Append 100 for each exonic base, 1 for each intronic base.
+			for i in range(start, end):
+				i_in_exon = 0
+				for exon in exons_in_variant[variants_count]:
+					if (i >= exon[0] and i <= exon[1]):
+						i_in_exon = 1
+						expected_expr_in_variant[variants_count].append(100)
+						break
+				if (i_in_exon == 0):
+					expected_expr_in_variant[variants_count].append(1)
+
 		# Make S3FS filename here
 		bam_file = "/mnt/RNASeqData/" + tissue + "/" + record + "/accepted_hits.bam"
 
 		# Now make a image using samtools
 		base64img = makeImage(bam_file, chromosome, start, end, record, yscale)
 
+		# Sometimes mpileup output doesn't include all the bases assigned to locus
+		# The ones that are no included should get a mpileup expression value of 0
+		# Take the exp_arr0 (generated in makeImage) and create exp_arr based on the above explanation
 		for i in range(start, end):
 			found = 0
 			for base in exp_arr0:
@@ -289,7 +286,7 @@ def main():
 		# Compute sum(x) and sum(x^2)
 		sum_x = []
 		sum_xx = []
-		for var in gene_arr:
+		for var in expected_expr_in_variant:
 			tmp_sum_x = 0
 			tmp_sum_xx = 0
 			for val in var:
@@ -298,8 +295,8 @@ def main():
 			sum_x.append(tmp_sum_x)
 			sum_xx.append(tmp_sum_xx)
 
+		# Compute SS_x
 		ss_x = []
-		# Compute SSx
 		for i in range(len(sum_x)):
 			ss_x.append(sum_xx[i] - ((sum_x[i] * sum_x[i]) / (end-start)))
 
@@ -310,25 +307,30 @@ def main():
 			sum_y += val
 			sum_yy += val*val
 
+		# Compute SS_y
 		ss_y = 0
-		# Compute SSy
 		ss_y = sum_yy - ((sum_y * sum_y) / (end-start))
 
-		# Compute sum(X*Y)
+		# Compute sum(X * Y)
 		sum_xy = []
-		for variant11 in gene_arr:
+		for variant11 in expected_expr_in_variant:
 			variant_sum_xy = 0
 			for i in range(len(variant11)):
 				variant_sum_xy += int(variant11[i]) * int(exp_arr[i])
 			sum_xy.append(variant_sum_xy)
 
 		# Count the number of mapped reads to the locus
+		# TODO: modify the mpileup call to include this information in it
+		# Hypothesis: since you need this info to create the mpileup output
+		# the same info would be there. So just pass that along instead of 
+		# making this call .. to speed things up.
 		lines = subprocess.check_output(['samtools', 'view', bam_file, region])
 		mapped_reads = lines.count('Chr')
 
+		# Total reads in each experiment, extracted from BAM Locator XML file.
 		reads_in_exp_dict = {'ERR274310' : '29098868', 'SRR547531' : '13627154', 'SRR548277' : '10647001', 'SRR847503' : '19012222', 'SRR847504' : '17652623', 'SRR847505' : '14547829', 'SRR847506' : '14547829', 'SRR1207194' : '41295666', 'SRR1207195' : '39074103', 'SRR1019436' : '22144930', 'SRR1019437' : '24158853', 'SRR1049784' : '51665293', 'SRR477075' : '33569708', 'SRR477076' : '20201654', 'SRR493237' : '27039911', 'SRR493238' : '25704434', 'SRR314815' : '25509908', 'SRR800753' : '7506384', 'SRR800754' : '7063908', 'SRR1105822' : '38483470', 'SRR1105823' : '30583559', 'SRR1159821' : '19343538', 'SRR1159827' : '9138919', 'SRR1159837' : '5659168', 'SRR314813' : '26044624', 'SRR446027' : '31481295', 'SRR446028' : '42228711', 'SRR446033' : '61481964', 'SRR446034' : '63386459', 'SRR446039' : '60325368', 'SRR446040' : '74683660', 'SRR446484' : '30583559', 'SRR446485' : '35231736', 'SRR446486' : '31078655', 'SRR446487' : '34996434', 'SRR493036' : '21043986', 'SRR493097' : '31976667', 'SRR493098' : '13408363', 'SRR493101' : '7679343', 'SRR764885' : '50380962', 'SRR924656' : '39590367', 'SRR934391' : '36196662', 'SRR942022' : '17975524', 'SRR070570' : '8793425', 'SRR070571' : '8590680', 'SRR1001909' : '8168891', 'SRR1001910' : '8168891', 'SRR1019221' : '49462416', 'SRR345561' : '17838931', 'SRR345562' : '13627154', 'SRR346552' : '19200418', 'SRR346553' : '23724986', 'SRR394082' : '46284902', 'SRR504179' : '25512109', 'SRR504180' : '21115421', 'SRR504181' : '37241776', 'SRR515073' : '5196385', 'SRR515074' : '4527721', 'SRR527164' : '19992786', 'SRR527165' : '19917758', 'SRR584115' : '25097748', 'SRR584121' : '39243947', 'SRR584129' : '41360269', 'SRR584134' : '40452559', 'SRR653555' : '13572463', 'SRR653556' : '16154755', 'SRR653557' : '13556594', 'SRR653561' : '10241986', 'SRR653562' : '15917411', 'SRR653563' : '8824547', 'SRR653564' : '11800058', 'SRR653565' : '11623867', 'SRR653566' : '10246632', 'SRR653567' : '10750893', 'SRR653568' : '9057212', 'SRR653569' : '14316928', 'SRR653570' : '9656892', 'SRR653571' : '10805755', 'SRR653572' : '8849410', 'SRR653573' : '10559600', 'SRR653574' : '11134265', 'SRP018266' : '10916285', 'SRR653576' : '12643682', 'SRR653577' : '9781713', 'SRR653578' : '12201145', 'SRR797194' : '54048815', 'SRR797230' : '51421658', 'SRR833246' : '57084121', 'SRR847501' : '57084121', 'SRR847502' : '20633235', 'SRR1260032' : '41362473', 'SRR1260033' : '38879470', 'SRR1261509' : '46745857', 'SRR401413' : '13365743', 'SRR401414' : '9535671', 'SRR401415' : '15780686', 'SRR401416' : '16555068', 'SRR401417' : '11954841', 'SRR401418' : '19982775', 'SRR401419' : '13267215', 'SRR401420' : '9409649', 'SRR401421' : '15714100', 'ERR274309' : '29192485', 'SRR1046909' : '5254981', 'SRR1046910' : '5367327', 'SRR1524935' : '21855410', 'SRR1524938' : '16760164', 'SRR1524940' : '14685479', 'SRR314814' : '23367623', 'SRR949956' : '4537769', 'SRR949965' : '3984129', 'SRR949988' : '4955792', 'SRR949989' : '4717225'}
 		
-		# Calculate the FPKM
+		# Calculate the RPKM
 		abs_fpkm = float(mapped_reads) / (float((end-start)) / 1000.0) / (float(reads_in_exp_dict[record]) / 1000000.0)
 
 		# Calculate the r values for each variant.
@@ -340,7 +342,7 @@ def main():
 			else:
 				r.append(sp / (math.sqrt(ss_x[i] * ss_y)))
 
-		# Output final data
+		# Output the newly generated data
 		idumpJSON(200, locus, int(variant), chromosome, start, end, record, tissue, base64img.replace('\n',''), mapped_reads, abs_fpkm, r)
 	else:
 		if (record == "ERR274310"):
