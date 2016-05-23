@@ -206,6 +206,10 @@
         return '#' + diff_red + diff_green + diff_blue;
     };
 
+    function round(x, digits){
+    	return parseFloat(x.toFixed(digits))
+    }
+
     /* Find and colour SVG in the DOM. */
     function colour_part_by_id(id, part, fpkm, mode) {
         // Get the user set RPKM scale
@@ -245,7 +249,7 @@
                     paths[i].style.fill = hex;
                 }
             }
-            document.getElementById(id.replace('_svg', '_rpkm')).innerHTML = fpkm;
+            document.getElementById(id.replace('_svg', '_rpkm')).innerHTML = round(fpkm, 5);
         } else {
             console.log("Paths is null for id = " + id);
         }
@@ -412,7 +416,7 @@
                             console.log("ERROR CODE = " + response_rnaseq['status'] + " returned for " + locus + " RNA-Seq data.");
                         }
                         var r = [];
-                        if (status == 1) {
+                        if (status == 2) { // Used to be 1
                             // Finalize statistical calculations
                             var ss_y = parseInt(response_rnaseq['ss_y']);
                             var sum_y = parseInt(response_rnaseq['sum_y']);
@@ -436,7 +440,7 @@
                         }
                         //console.log("ss_y = ", ss_y, ", sum_y = ", sum_y, ", sum_xy = ", sum_xy, ", sum_x = ", sum_x, ", sum_xx = ", sum_xx, ", ss_x = ", ss_x, ", ssx = ", ssx, ", ssy = ", ssy, ", n = ", n, ", sp = ", sp, ", ssx = ", ssx, ", ssy = ", ssy, ", r = ", r);
 
-                        // For cache purposes
+                        // FOR CACHE PURPOSES
                         //console.log("if (record == \"" + response_rnaseq['record'] + "\"):");
                         //console.log("\tdumpJSON(" + response_rnaseq['status'] + ", \"" + response_rnaseq['locus'] + "\", " + response_rnaseq['variant'] + ", " + response_rnaseq['chromosome'] + ", " + response_rnaseq['start'] + ", " + response_rnaseq['end'] + ", \"" + response_rnaseq['record'] + "\", \"" + response_rnaseq['tissue'] + "\", \"" + response_rnaseq['rnaseqbase64'] + "\", " + response_rnaseq['reads_mapped_to_locus'] + ", " + response_rnaseq['absolute-fpkm'] + ", " + response_rnaseq['ss_y'] + ", " + response_rnaseq['sum_y'] + ", \"" + response_rnaseq['sum_xy'] + "\", \"" + response_rnaseq['sum_x'] + "\", \"" + response_rnaseq['sum_xx'] + "\", \"" + response_rnaseq['ss_x'] + "\")");
 
@@ -556,13 +560,13 @@
                     format: function(s) {
                         // format your data for normalization
                         if (s == NaN) {
-                            return 0;
+                            return -99999;
                         } else if (s == undefined) {
-                            return -9999999;
-                        } else if (s == Infinity) {
-                            return 999999;
-                        } else if (s == -Infinity) {
                             return -999999;
+                        } else if (s == Infinity) {
+                            return 99999;
+                        } else if (s == -Infinity) {
+                            return -99999;
                         } else {
                             return parseFloat(s);
                         }
@@ -580,13 +584,13 @@
                     format: function(s) {
                         // format your data for normalization 
                         if (s == NaN) {
-                            return -999999;
+                            return -99999;
                         } else if (s == undefined) {
-                            return -9999999;
-                        } else if (s == Infinity) {
-                            return 999999;
-                        } else if (s == -Infinity) {
                             return -999999;
+                        } else if (s == Infinity) {
+                            return 99999;
+                        } else if (s == -Infinity) {
+                            return -99999;
                         } else {
                             return parseFloat(s);
                         }
