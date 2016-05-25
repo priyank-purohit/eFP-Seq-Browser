@@ -43,7 +43,7 @@
         <!-- Title + Help + Cite -->
         <div class="row">
             <div class="col-xs-10 col-sm-10 col-md-10">
-                <p style="font-size: 25px; margin: 5px; text-align: center;"><i>A. Thaliana</i> Multi-track RNA-Seq Browser</p>
+                <p style="font-size: 25px; margin: 5px; text-align: center;"><i>A. thaliana</i> Multi-track RNA-Seq Browser</p>
                 <p style="font-size: 15px; margin: 5px; text-align: center;">Priyank Purohit, Dr. Nicholas Provart. University of Toronto.</p>
             </div>
             <div class="col-xs-2 col-sm-2 col-md-2" style="padding: 15px;">
@@ -207,7 +207,7 @@
     };
 
     function round(x, digits){
-    	return parseFloat(x.toFixed(digits))
+        return parseFloat(x.toFixed(digits))
     }
 
     /* Find and colour SVG in the DOM. */
@@ -308,12 +308,12 @@
         yscale_input = document.getElementById("yscale_input").value;
         if (yscale_input == "Auto" || parseInt(yscale_input) < 1)
         {
-        	yscale_input = parseInt(-1);
-        	console.log("yscale_input value set to -1.");
+            yscale_input = parseInt(-1);
+            console.log("yscale_input value set to -1.");
         }
         else
         {
-        	console.log("yscale_input value set to " + yscale_input + ".");
+            console.log("yscale_input value set to " + yscale_input + ".");
         }
         max_abs_scale = document.getElementById("rpkm_scale_input").value;
     }
@@ -485,11 +485,11 @@
         // Insert table headers
         $("#thetable").append('<thead><tr>' +
             '<th class="sortable arrows" style="background-color: #F0F0F0; width: 250px;">Title<div class="arrowdown arrowup"></div></th>' +
-            '<th class="" style="background-color: #F0F0F0; width: 460px;">RNA-Seq Coverage</th>' +
+            '<th class="" style="background-color: #F0F0F0; width: 460px;">RNA-Seq Coverage<span style="float: right; vertical-align: middle; width: 22px; background-color: #999999; " class="badge" id="rna_seq_scale">?</span></th>' +
             '<th class="sortable arrows" style="background-color: #F0F0F0; width: 75px;">PCC</th>' +
-            '<th class="" style="background-color: #F0F0F0; width: 100px;">eFP (RPKM)</th>' +
+            '<th class="" style="background-color: #F0F0F0; width: 100px;">eFP (RPKM)<span style="float: right; vertical-align: middle; width: 22px; background-color: #999999; " class="badge" id="rpkm_scale">?</span></th>' +
             '<th class="sortable arrows" style="background-color: #F0F0F0; width: 75px;">RPKM</th>' +
-            '<th class="" style="background-color: #F0F0F0; width: 275px;">Details</th>' +
+            '<th class="sortable arrows" style="background-color: #F0F0F0; width: 275px;">Details</th>' +
             '</tr></thead>' +
             '<tbody></tbody>');
 
@@ -615,7 +615,7 @@
                             sorter: 'rpkm_sorter'
                         },
                         5: {
-                            sorter: false // disable sorting on this column
+                            //sorter: false // disable sorting on this column
                         }
                     }
                 });
@@ -623,6 +623,15 @@
             }
         });
     }
+
+    $("input[name=svg_colour_radio_group]:radio").change(function () {
+        colouring_mode = $('input[type="radio"][name="svg_colour_radio_group"]:checked').val();
+        if (colouring_mode == "abs") {
+            $("#rpkm_scale_input").removeAttr('disabled');
+        } else {
+            $("#rpkm_scale_input").prop("disabled", true);
+        }
+    });
 
     function locus_validation() {
         var loc = document.getElementById("locus").value;
