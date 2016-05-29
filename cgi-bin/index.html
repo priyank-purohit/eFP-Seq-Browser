@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="core/tablesorter.js"></script>
+    <script src="core/tablefilter/tablefilter.js"></script>
     <link rel="stylesheet" href="core/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- http://stackoverflow.com/questions/1802936/stop-all-active-ajax-requests-in-jquery -->
@@ -169,6 +170,11 @@
     var img_loading_base64 = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAcIAAAAyCAYAAADP/dvoAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAOwgAADsIBFShKgAAAABh0RVh0U29mdHdhcmUAcGFpbnQubmV0IDQuMC45bDN+TgAAA7NJREFUeF7t26FTFk8cB2ADgT+AQDAYCQQDgWAgGAwEI4FgIBIMBoMzBAKBQCQYCASDgUAgEAhEAoFAIBgMBIPBYCDcj8/+3sV3Xk/kdTTAPs/Md969vb27dPOZ3dv3UQcADROEADRNEALQtJ+D8NF1l1JKKfVQa0RPz8gFSiml1EOqET09/QMB4F4ThAA0TRAC0DRBCEDTBCEATROEADRNEALQNEEIQNMEIQBNE4QANE0QAtA0QQhA0wQhAE0ThAA0TRDC+La3t7vLy8vB0d81OTk5aHXd69ev/9lzgAFBCON78uRJd3R0NDj6ux4N3rOrq6vu1atX3efPn8sx8I8IQhjfr4Iw4XV6etodHx93X79+HfT+78uXL+Was7OzQc8P5+fn3cnJSbm+BmHUvsiYuLi4KM8YlfO5fyrXAXckCGF8fUGY4Hv27Fn39OnT7uXLl93U1NTNmN3d3dKfGd7s7Gz5rdbW1rrHjx93z58/LzUchGl/+vSptPPMN2/edAsLC6U9fI+lpaXuxYsX5fqJiYlueXl5cAb4rV/kW09P/0BoUV8Qrq+vlwCs8h1xfn6+tL99+3Yzs0tg1rBLyOWbYF3+/Pjx4825GA3Czc3N0s74nMv3w1RCt94/Qbu/v1/awB3knRt676qenv6B0KK+IEwIZuZXJcCGQ+3w8LDM/lZWVm76c4/ca9htQVjbUc9lyTVhmqXR79+/dzMzM5ZGYRx554beu6qnp38gtKgvCBcXF7v3798Pjn7M9mJjY6MsmyYMhwPybwRhZpgJv7m5uTIbzMwUGEPeuaH3rurp6R8ILeoLwgRQwq4uUWYZsy6V5jdhGJm51bDLsma+6dUNNFtbWzfn4i5BmI05CcCDg4PSHv67Rd2EE5ktfvjwobQjoWxHKlzLOzf03lU9Pf0DoUWZgSWIaiX0MjPLhpVsfMn5bI6pwbW3t1e+42WjS8akXSX8pqeny4xudXW1XF/dFoQJ0BznubkmG2SyaSbtt2/fljHZXJPnRQIx98tSaiQ86zdHaNr1e1FqhCCEP5SNMQmnUQmgGkKjMlvLdX8iM80EaJXAG11uBW4hCOF+yxJtZpiZ/WUzTmaW7969G5wFfksQwv2XP9nv7OyUqn+8B+5IEALQNEEIQNMEIQBNE4QANE0QAtA0QQhA0wQhAE0ThAA0TRAC0DRBCEDTBCEATROEADRNEALQNEEIQNMEIQBNGzsIlVJKqYdYI3p6Ri5QSimlHlKN+LkHABoiCAFoWNf9Bx2Q2ZDpi98WAAAAAElFTkSuQmCC";
     var img_gene_struct_1 = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAcIAAAAIBAMAAACYMuIQAAAAFVBMVEX///8AAADcFDz/jAAAAP+m 3KYAfQDytQt7AAAAS0lEQVQ4jWMIxQfSoCCBAQRgvDRUHhYAVsCGWyABhZuATRZFO8wEOEBIpuL1 ABAwhAYOex8KDncfBg57HwoOdzAC4nD458NhX5YCAOtozsHok4ONAAAAAElFTkSuQmCC ";
 
+    var absolute_rpkm_scale = "iVBORw0KGgoAAAANSUhEUgAAAGQAAAAKCAMAAAB1wgtMAAABQVBMVEX///8AAADcFDz/jAAAAP+m 3KYAfQD/AAD/AgD/BQD/BwD/CgD/DAD/DwD/EQD/FAD/FgD/GQD/HAD/HgD/IQD/IwD/JgD/KAD/ KwD/LQD/MAD/MwD/NQD/OAD/OgD/PQD/PwD/QgD/RAD/RwD/SQD/TAD/TwD/UQD/VAD/VgD/WQD/ WwD/XgD/YAD/YwD/ZgD/aAD/awD/bQD/cAD/cgD/dQD/dwD/egD/fAD/fwD/ggD/hAD/hwD/iQD/ jAD/jgD/kQD/kwD/lgD/mQD/mwD/ngD/oAD/owD/pQD/qAD/qgD/rQD/rwD/sgD/tQD/twD/ugD/ vAD/vwD/wQD/xAD/xgD/yQD/zAD/zgD/0QD/0wD/1gD/2AD/2wD/3QD/4AD/4gD/5QD/6AD/6gD/ 7QD/7wD/8gD/9AD/9wD/+QD//ADnA/9lAAAAq0lEQVQokWNg5+Dk4ubh5eMXEBQSFhEVE5eQlJKW kZWTV1BUUlZRVVPX0NTS1tHV0zcwNDI2MTUzt7C0sraxtbN3cHRydnF1c/fw9PL28fXzDwgMCg4J DQuPiIyKjomNi09ITEpOSU1Lz8jMYqCLJYwcnIw0tYQRZAkQ0NISxgxGmCVAQoBRSJiRVpaAgouR l49RQJCRkWY+gVjCSHtLeBj5aBVc4IgfNvkEAK6K1yv1dB44AAAAAElFTkSuQmCC";
+    var relative_rpkm_scale = "iVBORw0KGgoAAAANSUhEUgAAAGQAAAAKCAYAAABCHPt+AAAAAXNSR0IArs4c6QAAAARnQU1BAACx jwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAYdEVYdFNvZnR3YXJlAHBhaW50Lm5ldCA0LjAu OWwzfk4AAAGuSURBVFhH7dchrIJQGAVgC8VisVAoFguJQqFQLBYLxWKyWCgWCoVioZAoFovFYqFY LCSKxUKxWCwWC+m8c+/kjRd8zs234Rtu3/5zTbiz/6ottFqAQm3qUJdU0qhHfdLJIJMssmlAQxqR Q2Oa0JRm5NKcPPIpoAWFFFFMS1rRmja0pYR2tKeUMjrQkXI60ZkudKUbFYQWikLB7dbG9drB5dLF +azidNKQ5z0cj30cDjqyzECamtjvLex2NpJkgO12iM1mhPXawWo1xnI5QRxPEUUzhKGLxWKOIPDg +z48L8B8voDrhpjNIkynMSaTJcbjFRxnjdFog+Fwi8EggW3vYFl7mGYKw8ig6wf0+0f0ejk07QRV PaPbvaDTuaLdvkFRCn6KppB6FcLXdyEyf1Ah8nlrWIh4rrIQkauFiPPTQqo+pRD5rNwQOWtYSNXL G1JVFvLjPRYi570QmZtCXi6kPJeFiCwKEfPXK0vO+4bIfN8QkeW52ZC3XFkiC2JDxHxaiJgyN4X8 WSHllSXyw0LKK6u6IXLW6Mr6xC91kUsPC2Fqfva+uZDmf8i/KaTAF3cZV4Yt8EosAAAAAElFTkSu QmCC";
+
+    var ele = null;
+
     /* Produces an intermediate HEX colour. */
     function generate_colour(start_color, end_color, percent) {
         // strip the leading # if it's there
@@ -230,12 +236,13 @@
             } else if (mode == "rel") { // For relative FPKM colouring
                 var hex = "";
                 // Make the log FPKM a number between 0 and 1 to denote the 0 to +-5 scale.
+                var log_scale_max = 3;
                 var log_scaling = 0;
-                if (Math.abs(fpkm) > 5)
-                    log_scaling = 5;
+                if (Math.abs(fpkm) > log_scale_max)
+                    log_scaling = log_scale_max;
                 else
                     log_scaling = Math.abs(fpkm);
-                log_scaling /= 5;
+                log_scaling /= log_scale_max;
 
                 if (fpkm > 0) { // yellow-red
                     hex = generate_colour("FFFF00", "FF0000", log_scaling);
@@ -274,7 +281,7 @@
                 ctrl_avg_fpkm = ctrl_fpkm_sum / ctrl_count;
 
             // Save the average fpkm of controls and the log fpkm...
-            exp_info[i].splice(4, 1, Math.log2(exp_info[i][3] / ctrl_avg_fpkm));
+            exp_info[i].splice(4, 1, Math.log10(exp_info[i][3] / ctrl_avg_fpkm));
             exp_info[i].splice(6, 1, ctrl_avg_fpkm);
 
             // See if the absolute or the relative FPKM is max
@@ -299,6 +306,9 @@
         //console.log("Colouring function finished. Errors should be above this log entry.");
 
         $("#thetable").trigger("update");
+
+        colouring_mode = $('input[type="radio"][name="svg_colour_radio_group"]:checked').val();
+        change_rpkm_colour_scale(colouring_mode);
     }
 
     /* Re-read the value from the input box*/
@@ -484,12 +494,12 @@
 
         // Insert table headers
         $("#thetable").append('<thead><tr>' +
-            '<th class="sortable arrows" style="background-color: #F0F0F0; width: 250px;">Title<div class="arrowdown arrowup"></div></th>' +
-            '<th class="" style="background-color: #F0F0F0; width: 460px;">RNA-Seq Coverage<span style="float: right; vertical-align: middle; width: 22px; background-color: #999999; " class="badge" id="rna_seq_scale">?</span></th>' +
-            '<th class="sortable arrows" style="background-color: #F0F0F0; width: 75px;">PCC</th>' +
-            '<th class="" style="background-color: #F0F0F0; width: 100px;">eFP (RPKM)<span style="float: right; vertical-align: middle; width: 22px; background-color: #999999; " class="badge" id="rpkm_scale">?</span></th>' +
-            '<th class="sortable arrows" style="background-color: #F0F0F0; width: 75px;">RPKM</th>' +
-            '<th class="sortable arrows" style="background-color: #F0F0F0; width: 275px;">Details</th>' +
+            '<th class="sortable arrows" style="border: 1px solid #D3D3D3; background-color: #F0F0F0; width: 250px;">Title<div class="arrowdown arrowup"></div></th>' +
+            '<th class="" style="border: 1px solid #D3D3D3; background-color: #F0F0F0; width: 460px;">RNA-Seq Coverage</th>' +
+            '<th class="sortable arrows" style="border: 1px solid #D3D3D3; background-color: #F0F0F0; width: 75px;">PCC</th>' +
+            '<th class="" style="border: 1px solid #D3D3D3; background-color: #F0F0F0; width: 100px;">eFP (RPKM)</th>' +
+            '<th class="sortable arrows" style="border: 1px solid #D3D3D3; background-color: #F0F0F0; width: 75px;">RPKM</th>' +
+            '<th class="sortable arrows" style="border: 1px solid #D3D3D3; background-color: #F0F0F0; width: 275px;">Details</th>' +
             '</tr></thead>' +
             '<tbody></tbody>');
 
@@ -622,6 +632,52 @@
                 $("#thetable").trigger("update");
             }
         });
+		var filtersConfig = {
+	        base_path: 'core/tablefilter/',
+	        columns_exact_match: [false, false, true, false, true, false],
+	        watermark: ["Filter", "Filter", "Filter", "Filter", "Filter", "Filter"],
+        	highlight_keywords: false,
+        	no_results_message: true,
+	        auto_filter: true,
+	        auto_filter_delay: 500, //milliseconds
+	        col_1: 'none', // no filter option
+	        col_3: 'none', // no filter option
+        	popup_filters: false,
+	        filters_row_index: 1,
+	        alternate_rows: false,
+	        msg_filter: 'Filtering...'
+	    };
+		//var tf = new TableFilter('thetable', {base_path: 'core/tablefilter/'});
+		var tf = new TableFilter('thetable', filtersConfig);
+		//var tf = new TableFilter('demo', filtersConfig);
+		tf.init();
+		colouring_mode = $('input[type="radio"][name="svg_colour_radio_group"]:checked').val();
+		change_rpkm_colour_scale(colouring_mode);
+    }
+
+    function change_rpkm_colour_scale(colouring_mode) {
+    	if (ele == null) {
+    		ele = document.getElementById("flt3_thetable").parentElement;
+    	}
+    	ele.innerHTML="";
+    	if (colouring_mode == "rel") {
+    		var img_created = document.createElement('img');
+			img_created.src= 'data:image/png;base64,' + relative_rpkm_scale;
+			img_created.style= 'margin-top: 10px;';
+			ele.appendChild(img_created);
+    	}
+    	else {
+    		var img_created = document.createElement('img');
+			img_created.src= 'data:image/png;base64,' + absolute_rpkm_scale;
+			img_created.style= 'margin-top: 10px;';
+			ele.appendChild(img_created);
+    	}
+    	// Add border to fltrow class tr's child td elements
+    	var tds = document.getElementsByClassName("fltrow")[0].getElementsByTagName("td");
+    	for (var i = 0; i < tds.length; i++)
+    	{
+    		tds[i].style="border: 1px solid #D3D3D3";
+    	}
     }
 
     $("input[name=svg_colour_radio_group]:radio").change(function () {

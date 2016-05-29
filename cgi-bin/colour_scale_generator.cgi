@@ -49,7 +49,7 @@ print generate_colour("FF0000", "FFFF00", 1)
 
 # ----- CONSTANTS -----
 EXON_IMG_WIDTH = 100
-EXON_IMG_HEIGHT = 8
+EXON_IMG_HEIGHT = 10
 
 exongraph = gd.image((EXON_IMG_WIDTH, EXON_IMG_HEIGHT))
 
@@ -65,9 +65,13 @@ green = exongraph.colorAllocate((166,220,166))
 darkgreen = exongraph.colorAllocate((0,125,0))
 
 count = 0 # Need a comma if the it is not the first element...
-for iiii in range(100):
-	variable_colour = exongraph.colorAllocate(generate_colour("FF0000", "FFFF00", float(iiii/100.0)))
+for iiii in range(EXON_IMG_WIDTH):
+	variable_colour = exongraph.colorAllocate(generate_colour("FF0000", "FFFF00", float(iiii*1.0/EXON_IMG_WIDTH)))
 	exongraph.filledRectangle((iiii, 0), (iiii, EXON_IMG_HEIGHT), variable_colour)
+
+exongraph.string(0, (0, 1), "Max", black)
+exongraph.string(0, (EXON_IMG_WIDTH-5, 1), "0", black)
+#exongraph.string(0, (EXON_IMG_WIDTH-15, 1), "Min", black)
 
 f = open("get_exon_base64_exongraph.png", "w")
 exongraph.writePng(f)
