@@ -45,12 +45,18 @@ def generate_colour(start, end, percent):
 
 	return (diff_red, diff_green, diff_blue)
 
-print generate_colour("FF0000", "FFFF00", 1)
-
+'''
+#
+#
+# ABSOLUTE RPKM SCALE GENERATOR CODE
+#
+#
+'''
 # ----- CONSTANTS -----
 EXON_IMG_WIDTH = 100
 EXON_IMG_HEIGHT = 10
 
+# The image object
 exongraph = gd.image((EXON_IMG_WIDTH, EXON_IMG_HEIGHT))
 
 # Define the colours
@@ -60,18 +66,17 @@ black = exongraph.colorAllocate((0,0,0))
 red = exongraph.colorAllocate((220,20,60))
 orange = exongraph.colorAllocate((255,140,0))
 blue = exongraph.colorAllocate((0,0,255))
-# TO DO: Fix the green and dark green shades...
+
 green = exongraph.colorAllocate((166,220,166))
 darkgreen = exongraph.colorAllocate((0,125,0))
 
 count = 0 # Need a comma if the it is not the first element...
 for iiii in range(EXON_IMG_WIDTH):
-	variable_colour = exongraph.colorAllocate(generate_colour("FF0000", "FFFF00", float(iiii*1.0/EXON_IMG_WIDTH)))
+	variable_colour = exongraph.colorAllocate(generate_colour("FFFF00", "FF0000", float(iiii*1.0/EXON_IMG_WIDTH)))
 	exongraph.filledRectangle((iiii, 0), (iiii, EXON_IMG_HEIGHT), variable_colour)
 
-exongraph.string(0, (0, 1), "Max", black)
-exongraph.string(0, (EXON_IMG_WIDTH-5, 1), "0", black)
-#exongraph.string(0, (EXON_IMG_WIDTH-15, 1), "Min", black)
+exongraph.string(0, (1, 1), "O", black)
+exongraph.string(0, (EXON_IMG_WIDTH-15, 1), "Max", black)
 
 f = open("get_exon_base64_exongraph.png", "w")
 exongraph.writePng(f)
@@ -83,6 +88,160 @@ with open("get_exon_base64_exongraph.png", "rb") as fl:
 	printout = printout + fl.read().encode("base64")
 
 print('<img src="get_exon_base64_exongraph.png" />')
+print "</br>"
+print "</br>"
+print(printout)
+
+fl.close()
+
+
+'''
+#
+#
+# RELATIVE RPKM SCALE GENERATOR CODE PART 1
+#
+#
+'''
+print("<br/><br/>")
+# ----- CONSTANTS -----
+EXON_IMG_WIDTH = 50
+EXON_IMG_HEIGHT = 10
+
+# The image object
+exongraph1 = gd.image((EXON_IMG_WIDTH, EXON_IMG_HEIGHT))
+
+# Define the colours
+white = exongraph1.colorAllocate((255,255,255))
+black = exongraph1.colorAllocate((0,0,0))
+
+red = exongraph1.colorAllocate((220,20,60))
+orange = exongraph1.colorAllocate((255,140,0))
+blue = exongraph1.colorAllocate((0,0,255))
+
+green = exongraph1.colorAllocate((166,220,166))
+darkgreen = exongraph1.colorAllocate((0,125,0))
+
+count = 0 # Need a comma if the it is not the first element...
+for iiii in range(EXON_IMG_WIDTH):
+	variable_colour = exongraph1.colorAllocate(generate_colour("0000FF", "FFFF00", float(iiii*1.0/EXON_IMG_WIDTH)))
+	exongraph1.filledRectangle((iiii, 0), (iiii, EXON_IMG_HEIGHT), variable_colour)
+
+exongraph1.string(0, (EXON_IMG_WIDTH-5, 1), "O", black)
+exongraph1.string(0, (1, 1), "Min", black)
+
+f = open("get_exon_base64_exongraph1.png", "w")
+exongraph1.writePng(f)
+f.close()
+
+printout = ""
+
+with open("get_exon_base64_exongraph1.png", "rb") as fl:
+	printout = printout + fl.read().encode("base64")
+
+print "</br>"
+print "</br>"
+print(printout)
+
+fl.close()
+
+print("<br/><br/>")
+'''
+#
+#
+# RELATIVE RPKM SCALE GENERATOR CODE PART 2
+#
+#
+'''
+# ----- CONSTANTS -----
+EXON_IMG_WIDTH = 50
+EXON_IMG_HEIGHT = 10
+
+# The image object
+exongraph2 = gd.image((EXON_IMG_WIDTH, EXON_IMG_HEIGHT))
+
+# Define the colours
+white = exongraph2.colorAllocate((255,255,255))
+black = exongraph2.colorAllocate((0,0,0))
+
+red = exongraph2.colorAllocate((220,20,60))
+orange = exongraph2.colorAllocate((255,140,0))
+blue = exongraph2.colorAllocate((0,0,255))
+
+green = exongraph2.colorAllocate((166,220,166))
+darkgreen = exongraph2.colorAllocate((0,125,0))
+
+count = 0 # Need a comma if the it is not the first element...
+for iiii in range(EXON_IMG_WIDTH):
+	variable_colour = exongraph2.colorAllocate(generate_colour("FFFF00", "FF0000", float(iiii*1.0/EXON_IMG_WIDTH)))
+	exongraph2.filledRectangle((iiii, 0), (iiii, EXON_IMG_HEIGHT), variable_colour)
+
+exongraph2.string(0, (EXON_IMG_WIDTH-15, 1), "Max", black)
+
+f = open("get_exon_base64_exongraph2.png", "w")
+exongraph2.writePng(f)
+f.close()
+
+printout = ""
+
+with open("get_exon_base64_exongraph2.png", "rb") as fl:
+	printout = printout + fl.read().encode("base64")
+
+print('<img src="get_exon_base64_exongraph1.png" />')
+print('<img src="get_exon_base64_exongraph2.png" />')
+print "</br>"
+print "</br>"
+print(printout)
+
+fl.close()
+
+
+print("<br/><br/>")
+
+'''
+#
+#
+# ABSOLUTE RPKM SCALE GENERATOR CODE
+#
+#
+'''
+# ----- CONSTANTS -----
+EXON_IMG_WIDTH = 150
+EXON_IMG_HEIGHT = 10
+
+# The image object
+exongraph3 = gd.image((EXON_IMG_WIDTH, EXON_IMG_HEIGHT))
+
+# Define the colours
+white = exongraph3.colorAllocate((255,255,255))
+black = exongraph3.colorAllocate((0,0,0))
+
+red = exongraph3.colorAllocate((220,20,60))
+orange = exongraph3.colorAllocate((255,140,0))
+blue = exongraph3.colorAllocate((0,0,255))
+
+green = exongraph3.colorAllocate((166,220,166))
+darkgreen = exongraph3.colorAllocate((0,125,0))
+
+count = 0 # Need a comma if the it is not the first element...
+for iiii in range(EXON_IMG_WIDTH):
+	if (iiii < 70):
+		exongraph3.filledRectangle((iiii, 0), (iiii, EXON_IMG_HEIGHT), darkgreen)
+	elif (iiii > 75):
+		exongraph3.filledRectangle((iiii, 0), (iiii, EXON_IMG_HEIGHT), green)
+
+exongraph3.string(0, (75-6-(5*8), 1), "Exon/CDS", black)
+exongraph3.string(0, (EXON_IMG_WIDTH-(5*6)-1, 1), "Intron", black)
+
+f = open("get_exon_base64_exongraph3.png", "w")
+exongraph3.writePng(f)
+f.close()
+
+printout = ""
+
+with open("get_exon_base64_exongraph3.png", "rb") as fl:
+	printout = printout + fl.read().encode("base64")
+
+print('<img src="get_exon_base64_exongraph3.png" />')
 print "</br>"
 print "</br>"
 print(printout)

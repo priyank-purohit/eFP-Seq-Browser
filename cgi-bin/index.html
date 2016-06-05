@@ -153,27 +153,23 @@
     var locus = document.getElementById("locus").value; // Which locus does the user want?
     var yscale_input = document.getElementById("yscale_input").value; // What Y-Scale does the user want?
     var max_abs_scale = document.getElementById("rpkm_scale_input").value; // What is the max value for the svg colouring in absolute mode?
-
-    // Locus information
     var locus_start = 10326918; // Gets updated when user changes gene
     var locus_end = 10330048; // Gets updated when user changes gene
     var splice_variants = '';
-
-    // Locus-RNASeq specific information
     var rnaseq_calls = []; // Make a list of records and tissues we need to query....
     var exp_info = []; // Keep track of the FPKM related information // TODO : rename all exp_info to fpkm_info
     var rnaseq_success = 0; // Make a list of records and tissues we need to query....
     var max_absolute_fpkm = -1;
     var max_log_fpkm = -1;
+    var svg_colouring_element = null; // the element for inserting the SVG colouring scale legend
+    var gene_structure_colouring_element = null; // the element for inserting the gene structure scale legend
 
     // Base 64 images
     var img_loading_base64 = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAcIAAAAyCAYAAADP/dvoAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAOwgAADsIBFShKgAAAABh0RVh0U29mdHdhcmUAcGFpbnQubmV0IDQuMC45bDN+TgAAA7NJREFUeF7t26FTFk8cB2ADgT+AQDAYCQQDgWAgGAwEI4FgIBIMBoMzBAKBQCQYCASDgUAgEAhEAoFAIBgMBIPBYCDcj8/+3sV3Xk/kdTTAPs/Md969vb27dPOZ3dv3UQcADROEADRNEALQtJ+D8NF1l1JKKfVQa0RPz8gFSiml1EOqET09/QMB4F4ThAA0TRAC0DRBCEDTBCEATROEADRNEALQNEEIQNMEIQBNE4QANE0QAtA0QQhA0wQhAE0ThAA0TRDC+La3t7vLy8vB0d81OTk5aHXd69ev/9lzgAFBCON78uRJd3R0NDj6ux4N3rOrq6vu1atX3efPn8sx8I8IQhjfr4Iw4XV6etodHx93X79+HfT+78uXL+Was7OzQc8P5+fn3cnJSbm+BmHUvsiYuLi4KM8YlfO5fyrXAXckCGF8fUGY4Hv27Fn39OnT7uXLl93U1NTNmN3d3dKfGd7s7Gz5rdbW1rrHjx93z58/LzUchGl/+vSptPPMN2/edAsLC6U9fI+lpaXuxYsX5fqJiYlueXl5cAb4rV/kW09P/0BoUV8Qrq+vlwCs8h1xfn6+tL99+3Yzs0tg1rBLyOWbYF3+/Pjx4825GA3Czc3N0s74nMv3w1RCt94/Qbu/v1/awB3knRt676qenv6B0KK+IEwIZuZXJcCGQ+3w8LDM/lZWVm76c4/ca9htQVjbUc9lyTVhmqXR79+/dzMzM5ZGYRx554beu6qnp38gtKgvCBcXF7v3798Pjn7M9mJjY6MsmyYMhwPybwRhZpgJv7m5uTIbzMwUGEPeuaH3rurp6R8ILeoLwgRQwq4uUWYZsy6V5jdhGJm51bDLsma+6dUNNFtbWzfn4i5BmI05CcCDg4PSHv67Rd2EE5ktfvjwobQjoWxHKlzLOzf03lU9Pf0DoUWZgSWIaiX0MjPLhpVsfMn5bI6pwbW3t1e+42WjS8akXSX8pqeny4xudXW1XF/dFoQJ0BznubkmG2SyaSbtt2/fljHZXJPnRQIx98tSaiQ86zdHaNr1e1FqhCCEP5SNMQmnUQmgGkKjMlvLdX8iM80EaJXAG11uBW4hCOF+yxJtZpiZ/WUzTmaW7969G5wFfksQwv2XP9nv7OyUqn+8B+5IEALQNEEIQNMEIQBNE4QANE0QAtA0QQhA0wQhAE0ThAA0TRAC0DRBCEDTBCEATROEADRNEALQNEEIQNMEIQBNGzsIlVJKqYdYI3p6Ri5QSimlHlKN+LkHABoiCAFoWNf9Bx2Q2ZDpi98WAAAAAElFTkSuQmCC";
     var img_gene_struct_1 = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAcIAAAAIBAMAAACYMuIQAAAAFVBMVEX///8AAADcFDz/jAAAAP+m 3KYAfQDytQt7AAAAS0lEQVQ4jWMIxQfSoCCBAQRgvDRUHhYAVsCGWyABhZuATRZFO8wEOEBIpuL1 ABAwhAYOex8KDncfBg57HwoOdzAC4nD458NhX5YCAOtozsHok4ONAAAAAElFTkSuQmCC ";
-
-    var absolute_rpkm_scale = "iVBORw0KGgoAAAANSUhEUgAAAGQAAAAKCAMAAAB1wgtMAAABQVBMVEX///8AAADcFDz/jAAAAP+m 3KYAfQD/AAD/AgD/BQD/BwD/CgD/DAD/DwD/EQD/FAD/FgD/GQD/HAD/HgD/IQD/IwD/JgD/KAD/ KwD/LQD/MAD/MwD/NQD/OAD/OgD/PQD/PwD/QgD/RAD/RwD/SQD/TAD/TwD/UQD/VAD/VgD/WQD/ WwD/XgD/YAD/YwD/ZgD/aAD/awD/bQD/cAD/cgD/dQD/dwD/egD/fAD/fwD/ggD/hAD/hwD/iQD/ jAD/jgD/kQD/kwD/lgD/mQD/mwD/ngD/oAD/owD/pQD/qAD/qgD/rQD/rwD/sgD/tQD/twD/ugD/ vAD/vwD/wQD/xAD/xgD/yQD/zAD/zgD/0QD/0wD/1gD/2AD/2wD/3QD/4AD/4gD/5QD/6AD/6gD/ 7QD/7wD/8gD/9AD/9wD/+QD//ADnA/9lAAAAq0lEQVQokWNg5+Dk4ubh5eMXEBQSFhEVE5eQlJKW kZWTV1BUUlZRVVPX0NTS1tHV0zcwNDI2MTUzt7C0sraxtbN3cHRydnF1c/fw9PL28fXzDwgMCg4J DQuPiIyKjomNi09ITEpOSU1Lz8jMYqCLJYwcnIw0tYQRZAkQ0NISxgxGmCVAQoBRSJiRVpaAgouR l49RQJCRkWY+gVjCSHtLeBj5aBVc4IgfNvkEAK6K1yv1dB44AAAAAElFTkSuQmCC";
-    var relative_rpkm_scale = "iVBORw0KGgoAAAANSUhEUgAAAGQAAAAKCAYAAABCHPt+AAAAAXNSR0IArs4c6QAAAARnQU1BAACx jwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAYdEVYdFNvZnR3YXJlAHBhaW50Lm5ldCA0LjAu OWwzfk4AAAGuSURBVFhH7dchrIJQGAVgC8VisVAoFguJQqFQLBYLxWKyWCgWCoVioZAoFovFYqFY LCSKxUKxWCwWC+m8c+/kjRd8zs234Rtu3/5zTbiz/6ottFqAQm3qUJdU0qhHfdLJIJMssmlAQxqR Q2Oa0JRm5NKcPPIpoAWFFFFMS1rRmja0pYR2tKeUMjrQkXI60ZkudKUbFYQWikLB7dbG9drB5dLF +azidNKQ5z0cj30cDjqyzECamtjvLex2NpJkgO12iM1mhPXawWo1xnI5QRxPEUUzhKGLxWKOIPDg +z48L8B8voDrhpjNIkynMSaTJcbjFRxnjdFog+Fwi8EggW3vYFl7mGYKw8ig6wf0+0f0ejk07QRV PaPbvaDTuaLdvkFRCn6KppB6FcLXdyEyf1Ah8nlrWIh4rrIQkauFiPPTQqo+pRD5rNwQOWtYSNXL G1JVFvLjPRYi570QmZtCXi6kPJeFiCwKEfPXK0vO+4bIfN8QkeW52ZC3XFkiC2JDxHxaiJgyN4X8 WSHllSXyw0LKK6u6IXLW6Mr6xC91kUsPC2Fqfva+uZDmf8i/KaTAF3cZV4Yt8EosAAAAAElFTkSu QmCC";
-
-    var ele = null;
+    var absolute_rpkm_scale = "iVBORw0KGgoAAAANSUhEUgAAAGQAAAAKCAMAAAB1wgtMAAABQVBMVEX///8AAADcFDz/jAAAAP+m 3KYAfQD//wD//AD/+QD/9wD/9AD/8gD/7wD/7QD/6gD/6AD/5QD/4gD/4AD/3QD/2wD/2AD/1gD/ 0wD/0QD/zgD/zAD/yQD/xgD/xAD/wQD/vwD/vAD/ugD/twD/tQD/sgD/rwD/rQD/qgD/qAD/pQD/ owD/oAD/ngD/mwD/mQD/lgD/kwD/kQD/jgD/jAD/iQD/hwD/hAD/ggD/fwD/fAD/egD/dwD/dQD/ cgD/cAD/bQD/awD/aAD/ZgD/YwD/YAD/XgD/WwD/WQD/VgD/VAD/UQD/TwD/TAD/SQD/RwD/RAD/ QgD/PwD/PQD/OgD/OAD/NQD/MwD/MAD/LQD/KwD/KAD/JgD/IwD/IQD/HgD/HAD/GQD/FgD/FAD/ EQD/DwD/DAD/CgD/BwD/BQD/AgCkIVxRAAAArElEQVQokWNg5+Dk4ubh5eMXEBQSFhEVE5eQlJKW kZWTV1BUUlZRVVPX0NTS1tHV0zcwNDI2MTUzt7C0sraxtbN3cHRydnF1c/fw9PL28fXzDwgMCg4J DQuPiIyKjomNi09ITEpOSU1Lz8jMYqCTJYyMVLeEMTaOEcUSRk4uRqpbAgR0sgRIpDKmZzDSyhJQ cDEmJTOmpjEy0swnEEsY4ZbQLuIZk+HBNVzyCQDAVM+B7ubNrQAAAABJRU5ErkJggg==";
+    var relative_rpkm_scale = "iVBORw0KGgoAAAANSUhEUgAAAGQAAAAKCAIAAADNfmwpAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAYdEVYdFNvZnR3YXJlAHBhaW50Lm5ldCA0LjAuOWwzfk4AAAGTSURBVEhL7ZYhjIJgGIbfYrFQLBaLhWKyWCwWi8VioZgsFArFYrFQLCaLhWKhWCwWCslCoVAoFAqFQnrv+2XHbpfwgnc7fTe+PWNssGfv9w8AbLXKdrvQtLzTybrdtNdL+v1Y16PBIBwOb6NRMB77k8l1Or3MZuf53FssTobhLpfH1epgmnvL2tm2s15vN5vNdrt2HHu3s/Z783BYHY9L1zVOp4Xnzc/n2eUyvV4nvj8OgtHtNgzDQRTpcdxPkl6adrOsk+daUbTLskWCJViAOZiBKZiAMRiBIXgDA9AHr+AFPIMeeAJd8AgewD24Ax1wC27ANWiDFmiCK3AJGuACnIMzcApOwDE4AofgANTBPtgDu2AH1MC2aBJXb1kPyZKrkiVQyxJ+siz1LcCTZUkqWQoayqrzW82SV1fNEniyrDo/lFVxJUtAZMl8EVl1RJaad1kKmqyhegSQZsn8l7K+rqGa92YpuDerStMzS6BaQ4EXkVWlqSx1+56nyfo7B7yCz2ap+W0N378OD/w6vGU1ktXCBwfvbqs5Q2ZbAAAAAElFTkSuQmCC";
+    var exon_intron_scale = "iVBORw0KGgoAAAANSUhEUgAAAJYAAAAKBAMAAACki7rpAAAAFVBMVEX///8AAADcFDz/jAAAAP+m 3KYAfQDytQt7AAAAgklEQVQokbWSQQ6AMAgE+cIe4F8e+gAu/P8JLtWDphZNVBI2bQ+TgVTivkSk PSn5j+Www8UcfJmzoAydsuKE8jArvJZWshDmgY5g37JUFzBaj9GLOmHw5GS7VSwQx2DyNGFlR5+R T5VXqukmeLH7bUb3ffcovJCENMsZB9aXf+IVawW7nfIG0oe3ZAAAAABJRU5ErkJggg==";
 
     /* Produces an intermediate HEX colour. */
     function generate_colour(start_color, end_color, percent) {
@@ -212,11 +208,12 @@
         return '#' + diff_red + diff_green + diff_blue;
     };
 
+    /* Round the float X to DIGIT number of decimal places. */
     function round(x, digits){
         return parseFloat(x.toFixed(digits))
     }
 
-    /* Find and colour SVG in the DOM. */
+    /* Find and colour a particular SVG in the DOM. */
     function colour_part_by_id(id, part, fpkm, mode) {
         // Get the user set RPKM scale
         max_abs_scale = document.getElementById("rpkm_scale_input").value;
@@ -262,7 +259,7 @@
         }
     }
 
-    /* Finds and updates each SVG in the DOM. */
+    /* Find and update each SVG in the DOM. */
     function colour_svgs_now(mode = $('input[type="radio"][name="svg_colour_radio_group"]:checked').val()) {
         //console.log("colour_svgs_now function is called with mode = " + mode);
         for (var i = 0; i < 113; i++) {
@@ -319,11 +316,11 @@
         if (yscale_input == "Auto" || parseInt(yscale_input) < 1)
         {
             yscale_input = parseInt(-1);
-            console.log("yscale_input value set to -1.");
+            //console.log("yscale_input value set to -1.");
         }
         else
         {
-            console.log("yscale_input value set to " + yscale_input + ".");
+            //console.log("yscale_input value set to " + yscale_input + ".");
         }
         max_abs_scale = document.getElementById("rpkm_scale_input").value;
     }
@@ -398,6 +395,7 @@
         $("#thetable").trigger("update");
     }
 
+    /* Converts numbers stored as str to int. */
     function parseIntArray(arr) {
         for (var i = 0, len = arr.length; i < len; i++) {
             arr[i] = parseInt(arr[i], 10);
@@ -425,6 +423,7 @@
                         } else {
                             console.log("ERROR CODE = " + response_rnaseq['status'] + " returned for " + locus + " RNA-Seq data.");
                         }
+
                         var r = [];
                         if (status == 2) { // Used to be 1
                             // Finalize statistical calculations
@@ -450,10 +449,9 @@
                         }
                         //console.log("ss_y = ", ss_y, ", sum_y = ", sum_y, ", sum_xy = ", sum_xy, ", sum_x = ", sum_x, ", sum_xx = ", sum_xx, ", ss_x = ", ss_x, ", ssx = ", ssx, ", ssy = ", ssy, ", n = ", n, ", sp = ", sp, ", ssx = ", ssx, ", ssy = ", ssy, ", r = ", r);
 
-                        // FOR CACHE PURPOSES
+                        // FOR CACHE PURPOSES, swap the 2nd and 3rd statements
                         //console.log("if (record == \"" + response_rnaseq['record'] + "\"):");
                         //console.log("\tdumpJSON(" + response_rnaseq['status'] + ", \"" + response_rnaseq['locus'] + "\", " + response_rnaseq['variant'] + ", " + response_rnaseq['chromosome'] + ", " + response_rnaseq['start'] + ", " + response_rnaseq['end'] + ", \"" + response_rnaseq['record'] + "\", \"" + response_rnaseq['tissue'] + "\", \"" + response_rnaseq['rnaseqbase64'] + "\", " + response_rnaseq['reads_mapped_to_locus'] + ", " + response_rnaseq['absolute-fpkm'] + ", " + response_rnaseq['ss_y'] + ", " + response_rnaseq['sum_y'] + ", \"" + response_rnaseq['sum_xy'] + "\", \"" + response_rnaseq['sum_x'] + "\", \"" + response_rnaseq['sum_xx'] + "\", \"" + response_rnaseq['ss_x'] + "\")");
-
                         //console.log("\tdumpJSON(" + response_rnaseq['status'] + ", \"" + response_rnaseq['locus'] + "\", " + response_rnaseq['variant'] + ", " + response_rnaseq['chromosome'] + ", " + response_rnaseq['start'] + ", " + response_rnaseq['end'] + ", \"" + response_rnaseq['record'] + "\", \"" + response_rnaseq['tissue'] + "\", \"" + response_rnaseq['rnaseqbase64'] + "\", " + response_rnaseq['reads_mapped_to_locus'] + ", " + response_rnaseq['absolute-fpkm'] + ", \"" + response_rnaseq['r'] + "\")");
 
                         // find the correct row and update coverage image, and stats info
@@ -473,6 +471,14 @@
                         // Colour SVG by Absolute RPKM
                         colour_part_by_id(response_rnaseq['record'] + '_svg', 'Shapes', response_rnaseq['absolute-fpkm'], 'abs');
 
+                        if (rnaseq_success == 113 || rnaseq_success % 10 == 0) {
+                            // Execute the colour_svgs_now() function
+                            colour_svgs_now();
+                            // Change the input box value to max absolute fpkm
+                            document.getElementById("rpkm_scale_input").value = parseInt(round(max_absolute_fpkm));
+                            // Execute the colour_svgs_now() function and use the new max absolute fpkm
+                            colour_svgs_now();
+                        }
 
                         $("#thetable").trigger("update");
                     }
@@ -483,14 +489,15 @@
 
     /* Gets the BAM locator XML to create + populate the table. Leeps track of all RNA-Seq calls it will have to make. */
     function populate_table(status) {
-        // Clear up the table + RNA-Seq Calls
+        // Reset values
         $("#thetable").empty();
         rnaseq_calls = [];
         exp_info = [];
         rnaseq_success = 0;
         max_absolute_fpkm = -1;
         max_log_fpkm = -1;
-
+        svg_colouring_element = null;
+        gene_structure_colouring_element = null;
 
         // Insert table headers
         $("#thetable").append('<thead><tr>' +
@@ -653,24 +660,34 @@
 		tf.init();
 		colouring_mode = $('input[type="radio"][name="svg_colour_radio_group"]:checked').val();
 		change_rpkm_colour_scale(colouring_mode);
+
+        if (gene_structure_colouring_element == null) {
+            gene_structure_colouring_element = document.getElementById("flt1_thetable").parentElement;
+        }
+        gene_structure_colouring_element.innerHTML="";
+        var img_created = document.createElement('img');
+        img_created.src= 'data:image/png;base64,' + exon_intron_scale;
+        img_created.style= 'margin-top: 10px; float: right; margin-right: 10px;';
+        gene_structure_colouring_element.appendChild(img_created);
     }
 
+    /* Changes the legend for scales. */
     function change_rpkm_colour_scale(colouring_mode) {
-    	if (ele == null) {
-    		ele = document.getElementById("flt3_thetable").parentElement;
+    	if (svg_colouring_element == null) {
+    		svg_colouring_element = document.getElementById("flt3_thetable").parentElement;
     	}
-    	ele.innerHTML="";
+    	svg_colouring_element.innerHTML="";
     	if (colouring_mode == "rel") {
     		var img_created = document.createElement('img');
 			img_created.src= 'data:image/png;base64,' + relative_rpkm_scale;
 			img_created.style= 'margin-top: 10px;';
-			ele.appendChild(img_created);
+			svg_colouring_element.appendChild(img_created);
     	}
     	else {
     		var img_created = document.createElement('img');
 			img_created.src= 'data:image/png;base64,' + absolute_rpkm_scale;
 			img_created.style= 'margin-top: 10px;';
-			ele.appendChild(img_created);
+			svg_colouring_element.appendChild(img_created);
     	}
     	// Add border to fltrow class tr's child td elements
     	var tds = document.getElementsByClassName("fltrow")[0].getElementsByTagName("td");
@@ -680,6 +697,7 @@
     	}
     }
 
+    /* Disables the absolute RPKM scale input button if the relative mode is selected. */
     $("input[name=svg_colour_radio_group]:radio").change(function () {
         colouring_mode = $('input[type="radio"][name="svg_colour_radio_group"]:checked').val();
         if (colouring_mode == "abs") {
@@ -706,7 +724,6 @@
             $("#locus_button").prop("disabled", true);
         }
     }
-
     function yscale_validation() {
         var yscale = document.getElementById("yscale_input").value;
         if (parseInt(yscale) > 0 || yscale == "Auto" || yscale == "") {
@@ -717,7 +734,6 @@
             $("#locus_button").prop("disabled", true);
         }
     }
-
     function rpkm_validation() {
         var rpkmscale = parseInt(document.getElementById("rpkm_scale_input").value);
         if (rpkmscale > 0) {
@@ -727,7 +743,6 @@
         }
     }
 
-    // Leave this function here, even if unused
     $(document).ready(function() {
         // On load, validate input
         locus_validation();
@@ -751,6 +766,15 @@
             rpkm_validation();
         });
         populate_table(1); // status 1 forces rna-seq api to return cached data for fast initial load
+
+        if (gene_structure_colouring_element == null) {
+            gene_structure_colouring_element = document.getElementById("flt1_thetable").parentElement;
+        }
+        gene_structure_colouring_element.innerHTML="";
+        var img_created = document.createElement('img');
+        img_created.src= 'data:image/png;base64,' + exon_intron_scale;
+        img_created.style= 'margin-top: 10px; float: right; margin-right: 10px;';
+        gene_structure_colouring_element.appendChild(img_created);
     });
     </script>
     <div id="10dayOldSeedling" style="display: none;">
