@@ -15,3 +15,6 @@ border: 1px solid #D3D3D3;
 .hidden {
 display: none;
 }
+.locus_button_style {
+	margin-left: 20px;
+}
