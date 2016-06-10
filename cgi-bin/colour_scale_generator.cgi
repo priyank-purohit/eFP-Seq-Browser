@@ -230,7 +230,7 @@ for iiii in range(EXON_IMG_WIDTH):
 		exongraph3.filledRectangle((iiii, 0), (iiii, EXON_IMG_HEIGHT), green)
 
 exongraph3.string(0, (75-6-(5*8), 1), "Exon/CDS", black)
-exongraph3.string(0, (EXON_IMG_WIDTH-(5*6)-1, 1), "Intron", black)
+exongraph3.string(0, (EXON_IMG_WIDTH-(5*10)-1, 1), "Non-coding", black)
 
 f = open("get_exon_base64_exongraph3.png", "w")
 exongraph3.writePng(f)
