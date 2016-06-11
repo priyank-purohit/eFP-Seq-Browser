@@ -6,9 +6,8 @@
     <title>Multi-track RNA-Seq Browser</title>
     <meta name="author" content="Priyank Purohit">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-	<link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.green-pink.min.css">
-	<script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script>
-
+    <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.green-pink.min.css">
+    <script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script>
     <link href='http://fonts.googleapis.com/css?family=PT+Sans' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -50,14 +49,14 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <p style="font-size: 25px; margin: 5px; text-align: center;"><i>A. thaliana</i> Multi-track RNA-Seq Browser</p>
                 <p style="font-size: 15px; margin: 5px; text-align: center;">Priyank Purohit, Dr. Nicholas Provart. University of Toronto.</p>
-	            <div class="col-xs-2 col-sm-2 col-md-2 col-xs-offset-10 col-sm-offset-10 col-md-offset-10" style="margin-top: -50px;">
-	                <div class="col-xs-6" id="cite_button_div">
-	                    <button id="cite_button" disabled="" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect ">Cite</button>
-	                </div>
-	                <div class="col-xs-6">
-	                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect ">Help</button>
-	                </div>
-	            </div>
+                <div class="col-xs-2 col-sm-2 col-md-2 col-xs-offset-10 col-sm-offset-10 col-md-offset-10" style="margin-top: -50px;">
+                    <div class="col-xs-6" id="cite_button_div">
+                        <button id="cite_button" disabled="" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect ">Cite</button>
+                    </div>
+                    <div class="col-xs-6">
+                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect ">Help</button>
+                    </div>
+                </div>
             </div>
         </div>
         <hr style="border: 1px solid gray; margin: 5px; " />
@@ -92,36 +91,35 @@
             <!-- Options -->
             <div class="col-xs-12 col-sm-12 col-md-6">
                 <div class="row">
-                <div class="col-xs-1"><!-- For correct spacing. --></div>
+                    <div class="col-xs-1">
+                        <!-- For correct spacing. -->
+                    </div>
                     <!-- Locus input -->
                     <div class="col-xs-4">
                         <p>
                             <input type="text" class="form-control" name="Locus" id="locus" value="AT2G24270" style="width: 175px; height: 35px;" /><i>Locus</i>
                         </p>
                     </div>
-					<div class="mdl-tooltip" for="locus">e.g. AT2G24270</div>
-
-
-                    
+                    <div class="mdl-tooltip" for="locus">e.g. AT2G24270</div>
                     <!-- Y axis scaling -->
                     <div class="col-xs-4" id="tt4">
                         <p>
                             <input type="text" class="form-control" name="yscale_inp" id="yscale_input" value="Auto" style="width: 175px; height: 35px;" /><i>RNA-Seq Y-axis Scale</i>
                         </p>
                     </div>
-					<div class="mdl-tooltip" for="yscale_input">'Auto' or >= 1 </div>
-
-					<button id="locus_button" onclick="update_all_images(0)" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored locus_button_style">
-						<i class="material-icons">trending_flat</i>
-					</button>
-
-					<!--
+                    <div class="mdl-tooltip" for="yscale_input">'Auto' or >= 1 </div>
+                    <button id="locus_button" onclick="update_all_images(0)" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored locus_button_style">
+                        <i class="material-icons">trending_flat</i>
+                    </button>
+                    <!--
                     <div class="col-xs-1">
                         <input id="locus_button" type="button" class="btn btn-success" onclick="update_all_images(0)" value="Go" style="height: 35px;" />
                     </div> -->
                 </div>
                 <div class="row">
-                <div class="col-xs-1"><!-- For correct spacing. --></div>
+                    <div class="col-xs-1">
+                        <!-- For correct spacing. -->
+                    </div>
                     <!-- SVG colouring mode: abs or rel -->
                     <div class="col-xs-4">
                         <p>
@@ -133,29 +131,28 @@
                                     <input type="radio" name="svg_colour_radio_group" value="rel">Relative
                                 </label>
                             </div>
-							<div class="mdl-tooltip" for="abs_radio">Based on RPKM value</div>
-							<div class="mdl-tooltip" for="rel_radio">Relative to average RPKM<br/>of controls (log10)</div>
+                            <div class="mdl-tooltip" for="abs_radio">Based on RPKM value</div>
+                            <div class="mdl-tooltip" for="rel_radio">Relative to average RPKM
+                                <br/>of controls (log10)</div>
                             <i>SVG Colouring Mode</i>
                         </p>
                     </div>
                     <div class="col-xs-1 hidden">
                         <input id="svg_colour_button" type="button" class="btn" onclick="colour_svgs_now()" value="Go" style="height: 35px;" />
                     </div>
-                    
                     <!-- Absolute SVG scaling -->
                     <div class="col-xs-4">
                         <p>
                             <input type="text" class="form-control" name="rpkm_inp" id="rpkm_scale_input" value="1000" style="width: 175px; height: 35px;" /><i>eFP Absolute Max Value</i>
                         </p>
                     </div>
-					<div class="mdl-tooltip" for="rpkm_scale_input">Absolute mode Max value</div>
+                    <div class="mdl-tooltip" for="rpkm_scale_input">Custom or set automatically</div>
                     <!--<div class="col-xs-1">
                         <input id="abs_scale_button" type="button" class="btn" onclick="colour_svgs_now()" value="Go" style="height: 35px;" />
                     </div>-->
-
-					<button id="abs_scale_button" onclick="colour_svgs_now()" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab locus_button_style">
-						<i class="material-icons">cached</i>
-					</button>
+                    <button id="abs_scale_button" onclick="colour_svgs_now()" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab locus_button_style">
+                        <i class="material-icons">cached</i>
+                    </button>
                 </div>
             </div>
         </div>
@@ -169,33 +166,32 @@
             <div class="mdl-tooltip" for="flt5_thetable">See Help for advanced options.</div>
         </div>
     </div>
-	<div id="toast" class="mdl-js-snackbar mdl-snackbar">
-	    <div class="mdl-snackbar__text"></div>
-	    <button class="mdl-snackbar__action" type="button"></button>
-	</div>
-	<script>
-	(function() {
-	    'use strict';
-	    var snackbarContainer = document.querySelector('#toast');
-	    var showToastButton = document.querySelector('#locus_button');
-	    var showToastButton2 = document.querySelector('#abs_scale_button');
-	    showToastButton.addEventListener('click', function() {
-	        'use strict';
-	        var data = {
-	            message: 'Getting gene structure and RNA-Seq data ...'
-	        };
-	        snackbarContainer.MaterialSnackbar.showSnackbar(data);
-	    });
-	    showToastButton2.addEventListener('click', function() {
-	        'use strict';
-	        var data = {
-	            message: 'Recolouring SVG images ...'
-	        };
-	        snackbarContainer.MaterialSnackbar.showSnackbar(data);
-	    });
-	}());
-	</script>
-
+    <div id="toast" class="mdl-js-snackbar mdl-snackbar">
+        <div class="mdl-snackbar__text"></div>
+        <button class="mdl-snackbar__action" type="button"></button>
+    </div>
+    <script>
+    (function() {
+        'use strict';
+        var snackbarContainer = document.querySelector('#toast');
+        var showToastButton = document.querySelector('#locus_button');
+        var showToastButton2 = document.querySelector('#abs_scale_button');
+        showToastButton.addEventListener('click', function() {
+            'use strict';
+            var data = {
+                message: 'Getting gene structure and RNA-Seq data ...'
+            };
+            snackbarContainer.MaterialSnackbar.showSnackbar(data);
+        });
+        showToastButton2.addEventListener('click', function() {
+            'use strict';
+            var data = {
+                message: 'Recolouring SVG images ...'
+            };
+            snackbarContainer.MaterialSnackbar.showSnackbar(data);
+        });
+    }());
+    </script>
     <script type="text/javascript">
     // Get initial values
     var colouring_mode = $('input[type="radio"][name="svg_colour_radio_group"]:checked').val();
@@ -258,7 +254,7 @@
     };
 
     /* Round the float X to DIGIT number of decimal places. */
-    function round(x, digits){
+    function round(x, digits) {
         return parseFloat(x.toFixed(digits))
     }
 
@@ -362,13 +358,10 @@
         colouring_mode = $('input[type="radio"][name="svg_colour_radio_group"]:checked').val();
         locus = document.getElementById("locus").value;
         yscale_input = document.getElementById("yscale_input").value;
-        if (yscale_input == "Auto" || parseInt(yscale_input) < 1)
-        {
+        if (yscale_input == "Auto" || parseInt(yscale_input) < 1) {
             yscale_input = parseInt(-1);
             //console.log("yscale_input value set to -1.");
-        }
-        else
-        {
+        } else {
             //console.log("yscale_input value set to " + yscale_input + ".");
         }
         max_abs_scale = document.getElementById("rpkm_scale_input").value;
@@ -666,8 +659,7 @@
                 });
                 $('#thetable').tablesorter({
                     headers: {
-                        0: {
-                        },
+                        0: {},
                         1: {
                             sorter: false // disable sorting on this column
                         },
@@ -688,66 +680,64 @@
                 $("#thetable").trigger("update");
             }
         });
-		var filtersConfig = {
-	        base_path: 'cgi-bin/core/tablefilter/',
-	        columns_exact_match: [false, false, true, false, true, false],
-	        watermark: ["Filter", "Filter", "Filter", "Filter", "Filter", "Filter"],
-        	highlight_keywords: false,
-        	no_results_message: true,
-	        auto_filter: true,
-	        auto_filter_delay: 500, //milliseconds
-	        col_1: 'none', // no filter option
-	        col_3: 'none', // no filter option
-        	popup_filters: false,
-	        filters_row_index: 1,
-	        alternate_rows: false,
-	        msg_filter: 'Filtering...'
-	    };
-		//var tf = new TableFilter('thetable', {base_path: 'core/tablefilter/'});
-		var tf = new TableFilter('thetable', filtersConfig);
-		//var tf = new TableFilter('demo', filtersConfig);
-		tf.init();
-		colouring_mode = $('input[type="radio"][name="svg_colour_radio_group"]:checked').val();
-		change_rpkm_colour_scale(colouring_mode);
+        var filtersConfig = {
+            base_path: 'cgi-bin/core/tablefilter/',
+            columns_exact_match: [false, false, true, false, true, false],
+            watermark: ["Filter", "Filter", "Filter", "Filter", "Filter", "Filter"],
+            highlight_keywords: false,
+            no_results_message: true,
+            auto_filter: true,
+            auto_filter_delay: 500, //milliseconds
+            col_1: 'none', // no filter option
+            col_3: 'none', // no filter option
+            popup_filters: false,
+            filters_row_index: 1,
+            alternate_rows: false,
+            msg_filter: 'Filtering...'
+        };
+        //var tf = new TableFilter('thetable', {base_path: 'core/tablefilter/'});
+        var tf = new TableFilter('thetable', filtersConfig);
+        //var tf = new TableFilter('demo', filtersConfig);
+        tf.init();
+        colouring_mode = $('input[type="radio"][name="svg_colour_radio_group"]:checked').val();
+        change_rpkm_colour_scale(colouring_mode);
 
         if (gene_structure_colouring_element == null) {
             gene_structure_colouring_element = document.getElementById("flt1_thetable").parentElement;
         }
-        gene_structure_colouring_element.innerHTML="";
+        gene_structure_colouring_element.innerHTML = "";
         var img_created = document.createElement('img');
-        img_created.src= 'data:image/png;base64,' + exon_intron_scale;
-        img_created.style= 'margin-top: 10px; float: right; margin-right: 10px;';
+        img_created.src = 'data:image/png;base64,' + exon_intron_scale;
+        img_created.style = 'margin-top: 10px; float: right; margin-right: 10px;';
         gene_structure_colouring_element.appendChild(img_created);
     }
 
     /* Changes the legend for scales. */
     function change_rpkm_colour_scale(colouring_mode) {
-    	if (svg_colouring_element == null) {
-    		svg_colouring_element = document.getElementById("flt3_thetable").parentElement;
-    	}
-    	svg_colouring_element.innerHTML="";
-    	if (colouring_mode == "rel") {
-    		var img_created = document.createElement('img');
-			img_created.src= 'data:image/png;base64,' + relative_rpkm_scale;
-			img_created.style= 'margin-top: 10px;';
-			svg_colouring_element.appendChild(img_created);
-    	}
-    	else {
-    		var img_created = document.createElement('img');
-			img_created.src= 'data:image/png;base64,' + absolute_rpkm_scale;
-			img_created.style= 'margin-top: 10px;';
-			svg_colouring_element.appendChild(img_created);
-    	}
-    	// Add border to fltrow class tr's child td elements
-    	var tds = document.getElementsByClassName("fltrow")[0].getElementsByTagName("td");
-    	for (var i = 0; i < tds.length; i++)
-    	{
-    		tds[i].style="border: 1px solid #D3D3D3";
-    	}
+        if (svg_colouring_element == null) {
+            svg_colouring_element = document.getElementById("flt3_thetable").parentElement;
+        }
+        svg_colouring_element.innerHTML = "";
+        if (colouring_mode == "rel") {
+            var img_created = document.createElement('img');
+            img_created.src = 'data:image/png;base64,' + relative_rpkm_scale;
+            img_created.style = 'margin-top: 10px;';
+            svg_colouring_element.appendChild(img_created);
+        } else {
+            var img_created = document.createElement('img');
+            img_created.src = 'data:image/png;base64,' + absolute_rpkm_scale;
+            img_created.style = 'margin-top: 10px;';
+            svg_colouring_element.appendChild(img_created);
+        }
+        // Add border to fltrow class tr's child td elements
+        var tds = document.getElementsByClassName("fltrow")[0].getElementsByTagName("td");
+        for (var i = 0; i < tds.length; i++) {
+            tds[i].style = "border: 1px solid #D3D3D3";
+        }
     }
 
     /* Disables the absolute RPKM scale input button if the relative mode is selected. */
-    $("input[name=svg_colour_radio_group]:radio").change(function () {
+    $("input[name=svg_colour_radio_group]:radio").change(function() {
         colouring_mode = $('input[type="radio"][name="svg_colour_radio_group"]:checked').val();
         if (colouring_mode == "abs") {
             $("#rpkm_scale_input").removeAttr('disabled');
@@ -773,6 +763,7 @@
             $("#locus_button").prop("disabled", true);
         }
     }
+
     function yscale_validation() {
         var yscale = document.getElementById("yscale_input").value;
         if (parseInt(yscale) > 0 || yscale == "Auto" || yscale == "") {
@@ -783,6 +774,7 @@
             $("#locus_button").prop("disabled", true);
         }
     }
+
     function rpkm_validation() {
         var rpkmscale = parseInt(document.getElementById("rpkm_scale_input").value);
         if (rpkmscale > 0) {
@@ -819,10 +811,10 @@
         if (gene_structure_colouring_element == null) {
             gene_structure_colouring_element = document.getElementById("flt1_thetable").parentElement;
         }
-        gene_structure_colouring_element.innerHTML="";
+        gene_structure_colouring_element.innerHTML = "";
         var img_created = document.createElement('img');
-        img_created.src= 'data:image/png;base64,' + exon_intron_scale;
-        img_created.style= 'margin-top: 10px; float: right; margin-right: 10px;';
+        img_created.src = 'data:image/png;base64,' + exon_intron_scale;
+        img_created.style = 'margin-top: 10px; float: right; margin-right: 10px;';
         gene_structure_colouring_element.appendChild(img_created);
     });
     </script>
