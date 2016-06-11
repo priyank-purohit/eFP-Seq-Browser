@@ -13,9 +13,9 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="core/tablesorter.js"></script>
-    <script src="core/tablefilter/tablefilter.js"></script>
-    <link rel="stylesheet" href="core/style.css">
+    <script src="cgi-bin/core/tablesorter.js"></script>
+    <script src="cgi-bin/core/tablefilter/tablefilter.js"></script>
+    <link rel="stylesheet" href="cgi-bin/core/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- http://stackoverflow.com/questions/1802936/stop-all-active-ajax-requests-in-jquery -->
     <script type="text/javascript">
@@ -560,7 +560,7 @@
             '<tbody></tbody>');
 
         $.ajax({
-            url: 'data/bamdata_amazon_links.xml',
+            url: 'cgi-bin/data/bamdata_amazon_links.xml',
             dataType: 'xml',
             success: function(xml_res) {
                 var $title = $(xml_res).find("bam_file");
@@ -689,7 +689,7 @@
             }
         });
 		var filtersConfig = {
-	        base_path: 'core/tablefilter/',
+	        base_path: 'cgi-bin/core/tablefilter/',
 	        columns_exact_match: [false, false, true, false, true, false],
 	        watermark: ["Filter", "Filter", "Filter", "Filter", "Filter", "Filter"],
         	highlight_keywords: false,
