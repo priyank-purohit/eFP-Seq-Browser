@@ -45,7 +45,12 @@
     <div class="progress" style="width: 100%; height: 5px; position: fixed; margin-top: 0px; top: 0px; z-index: 100;">
         <div id="progress" class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="1" aria-valuemin="0" aria-valuemax="113" style="width:1%;"></div>
     </div>
-    <div id="progress_tooltip" class="mdl-tooltip" for="title_bar">Average load time < 10 mins</div>
+    <div id="failure" class="alert alert-danger alert-dismissible" role="alert" style="display: none;">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong>Data Request Failure!</strong> At least one data request failed, trying again typically fixes these issues. Contact us with specific details if the problem persists.
+    </div>
+    <div id="progress_tooltip" class="mdl-tooltip" for="title_bar">Typical load time
+        < 10 mins.</div>
             <div class="container">
                 <!-- Title + Help + Cite -->
                 <div id="title_bar" class="row">
@@ -135,7 +140,8 @@
                                         </label>
                                     </div>
                                     <div class="mdl-tooltip" for="abs_radio">Based on RPKM values</div>
-                                    <div class="mdl-tooltip" for="rel_radio">Log10 of RPKM to average<br/>controls RPKM ratio</div>
+                                    <div class="mdl-tooltip" for="rel_radio">Log10 of RPKM to average
+                                        <br/>controls RPKM ratio</div>
                                     <i>SVG Colouring Mode</i>
                                 </p>
                             </div>
@@ -148,14 +154,15 @@
                                     <input type="text" class="form-control" name="rpkm_inp" id="rpkm_scale_input" value="1000" style="width: 175px; height: 35px;" /><i>eFP Absolute Max Value</i>
                                 </p>
                             </div>
-                            <div class="mdl-tooltip" for="rpkm_scale_input">Automatically set to<br/>highest value</div>
+                            <div class="mdl-tooltip" for="rpkm_scale_input">Automatically set to
+                                <br/>highest value</div>
                             <!--<div class="col-xs-1">
                         <input id="abs_scale_button" type="button" class="btn" onclick="colour_svgs_now()" value="Go" style="height: 35px;" />
                     </div>-->
                             <button id="abs_scale_button" onclick="colour_svgs_now()" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab locus_button_style">
                                 <i class="material-icons">cached</i>
                             </button>
-                            <div id="progress_tooltip" class="mdl-tooltip" for="abs_scale_button">Recolour</div>
+                            <div class="mdl-tooltip" for="abs_scale_button">Recolour</div>
                         </div>
                     </div>
                 </div>
@@ -163,6 +170,7 @@
                 <!-- RNA-Seq table. -->
                 <div class="col-xs-12 table-responsive">
                     <table id="thetable" class="table"></table>
+                    <div class="mdl-tooltip" for="eFP_th">Sorts by plant part.</div>
                     <div class="mdl-tooltip" for="flt0_thetable">See Help for advanced options.</div>
                     <div class="mdl-tooltip" for="flt2_thetable">See Help for advanced options.</div>
                     <div class="mdl-tooltip" for="flt4_thetable">See Help for advanced options.</div>
@@ -233,6 +241,11 @@
             var rnaseq_calls = []; // Make a list of records and tissues we need to query....
             var exp_info = []; // Keep track of the FPKM related information // TODO : rename all exp_info to fpkm_info
             var rnaseq_success = 0; // Make a list of records and tissues we need to query....
+            var date_obj = new Date();
+            var rnaseq_success_start_time = date_obj.getTime(); // Keep track of start time
+            //console.log(rnaseq_success_start_time);
+            var rnaseq_success_current_time;
+            var rnaseq_success_end_time;
             var max_absolute_fpkm = -1;
             var max_log_fpkm = -1;
             var svg_colouring_element = null; // the element for inserting the SVG colouring scale legend
@@ -241,9 +254,9 @@
             // Base 64 images
             var img_loading_base64 = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAcIAAAAyCAYAAADP/dvoAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAOwgAADsIBFShKgAAAABh0RVh0U29mdHdhcmUAcGFpbnQubmV0IDQuMC45bDN+TgAAA7NJREFUeF7t26FTFk8cB2ADgT+AQDAYCQQDgWAgGAwEI4FgIBIMBoMzBAKBQCQYCASDgUAgEAhEAoFAIBgMBIPBYCDcj8/+3sV3Xk/kdTTAPs/Md969vb27dPOZ3dv3UQcADROEADRNEALQtJ+D8NF1l1JKKfVQa0RPz8gFSiml1EOqET09/QMB4F4ThAA0TRAC0DRBCEDTBCEATROEADRNEALQNEEIQNMEIQBNE4QANE0QAtA0QQhA0wQhAE0ThAA0TRDC+La3t7vLy8vB0d81OTk5aHXd69ev/9lzgAFBCON78uRJd3R0NDj6ux4N3rOrq6vu1atX3efPn8sx8I8IQhjfr4Iw4XV6etodHx93X79+HfT+78uXL+Was7OzQc8P5+fn3cnJSbm+BmHUvsiYuLi4KM8YlfO5fyrXAXckCGF8fUGY4Hv27Fn39OnT7uXLl93U1NTNmN3d3dKfGd7s7Gz5rdbW1rrHjx93z58/LzUchGl/+vSptPPMN2/edAsLC6U9fI+lpaXuxYsX5fqJiYlueXl5cAb4rV/kW09P/0BoUV8Qrq+vlwCs8h1xfn6+tL99+3Yzs0tg1rBLyOWbYF3+/Pjx4825GA3Czc3N0s74nMv3w1RCt94/Qbu/v1/awB3knRt676qenv6B0KK+IEwIZuZXJcCGQ+3w8LDM/lZWVm76c4/ca9htQVjbUc9lyTVhmqXR79+/dzMzM5ZGYRx554beu6qnp38gtKgvCBcXF7v3798Pjn7M9mJjY6MsmyYMhwPybwRhZpgJv7m5uTIbzMwUGEPeuaH3rurp6R8ILeoLwgRQwq4uUWYZsy6V5jdhGJm51bDLsma+6dUNNFtbWzfn4i5BmI05CcCDg4PSHv67Rd2EE5ktfvjwobQjoWxHKlzLOzf03lU9Pf0DoUWZgSWIaiX0MjPLhpVsfMn5bI6pwbW3t1e+42WjS8akXSX8pqeny4xudXW1XF/dFoQJ0BznubkmG2SyaSbtt2/fljHZXJPnRQIx98tSaiQ86zdHaNr1e1FqhCCEP5SNMQmnUQmgGkKjMlvLdX8iM80EaJXAG11uBW4hCOF+yxJtZpiZ/WUzTmaW7969G5wFfksQwv2XP9nv7OyUqn+8B+5IEALQNEEIQNMEIQBNE4QANE0QAtA0QQhA0wQhAE0ThAA0TRAC0DRBCEDTBCEATROEADRNEALQNEEIQNMEIQBNGzsIlVJKqYdYI3p6Ri5QSimlHlKN+LkHABoiCAFoWNf9Bx2Q2ZDpi98WAAAAAElFTkSuQmCC";
             var img_gene_struct_1 = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAcIAAAAIBAMAAACYMuIQAAAAFVBMVEX///8AAADcFDz/jAAAAP+m 3KYAfQDytQt7AAAAS0lEQVQ4jWMIxQfSoCCBAQRgvDRUHhYAVsCGWyABhZuATRZFO8wEOEBIpuL1 ABAwhAYOex8KDncfBg57HwoOdzAC4nD458NhX5YCAOtozsHok4ONAAAAAElFTkSuQmCC ";
-            var absolute_rpkm_scale = "iVBORw0KGgoAAAANSUhEUgAAAGQAAAAKCAMAAAB1wgtMAAABQVBMVEX///8AAADcFDz/jAAAAP+m 3KYAfQD//wD//AD/+QD/9wD/9AD/8gD/7wD/7QD/6gD/6AD/5QD/4gD/4AD/3QD/2wD/2AD/1gD/ 0wD/0QD/zgD/zAD/yQD/xgD/xAD/wQD/vwD/vAD/ugD/twD/tQD/sgD/rwD/rQD/qgD/qAD/pQD/ owD/oAD/ngD/mwD/mQD/lgD/kwD/kQD/jgD/jAD/iQD/hwD/hAD/ggD/fwD/fAD/egD/dwD/dQD/ cgD/cAD/bQD/awD/aAD/ZgD/YwD/YAD/XgD/WwD/WQD/VgD/VAD/UQD/TwD/TAD/SQD/RwD/RAD/ QgD/PwD/PQD/OgD/OAD/NQD/MwD/MAD/LQD/KwD/KAD/JgD/IwD/IQD/HgD/HAD/GQD/FgD/FAD/ EQD/DwD/DAD/CgD/BwD/BQD/AgCkIVxRAAAArElEQVQokWNg5+Dk4ubh5eMXEBQSFhEVE5eQlJKW kZWTV1BUUlZRVVPX0NTS1tHV0zcwNDI2MTUzt7C0sraxtbN3cHRydnF1c/fw9PL28fXzDwgMCg4J DQuPiIyKjomNi09ITEpOSU1Lz8jMYqCTJYyMVLeEMTaOEcUSRk4uRqpbAgR0sgRIpDKmZzDSyhJQ cDEmJTOmpjEy0swnEEsY4ZbQLuIZk+HBNVzyCQDAVM+B7ubNrQAAAABJRU5ErkJggg==";
-            var relative_rpkm_scale = "iVBORw0KGgoAAAANSUhEUgAAAGQAAAAKCAIAAADNfmwpAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAYdEVYdFNvZnR3YXJlAHBhaW50Lm5ldCA0LjAuOWwzfk4AAAGTSURBVEhL7ZYhjIJgGIbfYrFQLBaLhWKyWCwWi8VioZgsFArFYrFQLCaLhWKhWCwWCslCoVAoFAqFQnrv+2XHbpfwgnc7fTe+PWNssGfv9w8AbLXKdrvQtLzTybrdtNdL+v1Y16PBIBwOb6NRMB77k8l1Or3MZuf53FssTobhLpfH1epgmnvL2tm2s15vN5vNdrt2HHu3s/Z783BYHY9L1zVOp4Xnzc/n2eUyvV4nvj8OgtHtNgzDQRTpcdxPkl6adrOsk+daUbTLskWCJViAOZiBKZiAMRiBIXgDA9AHr+AFPIMeeAJd8AgewD24Ax1wC27ANWiDFmiCK3AJGuACnIMzcApOwDE4AofgANTBPtgDu2AH1MC2aBJXb1kPyZKrkiVQyxJ+siz1LcCTZUkqWQoayqrzW82SV1fNEniyrDo/lFVxJUtAZMl8EVl1RJaad1kKmqyhegSQZsn8l7K+rqGa92YpuDerStMzS6BaQ4EXkVWlqSx1+56nyfo7B7yCz2ap+W0N378OD/w6vGU1ktXCBwfvbqs5Q2ZbAAAAAElFTkSuQmCC";
-            var exon_intron_scale = "iVBORw0KGgoAAAANSUhEUgAAAJAAAAAKCAIAAADU2UDKAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAOwgAADsIBFShKgAAAABh0RVh0U29mdHdhcmUAcGFpbnQubmV0IDQuMC45bDN+TgAAAQpJREFUWEfdVkEKwzAM28f3nb6qj5kbLZqqpFAy92IhjKSkLqIw9nq9q3Hbt8L0tgVoDYvR26ZRYUcLBFQH7DTQrDVcYywzkU7dfP8tUjuXAUvWCFBzjrbTGq6x7T1WYT7Btc3eNo0E7SgCGmIqkWBaSIEptIZrbHu/0ISac8p294DaO6cQtNBAt+e2aQyMSYBaBaC5agqzKgLQqT+JWEx7lcMCDElaO9VrGkLrPIveM5mBMQlQq8CcijHEVHG2KPYnYxkmheVqjRZOn40JoUdXAuhWOydSActcL4yhWhJQHZjax/50tHdMQghju3tArZ5yQgAWQpj99SxDlqzB40vKx/O2BchuBblvH9QeoIQmuG85AAAAAElFTkSuQmCC";
+            var absolute_rpkm_scale = "iVBORw0KGgoAAAANSUhEUgAAAGQAAAAPCAMAAAAlD5r/AAABQVBMVEX///8AAADcFDz/jAAAAP+m 3KYAfQD//wD//AD/+QD/9wD/9AD/8gD/7wD/7QD/6gD/6AD/5QD/4gD/4AD/3QD/2wD/2AD/1gD/ 0wD/0QD/zgD/zAD/yQD/xgD/xAD/wQD/vwD/vAD/ugD/twD/tQD/sgD/rwD/rQD/qgD/qAD/pQD/ owD/oAD/ngD/mwD/mQD/lgD/kwD/kQD/jgD/jAD/iQD/hwD/hAD/ggD/fwD/fAD/egD/dwD/dQD/ cgD/cAD/bQD/awD/aAD/ZgD/YwD/YAD/XgD/WwD/WQD/VgD/VAD/UQD/TwD/TAD/SQD/RwD/RAD/ QgD/PwD/PQD/OgD/OAD/NQD/MwD/MAD/LQD/KwD/KAD/JgD/IwD/IQD/HgD/HAD/GQD/FgD/FAD/ EQD/DwD/DAD/CgD/BwD/BQD/AgCkIVxRAAAAs0lEQVQ4jWNg5+Dk4ubh5eMXEBQSFhEVE5eQlJKW kZWTV1BUUlZRVVPX0NTS1tHV0zcwNDI2MTUzt7C0sraxtbN3cHRydnF1c/fw9PL28fXzDwgMCg4J DQuPiIyKjomNi09ITEpOSU1Lz8jMYhi1hERLGBmpbgljbBwjiiWMnFyMVLcECOhkCZBIZUzPYKSV JaDgYkxKZkxNY2SkmU8gljDCLaFdxDMmw4NrGOWTUUuItwQAG8496iMoCNwAAAAASUVORK5CYII= ";
+            var relative_rpkm_scale = "iVBORw0KGgoAAAANSUhEUgAAAGQAAAAPCAMAAAAlD5r/AAABQVBMVEX///8AAADcFDz/jAAAAP+m 3KYAfQAAAP8FBfkKCvQPD+8UFOoZGeUeHuAjI9soKNYtLdEzM8w4OMY9PcFCQrxHR7dMTLJRUa1W VqhbW6NgYJ5mZplra5NwcI51dYl6eoR/f3+EhHqJiXWOjnCTk2uZmWaenmCjo1uoqFatrVGysky3 t0e8vELBwT3GxjjMzDPR0S3W1ijb2yPg4B7l5Rnq6hTv7w/09Ar5+QX//wD/+wD/9gD/8QD/7AD/ 5wD/4gD/3QD/2AD/0wD/zQD/yAD/wwD/vgD/uQD/tAD/rwD/qgD/pQD/oAD/mgD/lQD/kAD/iwD/ hgD/gQD/fAD/dwD/cgD/bQD/ZwD/YgD/XQD/WAD/UwD/TgD/SQD/RAD/PwD/OgD/NAD/LwD/KgD/ JQD/IAD/GwD/FgD/EQD/DAD/BwBUljDTAAAA1klEQVQ4jWNg5+Dk4ubh5eMXEBQSFhEVE5eQlJKW kZWTV1BUUlZRVVPX0NTS1tHV0zcwNDI2MTUzt7C0sraxtbN3cHRydnF1c/fw9PL28fXzDwgMCg4J DQuPiIyKjomNi09ITEpOSU1Lz8jMYhi1hDRLGDi5GICWMBBvCSMjIUsYY+MYUS0BApJ8wmhlzUjI EiDAYgkD0CcMwgxUtQRIpDKmZzCiBBcDgwgDlSwBBRdjUjJjahojI2qcMAhT2RJGNEuAYUasJURH PGMyPLiGTz4ZtYQESwCEoDnh8dGTkQAAAABJRU5ErkJggg==";
+            var exon_intron_scale = "iVBORw0KGgoAAAANSUhEUgAAALQAAAAPBAMAAAC/7vi3AAAAGFBMVEX///9QUFAAAADcFDz/jAAA AP+m3KYAfQCnICW7AAAArklEQVQ4jd3UMQ+CQAwF4OaG66ourpcO/DCGm7v17/vKBUU8SozBGBvy xo9HD6DzB3OicK4WTa7RfIGWgiiH0In6tBK/iMpKhsvyWAfB7NGlJEHQFA+6U5ZVjf2OTtfBI6YF OgIpadkaklGjZtrepIsXL63+U2s8vzHpila+0zsLEQe9ty+kQ7OuFgJ+pseY3nr5cIxtIQt6OkY/ 3lxReHMhF4nm1z+Zv6KP+/PdANuwQcLhhEyQAAAAAElFTkSuQmCC";
 
             /* Produces an intermediate HEX colour. */
             function generate_colour(start_color, end_color, percent) {
@@ -306,16 +319,18 @@
                         }
                     } else if (mode == "rel") { // For relative FPKM colouring
                         var hex = "";
-                        // Make the log FPKM a number between 0 and 1 to denote the 0 to +-5 scale.
+                        // Make the log FPKM a number between 0 and 1 to denote the 0 to +-3 scale.
                         var log_scale_max = 3;
                         var log_scaling = 0;
-                        if (Math.abs(fpkm) > log_scale_max)
+                        if (fpkm != "Missing controls data" && Math.abs(fpkm) > log_scale_max)
                             log_scaling = log_scale_max;
-                        else
+                        else if (fpkm != "Missing controls data")
                             log_scaling = Math.abs(fpkm);
                         log_scaling /= log_scale_max;
 
-                        if (fpkm > 0) { // yellow-red
+                        if (fpkm == "Missing controls data") {
+                            hex = "#D9D9D9"
+                        } else if (fpkm > 0) { // yellow-red
                             hex = generate_colour("FFFF00", "FF0000", log_scaling);
                         } else if (fpkm == 0) { // yellow
                             hex = "FFFF00";
@@ -327,7 +342,12 @@
                             paths[i].style.fill = hex;
                         }
                     }
-                    document.getElementById(id.replace('_svg', '_rpkm')).innerHTML = round(fpkm, 5);
+                    if (fpkm == "Missing controls data") {
+                        document.getElementById(id.replace('_svg', '_rpkm')).innerHTML = fpkm;
+                    } else {
+                        document.getElementById(id.replace('_svg', '_rpkm')).innerHTML = round(fpkm, 5);
+                        //console.log("sort! " + fpkm + " rounded = " + round(fpkm, 5) + " id = " + id);
+                    }
                 } else {
                     console.log("Paths is null for id = " + id);
                 }
@@ -351,14 +371,24 @@
                     if (ctrl_count > 0)
                         ctrl_avg_fpkm = ctrl_fpkm_sum / ctrl_count;
 
+                    //console.log("id = " + exp_info[i][0] + " fpkm = " + exp_info[i][3] + " controls = " + ctrl_count + " controls fpkm = " + ctrl_avg_fpkm + " log2() = " + Math.log2(exp_info[i][3] / ctrl_avg_fpkm));
+
                     // Save the average fpkm of controls and the log fpkm...
-                    exp_info[i].splice(4, 1, Math.log10(exp_info[i][3] / ctrl_avg_fpkm));
+                    if (ctrl_count > 0) {
+                        if (exp_info[i][3] == 0) {
+                            exp_info[i].splice(4, 1, 0);
+                        } else {
+                            exp_info[i].splice(4, 1, Math.log2(exp_info[i][3] / ctrl_avg_fpkm));
+                        }
+                    } else {
+                        exp_info[i].splice(4, 1, "Missing controls data");
+                    }
                     exp_info[i].splice(6, 1, ctrl_avg_fpkm);
 
                     // See if the absolute or the relative FPKM is max
                     if (exp_info[i][3] >= max_absolute_fpkm)
                         max_absolute_fpkm = exp_info[i][3];
-                    if (Math.abs(exp_info[i][4]) >= max_log_fpkm && Math.abs(exp_info[i][4]) < 1000)
+                    if (exp_info[i][4] != "Missing controls data" && Math.abs(exp_info[i][4]) >= max_log_fpkm && Math.abs(exp_info[i][4]) < 1000)
                         max_log_fpkm = Math.abs(exp_info[i][4]);
 
                     // Colour SVGs based on the mode requested. Pass in the correct FPKM value...
@@ -477,12 +507,17 @@
             /* Makes AJAX request for each RNA-Seq image based on the rnaseq_calls array that was produced by the populate_table() function */
             function rnaseq_images(status) {
                 rnaseq_success = 0;
+                //date_obj2 = new Date();
+                //rnaseq_success_start_time = date_obj2.getTime(); // Keep track of start time
                 get_input_values();
                 if (rnaseq_calls.length == 113) {
                     for (var i = 0; i < 113; i++) {
                         $.ajax({
                             url: 'http://ec2-52-70-232-122.compute-1.amazonaws.com/~ppurohit/RNA-Browser/cgi-bin/webservice.cgi?tissue=' + rnaseq_calls[i][0] + '&record=' + rnaseq_calls[i][1] + '&locus=' + locus + '&variant=1&start=' + locus_start + '&end=' + locus_end + '&yscale=' + yscale_input + '&status=' + status + '&struct=' + splice_variants,
                             dataType: 'json',
+                            failure: function(failure_response) {
+                                $('#failure').show();
+                            },
                             success: function(response_rnaseq) {
                                 if (locus != response_rnaseq['locus']) {
                                     console.log("ERROR: " + locus + "'s RNA-Seq API request returned with data for some other locus.");
@@ -490,10 +525,14 @@
                                 // Update the progress bar
                                 if (response_rnaseq['status'] == 200) {
                                     rnaseq_success++;
+                                    date_obj3 = new Date();
+                                    rnaseq_success_current_time = date_obj3.getTime(); // Keep track of start time
                                     var progress_percent = rnaseq_success / 113 * 100;
                                     $('div#progress').width(progress_percent + '%');
-                                    document.getElementById('progress_tooltip').innerHTML = rnaseq_success + " / 113 requests completed<br/>Average load time < 10 mins";
+                                    document.getElementById('progress_tooltip').innerHTML = rnaseq_success + " / 113 requests completed<br/>Load time <= " + String(round(parseInt(rnaseq_success_current_time - rnaseq_success_start_time) / (1000 * 60))) + " mins.";
+                                    //console.log("Requests = " + String(rnaseq_success) + ", time delta = " + String(parseInt(rnaseq_success_current_time - rnaseq_success_start_time)));
                                 } else {
+                                    $('#failure').show();
                                     console.log("ERROR CODE = " + response_rnaseq['status'] + " returned for " + locus + " RNA-Seq data.");
                                 }
 
@@ -551,6 +590,13 @@
                                     document.getElementById("rpkm_scale_input").value = parseInt(round(max_absolute_fpkm));
                                     // Execute the colour_svgs_now() function and use the new max absolute fpkm
                                     colour_svgs_now();
+                                    if (rnaseq_success == 113) {
+                                        date_obj4 = new Date();
+                                        rnaseq_success_end_time = date_obj4.getTime(); // Keep track of start time
+                                        //console.log(rnaseq_success_end_time);
+                                        document.getElementById('progress_tooltip').innerHTML = rnaseq_success + " / 113 requests completed<br/>Load time ~= " + String(round(parseInt(rnaseq_success_end_time - rnaseq_success_start_time) / (1000 * 60))) + " mins.";
+                                        //console.log("**** Requests = " + String(rnaseq_success) + ", time delta = " + String(parseInt(rnaseq_success_end_time - rnaseq_success_start_time)));
+                                    }
                                 }
 
                                 $("#thetable").trigger("update");
@@ -567,6 +613,8 @@
                 rnaseq_calls = [];
                 exp_info = [];
                 rnaseq_success = 0;
+                date_obj5 = new Date();
+                rnaseq_success_start_time = date_obj5.getTime(); // Keep track of start time
                 max_absolute_fpkm = -1;
                 max_log_fpkm = -1;
                 svg_colouring_element = null;
@@ -577,7 +625,7 @@
                     '<th class="sortable arrows" style="border: 1px solid #D3D3D3; background-color: #F0F0F0; width: 250px;">Title<div class="arrowdown arrowup"></div></th>' +
                     '<th class="" style="border: 1px solid #D3D3D3; background-color: #F0F0F0; width: 460px;">RNA-Seq Coverage</th>' +
                     '<th class="sortable arrows" style="border: 1px solid #D3D3D3; background-color: #F0F0F0; width: 75px;">PCC</th>' +
-                    '<th class="" style="border: 1px solid #D3D3D3; background-color: #F0F0F0; width: 100px;">eFP (RPKM)</th>' +
+                    '<th id="eFP_th" class="sortable arrows" style="border: 1px solid #D3D3D3; background-color: #F0F0F0; width: 100px;">eFP (RPKM)</th>' +
                     '<th class="sortable arrows" style="border: 1px solid #D3D3D3; background-color: #F0F0F0; width: 75px;">RPKM</th>' +
                     '<th class="sortable arrows" style="border: 1px solid #D3D3D3; background-color: #F0F0F0; width: 275px;">Details</th>' +
                     '</tr></thead>' +
@@ -623,7 +671,7 @@
                             // Append the PCC <td>
                             append_str += '<td id="' + experimentno + '_pcc' + '" class="pcc_value" style="font-size: 10px; width: 50px; ">' + -9999 + '</td>';
                             // Append the approparite SVG with place holder sorting number in front of it .. all in one <td>
-                            append_str += '<td style="width:  75px;">' + '<div id="' + experimentno + '_svg' + '" width="75" height="75" style="width: 75px; height: 75px; max-width: 75px; max-height: 75px;">' + document.getElementById(svg.substring(4).replace(".svg", "")).innerHTML + '</div>' + '</td>\n';
+                            append_str += '<td style="width:  75px;">' + '<div id="' + experimentno + '_svg' + '" width="75" height="75" style="width: 75px; height: 75px; max-width: 75px; max-height: 75px;">' + document.getElementById(svg.substring(4).replace(".svg", "")).innerHTML + '</div>' + '<div class="mdl-tooltip" for="' + experimentno + '_svg' + '">' + svg.substring(4).replace(".svg", "") + '</div></td>\n';
                             // Append abs/rel RPKM
                             append_str += '<td id="' + experimentno + '_rpkm' + '" style="font-size: 10px; width: 50px; ">-9999</td>';
                             // Append the details <td>  
@@ -681,6 +729,8 @@
                                     return 99999;
                                 } else if (s == -Infinity) {
                                     return -99999;
+                                } else if (s == "Missing controls data") {
+                                    return -9999999;
                                 } else {
                                     return parseFloat(s);
                                 }
@@ -698,7 +748,7 @@
                                     sorter: 'pcc_sorter'
                                 },
                                 3: {
-                                    sorter: false // disable sorting on this column
+                                    //sorter: false // disable sorting on this column
                                 },
                                 4: {
                                     sorter: 'rpkm_sorter'
@@ -720,7 +770,7 @@
                     auto_filter: true,
                     auto_filter_delay: 500, //milliseconds
                     col_1: 'none', // no filter option
-                    col_3: 'none', // no filter option
+                    //col_3: 'none', // no filter option
                     popup_filters: false,
                     filters_row_index: 1,
                     alternate_rows: false,
