@@ -140,7 +140,7 @@
                                         </label>
                                     </div>
                                     <div class="mdl-tooltip" for="abs_radio">Based on RPKM values</div>
-                                    <div class="mdl-tooltip" for="rel_radio">Log10 of RPKM to average
+                                    <div class="mdl-tooltip" for="rel_radio">Log2 of RPKM to average
                                         <br/>controls RPKM ratio</div>
                                     <i>SVG Colouring Mode</i>
                                 </p>
@@ -223,7 +223,7 @@
                 showToastButton2.addEventListener('click', function() {
                     'use strict';
                     var data = {
-                        message: 'Recolouring SVG images ...'
+                        message: 'SVG colouring finished.'
                     };
                     snackbarContainer.MaterialSnackbar.showSnackbar(data);
                 });
@@ -346,7 +346,7 @@
                         document.getElementById(id.replace('_svg', '_rpkm')).innerHTML = fpkm;
                     } else {
                         document.getElementById(id.replace('_svg', '_rpkm')).innerHTML = round(fpkm, 5);
-                        //console.log("sort! " + fpkm + " rounded = " + round(fpkm, 5) + " id = " + id);
+                        //console.log("id = " + id + "sort! " + fpkm + " rounded = " + round(fpkm, 5));
                     }
                 } else {
                     console.log("Paths is null for id = " + id);
@@ -375,7 +375,8 @@
 
                     // Save the average fpkm of controls and the log fpkm...
                     if (ctrl_count > 0) {
-                        if (exp_info[i][3] == 0) {
+                        if (exp_info[i][3] == 0 && ctrl_avg_fpkm == 0) {
+                            // Define log2(0/0) = 0 as opposed to undefined
                             exp_info[i].splice(4, 1, 0);
                         } else {
                             exp_info[i].splice(4, 1, Math.log2(exp_info[i][3] / ctrl_avg_fpkm));
