@@ -185,7 +185,7 @@ def makeImage(filename, chromosome, start, end, record, yscale):
 
 # Error function
 def error(string):
-	print json.dumps({"status":"failed", "result":string})
+	print json.dumps({"status": 1, "result":string})
 	sys.exit(0)
 
 # Final output, if everything at this point succeded
