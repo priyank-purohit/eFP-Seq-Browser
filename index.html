@@ -302,6 +302,7 @@
 
             /* Find and colour a particular SVG in the DOM. */
             function colour_part_by_id(id, part, fpkm, mode) {
+            	console.log('COLOUR PART BY ID\'s part = ' + part);
                 // Get the user set RPKM scale
                 max_abs_scale = document.getElementById("rpkm_scale_input").value;
                 if ((!max_abs_scale) || max_abs_scale <= 0)
@@ -581,6 +582,8 @@
                                     }
                                 }
 
+                                // TODO: Need a map of record to svg subunits
+
                                 // Colour SVG by Absolute RPKM
                                 colour_part_by_id(response_rnaseq['record'] + '_svg', 'Shapes', response_rnaseq['absolute-fpkm'], 'abs');
 
@@ -642,6 +645,7 @@
                             var title = $(this).attr('title');
                             var description = $(this).attr('desc');
                             var svg = $(this).attr('svgname');
+                            var svg_part = $(this).attr('svg_subunit');
                             var experimentno = $(this).attr('record_number');
                             var url = $(this).attr('publication_url');
                             var publicationid = $(this).attr('publication_link');
@@ -682,7 +686,7 @@
                             // Append the <tr> to the table
                             $("#thetable").append(append_str);
 
-                            exp_info.push([experimentno + '_svg', 'Shapes', controls, 0, 0, 0, 0]);
+                            exp_info.push([experimentno + '_svg', svg_part, controls, 0, 0, 0, 0]);
 
                             if (rnaseq_calls.length == 113) {
                                 rnaseq_images(status);
