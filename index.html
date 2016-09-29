@@ -302,7 +302,11 @@
 
             /* Find and colour a particular SVG in the DOM. */
             function colour_part_by_id(id, part, fpkm, mode) {
-            	console.log('COLOUR PART BY ID\'s part = ' + part);
+                var exp_to_colouring_part = [["ERR274310", "shoot"], ["SRR547531", "shoot"], ["SRR548277", "shoot"], ["SRR847503", "shoot"], ["SRR847504", "shoot"], ["SRR847505", "shoot"], ["SRR847506", "shoot"], ["SRR1207194", "carpels"], ["SRR1207195", "carpels"], ["SRR1019436", "etiolatedseedling"], ["SRR1019437", "etiolatedseedling"], ["SRR1049784", "shoot"], ["SRR477075", "etiolatedseedling"], ["SRR477076", "etiolatedseedling"], ["SRR493237", "etiolatedseedling"], ["SRR493238", "etiolatedseedling"], ["SRR314815", "stage12bud"], ["SRR800753", "stage12bud"], ["SRR800754", "stage12bud"], ["SRR1105822", "leaf"], ["SRR1105823", "leaf"], ["SRR1159821", "leaf"], ["SRR1159827", "leaf"], ["SRR1159837", "leaf"], ["SRR314813", "leaf"], ["SRR446027", "leaf"], ["SRR446028", "leaf"], ["SRR446033", "leaf"], ["SRR446034", "leaf"], ["SRR446039", "leaf"], ["SRR446040", "leaf"], ["SRR446484", "leaf"], ["SRR446485", "shootapexinflorescence"], ["SRR446486", "leaf"], ["SRR446487", "shootapexinflorescence"], ["SRR493036", "leaf"], ["SRR493097", "leaf"], ["SRR493098", "leaf"], ["SRR493101", "leaf"], ["SRR764885", "leaf"], ["SRR924656", "leaf"], ["SRR934391", "leaf"], ["SRR942022", "leaf"], ["SRR070570", "etiolatedseedling"], ["SRR070571", "etiolatedseedling"], ["SRR1001909", "all"], ["SRR1001910", "all"], ["SRR1019221", "all"], ["SRR345561", "all"], ["SRR345562", "all"], ["SRR346552", "all"], ["SRR346553", "all"], ["SRR394082", "all"], ["SRR504179", "all"], ["SRR504180", "all"], ["SRR504181", "all"], ["SRR515073", "all"], ["SRR515074", "all"], ["SRR527164", "all"], ["SRR527165", "all"], ["SRR584115", "all"], ["SRR584121", "all"], ["SRR584129", "all"], ["SRR584134", "all"], ["SRR653555", "all"], ["SRR653556", "all"], ["SRR653557", "all"], ["SRR653561", "all"], ["SRR653562", "all"], ["SRR653563", "all"], ["SRR653564", "all"], ["SRR653565", "all"], ["SRR653566", "all"], ["SRR653567", "all"], ["SRR653568", "all"], ["SRR653569", "all"], ["SRR653570", "all"], ["SRR653571", "all"], ["SRR653572", "all"], ["SRR653573", "all"], ["SRR653574", "all"], ["SRR653575", "all"], ["SRR653576", "all"], ["SRR653577", "all"], ["SRR653578", "all"], ["SRR797194", "all"], ["SRR797230", "all"], ["SRR833246", "all"], ["SRR847501", "all"], ["SRR847502", "all"], ["SRR1260032", "all"], ["SRR1260033", "all"], ["SRR1261509", "all"], ["SRR401413", "receptacle"], ["SRR401414", "receptacle"], ["SRR401415", "receptacle"], ["SRR401416", "receptacle"], ["SRR401417", "receptacle"], ["SRR401418", "receptacle"], ["SRR401419", "receptacle"], ["SRR401420", "receptacle"], ["SRR401421", "receptacle"], ["ERR274309", "root"], ["SRR1046909", "root"], ["SRR1046910", "root"], ["SRR1524935", "root"], ["SRR1524938", "root"], ["SRR1524940", "root"], ["SRR314814", "root"], ["SRR949956", "all"], ["SRR949965", "all"], ["SRR949988", "all"], ["SRR949989", "all"]];
+
+                var colouring_part = "all";
+
+            	//console.log('COLOUR PART BY ID\'s part = ' + part);
                 // Get the user set RPKM scale
                 max_abs_scale = document.getElementById("rpkm_scale_input").value;
                 if ((!max_abs_scale) || max_abs_scale <= 0)
@@ -661,7 +665,8 @@
                             }
                             var name = $(this).attr('bam_link').split("/");
                             var tissue = $(this).attr('bam_link').split("/")[8];
-                            var subunitname = $(this).attr('svg_subunit'); // supposed to be the one that gets coloured
+
+                            //console.log(experimentno + ", " + svg_part);
 
                             // Keep track of what experiments we want to query:
                             // Need: tissue, experimentno in rnaseq_calls ... (also need start, end, and locus)
