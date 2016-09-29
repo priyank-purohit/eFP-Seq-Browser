@@ -4,12 +4,12 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="300px"
 	 height="300px" viewBox="0 0 300 300" enable-background="new 0 0 300 300" xml:space="preserve">
-<g id="Shapes">
-	<path id="Pollin" fill="none" d="M93.86,101.869c0,0,9.337-40.261,33.259-43.762c19.256-2.335,40.843-12.254,64.184,45.512
+<g id="shapes">
+	<path id="pollin" fill="none" d="M93.86,101.869c0,0,9.337-40.261,33.259-43.762c19.256-2.335,40.843-12.254,64.184,45.512
 		c9.922,19.837,23.346,78.185-4.082,103.861c-16.339,11.671-79.36,39.679-93.945-23.338C90.944,161.967,85.107,108.29,93.86,101.869
 		z"/>
 </g>
-<g id="Outline">
+<g id="outline">
 	<g>
 		<path fill="none" stroke="#000000" stroke-width="0.5" stroke-miterlimit="10" d="M136.457,85.53
 			c0.956,0.995,1.712,2.14,2.332,3.501"/>

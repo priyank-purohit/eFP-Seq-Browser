@@ -119,7 +119,7 @@
                 <bam_exp>SRR1207201</bam_exp>
             </groupwith>
         </bam_file>
-        <bam_file desc="Etiolated wild type (Col-0) seedlings, GSM1252262, SRA: SRS494530" record_number="SRR1019436" hex_colour="0xCCCC97" bam_link="http://s3.amazonaws.com/iplant-cdn/iplant/home/araport/rnaseq_bam/dark/SRR1019436/accepted_hits.bam" total_reads_mapped="22144930" publication_link="http://www.ncbi.nlm.nih.gov/pubmed/24867218" svg_subunit="etiolatedSeedling" svgname="ath-etiolatedSeedling.svg" title="5do etiolated seedling" publication_url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR1019436">
+        <bam_file desc="Etiolated wild type (Col-0) seedlings, GSM1252262, SRA: SRS494530" record_number="SRR1019436" hex_colour="0xCCCC97" bam_link="http://s3.amazonaws.com/iplant-cdn/iplant/home/araport/rnaseq_bam/dark/SRR1019436/accepted_hits.bam" total_reads_mapped="22144930" publication_link="http://www.ncbi.nlm.nih.gov/pubmed/24867218" svg_subunit="etiolatedseedling" svgname="ath-etiolatedSeedling.svg" title="5do etiolated seedling" publication_url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR1019436">
             <controls>
                 <bam_exp>SRR1019436</bam_exp>
                 <bam_exp>SRR1019437</bam_exp>
@@ -137,7 +137,7 @@
                 <bam_exp>SRR1019443</bam_exp>
             </groupwith>
         </bam_file>
-        <bam_file desc="Etiolated wild type (Col-0) seedlings, GSM1252262, SRA: SRS494530" record_number="SRR1019437" hex_colour="0xCCCC97" bam_link="http://s3.amazonaws.com/iplant-cdn/iplant/home/araport/rnaseq_bam/dark/SRR1019437/accepted_hits.bam" total_reads_mapped="24158853" publication_link="http://www.ncbi.nlm.nih.gov/pubmed/24867218" svg_subunit="etiolatedSeedling" svgname="ath-etiolatedSeedling.svg" title="5do etiolated seedling" publication_url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR1019437">
+        <bam_file desc="Etiolated wild type (Col-0) seedlings, GSM1252262, SRA: SRS494530" record_number="SRR1019437" hex_colour="0xCCCC97" bam_link="http://s3.amazonaws.com/iplant-cdn/iplant/home/araport/rnaseq_bam/dark/SRR1019437/accepted_hits.bam" total_reads_mapped="24158853" publication_link="http://www.ncbi.nlm.nih.gov/pubmed/24867218" svg_subunit="etiolatedseedling" svgname="ath-etiolatedSeedling.svg" title="5do etiolated seedling" publication_url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR1019437">
             <controls>
                 <bam_exp>SRR1019436</bam_exp>
                 <bam_exp>SRR1019437</bam_exp>
@@ -186,7 +186,7 @@
                 <bam_exp>SRR1049788</bam_exp>
             </groupwith>
         </bam_file>
-        <bam_file desc="Col-0 RNA-Seq, GSM912634, SRA: SRS308731" record_number="SRR477075" hex_colour="0xCCCC97" bam_link="http://s3.amazonaws.com/iplant-cdn/iplant/home/araport/rnaseq_bam/dark/SRR477075/accepted_hits.bam" total_reads_mapped="33569708" svg_subunit="etiolatedSeedling" svgname="ath-etiolatedSeedling.svg" title="5do dark-grown seedling" publication_url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR477075">
+        <bam_file desc="Col-0 RNA-Seq, GSM912634, SRA: SRS308731" record_number="SRR477075" hex_colour="0xCCCC97" bam_link="http://s3.amazonaws.com/iplant-cdn/iplant/home/araport/rnaseq_bam/dark/SRR477075/accepted_hits.bam" total_reads_mapped="33569708" svg_subunit="etiolatedseedling" svgname="ath-etiolatedSeedling.svg" title="5do dark-grown seedling" publication_url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR477075">
             <controls>
                 <bam_exp>SRR477075</bam_exp>
                 <bam_exp>SRR477076</bam_exp>
@@ -202,7 +202,7 @@
                 <bam_exp>SRR477082</bam_exp>
             </groupwith>
         </bam_file>
-        <bam_file desc="Col-0 RNA-Seq, GSM912635, SRA: SRS308732" record_number="SRR477076" hex_colour="0xCCCC97" bam_link="http://s3.amazonaws.com/iplant-cdn/iplant/home/araport/rnaseq_bam/dark/SRR477076/accepted_hits.bam" total_reads_mapped="20201654" svg_subunit="etiolatedSeedling" svgname="ath-etiolatedSeedling.svg" title="5do dark-grown seedling" publication_url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR477076">
+        <bam_file desc="Col-0 RNA-Seq, GSM912635, SRA: SRS308732" record_number="SRR477076" hex_colour="0xCCCC97" bam_link="http://s3.amazonaws.com/iplant-cdn/iplant/home/araport/rnaseq_bam/dark/SRR477076/accepted_hits.bam" total_reads_mapped="20201654" svg_subunit="etiolatedseedling" svgname="ath-etiolatedSeedling.svg" title="5do dark-grown seedling" publication_url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR477076">
             <controls>
                 <bam_exp>SRR477075</bam_exp>
                 <bam_exp>SRR477076</bam_exp>
@@ -218,7 +218,7 @@
                 <bam_exp>SRR477082</bam_exp>
             </groupwith>
         </bam_file>
-        <bam_file desc="Col-0 air 3-day, SRA: SRS311825" record_number="SRR493237" hex_colour="0xCCCC97" bam_link="http://s3.amazonaws.com/iplant-cdn/iplant/home/araport/rnaseq_bam/dark/SRR493237/accepted_hits.bam" total_reads_mapped="27039911" publication_link="http://www.ncbi.nlm.nih.gov/pubmed/22936567" svg_subunit="etiolatedSeedling" svgname="ath-etiolatedSeedling.svg" title="3do etiolated seedling" publication_url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR493237">
+        <bam_file desc="Col-0 air 3-day, SRA: SRS311825" record_number="SRR493237" hex_colour="0xCCCC97" bam_link="http://s3.amazonaws.com/iplant-cdn/iplant/home/araport/rnaseq_bam/dark/SRR493237/accepted_hits.bam" total_reads_mapped="27039911" publication_link="http://www.ncbi.nlm.nih.gov/pubmed/22936567" svg_subunit="etiolatedseedling" svgname="ath-etiolatedSeedling.svg" title="3do etiolated seedling" publication_url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR493237">
             <controls>
                 <bam_exp>SRR493237</bam_exp>
                 <bam_exp>SRR493238</bam_exp>
@@ -236,7 +236,7 @@
                 <bam_exp>SRR493290</bam_exp>
             </groupwith>
         </bam_file>
-        <bam_file desc="Col-0 air 3-day, SRA: SRS311825" record_number="SRR493238" hex_colour="0xCCCC97" bam_link="http://s3.amazonaws.com/iplant-cdn/iplant/home/araport/rnaseq_bam/dark/SRR493238/accepted_hits.bam" total_reads_mapped="25704434" publication_link="http://www.ncbi.nlm.nih.gov/pubmed/22936567" svg_subunit="etiolatedSeedling" svgname="ath-etiolatedSeedling.svg" title="3do etiolated seedling" publication_url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR493238">
+        <bam_file desc="Col-0 air 3-day, SRA: SRS311825" record_number="SRR493238" hex_colour="0xCCCC97" bam_link="http://s3.amazonaws.com/iplant-cdn/iplant/home/araport/rnaseq_bam/dark/SRR493238/accepted_hits.bam" total_reads_mapped="25704434" publication_link="http://www.ncbi.nlm.nih.gov/pubmed/22936567" svg_subunit="etiolatedseedling" svgname="ath-etiolatedSeedling.svg" title="3do etiolated seedling" publication_url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR493238">
             <controls>
                 <bam_exp>SRR493237</bam_exp>
                 <bam_exp>SRR493238</bam_exp>
@@ -254,7 +254,7 @@
                 <bam_exp>SRR493290</bam_exp>
             </groupwith>
         </bam_file>
-        <bam_file desc="stage 12 floral bud, Col-0, GSM764079, SRA: SRS228279" record_number="SRR314815" hex_colour="0xFFFF65" bam_link="http://s3.amazonaws.com/iplant-cdn/iplant/home/araport/rnaseq_bam/flower/SRR314815/accepted_hits.bam" total_reads_mapped="25509908" publication_link="http://www.ncbi.nlm.nih.gov/pubmed/21874022" svg_subunit="stage12Bud" svgname="ath-Stage12Bud.svg" title="stage-12 floral buds from long-day grown plant" publication_url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR314815">
+        <bam_file desc="stage 12 floral bud, Col-0, GSM764079, SRA: SRS228279" record_number="SRR314815" hex_colour="0xFFFF65" bam_link="http://s3.amazonaws.com/iplant-cdn/iplant/home/araport/rnaseq_bam/flower/SRR314815/accepted_hits.bam" total_reads_mapped="25509908" publication_link="http://www.ncbi.nlm.nih.gov/pubmed/21874022" svg_subunit="stage12bud" svgname="ath-Stage12Bud.svg" title="stage-12 floral buds from long-day grown plant" publication_url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR314815">
             <controls>
                 <bam_exp>MEDIAN</bam_exp>
             </controls>
@@ -267,7 +267,7 @@
                 <bam_exp>SRR314818</bam_exp>
             </groupwith>
         </bam_file>
-        <bam_file desc="flowers, GSM1111913, SRA: SRS405938" record_number="SRR800753" hex_colour="0xFFFF65" bam_link="http://s3.amazonaws.com/iplant-cdn/iplant/home/araport/rnaseq_bam/flower/SRR800753/accepted_hits.bam" total_reads_mapped="7506384" publication_link="http://www.ncbi.nlm.nih.gov/pubmed/23749190" svg_subunit="stage12Bud" svgname="ath-Stage12Bud.svg" title="stage-12 floral bud" publication_url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR800753">
+        <bam_file desc="flowers, GSM1111913, SRA: SRS405938" record_number="SRR800753" hex_colour="0xFFFF65" bam_link="http://s3.amazonaws.com/iplant-cdn/iplant/home/araport/rnaseq_bam/flower/SRR800753/accepted_hits.bam" total_reads_mapped="7506384" publication_link="http://www.ncbi.nlm.nih.gov/pubmed/23749190" svg_subunit="stage12bud" svgname="ath-Stage12Bud.svg" title="stage-12 floral bud" publication_url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR800753">
             <controls>
                 <bam_exp>SRR800753</bam_exp>
                 <bam_exp>SRR800754</bam_exp>
@@ -277,7 +277,7 @@
                 <bam_exp>SRR800754</bam_exp>
             </groupwith>
         </bam_file>
-        <bam_file desc="flowers, GSM1111914, SRA: SRS405939" record_number="SRR800754" hex_colour="0xFFFF65" bam_link="http://s3.amazonaws.com/iplant-cdn/iplant/home/araport/rnaseq_bam/flower/SRR800754/accepted_hits.bam" total_reads_mapped="7063908" publication_link="http://www.ncbi.nlm.nih.gov/pubmed/23749190" svg_subunit="stage12Bud" svgname="ath-Stage12Bud.svg" title="stage-12 floral bud" publication_url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR800754">
+        <bam_file desc="flowers, GSM1111914, SRA: SRS405939" record_number="SRR800754" hex_colour="0xFFFF65" bam_link="http://s3.amazonaws.com/iplant-cdn/iplant/home/araport/rnaseq_bam/flower/SRR800754/accepted_hits.bam" total_reads_mapped="7063908" publication_link="http://www.ncbi.nlm.nih.gov/pubmed/23749190" svg_subunit="stage12bud" svgname="ath-Stage12Bud.svg" title="stage-12 floral bud" publication_url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR800754">
             <controls>
                 <bam_exp>SRR800753</bam_exp>
                 <bam_exp>SRR800754</bam_exp>
@@ -639,7 +639,7 @@
                 <bam_exp>SRR446487</bam_exp>
             </groupwith>
         </bam_file>
-        <bam_file desc="Meristem and younger leaves, GSM897685;, SRA: SRS301780" record_number="SRR446485" hex_colour="0x999999" bam_link="http://s3.amazonaws.com/iplant-cdn/iplant/home/araport/rnaseq_bam/leaf/SRR446485/accepted_hits.bam" total_reads_mapped="35231736" publication_link="http://www.ncbi.nlm.nih.gov/pubmed/22570629" svg_subunit="shootApexInFlorescence" svgname="ath-ShootApexInflorescense.svg" title="Dividing tissues (meristem and younger leaves) of 4-week-old short-day-grown plant" publication_url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR446485">
+        <bam_file desc="Meristem and younger leaves, GSM897685;, SRA: SRS301780" record_number="SRR446485" hex_colour="0x999999" bam_link="http://s3.amazonaws.com/iplant-cdn/iplant/home/araport/rnaseq_bam/leaf/SRR446485/accepted_hits.bam" total_reads_mapped="35231736" publication_link="http://www.ncbi.nlm.nih.gov/pubmed/22570629" svg_subunit="shootapexinflorescence" svgname="ath-ShootApexInflorescense.svg" title="Dividing tissues (meristem and younger leaves) of 4-week-old short-day-grown plant" publication_url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR446485">
             <controls>
                 <bam_exp>SRR446484</bam_exp>
                 <bam_exp>SRR446486</bam_exp>
@@ -663,7 +663,7 @@
                 <bam_exp>SRR446487</bam_exp>
             </groupwith>
         </bam_file>
-        <bam_file desc="Meristem and younger leaves, GSM897687, SRA: SRS301782" record_number="SRR446487" hex_colour="0x999999" bam_link="http://s3.amazonaws.com/iplant-cdn/iplant/home/araport/rnaseq_bam/leaf/SRR446487/accepted_hits.bam" total_reads_mapped="34996434" publication_link="http://www.ncbi.nlm.nih.gov/pubmed/22570629" svg_subunit="shootApexInFlorescence" svgname="ath-ShootApexInflorescense.svg" title="Dividing tissues (meristem and younger leaves) of 4-week-old short-day-grown plant" publication_url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR446487">
+        <bam_file desc="Meristem and younger leaves, GSM897687, SRA: SRS301782" record_number="SRR446487" hex_colour="0x999999" bam_link="http://s3.amazonaws.com/iplant-cdn/iplant/home/araport/rnaseq_bam/leaf/SRR446487/accepted_hits.bam" total_reads_mapped="34996434" publication_link="http://www.ncbi.nlm.nih.gov/pubmed/22570629" svg_subunit="shootapexinflorescence" svgname="ath-ShootApexInflorescense.svg" title="Dividing tissues (meristem and younger leaves) of 4-week-old short-day-grown plant" publication_url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR446487">
             <controls>
                 <bam_exp>SRR446484</bam_exp>
                 <bam_exp>SRR446486</bam_exp>
@@ -1015,7 +1015,7 @@
                 <bam_exp>SRR942037</bam_exp>
             </groupwith>
         </bam_file>
-        <bam_file desc="whole seedling, WT, GSM613465, SRA: SRS118358" record_number="SRR070570" hex_colour="0xCCCC97" bam_link="http://s3.amazonaws.com/iplant-cdn/iplant/home/araport/rnaseq_bam/light/SRR070570/accepted_hits.bam" total_reads_mapped="8793425" publication_link="http://www.ncbi.nlm.nih.gov/pubmed/21265889" svg_subunit="etiolatedSeedling" svgname="ath-etiolatedSeedling.svg" title="4-day-old 24h-light-grown seedling" publication_url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR070570">
+        <bam_file desc="whole seedling, WT, GSM613465, SRA: SRS118358" record_number="SRR070570" hex_colour="0xCCCC97" bam_link="http://s3.amazonaws.com/iplant-cdn/iplant/home/araport/rnaseq_bam/light/SRR070570/accepted_hits.bam" total_reads_mapped="8793425" publication_link="http://www.ncbi.nlm.nih.gov/pubmed/21265889" svg_subunit="etiolatedseedling" svgname="ath-etiolatedSeedling.svg" title="4-day-old 24h-light-grown seedling" publication_url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR070570">
             <controls>
                 <bam_exp>SRR070570</bam_exp>
                 <bam_exp>SRR070571</bam_exp>
@@ -1027,7 +1027,7 @@
                 <bam_exp>SRR070573</bam_exp>
             </groupwith>
         </bam_file>
-        <bam_file desc="whole seedling, WT, GSM613465, SRA: SRS118358" record_number="SRR070571" hex_colour="0xCCCC97" bam_link="http://s3.amazonaws.com/iplant-cdn/iplant/home/araport/rnaseq_bam/light/SRR070571/accepted_hits.bam" total_reads_mapped="8590680" publication_link="http://www.ncbi.nlm.nih.gov/pubmed/21265889" svg_subunit="etiolatedSeedling" svgname="ath-etiolatedSeedling.svg" title="4-day-old 24h-light-grown seedling" publication_url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR070571">
+        <bam_file desc="whole seedling, WT, GSM613465, SRA: SRS118358" record_number="SRR070571" hex_colour="0xCCCC97" bam_link="http://s3.amazonaws.com/iplant-cdn/iplant/home/araport/rnaseq_bam/light/SRR070571/accepted_hits.bam" total_reads_mapped="8590680" publication_link="http://www.ncbi.nlm.nih.gov/pubmed/21265889" svg_subunit="etiolatedseedling" svgname="ath-etiolatedSeedling.svg" title="4-day-old 24h-light-grown seedling" publication_url="http://www.ncbi.nlm.nih.gov/Traces/sra/?run=SRR070571">
             <controls>
                 <bam_exp>SRR070570</bam_exp>
                 <bam_exp>SRR070571</bam_exp>

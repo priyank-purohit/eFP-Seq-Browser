@@ -4,16 +4,16 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="300px" height="300px" viewBox="0 0 300 300" enable-background="new 0 0 300 300" xml:space="preserve">
-<g id="Root">
+<g id="root">
 	<path fill="none" stroke="#000000" stroke-width="0.5" stroke-miterlimit="10" d="M156,138.667
 		c-0.597,10.588-2.333,13.333-9.162,19.945c-7.159,9.806-18.494,23.53-20.582,27.06c-2.685,7.061-10.739,32.943-11.335,38.041
 		c0.299-14.117,0.596-36.078,9.248-45.883c7.159-8.629,15.809-17.648,25.356-41.961L156,138.667z"/>
 </g>
-<g id="Hypocotyl">
+<g id="hypocotyl">
 	<path fill="none" stroke="#000000" stroke-width="0.5" stroke-miterlimit="10" d="M149.525,135.869
 		c-0.301-17.257,0.297-70.986-1.196-75.299c0,0,5.965-1.176,8.054-0.783c0.596,8.628,0.511,53.722-0.384,79.213L149.525,135.869z"/>
 </g>
-<g id="Cotyledon">
+<g id="cotyledon">
 	<path fill="none" stroke="#000000" stroke-width="0.5" stroke-miterlimit="10" d="M90.759,55.081c0,0,11.633-23.53,50.413-9.805
 		c4.773,3.136,9.248,7.452,16.108,5.489c6.86-3.137,19.985-9.805,44.445-4.706c4.476,3.53,17.602,11.766,12.827,28.236
 		c-3.279,5.49-11.036,12.548-31.021-1.96c-8.65-7.059-16.108-14.508-27.146-12.548c-8.054,0.783-8.054,0.783-8.054,0.783
