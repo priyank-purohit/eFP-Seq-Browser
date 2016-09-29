@@ -309,11 +309,8 @@
                 for (var i = 0; i < exp_to_colouring_part.length; i++) {
                     if (id.replace("_svg", "") == exp_to_colouring_part[i][0]) {
                         colouring_part = exp_to_colouring_part[i][1];
-                        break;
                     }
                 }
-
-                console.log("id = " + id + " and svg_part = " + colouring_part);
 
             	//console.log('COLOUR PART BY ID\'s part = ' + part);
                 // Get the user set RPKM scale
@@ -321,15 +318,39 @@
                 if ((!max_abs_scale) || max_abs_scale <= 0)
                     max_abs_scale = 1000;
 
-                var paths = document.getElementById(id).getElementsByTagName("path");
+                var paths1 = document.getElementById(id).getElementsByTagName("path");
+                var paths2 = document.getElementById(id).getElementsByTagName("g");
+
+                var paths = Array.prototype.slice.call(paths1).concat(Array.prototype.slice.call(paths2));
+
                 if (paths != null) {
                     if (mode == "abs") { // For absolute FPKM colouring
                         var r = 255;
                         var g = 255 - parseInt(fpkm / max_abs_scale * 255);
                         var b = 0;
                         //console.log('abs fpkm = ' + fpkm + ' -> rgb(' + r + ', ' + g + ', ' + b + ')');
-                        for (i = 0; i < paths.length; i++) {
-                            paths[i].style.fill = 'rgb(' + r + ', ' + g + ', ' + b + ')';
+                        if (colouring_part == "all") {
+                            for (i = 0; i < paths.length; i++) {
+                                paths[i].style.fill = 'rgb(' + r + ', ' + g + ', ' + b + ')';
+                            }
+                        }
+                        else {
+                            //console.log("\n\n ********** id = " + id + " and svg_part = " + colouring_part);
+                            for (i = 0; i < paths.length; i++) {
+                                //console.log("Checking if " + paths[i].id + " == " + colouring_part + " and it is " + (paths[i].id == colouring_part));
+                                if (paths[i].id == colouring_part) {
+                                    if (paths[i].tagName == "g") {
+                                        var child_paths = paths[i].getElementsByTagName("path");
+                                        //console.log("It was g with " + child_paths.length + " elements!!!!");
+                                        for (ii = 0; ii < child_paths.length; ii++) {
+                                            child_paths[ii].style.fill = 'rgb(' + r + ', ' + g + ', ' + b + ')';
+                                        }
+                                    }
+                                    else {
+                                        paths[i].style.fill = 'rgb(' + r + ', ' + g + ', ' + b + ')';
+                                    }
+                                }
+                            }
                         }
                     } else if (mode == "rel") { // For relative FPKM colouring
                         var hex = "";
@@ -352,8 +373,28 @@
                             hex = generate_colour("FFFF00", "0000FF", log_scaling);
                         }
                         //console.log('fpkm = ' + fpkm + ' -> hex = ' + hex);
-                        for (i = 0; i < paths.length; i++) {
-                            paths[i].style.fill = hex;
+                        if (colouring_part == "all") {
+                            for (i = 0; i < paths.length; i++) {
+                                paths[i].style.fill = hex;
+                            }
+                        }
+                        else {
+                            //console.log("\n\n ********** id = " + id + " and svg_part = " + colouring_part);
+                            for (i = 0; i < paths.length; i++) {
+                                //console.log("Checking if " + paths[i].id + " == " + colouring_part + " and it is " + (paths[i].id == colouring_part));
+                                if (paths[i].id == colouring_part) {
+                                    if (paths[i].tagName == "g") {
+                                        var child_paths = paths[i].getElementsByTagName("path");
+                                        //console.log("It was g with " + child_paths.length + " elements!!!!");
+                                        for (ii = 0; ii < child_paths.length; ii++) {
+                                            child_paths[ii].style.fill = hex;
+                                        }
+                                    }
+                                    else {
+                                        paths[i].style.fill = hex;
+                                    }
+                                }
+                            }
                         }
                     }
                     if (fpkm == "Missing controls data") {
