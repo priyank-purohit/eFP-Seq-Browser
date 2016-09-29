@@ -306,6 +306,15 @@
 
                 var colouring_part = "all";
 
+                for (var i = 0; i < exp_to_colouring_part.length; i++) {
+                    if (id.replace("_svg", "") == exp_to_colouring_part[i][0]) {
+                        colouring_part = exp_to_colouring_part[i][1];
+                        break;
+                    }
+                }
+
+                console.log("id = " + id + " and svg_part = " + colouring_part);
+
             	//console.log('COLOUR PART BY ID\'s part = ' + part);
                 // Get the user set RPKM scale
                 max_abs_scale = document.getElementById("rpkm_scale_input").value;
