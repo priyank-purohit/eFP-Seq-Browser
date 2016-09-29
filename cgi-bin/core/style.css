@@ -18,3 +18,10 @@ display: none;
 .locus_button_style {
 	margin-left: 20px;
 }
+
+.mdl-tooltip.is-active {
+    animation: none;
+    transform: scale(1);
+    opacity: 1;
+    visibility: visible;
+}
