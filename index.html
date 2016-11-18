@@ -57,10 +57,15 @@
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <p style="font-size: 25px; margin: 5px; text-align: center;"><i>A. thaliana</i> eFP-Seq Browser</p>
                         <p style="font-size: 15px; margin: 5px; text-align: center;">Priyank Purohit, Dr. Nicholas Provart. University of Toronto.</p>
-                        <div class="col-xs-2 col-sm-2 col-md-2 col-xs-offset-10 col-sm-offset-10 col-md-offset-10" style="margin-top: -50px;">
+                        <div class="col-xs-3 col-sm-3 col-md-3 col-xs-offset-9 col-sm-offset-9 col-md-offset-9" style="margin-top: -50px;">
+                            <div class="col-xs-6" id="feedback_div">
+                                <button id="feedback_button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect " data-toggle="modal" data-target="#feedbackModal">Feedback</button>
+                            </div>
+                            <!--
                             <div class="col-xs-6" id="cite_button_div">
                                 <button id="cite_button" disabled="" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect ">Cite</button>
-                            </div>
+                            </div> 
+                            -->
                             <div class="col-xs-6">
                                 <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect " data-toggle="modal" data-target="#myModal">Help</button>
                             </div>
@@ -181,25 +186,69 @@
                 <div class="mdl-snackbar__text"></div>
                 <button class="mdl-snackbar__action" type="button"></button>
             </div>
+            <!-- Feedback Modal -->
+            <div class="modal fade" id="feedbackModal" tabindex="-1" role="dialog" aria-labelledby="Feedback button" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                          <h2 class="modal-title" id="myModalLabel">Feedback</h2>
+                        </div>
+                        <div class="modal-body">
+                            <!-- WUFOO form -->
+                            <div id="wufoo-shvmgyz181mhf1">
+                            Fill out my <a href="https://jamiewaese.wufoo.com/forms/shvmgyz181mhf1">online form</a>.
+                            </div>
+                            <div id="wuf-adv" style="font-family:inherit;font-size: small;color:#a7a7a7;text-align:center;display:block;">form powered by <a href="http://www.wufoo.com">Wufoo</a>.</div>
+                              <script type="text/javascript">
+                                var shvmgyz181mhf1;(function(d, t) {
+                                var s = d.createElement(t), options = {
+                                'userName':'jamiewaese',
+                                'formHash':'shvmgyz181mhf1',
+                                'autoResize':true,
+                                'height':'734',
+                                'async':true,
+                                'host':'wufoo.com',
+                                'header':'show',
+                                'ssl':true};
+                                s.src = ('https:' == d.location.protocol ? 'https://' : 'http://') + 'www.wufoo.com/scripts/embed/form.js';
+                                s.onload = s.onreadystatechange = function() {
+                                var rs = this.readyState; if (rs) if (rs != 'complete') if (rs != 'loaded') return;
+                                try { shvmgyz181mhf1 = new WufooForm();shvmgyz181mhf1.initialize(options);shvmgyz181mhf1.display(); } catch (e) {}};
+                                var scr = d.getElementsByTagName(t)[0], par = scr.parentNode; par.insertBefore(s, scr);
+                                })(document, 'script');
+                              </script>
+                            <!-- end of WUFOO form -->
+
+
+                        </div>        
+                    </div>
+                </div>
+            </div>
+
+
             <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title" style="color:red">!!!!!!!!UNDER CONSTRUCTION!!!!!!!!!!</h4>
-                            <h4 class="modal-title">Examining the effects of microgravity on pathogenicity and drug resistance of candida albicans and candida glabrata.</h4>
                         </div>
                         <div class="modal-body">
-                            <p><a href="http://www.utoronto.ca/" target="_blank">University of Toronto (Toronto, Ontario, Canada).</a></p>
-                            <hr/>
-                            <p><strong>Abstract:</strong> Small, low-cost, autonomous satellites have created new opportunities for conducting biological experiments in space without relying on the International Space Station. These orbital laboratories have enabled fundamental research in areas related to space biology, to solve key biological obstacles intrinsic to long-duration space flight.</p>
-                            <p>The microgravity environment of space has been shown to alter the expression levels of genes involved in pathogenicity, drug resistance, stress response, and other processes in the opportunistic human fungal pathogen C. albicans [1]. Furthermore, long-term exposure to the microgravity environment increases susceptibility to the opportunistic pathogens present in the human gut [2].</p>
-                            <p>C. albicans and C. glabrata are normally part of the gut microbiota and account for >90% of all report-ed cases of Candidiasis [3]. Thus, a better understanding of the response of C. albicans and C. glabrata to the microgravity environment of space is necessary to improve the quality of human health on long-duration space flights.</p>
-                            <p><strong>In this work, we present</strong> the challenges, preliminary results, methods, and the outlook of a project to construct and launch a 3U CubeSat capable of conducting an autonomous microbiology experiment in low Earth orbit using a microfluidics-based system. We developed means of placing C. albicans and C. glabrata in zero power, long-term stasis such that they remain dormant during pre-launch operations (~5 months). Growth will be reinitiated by injection of growth media upon achieving a stable orbit.</p>
-                            <p>Adhesion and morphogenesis are key virulence determinants in C. albicans [4]. To monitor the expression of adhesins and hyphal-specific genes, green fluorescent protein (GFP) is expressed under the promoter of five candidate genes (ALS1, ALS3, HWP1, INT1, and MNT1). Once on-orbit, on board fluorescence sensors will measure the levels of GFP expression for each virulence gene.</p>
-                            <p>Lastly, the change in drug resistance due to growth in microgravity environment will be assessed by performing minimum inhibitory concentration (MIC) assays using fluconazole and caspofungin, two antifungal agents commonly prescribed in the clinic.</p>
-                            <p>The potential for the normal microbiota to become infectious in space is a major concern for the health of astronauts on a long-duration space flight. A deeper understanding of the real time changes seen in drug resistance, and the virulence gene expression is essential to understanding the effects of microgravity on human health for future space missions.</p>
-                            <p><strong>References:</strong> [1] A. Crabbé et al. (2013) PLoS ONE, 8(12), e80677. [2] G. Sonnenfeld et al. (2005) Curr Pharm Biotechnol, 6, 343-349. [3] P. L. Fidel, Jr. et al. (1999) Clin Microbiol Rev, 12(1), 80-96. [4] Y. Yang (2003) J Microbiol Immunol Infect, 26, 223-228.
+			    <p>
+				Enter your AGI ID of interest and click the Arrow button to search among 113 RNA-seq data sets used by Araport 11 to reannotate the Arabidopsis genome (Cheng et al. 2016, <a href="http://biorxiv.org/content/early/2016/04/05/047308">http://biorxiv.org/content/early/2016/04/05/047308</a>). The eFP-Seq Browser will retrieve the number of reads mapped and display these above the desired Araport 11 gene model. You can sort or filter the columns. <br><br> 
+
+* If you sort based on the PCC column you can see the readmap profiles that best or least match a given gene model, based on the Pearson correlation coefficient (we generate a "all or nothing" vector for exons/introns for a given gene model and compare that to the readmap vector) <br>
+* If you sort based on the eFP (RPKM) you will sort the rows by the plant part used for RNA-seq sampling <br>
+* If you sort based on RPKM the rows will be sorted by RPKM expression level <br>
+* Linkouts are provided to the SRA at NCBI and to associated publications <br>
+* You may filter the data in the columns, and you can combine multiple filter criteria. For example, try '&gt; 100 &amp;&amp; &lt; 110' filter in the RPKM column.<br><br>
+
+You can also set the mode to be "Relative" in which case the RPKM values of the appropriate control experiment or experiments (if no control is apparent, we used all samples in an experiment) are used to compute the fold-change in expression (increase or decrease) of the gene in question in that sample (row) relative to the control. You can then sort on this fold-change. <br><br>
+
+You can ajdust the RNA-seq readmap scale or the RPKM colour scale from their default settings of "auto" (readmap y-axes are autoscaled on a per sample basis) and whatever the maximum RPKM value is (any sample which has this score would have a red-coloured pictograph, while samples where expression is lower would have pictographs tending towards yellow in colour.) <br><br>
+
+We welcome feedback to nicholas.provart@utoronto.ca.<br>
+
                             </p>
                         </div>
                         <div class="modal-footer">
