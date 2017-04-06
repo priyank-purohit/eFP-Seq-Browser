@@ -104,7 +104,7 @@ def hex_to_rgb(val):
 
 
 ''' Once we have chromosome, start, end and filename, we can make the image.'''
-def makeImage(filename, chromosome, start, end, record, yscale):
+def makeImage(filedir, filename, chromosome, start, end, record, yscale):
 	max_mapped_reads_count = 0 # For setting the appropriate Y scale
 
 	x_bp_vals = [] # Holds nucleotide positions...
@@ -117,7 +117,13 @@ def makeImage(filename, chromosome, start, end, record, yscale):
 	# Call samtools and get mpileup
 	chromosome = "Chr" + str(chromosome)
 	region = chromosome + ":" + str(start) + "-" + str(end)
-	mpileup = subprocess.check_output(['samtools', 'mpileup', '-r', region, filename])
+	
+	# Set the environment
+	os.chdir("data/" + filedir)
+	my_env = os.environ.copy()
+	my_env["LD_LIBRARY_PATH"] = "/usr/local/lib/"
+	mpileup = subprocess.check_output(['samtools', 'mpileup', '-r', region, filename], env=my_env)
+	os.chdir("../../../")
 
 	# Read pileup output
 	for read in mpileup.splitlines():
@@ -215,6 +221,7 @@ def main():
 	# Generate new data or return cached data for speedy first-load.
 	############################################################################
 	# (status == 0) => RETURN NEWLY GENERATED DATA
+	#subprocess.check_output(['export', 'LD_LIBRARY_PATH=/usr/local/lib/'])
 	if (status == 0):
 		# Get info required for generating new data
 		variant_structure = json.loads(form.getvalue('struct')) # Exon-Intron
@@ -253,10 +260,11 @@ def main():
 					expected_expr_in_variant[variants_count].append(1)
 
 		# Make S3FS filename here
-		bam_file = "/mnt/RNASeqData/" + tissue + "/" + record + "/accepted_hits.bam"
-
+		bam_file = "s3://iplant-cdn/iplant/home/araport/rnaseq_bam/" + tissue + "/" + record + "/accepted_hits.bam"
+		bam_dir = tissue + "/" + record
+		
 		# Now make a image using samtools
-		base64img = makeImage(bam_file, chromosome, start, end, record, yscale)
+		base64img = makeImage(bam_dir, bam_file, chromosome, start, end, record, yscale)
 
 		# OFTEN, mpileup output doesn't include all the bases assigned to locus
 		# The ones that are no included should get a mpileup expression value of 0
@@ -311,7 +319,12 @@ def main():
 		# Hypothesis: since you need this info to create the mpileup output
 		# the same info would be there. So just pass that along instead of 
 		# making this call .. to speed things up.
-		lines = subprocess.check_output(['samtools', 'view', bam_file, region])
+		# Set the environment
+		os.chdir("data/" + bam_dir)
+		my_env = os.environ
+		my_env["LD_LIBRARY_PATH"] = "/usr/local/lib/"
+		lines = subprocess.check_output(['samtools', 'view', bam_file, region], env=my_env)
+		os.chdir("../../../")
 		mapped_reads = lines.count('Chr')
 
 		# Total reads in each experiment, extracted from BAM Locator XML file.

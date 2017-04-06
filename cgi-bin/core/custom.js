@@ -1,8 +1,21 @@
 // Get initial values
 var colouring_mode = $('input[type="radio"][name="svg_colour_radio_group"]:checked').val();
-var locus = document.getElementById("locus").value; // Which locus does the user want?
-var yscale_input = document.getElementById("yscale_input").value; // What Y-Scale does the user want?
-var max_abs_scale = document.getElementById("rpkm_scale_input").value; // What is the max value for the svg colouring in absolute mode?
+
+var locus; // Which locus does the user want?
+if (document.getElementById("locus") != null) {
+  locus = document.getElementById("locus").value;
+};
+
+var yscale_input; // What Y-Scale does the user want?
+if (document.getElementById("yscale_input") != null) {
+  yscale_input = document.getElementById("yscale_input").value;
+};
+
+var max_abs_scale; // What is the max value for the svg colouring in absolute mode?
+if (document.getElementById("rpkm_scale_input") != null) {
+  max_abs_scale = document.getElementById("rpkm_scale_input").value;
+};
+
 var locus_start = 10326918; // Gets updated when user changes gene
 var locus_end = 10330048; // Gets updated when user changes gene
 var splice_variants = '';
@@ -19,8 +32,105 @@ var max_log_fpkm = -1;
 var svg_colouring_element = null; // the element for inserting the SVG colouring scale legend
 var gene_structure_colouring_element = null; // the element for inserting the gene structure scale legend
 
+//Used to create location for uploaded XML, clientside
+//Code taken from: http://stackoverflow.com/questions/37699927/file-not-uploading-in-file-reader
+var default_url = 'data/bamdata_amazon_links.xml';
+var base_src = 'cgi-bin/data/bamdata_amazon_links.xml';
+var upload_src = '';
+
+
+//Following lines are used to count and determine how many BAM entries are in the XML file
+var count_bam_entries_in_xml = 0;
+
+var xhr = new XMLHttpRequest();
+xhr.open( 'GET', base_src, true );
+xhr.onreadystatechange = function ( e ) {
+    if ( xhr.readyState == 4 && xhr.status == 200 )
+        count_bam_entries_in_xml = xhr.responseXML.getElementsByTagName( "bam_file" ).length ;
+        //document.getElementById("testing_code").innerHTML = count_bam_entries_in_xml;
+};
+xhr.send( null );
+
+function count_bam_num () {
+  var xhr = new XMLHttpRequest();
+  var old_count = count_bam_entries_in_xml
+  xhr.open( 'GET', base_src, true );
+  xhr.onreadystatechange = function ( e ) {
+      if ( xhr.readyState == 4 && xhr.status == 200 )
+          count_bam_entries_in_xml = xhr.responseXML.getElementsByTagName( "bam_file" ).length ;
+          //document.getElementById("testing_code").innerHTML = count_bam_entries_in_xml;
+  };
+  if (progress_percent < 100) {
+    xhr.send(null);
+  }
+
+  document.getElementById("testing_count").innerHTML = count_bam_entries_in_xml;
+};
+
+function testmobile() {
+  if (navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPod/i) || navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/webOS/i) || navigator.userAgent.match(/BlackBerry/i) || navigator.userAgent.match(/Windows Phone/i)) {
+    return true;
+  }
+  else {
+    return false;
+  }
+};
+//document.getElementById("testing_mobile").innerHTML = testmobile();
+
+if (testmobile() == true) {
+  document.getElementById("correctspacing").style.display="none";
+  //document.getElementById("feedback_button").style.display="none";
+  //document.getElementById("help_icon").style.display="none";
+  document.getElementById("butbarborder").style.display="none";
+  //document.getElementById("middle_buttons").style.display="none";
+  document.getElementById("uploaddata").style.display="none";
+  document.getElementById("generatedata").style.display="none";
+  document.getElementById("publicdatabase").className = document.getElementById("publicdatabase").className.replace("col-xs-4","")
+  document.getElementById("eFP_button").style.display="none";
+  document.getElementById("locusbrowser").className="col-xs-6";
+  document.getElementById("locus").style.width="100%";
+  //$(".locus_button_visual").hide();
+  //document.getElementById("tt4").className="col-xs-6";
+  document.getElementById("yscale_input").style.width="100%";
+  //document.getElementById("locusbuttonmobile").style.display="inline";
+  document.getElementById("mobilebrspacing").style.display="inline";
+  document.getElementById("default_radio").className="col-xs-6";
+  //document.getElementById("absolutedefault").className="col-xs-6";
+  document.getElementById("rpkm_scale_input").style.width="100%";
+  //document.getElementById("variants_div").style.width="475px";
+  document.getElementById("mobilenavbar").style.display="block";
+};
+
+// Code edited by StackOverFlow user Matthew "Treeless" Rowlandson http://stackoverflow.com/questions/42166138/css-transition-triggered-by-javascript?noredirect=1#comment71503764_42166138
+function generate_loading_screen() {
+  window.setInterval(function(){
+    if (progress_percent < 99) {
+      document.getElementById("loading_screen").className = "loading";
+      document.getElementById("body_of").className = "body_of_loading";
+      $(':button').prop('disabled', true);
+      $('#help_button').prop('disabled', true);
+    }
+    else if (progress_percent > 99) {
+      document.getElementById("loading_screen").className = "loading done_loading";
+      document.getElementById("body_of").className = "body_of_loading body_of_loading_done";
+      $(':button').prop('disabled', false);
+      $('#help_button').prop('disabled', false);
+      stop_generating_loading();
+    }
+  }, 50);
+  stop_generating_loading();
+  populate_efp_modal(1);
+};
+
+function stop_generating_loading() {
+  clearInterval(generate_loading_screen);
+};
+
 // Base 64 images
 var img_loading_base64 = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAcIAAAAyCAYAAADP/dvoAAAABmJLR0QAwADAAMAanQdUAAAACXBIWXMAAA7CAAAOwgEVKEqAAAAAB3RJTUUH4AoRDzYeAMpyUgAABGJJREFUeNrt3TFoE3scwPGvjxtOzKAQMEOECBkyROhQsWOEChURBFtssdJFB9Gl4OJkwaEtRRAUdLAUqYJgwamIEFAwUoS43RCw0AwpOjhkuCHDQd5Qes9q+7A+7cP2+1na5K53cH/Kl19yIfu63W4XSZL2qL+8BJIkQyhJ0h4VfPvExMSEV0WStGt92zknQkmSE+GPFFOSpN00CToRSpJkCCVJhlCSJEMoSZIhlCTJEEqSZAglSTKEkiQZQkmSDKEkSYZQkiRDKEmSIZQkyRBKe8HDhw/5/Pnzbzn2/v3709/Hx8d/23kkGULpp01PT9NoNH7LsTudDgBJktBut0mSxAsu/Q8CL4G0fUmSEEURcRxTLpc5ePBguu3Lly9EUUQ2m6VcLm/4u0ajQRzH9PT0/PNPGARcu3aNXC6X7lMqlVheXv5u3/Xt69NjJpOht7fXBZEMobRz2u02Z8+eJY5jCoUCtVqN58+fU6lUePLkCXfu3KGnp4d6vU5vby9zc3PA2peCzs7OUiqVvjvm8ePHWVlZoVAocPr0aQYHB6nX6zSbTSqVSnqMkZGRdHp88+YNw8PDzM/PuyiSIZR2zv3798lms7x9+xZYex/x5s2bLC0tce7cOYaHhwmCgHa7zaFDh5ibm6PZbDI9Pc3Hjx/J5/MsLCxQrVa3PMfhw4d5/fo1rVaLI0eOMDk5CUC1WuXTp08EQcCxY8e4cOGCCyIZQmlnffjwgfPnz6ePBwYGuHr1KrD2UmW1WqVWq7G6upru02w2yeVy5PN5AAYHB//1HOvb1/fvdDpkMhniOGZ5eZlCoUCSJOnLqZIMobRjkiRJb3RZF4YhAFNTUywuLnLr1i2KxSKPHj36df+sQUChUODSpUt0Oh0uXrzo+4PSL+Bdo9I2nThxgsePH6d3eS4sLDAwMADA+/fvOXPmDP39/RtiWSqVaLVaRFEEwN27d7d93iiKCIKA27dv8+DBAy5fvpxuazQa1Ov1dHp89uxZuq1ardJqtVw4yYlQ2r4wDDl58mT6eGZmhuvXr/Pu3TuOHj1KJpMhDENevHgBwNjYGFeuXOHVq1eEYUg2mwUgl8sxMzPDqVOnyOfz9PX1pS97/sgkCFAul2m32zx9+pQkSajVaoyOjjI5Ocns7CxRFPHy5UuiKGJkZIT+/n6y2Szj4+OMjY1x48YNF1TaxL5ut9v9+omJiYkNPyVtLo5jkiTZ8NEJWPv4BJBG8GudTockSchkMts+39TUFKurq9y7dw+Aer3O0NAQKysrLob0A7bqmxOh9JO2itlmAfx6wvxZfX19DA0NEYYhBw4cYHFxkdHRURdC+o8MofSHqFQqLC0tUavVAJifn9/0M4mSDKG0axWLRYrFohdC+oW8a1SSZAglSTKEkiQZQkmSDKEkSYZQkiRDKEmSIZQkyRBKkmQIJUkyhJIkGUJJkgyhJEmGUJKkP9mWX8PkN9RLkpwIJUna5fZ1u92ul0GS5EQoSdIe9DfEVWhcl8IjHgAAAABJRU5ErkJggg==";
+
+//var img_loading_base64 = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAcIAAAAyCAYAAADP/dvoAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAA7CAAAOwgEVKEqAAAAAB3RJTUUH4AoRDzghKC9y4QAABG1JREFUeNrt3TFoE2sAwPG/jxtOzKAQMEOECBkyROhQsWOEChURBFtssdJFC6JLwcVJwaEtRRAUlGIpUgXBglMRIaBgpAhxuyFgoRlSdHDIcEOGg7xBek+fVqxP+7D9/6Ymd72D7yP8+S53ZFe32+0iSdIO9ZdDIEkyhJIk7VDBv9+YnZ11VCRJ29b4+LgrQkmSNlwRblRMSZL+ZBtd8XRFKEna0QyhJMkQSpJkCCVJMoSSJBlCSZIMoSRJhlCSJEMoSZIhlCTJEEqSZAglSTKEkiQZQmnbu3fvHh8+fPgtx969e3f698TExG87jyRDKP206elpGo3Gbzl2p9MBIEkS2u02SZI44NL/IHAIpM1LkoQoiojjmHK5zN69e9NtHz9+JIoistks5XL5i/9rNBrEcUxPT88/H8Ig4NKlS+RyuXSfUqnEysrKV/uub19fPWYyGXp7e50QyRBKW6fdbnPy5EniOKZQKFCr1Xjy5AmVSoWHDx9y8+ZNenp6qNfr9Pb2Mj8/D8D169eZm5ujVCp9dczDhw+zurpKoVDg+PHjDA4OUq/XaTabVCqV9BgjIyPp6vHly5cMDw+zsLDgpEiGUNo6d+7cIZvN8urVK+DT94hXr15leXmZU6dOMTw8TBAEtNtt9u3bx/z8PM1mk+npad69e0c+n2dxcZFqtbrhOfbv38+LFy9otVocOHCAyclJAKrVKu/fvycIAg4dOsSZM2ecEMkQSlvr7du3nD59On09MDDAxYsXgU+XKqvVKrVajbW1tXSfZrNJLpcjn88DMDg4+N1zrG9f37/T6ZDJZIjjmJWVFQqFAkmSpJdTJRlCacskSZLe6LIuDEMApqamWFpa4tq1axSLRe7fv//rPqxBQKFQ4Ny5c3Q6Hc6ePev3g9Iv4F2j0iYdOXKEBw8epHd5Li4uMjAwAMCbN284ceIE/f39X8SyVCrRarWIogiAW7dubfq8URQRBAE3btzg7t27nD9/Pt3WaDSo1+vp6vHx48fptmq1SqvVcuIkV4TS5oVhyNGjR9PXMzMzXL58mdevX3Pw4EEymQxhGPL06VMAxsbGuHDhAs+fPycMQ7LZLAC5XI6ZmRmOHTtGPp+nr68vvez5IytBgHK5TLvd5tGjRyRJQq1WY3R0lMnJSebm5oiiiGfPnhFFESMjI/T395PNZpmYmGBsbIwrV644odI37Op2u93P35idnQVgfHzc0ZG+I45jkiT54tEJ+PT4BJBG8HOdTockSchkMps+39TUFGtra9y+fRuAer3O0NAQq6urTob0AzbqmytC6SdtFLNvBfDzFebP6uvrY2hoiDAM2bNnD0tLS4yOjjoR0n9kCKU/RKVSYXl5mVqtBsDCwsI3n0mUZAilbatYLFIsFh0I6RfyrlFJkiGUJMkQSpJkCCVJMoSSJBlCSZIMoSRJhlCSJEMoSZIhlCTJEEqSZAglSTKEkiQZQkmS/mQb/gzT+i/5SpLkilCSpG1qV7fb7ToMkiRXhJIk7UB/A1moaKrp8fOjAAAAAElFTkSuQmCC";
+//var img_loading_base64 = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAcIAAAAyCAYAAADP/dvoAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAOwgAADsIBFShKgAAAABh0RVh0U29mdHdhcmUAcGFpbnQubmV0IDQuMC45bDN+TgAAA7NJREFUeF7t26FTFk8cB2ADgT+AQDAYCQQDgWAgGAwEI4FgIBIMBoMzBAKBQCQYCASDgUAgEAhEAoFAIBgMBIPBYCDcj8/+3sV3Xk/kdTTAPs/Md969vb27dPOZ3dv3UQcADROEADRNEALQtJ+D8NF1l1JKKfVQa0RPz8gFSiml1EOqET09/QMB4F4ThAA0TRAC0DRBCEDTBCEATROEADRNEALQNEEIQNMEIQBNE4QANE0QAtA0QQhA0wQhAE0ThAA0TRDC+La3t7vLy8vB0d81OTk5aHXd69ev/9lzgAFBCON78uRJd3R0NDj6ux4N3rOrq6vu1atX3efPn8sx8I8IQhjfr4Iw4XV6etodHx93X79+HfT+78uXL+Was7OzQc8P5+fn3cnJSbm+BmHUvsiYuLi4KM8YlfO5fyrXAXckCGF8fUGY4Hv27Fn39OnT7uXLl93U1NTNmN3d3dKfGd7s7Gz5rdbW1rrHjx93z58/LzUchGl/+vSptPPMN2/edAsLC6U9fI+lpaXuxYsX5fqJiYlueXl5cAb4rV/kW09P/0BoUV8Qrq+vlwCs8h1xfn6+tL99+3Yzs0tg1rBLyOWbYF3+/Pjx4825GA3Czc3N0s74nMv3w1RCt94/Qbu/v1/awB3knRt676qenv6B0KK+IEwIZuZXJcCGQ+3w8LDM/lZWVm76c4/ca9htQVjbUc9lyTVhmqXR79+/dzMzM5ZGYRx554beu6qnp38gtKgvCBcXF7v3798Pjn7M9mJjY6MsmyYMhwPybwRhZpgJv7m5uTIbzMwUGEPeuaH3rurp6R8ILeoLwgRQwq4uUWYZsy6V5jdhGJm51bDLsma+6dUNNFtbWzfn4i5BmI05CcCDg4PSHv67Rd2EE5ktfvjwobQjoWxHKlzLOzf03lU9Pf0DoUWZgSWIaiX0MjPLhpVsfMn5bI6pwbW3t1e+42WjS8akXSX8pqeny4xudXW1XF/dFoQJ0BznubkmG2SyaSbtt2/fljHZXJPnRQIx98tSaiQ86zdHaNr1e1FqhCCEP5SNMQmnUQmgGkKjMlvLdX8iM80EaJXAG11uBW4hCOF+yxJtZpiZ/WUzTmaW7969G5wFfksQwv2XP9nv7OyUqn+8B+5IEALQNEEIQNMEIQBNE4QANE0QAtA0QQhA0wQhAE0ThAA0TRAC0DRBCEDTBCEATROEADRNEALQNEEIQNMEIQBNGzsIlVJKqYdYI3p6Ri5QSimlHlKN+LkHABoiCAFoWNf9Bx2Q2ZDpi98WAAAAAElFTkSuQmCC";
 var img_gene_struct_1 = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAcIAAAAIBAMAAACYMuIQAAAAFVBMVEX///8AAADcFDz/jAAAAP+m 3KYAfQDytQt7AAAAS0lEQVQ4jWMIxQfSoCCBAQRgvDRUHhYAVsCGWyABhZuATRZFO8wEOEBIpuL1 ABAwhAYOex8KDncfBg57HwoOdzAC4nD458NhX5YCAOtozsHok4ONAAAAAElFTkSuQmCC ";
 var absolute_rpkm_scale = "iVBORw0KGgoAAAANSUhEUgAAAGQAAAAPCAMAAAAlD5r/AAABQVBMVEX///8AAADcFDz/jAAAAP+m 3KYAfQD//wD//AD/+QD/9wD/9AD/8gD/7wD/7QD/6gD/6AD/5QD/4gD/4AD/3QD/2wD/2AD/1gD/ 0wD/0QD/zgD/zAD/yQD/xgD/xAD/wQD/vwD/vAD/ugD/twD/tQD/sgD/rwD/rQD/qgD/qAD/pQD/ owD/oAD/ngD/mwD/mQD/lgD/kwD/kQD/jgD/jAD/iQD/hwD/hAD/ggD/fwD/fAD/egD/dwD/dQD/ cgD/cAD/bQD/awD/aAD/ZgD/YwD/YAD/XgD/WwD/WQD/VgD/VAD/UQD/TwD/TAD/SQD/RwD/RAD/ QgD/PwD/PQD/OgD/OAD/NQD/MwD/MAD/LQD/KwD/KAD/JgD/IwD/IQD/HgD/HAD/GQD/FgD/FAD/ EQD/DwD/DAD/CgD/BwD/BQD/AgCkIVxRAAAAs0lEQVQ4jWNg5+Dk4ubh5eMXEBQSFhEVE5eQlJKW kZWTV1BUUlZRVVPX0NTS1tHV0zcwNDI2MTUzt7C0sraxtbN3cHRydnF1c/fw9PL28fXzDwgMCg4J DQuPiIyKjomNi09ITEpOSU1Lz8jMYhi1hERLGBmpbgljbBwjiiWMnFyMVLcECOhkCZBIZUzPYKSV JaDgYkxKZkxNY2SkmU8gljDCLaFdxDMmw4NrGOWTUUuItwQAG8496iMoCNwAAAAASUVORK5CYII= ";
 var relative_rpkm_scale = "iVBORw0KGgoAAAANSUhEUgAAAGQAAAAPCAMAAAAlD5r/AAABQVBMVEX///8AAADcFDz/jAAAAP+m 3KYAfQAAAP8FBfkKCvQPD+8UFOoZGeUeHuAjI9soKNYtLdEzM8w4OMY9PcFCQrxHR7dMTLJRUa1W VqhbW6NgYJ5mZplra5NwcI51dYl6eoR/f3+EhHqJiXWOjnCTk2uZmWaenmCjo1uoqFatrVGysky3 t0e8vELBwT3GxjjMzDPR0S3W1ijb2yPg4B7l5Rnq6hTv7w/09Ar5+QX//wD/+wD/9gD/8QD/7AD/ 5wD/4gD/3QD/2AD/0wD/zQD/yAD/wwD/vgD/uQD/tAD/rwD/qgD/pQD/oAD/mgD/lQD/kAD/iwD/ hgD/gQD/fAD/dwD/cgD/bQD/ZwD/YgD/XQD/WAD/UwD/TgD/SQD/RAD/PwD/OgD/NAD/LwD/KgD/ JQD/IAD/GwD/FgD/EQD/DAD/BwBUljDTAAAA1klEQVQ4jWNg5+Dk4ubh5eMXEBQSFhEVE5eQlJKW kZWTV1BUUlZRVVPX0NTS1tHV0zcwNDI2MTUzt7C0sraxtbN3cHRydnF1c/fw9PL28fXzDwgMCg4J DQuPiIyKjomNi09ITEpOSU1Lz8jMYhi1hDRLGDi5GICWMBBvCSMjIUsYY+MYUS0BApJ8wmhlzUjI EiDAYgkD0CcMwgxUtQRIpDKmZzCiBBcDgwgDlSwBBRdjUjJjahojI2qcMAhT2RJGNEuAYUasJURH PGMyPLiGTz4ZtYQESwCEoDnh8dGTkQAAAABJRU5ErkJggg==";
@@ -68,6 +178,8 @@ function round(x, digits) {
     return parseFloat(x.toFixed(digits))
 }
 
+var colouring_part;
+var colouring_count = 1;
 /* Find and colour a particular SVG in the DOM. */
 function colour_part_by_id(id, part, fpkm, mode) {
     var exp_to_colouring_part = [
@@ -186,11 +298,19 @@ function colour_part_by_id(id, part, fpkm, mode) {
         ["SRR949989", "all"]
     ];
 
-    var colouring_part = "all";
+    colouring_part = "all";
 
+    /*
     for (var i = 0; i < exp_to_colouring_part.length; i++) {
         if (id.replace("_svg", "") == exp_to_colouring_part[i][0]) {
             colouring_part = exp_to_colouring_part[i][1];
+        }
+    }
+    */
+
+    for (var i = 0; i < svg_part_list.length; i++) {
+        if (id.replace("_svg", "") == svg_part_list[i][0]) {
+            colouring_part = svg_part_list[i][1];
         }
     }
 
@@ -287,14 +407,16 @@ function colour_part_by_id(id, part, fpkm, mode) {
 }
 
 /* Find and update each SVG in the DOM. */
+var current_radio = "abs";
 function colour_svgs_now(mode = $('input[type="radio"][name="svg_colour_radio_group"]:checked').val()) {
     //console.log("colour_svgs_now function is called with mode = " + mode);
-    for (var i = 0; i < 113; i++) {
+    current_radio = $('input[type="radio"][name="svg_colour_radio_group"]:checked').val();
+    for (var i = 0; i < count_bam_entries_in_xml; i++) {
         // For every exp, figure out the fpkm average of the controls
         var ctrl_fpkm_sum = 0;
         var ctrl_count = 0;
         var ctrl_avg_fpkm = 0;
-        for (var ii = 0; ii < 113; ii++) {
+        for (var ii = 0; ii < count_bam_entries_in_xml; ii++) {
             if (exp_info[i][2].indexOf(exp_info[ii][0].slice(0, -4)) != -1) {
                 // experiment ii is a control for experiment i, save FPKM of exp ii
                 ctrl_count++;
@@ -370,7 +492,7 @@ function update_all_images(status) {
 function variants_radio_options(status) {
     get_input_values();
     $.ajax({
-        url: 'http://bar.utoronto.ca/~ppurohit/RNA-Browser/cgi-bin/get_gene_structures.cgi?locus=' + locus,
+        url: 'http://bar.utoronto.ca/~dev/eFP-Seq_Browser/cgi-bin/get_gene_structures.cgi?locus=' + locus,
         dataType: 'json',
         success: function(gene_res) {
             // Update locus_start and locus_end
@@ -378,6 +500,7 @@ function variants_radio_options(status) {
             locus_end = gene_res['locus_end'];
             splice_variants = JSON.stringify(gene_res['splice_variants']);
             populate_table(status);
+            populate_efp_modal(status);
 
             // Remove existing variant images.
             var variants_div = document.getElementById("variants_div");
@@ -439,15 +562,34 @@ function parseIntArray(arr) {
 }
 
 /* Makes AJAX request for each RNA-Seq image based on the rnaseq_calls array that was produced by the populate_table() function */
+var rnaseq_image_url = "http://bar.utoronto.ca/webservices/eFP-Seq_Browser/cgi-bin/webservice.cgi?tissue=";
+var match_drive = "";
+//var testing_rnaseq_image = 0;
+var progress_percent = 0
 function rnaseq_images(status) {
     rnaseq_success = 0;
     //date_obj2 = new Date();
     //rnaseq_success_start_time = date_obj2.getTime(); // Keep track of start time
     get_input_values();
-    if (rnaseq_calls.length == 113) {
-        for (var i = 0; i < 113; i++) {
+    if (rnaseq_calls.length == count_bam_entries_in_xml) {
+        for (var i = 0; i < count_bam_entries_in_xml; i++) {
+            if (bam_type_list[i] == "Google Drive") {
+              var myRegexp = /^https:\/\/drive.google.com\/drive\/folders\/(.+)/g;
+              var linkString = drive_link_list[i];
+              match_drive = myRegexp.exec(linkString);
+              var numberofreads_push = numberofreads_list[i]
+              rnaseq_image_url = "http://bar.utoronto.ca/webservices/eFP-Seq_Browser/cgi-bin/webservice_gdrive.cgi?numberofreads=" + numberofreads_push + "&gdrive=" + match_drive[1] + "&tissue=";
+              //testing_rnaseq_image += 1;
+              if (splice_variants == '') {
+                splice_variants = "[{\"exon_coordinates\":[{\"exon_start\":10326918,\"exon_end\":10327438},{\"exon_start\":10327325,\"exon_end\":10327438},{\"exon_start\":10327519,\"exon_end\":10327635},{\"exon_start\":10327519,\"exon_end\":10327635},{\"exon_start\":10327716,\"exon_end\":10328094},{\"exon_start\":10327716,\"exon_end\":10328094},{\"exon_start\":10328181,\"exon_end\":10328336},{\"exon_start\":10328181,\"exon_end\":10328336},{\"exon_start\":10328414,\"exon_end\":10328550},{\"exon_start\":10328414,\"exon_end\":10328550},{\"exon_start\":10328624,\"exon_end\":10328743},{\"exon_start\":10328624,\"exon_end\":10328743},{\"exon_start\":10328836,\"exon_end\":10328964},{\"exon_start\":10328836,\"exon_end\":10328964},{\"exon_start\":10329058,\"exon_end\":10329251},{\"exon_start\":10329058,\"exon_end\":10329251},{\"exon_start\":10329457,\"exon_end\":10330048},{\"exon_start\":10329457,\"exon_end\":10329601}],\"start\":10326918,\"end\":10330048,\"gene_structure\":\"iVBORw0KGgoAAAANSUhEUgAAAcIAAAAIBAMAAACYMuIQAAAAFVBMVEX///8AAADcFDz/jAAAAP+m 3KYAfQDytQt7AAAARklEQVQ4jWNIIwYkMIAAnIvKwwLACthwCySgcBOwyaJoh5kABwjJ1FACgCEt cdj7UHC4+zBx2PtQcLiDERCHwz8fDvuyFACN3Nv0vy8+hAAAAABJRU5ErkJggg== \"},{\"exon_coordinates\":[{\"exon_start\":10326925,\"exon_end\":10327438},{\"exon_start\":10327325,\"exon_end\":10327438},{\"exon_start\":10327519,\"exon_end\":10327635},{\"exon_start\":10327519,\"exon_end\":10327635},{\"exon_start\":10327716,\"exon_end\":10328094},{\"exon_start\":10327716,\"exon_end\":10328094},{\"exon_start\":10328181,\"exon_end\":10328336},{\"exon_start\":10328181,\"exon_end\":10328336},{\"exon_start\":10328414,\"exon_end\":10328550},{\"exon_start\":10328414,\"exon_end\":10328550},{\"exon_start\":10328624,\"exon_end\":10328743},{\"exon_start\":10328624,\"exon_end\":10328743},{\"exon_start\":10328836,\"exon_end\":10328964},{\"exon_start\":10328836,\"exon_end\":10328964},{\"exon_start\":10329058,\"exon_end\":10329251},{\"exon_start\":10329058,\"exon_end\":10329251},{\"exon_start\":10329457,\"exon_end\":10329618},{\"exon_start\":10329457,\"exon_end\":10329618},{\"exon_start\":10329722,\"exon_end\":10330008},{\"exon_start\":10329722,\"exon_end\":10329824}],\"start\":10326918,\"end\":10330048,\"gene_structure\":\"iVBORw0KGgoAAAANSUhEUgAAAcIAAAAIBAMAAACYMuIQAAAAFVBMVEX///8AAADcFDz/jAAAAP+m 3KYAfQDytQt7AAAAS0lEQVQ4jWNgSyMCJDCAAJyLysMCwArYcAskoHATsMmiaIeZAAfIkgkoQqmh yCAAJJE47H0oONx9yDjsfSg43MEIiMPhnw+HfVkKAGJJyHVybZqTAAAAAElFTkSuQmCC \"},{\"exon_coordinates\":[{\"exon_start\":10327035,\"exon_end\":10327438},{\"exon_start\":10327325,\"exon_end\":10327438},{\"exon_start\":10327519,\"exon_end\":10327635},{\"exon_start\":10327519,\"exon_end\":10327635},{\"exon_start\":10327716,\"exon_end\":10328094},{\"exon_start\":10327716,\"exon_end\":10328094},{\"exon_start\":10328181,\"exon_end\":10328336},{\"exon_start\":10328181,\"exon_end\":10328336},{\"exon_start\":10328414,\"exon_end\":10328550},{\"exon_start\":10328414,\"exon_end\":10328550},{\"exon_start\":10328624,\"exon_end\":10328743},{\"exon_start\":10328624,\"exon_end\":10328743},{\"exon_start\":10328836,\"exon_end\":10328964},{\"exon_start\":10328836,\"exon_end\":10328964},{\"exon_start\":10329058,\"exon_end\":10329251},{\"exon_start\":10329058,\"exon_end\":10329251},{\"exon_start\":10329457,\"exon_end\":10329607},{\"exon_start\":10329457,\"exon_end\":10329601},{\"exon_start\":10329722,\"exon_end\":10329941}],\"start\":10326918,\"end\":10330048,\"gene_structure\":\"iVBORw0KGgoAAAANSUhEUgAAAcIAAAAIBAMAAACYMuIQAAAAFVBMVEX///8AAADcFDz/jAAAAP+m 3KYAfQDytQt7AAAASklEQVQ4jWNggII0fCABVQlBDWAFbLgFElC4CdhkUbTDTIADhGRqAFSINRQV BMAVMw57HwoOdx8yDnsfCg53MALicPjnw2FflgIAMFykVMBo2gsAAAAASUVORK5CYII= \"},{\"exon_coordinates\":[{\"exon_start\":10327035,\"exon_end\":10327134},{\"exon_start\":10327109,\"exon_end\":10327134},{\"exon_start\":10327330,\"exon_end\":10327438},{\"exon_start\":10327330,\"exon_end\":10327438},{\"exon_start\":10327519,\"exon_end\":10327635},{\"exon_start\":10327519,\"exon_end\":10327635},{\"exon_start\":10327716,\"exon_end\":10328094},{\"exon_start\":10327716,\"exon_end\":10328094},{\"exon_start\":10328181,\"exon_end\":10328336},{\"exon_start\":10328181,\"exon_end\":10328336},{\"exon_start\":10328414,\"exon_end\":10328550},{\"exon_start\":10328414,\"exon_end\":10328550},{\"exon_start\":10328624,\"exon_end\":10328743},{\"exon_start\":10328624,\"exon_end\":10328743},{\"exon_start\":10328836,\"exon_end\":10328964},{\"exon_start\":10328836,\"exon_end\":10328964},{\"exon_start\":10329058,\"exon_end\":10329251},{\"exon_start\":10329058,\"exon_end\":10329251},{\"exon_start\":10329457,\"exon_end\":10329618},{\"exon_start\":10329457,\"exon_end\":10329601},{\"exon_start\":10329722,\"exon_end\":10329941}],\"start\":10326918,\"end\":10330048,\"gene_structure\":\"iVBORw0KGgoAAAANSUhEUgAAAcIAAAAIBAMAAACYMuIQAAAAFVBMVEX///8AAADcFDz/jAAAAP+m 3KYAfQDytQt7AAAAUElEQVQ4jWNggII0KGBABmxQwQQUJWmoPCwARTMWgQQUbgI2WRTt6O5CkkwN DYAIsYaiggC4YsZh70PB4e5DxmHvQ8HhDkZAHA7/fDjsy1IAaSZ/xYh30LgAAAAASUVORK5CYII=\"}]";
+              }
+            }
+
+            else {
+              rnaseq_image_url = "http://bar.utoronto.ca/webservices/eFP-Seq_Browser/cgi-bin/webservice.cgi?tissue=";
+            }
             $.ajax({
-                url: 'http://ec2-52-70-232-122.compute-1.amazonaws.com/~ppurohit/RNA-Browser/cgi-bin/webservice.cgi?tissue=' + rnaseq_calls[i][0] + '&record=' + rnaseq_calls[i][1] + '&locus=' + locus + '&variant=1&start=' + locus_start + '&end=' + locus_end + '&yscale=' + yscale_input + '&status=' + status + '&struct=' + splice_variants,
+                url: rnaseq_image_url + rnaseq_calls[i][0] + '&record=' + rnaseq_calls[i][1] + '&locus=' + locus + '&variant=1&start=' + locus_start + '&end=' + locus_end + '&yscale=' + yscale_input + '&status=' + status + '&struct=' + splice_variants,
                 dataType: 'json',
                 failure: function(failure_response) {
                     $('#failure').show();
@@ -461,9 +603,9 @@ function rnaseq_images(status) {
                         rnaseq_success++;
                         date_obj3 = new Date();
                         rnaseq_success_current_time = date_obj3.getTime(); // Keep track of start time
-                        var progress_percent = rnaseq_success / 113 * 100;
+                        progress_percent = rnaseq_success / count_bam_entries_in_xml * 100;
                         $('div#progress').width(progress_percent + '%');
-                        document.getElementById('progress_tooltip').innerHTML = rnaseq_success + " / 113 requests completed<br/>Load time <= " + String(round(parseInt(rnaseq_success_current_time - rnaseq_success_start_time) / (1000 * 60))) + " mins.";
+                        document.getElementById('progress_tooltip').innerHTML = rnaseq_success + " / count_bam_entries_in_xml requests completed<br/>Load time <= " + String(round(parseInt(rnaseq_success_current_time - rnaseq_success_start_time) / (1000 * 60))) + " mins.";
                         //console.log("Requests = " + String(rnaseq_success) + ", time delta = " + String(parseInt(rnaseq_success_current_time - rnaseq_success_start_time)));
                     } else {
                         $('#failure').show();
@@ -506,7 +648,7 @@ function rnaseq_images(status) {
                     document.getElementById(response_rnaseq['record'] + '_rpkm').innerHTML = response_rnaseq['absolute-fpkm'];
 
                     // Save the abs-fpkm, and the stats numbers
-                    for (var ii = 0; ii < 113; ii++) {
+                    for (var ii = 0; ii < count_bam_entries_in_xml; ii++) {
                         if (exp_info[ii][0] == response_rnaseq['record'] + '_svg') { // Find the correct element
                             exp_info[ii].splice(3, 1, response_rnaseq['absolute-fpkm']);
                             exp_info[ii].splice(5, 1, r);
@@ -519,18 +661,18 @@ function rnaseq_images(status) {
                     // Colour SVG by Absolute RPKM
                     colour_part_by_id(response_rnaseq['record'] + '_svg', 'Shapes', response_rnaseq['absolute-fpkm'], 'abs');
 
-                    if (rnaseq_success == 113 || rnaseq_success % 10 == 0) {
+                    if (rnaseq_success == count_bam_entries_in_xml || rnaseq_success % 10 == 0) {
                         // Execute the colour_svgs_now() function
                         colour_svgs_now();
                         // Change the input box value to max absolute fpkm
                         document.getElementById("rpkm_scale_input").value = parseInt(round(max_absolute_fpkm));
                         // Execute the colour_svgs_now() function and use the new max absolute fpkm
                         colour_svgs_now();
-                        if (rnaseq_success == 113) {
+                        if (rnaseq_success == count_bam_entries_in_xml) {
                             date_obj4 = new Date();
                             rnaseq_success_end_time = date_obj4.getTime(); // Keep track of start time
                             //console.log(rnaseq_success_end_time);
-                            document.getElementById('progress_tooltip').innerHTML = rnaseq_success + " / 113 requests completed<br/>Load time ~= " + String(round(parseInt(rnaseq_success_end_time - rnaseq_success_start_time) / (1000 * 60))) + " mins.";
+                            document.getElementById('progress_tooltip').innerHTML = rnaseq_success + " / count_bam_entries_in_xml requests completed<br/>Load time ~= " + String(round(parseInt(rnaseq_success_end_time - rnaseq_success_start_time) / (1000 * 60))) + " mins.";
                             //console.log("**** Requests = " + String(rnaseq_success) + ", time delta = " + String(parseInt(rnaseq_success_end_time - rnaseq_success_start_time)));
                         }
                     }
@@ -541,8 +683,23 @@ function rnaseq_images(status) {
         }
     }
 }
+/*
+window.setInterval(function(){
+  document.getElementById("testing_progress").innerHTML = progress_percent
+}, 50);
+*/
 
 /* Gets the BAM locator XML to create + populate the table. Leeps track of all RNA-Seq calls it will have to make. */
+var bam_type_list = [];
+var drive_link_list = [];
+var numberofreads_list = [];
+var svg_part_list = [];
+var efp_rep_2d = [];
+var efp_column_count = 0;
+var efp_table_column;
+var efp_rep_2d_title = [];
+var efp_rpkm_names = [];
+
 function populate_table(status) {
     // Reset values
     $("#thetable").empty();
@@ -555,6 +712,13 @@ function populate_table(status) {
     max_log_fpkm = -1;
     svg_colouring_element = null;
     gene_structure_colouring_element = null;
+    bam_type_list = [];
+    drive_link_list = [];
+    numberofreads_list = [];
+    svg_part_list = [];
+    efp_rep_2d = [];
+    efp_rep_2d_title = [];
+    efp_rpkm_names = [];
 
     // Insert table headers
     $("#thetable").append('<thead><tr>' +
@@ -568,7 +732,7 @@ function populate_table(status) {
         '<tbody></tbody>');
 
     $.ajax({
-        url: 'cgi-bin/data/bamdata_amazon_links.xml',
+        url: base_src,
         dataType: 'xml',
         success: function(xml_res) {
             var $title = $(xml_res).find("bam_file");
@@ -579,9 +743,20 @@ function populate_table(status) {
                 var svg = $(this).attr('svgname');
                 var svg_part = $(this).attr('svg_subunit');
                 var experimentno = $(this).attr('record_number');
+                svg_part_list.push([experimentno, svg_part]);
+                efp_rep_2d.push(experimentno + "_svg");
+                efp_rep_2d_title.push(title);
+                efp_rpkm_names.push(experimentno + "_rpkm");
                 var url = $(this).attr('publication_url');
                 var publicationid = $(this).attr('publication_link');
                 var numberofreads = $(this).attr('total_reads_mapped');
+                if (numberofreads == null || numberofreads == "") {
+                  numberofreads_list.push("1")
+                }
+                else {
+                  numberofreads_list.push(numberofreads)
+                }
+                var species = $(this).attr('species');
                 var controls = $(this).find("controls")[0].innerHTML.replace(/<bam_exp>/g, "").replace(/<\/bam_exp>/g, ",").replace(/\n/g, " ").replace(/ /g, "").split(",");
                 var links = "";
                 for (var i = controls.length; i--;) {
@@ -592,7 +767,13 @@ function populate_table(status) {
                     }
                 }
                 var name = $(this).attr('bam_link').split("/");
-                var tissue = $(this).attr('bam_link').split("/")[8];
+                if ($(this).attr('bam_type') == "Amazon AWS") {
+                  var tissue = $(this).attr('bam_link').split("/")[8];
+                };
+                var bam_type = $(this).attr('bam_type');
+                bam_type_list.push(bam_type);
+                var drive_link = $(this).attr('bam_link');
+                drive_link_list.push(drive_link);
 
                 //console.log(experimentno + ", " + svg_part);
 
@@ -603,7 +784,7 @@ function populate_table(status) {
                 // Construct a table row <tr> element
                 var append_str = '<tr>';
                 // Append title <td>
-                append_str += '<td style="width: 250px; font-size: 12px;">' + title + '</td>\n';
+                append_str += '<td style="width: 250px; font-size: 12px;" id="' + experimentno + '_title">' + title + '</td>\n';
                 // Append RNA-Seq and Gene Structure images (2 imgs) in one <td>
                 append_str += '<td style="width: 460px;">' + '<img id="' + experimentno + '_rnaseq_img" width="450px" height="50px" class="rnaseq_img" src="' + img_loading_base64 + '" /><br/>' + '<img id="' + experimentno + '_gene_structure_img" width="450px" height="8px" class="gene_structure_img" src="' + img_gene_struct_1 + '" />' + '</td>\n';
                 // Append the PCC <td>
@@ -612,8 +793,8 @@ function populate_table(status) {
                 append_str += '<td style="width:  75px;">' + '<div id="' + experimentno + '_svg' + '" width="75" height="75" style="width: 75px; height: 75px; max-width: 75px; max-height: 75px;">' + document.getElementById(svg.substring(4).replace(".svg", "_svg")).innerHTML + '</div>' + '<div class="mdl-tooltip" for="' + experimentno + '_svg' + '">' + svg.substring(4).replace(".svg", "") + '</div></td>\n';
                 // Append abs/rel RPKM
                 append_str += '<td id="' + experimentno + '_rpkm' + '" style="font-size: 10px; width: 50px; ">-9999</td>';
-                // Append the details <td>  
-                append_str += '<td style="width: 200px; font-size: 12px;">' + description + '<br/>' + '<a href="' + url + '" target="blank">' + 'NCBI SRA' + '</a>; <a href="' + publicationid + '" target="blank">PubLink</a>' + '<br/><a href="javascript:(function(){$(\'#' + url.substring(44) + '\').toggle();})()">More Details</a><div id="' + url.substring(44) + '" style="display:none">Total reads = ' + numberofreads + '.<br/>Controls: ' + links + '</div></td>\n';
+                // Append the details <td>
+                append_str += '<td style="width: 200px; font-size: 12px;">' + description + '<br/>' + '<a href="' + url + '" target="blank">' + 'NCBI SRA' + '</a>; <a href="' + publicationid + '" target="blank">PubLink</a>' + '<br/><a href="javascript:(function(){$(\'#' + url.substring(44) + '\').toggle();})()"></a><div id="' + url.substring(44) + '" >Total reads = ' + numberofreads + '.<br/>Controls: ' + links + '.<br/>Species: ' + species + '</div></td>\n';
                 append_str += '</tr>';
 
                 // Append the <tr> to the table
@@ -621,16 +802,16 @@ function populate_table(status) {
 
                 exp_info.push([experimentno + '_svg', svg_part, controls, 0, 0, 0, 0]);
 
-                if (rnaseq_calls.length == 113) {
+                if (rnaseq_calls.length == count_bam_entries_in_xml) {
                     rnaseq_images(status);
                 }
             });
-            // add parser through the tablesorter addParser method 
+            // add parser through the tablesorter addParser method
             $.tablesorter.addParser({
-                // set a unique id 
+                // set a unique id
                 id: 'pcc_sorter',
                 is: function(s) {
-                    // return false so this parser is not auto detected 
+                    // return false so this parser is not auto detected
                     return false;
                 },
                 format: function(s) {
@@ -647,18 +828,18 @@ function populate_table(status) {
                         return parseFloat(s);
                     }
                 },
-                // set type, either numeric or text 
+                // set type, either numeric or text
                 type: 'numeric'
             });
             $.tablesorter.addParser({
-                // set a unique id 
+                // set a unique id
                 id: 'rpkm_sorter',
                 is: function(s) {
-                    // return false so this parser is not auto detected 
+                    // return false so this parser is not auto detected
                     return false;
                 },
                 format: function(s) {
-                    // format your data for normalization 
+                    // format your data for normalization
                     if (s == NaN) {
                         return -99999;
                     } else if (s == undefined) {
@@ -673,7 +854,7 @@ function populate_table(status) {
                         return parseFloat(s);
                     }
                 },
-                // set type, either numeric or text 
+                // set type, either numeric or text
                 type: 'numeric'
             });
             $('#thetable').tablesorter({
@@ -699,9 +880,10 @@ function populate_table(status) {
             $("#thetable").trigger("update");
         }
     });
+
     var filtersConfig = {
         base_path: 'cgi-bin/core/tablefilter/',
-        columns_exact_match: [false, false, true, false, true, false],
+        columns_exact_match: [false, false, false, false, false, false],
         watermark: ["Filter", "Filter", "Filter", "Filter", "Filter", "Filter"],
         highlight_keywords: false,
         no_results_message: true,
@@ -729,6 +911,166 @@ function populate_table(status) {
     img_created.src = 'data:image/png;base64,' + exon_intron_scale;
     img_created.style = 'margin-top: 10px; float: right; margin-right: 10px;';
     gene_structure_colouring_element.appendChild(img_created);
+}
+
+var remainder_efp = 0;
+var efp_length = 0;
+var efp_RPKM_values = [];
+function populate_efp_modal(status) {
+  $("#eFPtable").empty();
+  efp_table_column = '';
+  efp_column_count = 0;
+  remainder_efp = efp_rep_2d.length % 11;
+  efp_length = efp_rep_2d.length;
+  efp_RPKM_values = [];
+
+  for (i = 0; i < efp_rpkm_names.length; i++) {
+    if (isNaN(parseFloat(document.getElementById(efp_rpkm_names[i]).textContent)) == false) {
+      efp_RPKM_values.push(parseFloat(document.getElementById(efp_rpkm_names[i]).textContent));
+    }
+  }
+
+  // Insert eFP Table header
+  $("#eFPtable").append('<p class="eFP_thead"> AGI-ID: <a href="https://www.arabidopsis.org/servlets/TairObject?type=locus&name=' + locus + '" target="_blank">' + locus +  '</a></p>');
+
+  // Check radio
+  if (current_radio == "abs") {
+    $("#eFPtable").append('<p class="eFP_thead"> eFP Colour Scale: <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAAAPCAMAAAAlD5r/AAABQVBMVEX///8AAADcFDz/jAAAAP+m 3KYAfQD//wD//AD/+QD/9wD/9AD/8gD/7wD/7QD/6gD/6AD/5QD/4gD/4AD/3QD/2wD/2AD/1gD/ 0wD/0QD/zgD/zAD/yQD/xgD/xAD/wQD/vwD/vAD/ugD/twD/tQD/sgD/rwD/rQD/qgD/qAD/pQD/ owD/oAD/ngD/mwD/mQD/lgD/kwD/kQD/jgD/jAD/iQD/hwD/hAD/ggD/fwD/fAD/egD/dwD/dQD/ cgD/cAD/bQD/awD/aAD/ZgD/YwD/YAD/XgD/WwD/WQD/VgD/VAD/UQD/TwD/TAD/SQD/RwD/RAD/ QgD/PwD/PQD/OgD/OAD/NQD/MwD/MAD/LQD/KwD/KAD/JgD/IwD/IQD/HgD/HAD/GQD/FgD/FAD/ EQD/DwD/DAD/CgD/BwD/BQD/AgCkIVxRAAAAs0lEQVQ4jWNg5+Dk4ubh5eMXEBQSFhEVE5eQlJKW kZWTV1BUUlZRVVPX0NTS1tHV0zcwNDI2MTUzt7C0sraxtbN3cHRydnF1c/fw9PL28fXzDwgMCg4J DQuPiIyKjomNi09ITEpOSU1Lz8jMYhi1hERLGBmpbgljbBwjiiWMnFyMVLcECOhkCZBIZUzPYKSV JaDgYkxKZkxNY2SkmU8gljDCLaFdxDMmw4NrGOWTUUuItwQAG8496iMoCNwAAAAASUVORK5CYII="> Min: ' + Math.min.apply(null, efp_RPKM_values) + ' RPKM, Max: ' + Math.max.apply(null, efp_RPKM_values) + ' RPKM</p>' + '<br><table><tbody class="eFP_tbody"></tbody>');
+  }
+
+  else if (current_radio == "rel") {
+    $("#eFPtable").append('<p class="eFP_thead"> eFP Colour Scale: <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAAAPCAMAAAAlD5r/AAABQVBMVEX///8AAADcFDz/jAAAAP+m 3KYAfQAAAP8FBfkKCvQPD+8UFOoZGeUeHuAjI9soKNYtLdEzM8w4OMY9PcFCQrxHR7dMTLJRUa1W VqhbW6NgYJ5mZplra5NwcI51dYl6eoR/f3+EhHqJiXWOjnCTk2uZmWaenmCjo1uoqFatrVGysky3 t0e8vELBwT3GxjjMzDPR0S3W1ijb2yPg4B7l5Rnq6hTv7w/09Ar5+QX//wD/+wD/9gD/8QD/7AD/ 5wD/4gD/3QD/2AD/0wD/zQD/yAD/wwD/vgD/uQD/tAD/rwD/qgD/pQD/oAD/mgD/lQD/kAD/iwD/ hgD/gQD/fAD/dwD/cgD/bQD/ZwD/YgD/XQD/WAD/UwD/TgD/SQD/RAD/PwD/OgD/NAD/LwD/KgD/ JQD/IAD/GwD/FgD/EQD/DAD/BwBUljDTAAAA1klEQVQ4jWNg5+Dk4ubh5eMXEBQSFhEVE5eQlJKW kZWTV1BUUlZRVVPX0NTS1tHV0zcwNDI2MTUzt7C0sraxtbN3cHRydnF1c/fw9PL28fXzDwgMCg4J DQuPiIyKjomNi09ITEpOSU1Lz8jMYhi1hDRLGDi5GICWMBBvCSMjIUsYY+MYUS0BApJ8wmhlzUjI EiDAYgkD0CcMwgxUtQRIpDKmZzCiBBcDgwgDlSwBBRdjUjJjahojI2qcMAhT2RJGNEuAYUasJURH PGMyPLiGTz4ZtYQESwCEoDnh8dGTkQAAAABJRU5ErkJggg=="> Min: ' + Math.min.apply(null, efp_RPKM_values) + ', Max: '+ Math.max.apply(null, efp_RPKM_values) + '</p>' + '<br><table><tbody></tbody>');
+  }
+
+  // Creating eFP representative table
+  for (i = 0; i < (~~(efp_rep_2d.length/11) * 11); i+=11) {
+    if (document.getElementById(efp_rep_2d[i+10]).outerHTML != 'null') {
+      efp_table_column = '<tr>';
+      efp_table_column += '<td>' + '<div class="efp_table_tooltip" id="' + efp_rep_2d[i] + '_rep">' + document.getElementById(efp_rep_2d[i]).outerHTML + '<span class="efp_table_tooltip_text">' + efp_rep_2d_title[i] + '</span></div></td>';
+      efp_table_column += '<td>' + '<div class="efp_table_tooltip" id="' + efp_rep_2d[i+1] + '_rep">' + document.getElementById(efp_rep_2d[i+1]).outerHTML + '<span class="efp_table_tooltip_text">' + efp_rep_2d_title[i+1] + '</span></div></td>';
+      efp_table_column += '<td>' + '<div class="efp_table_tooltip" id="' + efp_rep_2d[i+2] + '_rep">' + document.getElementById(efp_rep_2d[i+2]).outerHTML + '<span class="efp_table_tooltip_text">' + efp_rep_2d_title[i+2] + '</span></div></td>';
+      efp_table_column += '<td>' + '<div class="efp_table_tooltip" id="' + efp_rep_2d[i+3] + '_rep">' + document.getElementById(efp_rep_2d[i+3]).outerHTML + '<span class="efp_table_tooltip_text">' + efp_rep_2d_title[i+3] + '</span></div></td>';
+      efp_table_column += '<td>' + '<div class="efp_table_tooltip" id="' + efp_rep_2d[i+4] + '_rep">' + document.getElementById(efp_rep_2d[i+4]).outerHTML + '<span class="efp_table_tooltip_text">' + efp_rep_2d_title[i+4] + '</span></div></td>';
+      efp_table_column += '<td>' + '<div class="efp_table_tooltip" id="' + efp_rep_2d[i+5] + '_rep">' + document.getElementById(efp_rep_2d[i+5]).outerHTML + '<span class="efp_table_tooltip_text">' + efp_rep_2d_title[i+5] + '</span></div></td>';
+      efp_table_column += '<td>' + '<div class="efp_table_tooltip" id="' + efp_rep_2d[i+6] + '_rep">' + document.getElementById(efp_rep_2d[i+6]).outerHTML + '<span class="efp_table_tooltip_text">' + efp_rep_2d_title[i+6] + '</span></div></td>';
+      efp_table_column += '<td>' + '<div class="efp_table_tooltip" id="' + efp_rep_2d[i+7] + '_rep">' + document.getElementById(efp_rep_2d[i+7]).outerHTML + '<span class="efp_table_tooltip_text">' + efp_rep_2d_title[i+7] + '</span></div></td>';
+      efp_table_column += '<td>' + '<div class="efp_table_tooltip" id="' + efp_rep_2d[i+8] + '_rep">' + document.getElementById(efp_rep_2d[i+8]).outerHTML + '<span class="efp_table_tooltip_text">' + efp_rep_2d_title[i+8] + '</span></div></td>';
+      efp_table_column += '<td>' + '<div class="efp_table_tooltip" id="' + efp_rep_2d[i+9] + '_rep">' + document.getElementById(efp_rep_2d[i+9]).outerHTML + '<span class="efp_table_tooltip_text">' + efp_rep_2d_title[i+9] + '</span></div></td>';
+      efp_table_column += '<td>' + '<div class="efp_table_tooltip" id="' + efp_rep_2d[i+10] + '_rep">' + document.getElementById(efp_rep_2d[i+10]).outerHTML + '<span class="efp_table_tooltip_text">' + efp_rep_2d_title[i+10] + '</span></div></td>';
+      efp_table_column += '</tr>';
+      $("#eFPtable").append(efp_table_column);
+    }
+  }
+
+  if (remainder_efp == 1) {
+    efp_table_column = '<tr>';
+    efp_table_column += '<td>' + '<div class="efp_table_tooltip" id="' + efp_rep_2d[efp_length-1] + '_rep">' + document.getElementById(efp_rep_2d[efp_length-1]).outerHTML + '<span class="efp_table_tooltip_text">' + efp_rep_2d_title[efp_length-1] + '</span></div></td>';
+    efp_table_column += '</tr>';
+    $("#eFPtable").append(efp_table_column);
+  }
+  else if (remainder_efp == 2) {
+    efp_table_column = '<tr>';
+    efp_table_column += '<td>' + '<div class="efp_table_tooltip" id="' + efp_rep_2d[efp_length-2] + '_rep">' + document.getElementById(efp_rep_2d[efp_length-2]).outerHTML + '<span class="efp_table_tooltip_text">' + efp_rep_2d_title[efp_length-2] + '</span></div></td>';
+    efp_table_column += '<td>' + '<div class="efp_table_tooltip" id="' + efp_rep_2d[efp_length-1] + '_rep">' + document.getElementById(efp_rep_2d[efp_length-1]).outerHTML + '<span class="efp_table_tooltip_text">' + efp_rep_2d_title[efp_length-1] + '</span></div></td>';
+    efp_table_column += '</tr>';
+    $("#eFPtable").append(efp_table_column);
+  }
+  else if (remainder_efp == 3) {
+    efp_table_column = '<tr>';
+    efp_table_column += '<td>' + '<div class="efp_table_tooltip" id="' + efp_rep_2d[efp_length-3] + '_rep">' + document.getElementById(efp_rep_2d[efp_length-3]).outerHTML + '<span class="efp_table_tooltip_text">' + efp_rep_2d_title[efp_length-3] + '</span></div></td>';
+    efp_table_column += '<td>' + '<div class="efp_table_tooltip" id="' + efp_rep_2d[efp_length-2] + '_rep">' + document.getElementById(efp_rep_2d[efp_length-2]).outerHTML + '<span class="efp_table_tooltip_text">' + efp_rep_2d_title[efp_length-2] + '</span></div></td>';
+    efp_table_column += '<td>' + '<div class="efp_table_tooltip" id="' + efp_rep_2d[efp_length-1] + '_rep">' + document.getElementById(efp_rep_2d[efp_length-1]).outerHTML + '<span class="efp_table_tooltip_text">' + efp_rep_2d_title[efp_length-1] + '</span></div></td>';
+    efp_table_column += '</tr>';
+    $("#eFPtable").append(efp_table_column);
+  }
+  else if (remainder_efp == 4) {
+    efp_table_column = '<tr>';
+    efp_table_column += '<td>' + '<div class="efp_table_tooltip" id="' + efp_rep_2d[efp_length-4] + '_rep">' + document.getElementById(efp_rep_2d[efp_length-4]).outerHTML + '<span class="efp_table_tooltip_text">' + efp_rep_2d_title[efp_length-4] + '</span></div></td>';
+    efp_table_column += '<td>' + '<div class="efp_table_tooltip" id="' + efp_rep_2d[efp_length-3] + '_rep">' + document.getElementById(efp_rep_2d[efp_length-3]).outerHTML + '<span class="efp_table_tooltip_text">' + efp_rep_2d_title[efp_length-3] + '</span></div></td>';
+    efp_table_column += '<td>' + '<div class="efp_table_tooltip" id="' + efp_rep_2d[efp_length-2] + '_rep">' + document.getElementById(efp_rep_2d[efp_length-2]).outerHTML + '<span class="efp_table_tooltip_text">' + efp_rep_2d_title[efp_length-2] + '</span></div></td>';
+    efp_table_column += '<td>' + '<div class="efp_table_tooltip" id="' + efp_rep_2d[efp_length-1] + '_rep">' + document.getElementById(efp_rep_2d[efp_length-1]).outerHTML + '<span class="efp_table_tooltip_text">' + efp_rep_2d_title[efp_length-1] + '</span></div></td>';
+    efp_table_column += '</tr>';
+    $("#eFPtable").append(efp_table_column);
+  }
+  else if (remainder_efp == 5) {
+    efp_table_column = '<tr>';
+    efp_table_column += '<td>' + '<div class="efp_table_tooltip" id="' + efp_rep_2d[efp_length-5] + '_rep">' + document.getElementById(efp_rep_2d[efp_length-5]).outerHTML + '<span class="efp_table_tooltip_text">' + efp_rep_2d_title[efp_length-5] + '</span></div></td>';
+    efp_table_column += '<td>' + '<div class="efp_table_tooltip" id="' + efp_rep_2d[efp_length-4] + '_rep">' + document.getElementById(efp_rep_2d[efp_length-4]).outerHTML + '<span class="efp_table_tooltip_text">' + efp_rep_2d_title[efp_length-4] + '</span></div></td>';
+    efp_table_column += '<td>' + '<div class="efp_table_tooltip" id="' + efp_rep_2d[efp_length-3] + '_rep">' + document.getElementById(efp_rep_2d[efp_length-3]).outerHTML + '<span class="efp_table_tooltip_text">' + efp_rep_2d_title[efp_length-3] + '</span></div></td>';
+    efp_table_column += '<td>' + '<div class="efp_table_tooltip" id="' + efp_rep_2d[efp_length-2] + '_rep">' + document.getElementById(efp_rep_2d[efp_length-2]).outerHTML + '<span class="efp_table_tooltip_text">' + efp_rep_2d_title[efp_length-2] + '</span></div></td>';
+    efp_table_column += '<td>' + '<div class="efp_table_tooltip" id="' + efp_rep_2d[efp_length-1] + '_rep">' + document.getElementById(efp_rep_2d[efp_length-1]).outerHTML + '<span class="efp_table_tooltip_text">' + efp_rep_2d_title[efp_length-1] + '</span></div></td>';
+    efp_table_column += '</tr>';
+    $("#eFPtable").append(efp_table_column);
+  }
+  else if (remainder_efp == 6) {
+    efp_table_column = '<tr>';
+    efp_table_column += '<td>' + '<div class="efp_table_tooltip" id="' + efp_rep_2d[efp_length-6] + '_rep">' + document.getElementById(efp_rep_2d[efp_length-6]).outerHTML + '<span class="efp_table_tooltip_text">' + efp_rep_2d_title[efp_length-6] + '</span></div></td>';
+    efp_table_column += '<td>' + '<div class="efp_table_tooltip" id="' + efp_rep_2d[efp_length-5] + '_rep">' + document.getElementById(efp_rep_2d[efp_length-5]).outerHTML + '<span class="efp_table_tooltip_text">' + efp_rep_2d_title[efp_length-5] + '</span></div></td>';
+    efp_table_column += '<td>' + '<div class="efp_table_tooltip" id="' + efp_rep_2d[efp_length-4] + '_rep">' + document.getElementById(efp_rep_2d[efp_length-4]).outerHTML + '<span class="efp_table_tooltip_text">' + efp_rep_2d_title[efp_length-4] + '</span></div></td>';
+    efp_table_column += '<td>' + '<div class="efp_table_tooltip" id="' + efp_rep_2d[efp_length-3] + '_rep">' + document.getElementById(efp_rep_2d[efp_length-3]).outerHTML + '<span class="efp_table_tooltip_text">' + efp_rep_2d_title[efp_length-3] + '</span></div></td>';
+    efp_table_column += '<td>' + '<div class="efp_table_tooltip" id="' + efp_rep_2d[efp_length-2] + '_rep">' + document.getElementById(efp_rep_2d[efp_length-2]).outerHTML + '<span class="efp_table_tooltip_text">' + efp_rep_2d_title[efp_length-2] + '</span></div></td>';
+    efp_table_column += '<td>' + '<div class="efp_table_tooltip" id="' + efp_rep_2d[efp_length-1] + '_rep">' + document.getElementById(efp_rep_2d[efp_length-1]).outerHTML + '<span class="efp_table_tooltip_text">' + efp_rep_2d_title[efp_length-1] + '</span></div></td>';
+    efp_table_column += '</tr>';
+    $("#eFPtable").append(efp_table_column);
+  }
+  else if (remainder_efp == 7) {
+    efp_table_column = '<tr>';
+    efp_table_column += '<td>' + '<div class="efp_table_tooltip" id="' + efp_rep_2d[efp_length-7] + '_rep">' + document.getElementById(efp_rep_2d[efp_length-7]).outerHTML + '<span class="efp_table_tooltip_text">' + efp_rep_2d_title[efp_length-7] + '</span></div></td>';
+    efp_table_column += '<td>' + '<div class="efp_table_tooltip" id="' + efp_rep_2d[efp_length-6] + '_rep">' + document.getElementById(efp_rep_2d[efp_length-6]).outerHTML + '<span class="efp_table_tooltip_text">' + efp_rep_2d_title[efp_length-6] + '</span></div></td>';
+    efp_table_column += '<td>' + '<div class="efp_table_tooltip" id="' + efp_rep_2d[efp_length-5] + '_rep">' + document.getElementById(efp_rep_2d[efp_length-5]).outerHTML + '<span class="efp_table_tooltip_text">' + efp_rep_2d_title[efp_length-5] + '</span></div></td>';
+    efp_table_column += '<td>' + '<div class="efp_table_tooltip" id="' + efp_rep_2d[efp_length-4] + '_rep">' + document.getElementById(efp_rep_2d[efp_length-4]).outerHTML + '<span class="efp_table_tooltip_text">' + efp_rep_2d_title[efp_length-4] + '</span></div></td>';
+    efp_table_column += '<td>' + '<div class="efp_table_tooltip" id="' + efp_rep_2d[efp_length-3] + '_rep">' + document.getElementById(efp_rep_2d[efp_length-3]).outerHTML + '<span class="efp_table_tooltip_text">' + efp_rep_2d_title[efp_length-3] + '</span></div></td>';
+    efp_table_column += '<td>' + '<div class="efp_table_tooltip" id="' + efp_rep_2d[efp_length-2] + '_rep">' + document.getElementById(efp_rep_2d[efp_length-2]).outerHTML + '<span class="efp_table_tooltip_text">' + efp_rep_2d_title[efp_length-2] + '</span></div></td>';
+    efp_table_column += '<td>' + '<div class="efp_table_tooltip" id="' + efp_rep_2d[efp_length-1] + '_rep">' + document.getElementById(efp_rep_2d[efp_length-1]).outerHTML + '<span class="efp_table_tooltip_text">' + efp_rep_2d_title[efp_length-1] + '</span></div></td>';
+    efp_table_column += '</tr>';
+    $("#eFPtable").append(efp_table_column);
+  }
+  else if (remainder_efp == 8) {
+    efp_table_column = '<tr>';
+    efp_table_column += '<td>' + '<div class="efp_table_tooltip" id="' + efp_rep_2d[efp_length-8] + '_rep">' + document.getElementById(efp_rep_2d[efp_length-8]).outerHTML + '<span class="efp_table_tooltip_text">' + efp_rep_2d_title[efp_length-8] + '</span></div></td>';
+    efp_table_column += '<td>' + '<div class="efp_table_tooltip" id="' + efp_rep_2d[efp_length-7] + '_rep">' + document.getElementById(efp_rep_2d[efp_length-7]).outerHTML + '<span class="efp_table_tooltip_text">' + efp_rep_2d_title[efp_length-7] + '</span></div></td>';
+    efp_table_column += '<td>' + '<div class="efp_table_tooltip" id="' + efp_rep_2d[efp_length-6] + '_rep">' + document.getElementById(efp_rep_2d[efp_length-6]).outerHTML + '<span class="efp_table_tooltip_text">' + efp_rep_2d_title[efp_length-6] + '</span></div></td>';
+    efp_table_column += '<td>' + '<div class="efp_table_tooltip" id="' + efp_rep_2d[efp_length-5] + '_rep">' + document.getElementById(efp_rep_2d[efp_length-5]).outerHTML + '<span class="efp_table_tooltip_text">' + efp_rep_2d_title[efp_length-5] + '</span></div></td>';
+    efp_table_column += '<td>' + '<div class="efp_table_tooltip" id="' + efp_rep_2d[efp_length-4] + '_rep">' + document.getElementById(efp_rep_2d[efp_length-4]).outerHTML + '<span class="efp_table_tooltip_text">' + efp_rep_2d_title[efp_length-4] + '</span></div></td>';
+    efp_table_column += '<td>' + '<div class="efp_table_tooltip" id="' + efp_rep_2d[efp_length-3] + '_rep">' + document.getElementById(efp_rep_2d[efp_length-3]).outerHTML + '<span class="efp_table_tooltip_text">' + efp_rep_2d_title[efp_length-3] + '</span></div></td>';
+    efp_table_column += '<td>' + '<div class="efp_table_tooltip" id="' + efp_rep_2d[efp_length-2] + '_rep">' + document.getElementById(efp_rep_2d[efp_length-2]).outerHTML + '<span class="efp_table_tooltip_text">' + efp_rep_2d_title[efp_length-2] + '</span></div></td>';
+    efp_table_column += '<td>' + '<div class="efp_table_tooltip" id="' + efp_rep_2d[efp_length-1] + '_rep">' + document.getElementById(efp_rep_2d[efp_length-1]).outerHTML + '<span class="efp_table_tooltip_text">' + efp_rep_2d_title[efp_length-1] + '</span></div></td>';
+    efp_table_column += '</tr>';
+    $("#eFPtable").append(efp_table_column);
+  }
+  else if (remainder_efp == 9) {
+    efp_table_column = '<tr>';
+    efp_table_column += '<td>' + '<div class="efp_table_tooltip" id="' + efp_rep_2d[efp_length-9] + '_rep">' + document.getElementById(efp_rep_2d[efp_length-9]).outerHTML + '<span class="efp_table_tooltip_text">' + efp_rep_2d_title[efp_length-9] + '</span></div></td>';
+    efp_table_column += '<td>' + '<div class="efp_table_tooltip" id="' + efp_rep_2d[efp_length-8] + '_rep">' + document.getElementById(efp_rep_2d[efp_length-8]).outerHTML + '<span class="efp_table_tooltip_text">' + efp_rep_2d_title[efp_length-8] + '</span></div></td>';
+    efp_table_column += '<td>' + '<div class="efp_table_tooltip" id="' + efp_rep_2d[efp_length-7] + '_rep">' + document.getElementById(efp_rep_2d[efp_length-7]).outerHTML + '<span class="efp_table_tooltip_text">' + efp_rep_2d_title[efp_length-7] + '</span></div></td>';
+    efp_table_column += '<td>' + '<div class="efp_table_tooltip" id="' + efp_rep_2d[efp_length-6] + '_rep">' + document.getElementById(efp_rep_2d[efp_length-6]).outerHTML + '<span class="efp_table_tooltip_text">' + efp_rep_2d_title[efp_length-6] + '</span></div></td>';
+    efp_table_column += '<td>' + '<div class="efp_table_tooltip" id="' + efp_rep_2d[efp_length-5] + '_rep">' + document.getElementById(efp_rep_2d[efp_length-5]).outerHTML + '<span class="efp_table_tooltip_text">' + efp_rep_2d_title[efp_length-5] + '</span></div></td>';
+    efp_table_column += '<td>' + '<div class="efp_table_tooltip" id="' + efp_rep_2d[efp_length-4] + '_rep">' + document.getElementById(efp_rep_2d[efp_length-4]).outerHTML + '<span class="efp_table_tooltip_text">' + efp_rep_2d_title[efp_length-4] + '</span></div></td>';
+    efp_table_column += '<td>' + '<div class="efp_table_tooltip" id="' + efp_rep_2d[efp_length-3] + '_rep">' + document.getElementById(efp_rep_2d[efp_length-3]).outerHTML + '<span class="efp_table_tooltip_text">' + efp_rep_2d_title[efp_length-3] + '</span></div></td>';
+    efp_table_column += '<td>' + '<div class="efp_table_tooltip" id="' + efp_rep_2d[efp_length-2] + '_rep">' + document.getElementById(efp_rep_2d[efp_length-2]).outerHTML + '<span class="efp_table_tooltip_text">' + efp_rep_2d_title[efp_length-2] + '</span></div></td>';
+    efp_table_column += '<td>' + '<div class="efp_table_tooltip" id="' + efp_rep_2d[efp_length-1] + '_rep">' + document.getElementById(efp_rep_2d[efp_length-1]).outerHTML + '<span class="efp_table_tooltip_text">' + efp_rep_2d_title[efp_length-1] + '</span></div></td>';
+    efp_table_column += '</tr>';
+    $("#eFPtable").append(efp_table_column);
+  }
+  else if (remainder_efp == 10) {
+    efp_table_column = '<tr>';
+    efp_table_column += '<td>' + '<div class="efp_table_tooltip" id="' + efp_rep_2d[efp_length-10] + '_rep">' + document.getElementById(efp_rep_2d[efp_length-10]).outerHTML + '<span class="efp_table_tooltip_text">' + efp_rep_2d_title[efp_length-10] + '</span></div></td>';
+    efp_table_column += '<td>' + '<div class="efp_table_tooltip" id="' + efp_rep_2d[efp_length-9] + '_rep">' + document.getElementById(efp_rep_2d[efp_length-9]).outerHTML + '<span class="efp_table_tooltip_text">' + efp_rep_2d_title[efp_length-9] + '</span></div></td>';
+    efp_table_column += '<td>' + '<div class="efp_table_tooltip" id="' + efp_rep_2d[efp_length-8] + '_rep">' + document.getElementById(efp_rep_2d[efp_length-8]).outerHTML + '<span class="efp_table_tooltip_text">' + efp_rep_2d_title[efp_length-8] + '</span></div></td>';
+    efp_table_column += '<td>' + '<div class="efp_table_tooltip" id="' + efp_rep_2d[efp_length-7] + '_rep">' + document.getElementById(efp_rep_2d[efp_length-7]).outerHTML + '<span class="efp_table_tooltip_text">' + efp_rep_2d_title[efp_length-7] + '</span></div></td>';
+    efp_table_column += '<td>' + '<div class="efp_table_tooltip" id="' + efp_rep_2d[efp_length-6] + '_rep">' + document.getElementById(efp_rep_2d[efp_length-6]).outerHTML + '<span class="efp_table_tooltip_text">' + efp_rep_2d_title[efp_length-6] + '</span></div></td>';
+    efp_table_column += '<td>' + '<div class="efp_table_tooltip" id="' + efp_rep_2d[efp_length-5] + '_rep">' + document.getElementById(efp_rep_2d[efp_length-5]).outerHTML + '<span class="efp_table_tooltip_text">' + efp_rep_2d_title[efp_length-5] + '</span></div></td>';
+    efp_table_column += '<td>' + '<div class="efp_table_tooltip" id="' + efp_rep_2d[efp_length-4] + '_rep">' + document.getElementById(efp_rep_2d[efp_length-4]).outerHTML + '<span class="efp_table_tooltip_text">' + efp_rep_2d_title[efp_length-4] + '</span></div></td>';
+    efp_table_column += '<td>' + '<div class="efp_table_tooltip" id="' + efp_rep_2d[efp_length-3] + '_rep">' + document.getElementById(efp_rep_2d[efp_length-3]).outerHTML + '<span class="efp_table_tooltip_text">' + efp_rep_2d_title[efp_length-3] + '</span></div></td>';
+    efp_table_column += '<td>' + '<div class="efp_table_tooltip" id="' + efp_rep_2d[efp_length-2] + '_rep">' + document.getElementById(efp_rep_2d[efp_length-2]).outerHTML + '<span class="efp_table_tooltip_text">' + efp_rep_2d_title[efp_length-2] + '</span></div></td>';
+    efp_table_column += '<td>' + '<div class="efp_table_tooltip" id="' + efp_rep_2d[efp_length-1] + '_rep">' + document.getElementById(efp_rep_2d[efp_length-1]).outerHTML + '<span class="efp_table_tooltip_text">' + efp_rep_2d_title[efp_length-1] + '</span></div></td>';
+    efp_table_column += '</tr>';
+    $("#eFPtable").append(efp_table_column);
+  }
+
+  // Insert eFP modal close button
+  $("#eFPtable").append('<div class="modal-footer"><button type="button" class="btn btn-default" data-dismiss="modal" id="closemodal">Close</button></div>');
+
 }
 
 /* Changes the legend for scales. */
@@ -826,6 +1168,7 @@ $(document).ready(function() {
         rpkm_validation();
     });
     populate_table(1); // status 1 forces rna-seq api to return cached data for fast initial load
+    populate_efp_modal(1);
 
     if (gene_structure_colouring_element == null) {
         gene_structure_colouring_element = document.getElementById("flt1_thetable").parentElement;
